@@ -37,7 +37,11 @@ function Confidence.Calculate(params)
     -- Special boost for short messages (2-3 words) with high coverage
     -- These are often common phrases that translate reliably
     if length >= 2 and length <= 3 and coverage >= 0.9 then
-        score = score + 0.15 -- Significant boost for reliable short phrases
+        score = score + 0.25 -- Significant boost for reliable short phrases
+    end
+    -- Extra boost for 2-word phrases with perfect coverage (common idioms)
+    if length == 2 and coverage >= 1.0 then
+        score = score + 0.10 -- Additional boost for perfect 2-word phrases
     end
     
     -- Intent confidence bonus (if intent was detected)
