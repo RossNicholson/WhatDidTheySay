@@ -171,7 +171,7 @@ function Config.CreateFrame()
     -- Global channels label
     local globalLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     globalLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 35, yOffset)
-    globalLabel:SetText("|cffaaaaaaGlobal Channels (disabled by default):|r")
+    globalLabel:SetText("|cffaaaaaaGlobal Channels:|r")
     globalLabel:SetTextColor(0.7, 0.7, 0.7, 1)
     
     yOffset = yOffset - 20

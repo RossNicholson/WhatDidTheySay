@@ -92,7 +92,7 @@ cd WhatDidTheySay
 ### First Time Setup
 
 On first load, the configuration window opens automatically. Configure:
-- **Enabled Channels** - Select which chat channels to monitor (WHISPER, SAY, PARTY enabled by default)
+- **Enabled Channels** - All channels you've joined are enabled by default (you can disable any you don't want)
 - **Auto-translate** - Enable automatic translation display
 
 ### How It Works
@@ -125,20 +125,20 @@ Access configuration via `/wdts` or `/whatdidtheysay`.
 
 ### Channel Settings
 
-Choose which chat channels to monitor for translation:
+The addon automatically enables translation for all channels you have joined. You can customize which channels to monitor via the configuration menu:
 
 | Channel | Default | Description |
 |---------|---------|-------------|
 | WHISPER | ✅ Enabled | Private messages |
 | SAY | ✅ Enabled | Local chat |
 | PARTY | ✅ Enabled | Party chat |
-| RAID | ❌ Disabled | Raid chat |
-| GENERAL | ❌ Disabled | General channel (noisy) |
-| TRADE | ❌ Disabled | Trade channel (noisy) |
-| WORLD | ❌ Disabled | World channel (noisy) |
-| LFG | ❌ Disabled | Looking for Group channel |
+| RAID | ✅ Enabled | Raid chat (when in raid) |
+| GENERAL | ✅ Enabled | General channel (if joined) |
+| TRADE | ✅ Enabled | Trade channel (if joined) |
+| WORLD | ✅ Enabled | World channel (if joined) |
+| LFG | ✅ Enabled | Looking for Group channel (if joined) |
 
-**Note:** Global channels (GENERAL, TRADE, WORLD) are disabled by default as they're too noisy and slang-heavy for reliable translation.
+**Note:** All channels are enabled by default. The addon automatically detects which channels you've joined and enables translation for them. You can disable specific channels in the configuration menu if you find them too noisy or prefer to only translate certain channels.
 
 ### Confidence Thresholds
 
