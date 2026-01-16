@@ -29,34 +29,40 @@ function Config.CreateFrame()
     titleBar:SetHeight(40)
     titleBar:SetTexCoord(0, 1, 0, 0.25)
     
-    -- Border textures (improved)
+    -- Simple clean border using thin lines
+    local borderThickness = 2
+    
+    -- Top border
     local borderTop = frame:CreateTexture(nil, "BORDER")
-    borderTop:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Border")
-    borderTop:SetPoint("TOPLEFT", frame, "TOPLEFT", -32, 8)
-    borderTop:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 32, 8)
-    borderTop:SetHeight(64)
-    borderTop:SetTexCoord(0, 1, 0, 1)
+    borderTop:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
+    borderTop:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+    borderTop:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, 0)
+    borderTop:SetHeight(borderThickness)
+    borderTop:SetVertexColor(0.6, 0.6, 0.6, 0.8)
     
+    -- Bottom border
     local borderBottom = frame:CreateTexture(nil, "BORDER")
-    borderBottom:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Border")
-    borderBottom:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", -32, -32)
-    borderBottom:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 32, -32)
-    borderBottom:SetHeight(64)
-    borderBottom:SetTexCoord(0, 1, 0, 1)
+    borderBottom:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
+    borderBottom:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", 0, 0)
+    borderBottom:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, 0)
+    borderBottom:SetHeight(borderThickness)
+    borderBottom:SetVertexColor(0.6, 0.6, 0.6, 0.8)
     
+    -- Left border
     local borderLeft = frame:CreateTexture(nil, "BORDER")
-    borderLeft:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Border")
-    borderLeft:SetPoint("TOPLEFT", frame, "TOPLEFT", -32, 8)
-    borderLeft:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", -32, -32)
-    borderLeft:SetWidth(64)
-    borderLeft:SetTexCoord(0, 1, 0, 1)
+    borderLeft:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
+    borderLeft:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+    borderLeft:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", 0, 0)
+    borderLeft:SetWidth(borderThickness)
+    borderLeft:SetVertexColor(0.6, 0.6, 0.6, 0.8)
     
+    -- Right border
     local borderRight = frame:CreateTexture(nil, "BORDER")
-    borderRight:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Border")
-    borderRight:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 32, 8)
-    borderRight:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 32, -32)
-    borderRight:SetWidth(64)
-    borderRight:SetTexCoord(0, 1, 0, 1)
+    borderRight:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
+    borderRight:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, 0)
+    borderRight:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, 0)
+    borderRight:SetWidth(borderThickness)
+    borderRight:SetVertexColor(0.6, 0.6, 0.6, 0.8)
     
     frame:EnableMouse(true)
     frame:SetMovable(true)
