@@ -158,17 +158,23 @@ WDTS_TitanPanel.registered = false
 
 -- Try to register when Titan Panel is ready
 local function TryRegister()
-    -- Prevent duplicate registration
+    -- Prevent duplicate registration - set flag IMMEDIATELY to prevent race conditions
     if WDTS_TitanPanel.registered then
         return false
     end
     
     if IsTitanPanelLoaded() and WhatDidTheySayDB then
+        -- Set flag BEFORE attempting registration to prevent race conditions
+        -- if TryRegister() is called from multiple events simultaneously
+        WDTS_TitanPanel.registered = true
+        
         local success = WDTS_TitanPanel.Register()
-        if success then
-            WDTS_TitanPanel.registered = true
-            return true
+        if not success then
+            -- Registration failed, reset flag so we can try again later
+            WDTS_TitanPanel.registered = false
+            return false
         end
+        return true
     end
     return false
 end
