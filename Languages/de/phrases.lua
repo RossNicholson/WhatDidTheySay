@@ -29,6 +29,8 @@ WDTS_Lang_de_Phrases = {
     ["wie geht"] = "how is",
     ["wie viel"] = "how much",
     ["wie viele"] = "how many",
+    ["kann mich wer"] = "can someone", -- "kann mich wer" = "can me someone" -> "can someone"
+    ["kann mich jemand"] = "can someone", -- Alternative form
     
     -- Action phrases
     ["komm hier"] = "come here",

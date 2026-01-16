@@ -103,5 +103,37 @@ WDTS_Lang_de_Grammar = {
             from = "muss leider ",
             to = "unfortunately must ",
         },
+        
+        -- Fix German word order: "can me who" -> "can someone"
+        {
+            from = "can me who ",
+            to = "can someone ",
+        },
+        -- Fix "can someone to X port" -> "can someone port me to X"
+        {
+            from = "can someone to (.+) port",
+            to = "can someone port me to %1",
+        },
+        {
+            from = "can someone to (.+) port please",
+            to = "can someone port me to %1 please",
+        },
+        {
+            from = "can someone to (.+) port pls",
+            to = "can someone port me to %1 please",
+        },
+        -- Also handle "can me who" patterns (if phrase matching didn't catch it)
+        {
+            from = "can me who to (.+) port",
+            to = "can someone port me to %1",
+        },
+        {
+            from = "can me who to (.+) port please",
+            to = "can someone port me to %1 please",
+        },
+        {
+            from = "can me who to (.+) port pls",
+            to = "can someone port me to %1 please",
+        },
     },
 }

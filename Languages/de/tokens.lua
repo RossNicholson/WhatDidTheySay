@@ -699,6 +699,9 @@ WDTS_Lang_de_Tokens = {
     ["losgehen"] = "let's go",
     ["porten"] = "port",
     ["port"] = "port",
+    ["darna"] = "Darnassus", -- Common abbreviation for Darnassus
+    ["darnassus"] = "Darnassus",
+    ["pls"] = "please", -- Common abbreviation
     ["teleportieren"] = "teleport",
     
     -- More common gaming terms
