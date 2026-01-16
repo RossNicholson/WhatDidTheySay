@@ -6,9 +6,9 @@ local Confidence = {}
 
 -- Confidence thresholds
 Confidence.THRESHOLD = {
-    AUTO_DISPLAY = 0.70,  -- Automatically display translation
-    MANUAL_OPTION = 0.45, -- Show manual translate option
-    MIN_SAFE = 0.30,      -- Minimum safe threshold
+    AUTO_DISPLAY = 0.50,  -- Automatically display translation (lowered from 0.70)
+    MANUAL_OPTION = 0.30, -- Show manual translate option (lowered from 0.45)
+    MIN_SAFE = 0.25,      -- Minimum safe threshold (lowered from 0.30)
 }
 
 -- Calculate final confidence score
@@ -28,37 +28,43 @@ function Confidence.Calculate(params)
     local similarity = params.translationSimilarity or 0.0
     
     -- Base score from language detection
-    local score = langConf * 0.3 -- Reduced weight
+    local score = langConf * 0.25 -- Slightly reduced weight
     
-    -- Coverage is CRITICAL - heavily weight it
-    -- If we didn't translate most words, confidence should be low
-    score = score + (coverage * 0.4) -- Increased weight from 0.2 to 0.4
+    -- Coverage is important but be more lenient for mixed-language messages
+    -- If we translated most German words (even if some are English), that's good
+    score = score + (coverage * 0.45) -- Increased weight, but less penalizing overall
     
     -- Intent confidence bonus (if intent was detected)
     if intentConf > 0 then
-        score = score + (intentConf * 0.2) -- Reduced weight
+        score = score + (intentConf * 0.15) -- Intent helps but not critical
     end
     
-    -- Unknown token penalty (more severe)
-    score = score - (unknownRatio * 0.3) -- Increased penalty from 0.2 to 0.3
+    -- Unknown token penalty (less severe - many messages have proper nouns/names)
+    score = score - (unknownRatio * 0.2) -- Reduced penalty from 0.3 to 0.2
     
-    -- Similarity penalty: if translation is too similar to original, heavily penalize
-    if similarity > 0.60 then
-        -- More than 60% similar means we barely translated anything
-        score = score * (1.0 - (similarity - 0.6) * 2.5) -- Reduce score significantly
+    -- Similarity penalty: be more lenient, especially for mixed-language
+    -- Mixed-language messages (e.g., "LF Tank für ST") naturally have higher similarity
+    if similarity > 0.75 then
+        -- Only penalize heavily if VERY similar (>75%) AND we have good reason to think it's wrong
+        -- For mixed messages, similarity of 60-75% is expected
+        score = score * (1.0 - (similarity - 0.75) * 2.0) -- Less harsh penalty
+    elseif similarity > 0.60 then
+        -- Moderate similarity (60-75%) - likely mixed language, small penalty
+        score = score * 0.95 -- Very small penalty
     end
     
-    -- Coverage-based penalties (critical check)
+    -- Coverage-based penalties (less harsh)
     if coverage < 0.3 then
-        -- Less than 30% translated - very low confidence
-        score = score * 0.4
+        -- Less than 30% translated - low confidence
+        score = score * 0.5 -- Less harsh (was 0.4)
     elseif coverage < 0.5 then
-        -- Less than 50% translated - low confidence
-        score = score * 0.6
+        -- Less than 50% translated - moderate confidence
+        score = score * 0.75 -- Less harsh (was 0.6)
     elseif coverage < 0.7 then
-        -- Less than 70% translated - moderate penalty
-        score = score * 0.8
+        -- Less than 70% translated - still decent
+        score = score * 0.9 -- Less harsh (was 0.8)
     end
+    -- coverage >= 0.7 gets no penalty
     
     -- Length adjustment (very short messages are harder)
     if length < 3 then
