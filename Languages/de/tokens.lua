@@ -467,6 +467,7 @@ WDTS_Lang_de_Tokens = {
     ["uns"] = "us",
     ["euch"] = "you",
     ["ihnen"] = "them",
+    ["den"] = "the/whom", -- Accusative/dative masculine article: "den hauptstein" = "the main stone"
     
     -- Definite articles (masculine, feminine, neuter)
     ["der"] = "the", -- Masculine article: "der buff" = "the buff"
