@@ -278,9 +278,12 @@ function Tokenizer.Reconstruct(tokens)
         -- Use translated value if it exists and differs from original, otherwise use original
         -- This preserves punctuation and formatting while using translations
         -- Special case: if token has closing bracket, preserve original to keep trailing punctuation
+        -- But strip the closing bracket if it's already in original (to avoid duplication)
         if token.hasCloseBracket and token.original then
             -- Use original to preserve closing punctuation before the bracket
-            table.insert(parts, token.original)
+            -- But remove trailing ] if present (we'll add it separately)
+            local original = token.original:gsub("%]+$", "")
+            table.insert(parts, original)
         elseif token.value and token.value ~= token.original then
             -- Use translated value for the text, but preserve original formatting for non-words
             if token.type == "word" then
