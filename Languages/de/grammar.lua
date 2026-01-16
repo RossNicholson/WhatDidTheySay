@@ -204,5 +204,15 @@ WDTS_Lang_de_Grammar = {
             from = "at dieses quest",
             to = "with this quest",
         },
+        
+        -- Fix "where must one/you for X eigentlich to/there" -> "where do you go for X"
+        {
+            from = "where must one/you for (.+) eigentlich to/there",
+            to = "where do you go for %1",
+        },
+        {
+            from = "where must one/you for (.+) to/there",
+            to = "where do you go for %1",
+        },
     },
 }

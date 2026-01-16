@@ -83,6 +83,14 @@ WDTS_Lang_de_Patterns = {
     },
     -- Conversational patterns
     {
+        from = "wo muss man für (.+) eigentlich hin",
+        to = "where do you go for %1",
+    },
+    {
+        from = "wo muss man für (.+) hin",
+        to = "where do you go for %1",
+    },
+    {
         from = "^wo (.+)$",
         to = "where %1",
     },
