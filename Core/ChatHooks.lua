@@ -25,9 +25,27 @@ ChatHooks.messageFramesCleanup = {} -- Track cleanup times
 ChatHooks.translationHistory = {}
 ChatHooks.translationHistoryMaxSize = 50 -- Keep last 50 attempts
 
--- Generate a simple hash for message tracking
+-- Generate a unique hash for message tracking
+-- Include message length, sender, first 30 chars of message, and a simple checksum
+-- to reduce hash collisions
 local function HashMessage(message, sender)
-    return tostring(#message) .. ":" .. (sender or "") .. ":" .. message:sub(1, math.min(20, #message))
+    if not message then
+        message = ""
+    end
+    if not sender then
+        sender = ""
+    end
+    
+    -- Create a simple checksum from message characters
+    local checksum = 0
+    for i = 1, math.min(#message, 50) do
+        checksum = checksum + string.byte(message:sub(i, i)) * i
+    end
+    checksum = checksum % 1000 -- Keep it manageable
+    
+    -- Use more of the message and include checksum for better uniqueness
+    local msgPrefix = message:sub(1, math.min(30, #message))
+    return tostring(#message) .. ":" .. (sender or "") .. ":" .. msgPrefix .. ":" .. tostring(checksum)
 end
 
 -- Channel name mapping
