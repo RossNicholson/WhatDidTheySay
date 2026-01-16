@@ -153,6 +153,8 @@ WDTS_Lang_de_Phrases = {
     -- Guild/recruitment phrases
     ["neue gilde"] = "new guild",
     ["neue gilde sucht"] = "new guild looking for",
+    ["viewer gilde"] = "viewer guild",
+    ["viewergilde"] = "viewer guild",
     
     -- Trading phrases
     ["will kaufen"] = "want to buy",
