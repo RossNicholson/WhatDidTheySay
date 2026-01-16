@@ -12,7 +12,7 @@ function Config.CreateFrame()
     end
     
     local frame = CreateFrame("Frame", "WDTSConfigFrame", UIParent)
-    frame:SetSize(450, 580)
+    frame:SetSize(420, 480)
     frame:SetPoint("CENTER", UIParent, "CENTER")
     
     -- Create backdrop - simple solid background
@@ -83,51 +83,28 @@ function Config.CreateFrame()
     subtitle:SetText("Configuration")
     subtitle:SetTextColor(0.8, 0.8, 0.8, 1)
     
-    -- Divider line
-    local divider1 = frame:CreateTexture(nil, "ARTWORK")
-    divider1:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
-    divider1:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, -65)
-    divider1:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -20, -65)
-    divider1:SetHeight(16)
-    divider1:SetTexCoord(0, 1, 0.5, 0.75)
-    
-    -- Information text area
+    -- Information text area (simplified, compact)
     local infoText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    infoText:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -85)
-    infoText:SetWidth(400)
+    infoText:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -75)
+    infoText:SetWidth(390)
     infoText:SetJustifyH("LEFT")
     infoText:SetJustifyV("TOP")
     infoText:SetText([[
-|cffffffffWhat Did They Say?|r translates chat messages in other languages using offline, in-game logic. All translation processing happens locally - no external APIs or services required.
+|cffffffffWhat Did They Say?|r translates chat messages using offline, in-game logic.
 
-|cffffd700Supported Languages:|r
-• German (de) → English (en) |cff00ff00✓ Full Support|r
-
-|cffffd700How It Works:|r
-The addon monitors enabled channels and automatically translates foreign-language messages when confidence is high enough (≥70%). Translations appear as separate messages below the original - the original is never replaced.
-
-|cffffd700Confidence Levels:|r
-• |cff00ff00High (≥0.70)|r: Automatically displayed (green)
-• |cffffff00Medium (0.45-0.69)|r: Shown with caution (yellow)
-• |cff808080Low (<0.45)|r: Stay silent (by design)
-
-|cffffd700What Gets Protected:|r
-Player names, item links, spell links, quest links, raid icons, and numbers are never translated.
-
-|cffffd700Commands:|r
-• |cffffff00/wdts|r or |cffffff00/whatdidtheysay|r - Open configuration
-
-|cffffd700Design Philosophy:|r
-The addon prioritizes accuracy over coverage. If it's not confident, it stays quiet to avoid wrong translations.]])
+|cffffd700Supported:|r German (de) → English (en)
+|cffffd700Confidence:|r ≥70% auto-display, <45% silent (by design)
+|cffffd700Protected:|r Player names, links, numbers never translated
+|cffffd700Command:|r |cffffff00/wdts|r]])
     infoText:SetTextColor(0.9, 0.9, 0.9, 1)
     
     -- Channel settings section
     local channelLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    channelLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -270)
+    channelLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -150)
     channelLabel:SetText("|cffffffffEnabled Channels:|r")
     channelLabel:SetTextColor(1, 1, 0.8, 1)
     
-    local yOffset = -295
+    local yOffset = -175
     local checkboxes = {}
     
     -- Group channels logically
@@ -144,16 +121,7 @@ The addon prioritizes accuracy over coverage. If it's not confident, it stays qu
         yOffset = yOffset - 25
     end
     
-    -- Divider for global channels
-    yOffset = yOffset - 10
-    local divider2 = frame:CreateTexture(nil, "ARTWORK")
-    divider2:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
-    divider2:SetPoint("TOPLEFT", frame, "TOPLEFT", 35, yOffset)
-    divider2:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -35, yOffset)
-    divider2:SetHeight(8)
-    divider2:SetTexCoord(0, 1, 0.25, 0.5)
-    divider2:SetVertexColor(0.5, 0.5, 0.5, 0.5)
-    
+    -- Spacing before global channels
     yOffset = yOffset - 15
     
     -- Global channels label
@@ -176,17 +144,8 @@ The addon prioritizes accuracy over coverage. If it's not confident, it stays qu
         yOffset = yOffset - 25
     end
     
-    -- Divider before settings
-    yOffset = yOffset - 10
-    local divider3 = frame:CreateTexture(nil, "ARTWORK")
-    divider3:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
-    divider3:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, yOffset)
-    divider3:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -20, yOffset)
-    divider3:SetHeight(16)
-    divider3:SetTexCoord(0, 1, 0.5, 0.75)
-    
     -- Settings section
-    yOffset = yOffset - 15
+    yOffset = yOffset - 20
     local settingsLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     settingsLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, yOffset)
     settingsLabel:SetText("|cffffffffSettings:|r")
