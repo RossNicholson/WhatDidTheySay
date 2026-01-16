@@ -235,4 +235,14 @@ WDTS_Lang_de_Phrases = {
     ["wann kommt das"] = "when is the",
     ["wann kommt der nächste"] = "when is the next",
     ["wann kommt die nächste"] = "when is the next",
+    
+    -- Separable verbs (prefix separated)
+    ["macht auf"] = "opens",
+    ["mach auf"] = "open",
+    ["auf macht"] = "opens",
+    ["auf machen"] = "open",
+    ["die auf macht"] = "opens them",
+    ["die auf mach"] = "open them",
+    ["mir die auf macht"] = "opens them for me",
+    ["mir die auf mach"] = "open them for me",
 }
