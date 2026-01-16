@@ -91,24 +91,14 @@ function Config.CreateFrame()
     divider1:SetHeight(16)
     divider1:SetTexCoord(0, 1, 0.5, 0.75)
     
-    -- Information text area with scrolling
-    local infoFrame = CreateFrame("ScrollFrame", nil, frame)
-    infoFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -85)
-    infoFrame:SetPoint("BOTTOMRIGHT", frame, "TOPRIGHT", -25, -140)
-    infoFrame:SetWidth(370)
-    
-    local infoContent = CreateFrame("Frame", nil, infoFrame)
-    infoContent:SetWidth(370)
-    infoContent:SetHeight(200)
-    infoFrame:SetScrollChild(infoContent)
-    
-    local infoText = infoContent:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    infoText:SetPoint("TOPLEFT", infoContent, "TOPLEFT", 0, 0)
-    infoText:SetWidth(350)
+    -- Information text area
+    local infoText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    infoText:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -85)
+    infoText:SetWidth(400)
     infoText:SetJustifyH("LEFT")
     infoText:SetJustifyV("TOP")
     infoText:SetText([[
-|cffffffffWhat Did They Say?|r translates chat messages in other languages using offline, in-game logic.
+|cffffffffWhat Did They Say?|r translates chat messages in other languages using offline, in-game logic. All translation processing happens locally - no external APIs or services required.
 
 |cffffd700Supported Languages:|r
 • German (de) → English (en) |cff00ff00✓ Full Support|r
@@ -117,54 +107,27 @@ function Config.CreateFrame()
 The addon monitors enabled channels and automatically translates foreign-language messages when confidence is high enough (≥70%). Translations appear as separate messages below the original - the original is never replaced.
 
 |cffffd700Confidence Levels:|r
-• |cff00ff00High (≥0.70)|r: Automatically displayed
-• |cffffff00Medium (0.45-0.69)|r: Shown with caution
+• |cff00ff00High (≥0.70)|r: Automatically displayed (green)
+• |cffffff00Medium (0.45-0.69)|r: Shown with caution (yellow)
 • |cff808080Low (<0.45)|r: Stay silent (by design)
 
 |cffffd700What Gets Protected:|r
-Player names, item links, spell links, raid icons, and numbers are never translated.
+Player names, item links, spell links, quest links, raid icons, and numbers are never translated.
 
 |cffffd700Commands:|r
-• |cffffff00/wdts|r or |cffffff00/whatdidtheysay|r - Open this configuration
+• |cffffff00/wdts|r or |cffffff00/whatdidtheysay|r - Open configuration
 
-|cffffd700Tip:|r The addon prioritizes accuracy over coverage. If it's not confident, it stays quiet to avoid wrong translations.]])
+|cffffd700Design Philosophy:|r
+The addon prioritizes accuracy over coverage. If it's not confident, it stays quiet to avoid wrong translations.]])
     infoText:SetTextColor(0.9, 0.9, 0.9, 1)
-    
-    -- Scroll bar
-    local scrollBar = CreateFrame("Slider", nil, infoFrame)
-    scrollBar:SetOrientation("VERTICAL")
-    scrollBar:SetPoint("TOPLEFT", infoFrame, "TOPRIGHT", 4, 0)
-    scrollBar:SetPoint("BOTTOMLEFT", infoFrame, "BOTTOMRIGHT", 4, 0)
-    scrollBar:SetWidth(16)
-    scrollBar:SetMinMaxValues(0, 0)
-    scrollBar:SetValue(0)
-    
-    local scrollUp = CreateFrame("Button", nil, scrollBar, "UIPanelScrollUpButtonTemplate")
-    scrollUp:SetPoint("BOTTOM", scrollBar, "TOP", 0, -2)
-    
-    local scrollDown = CreateFrame("Button", nil, scrollBar, "UIPanelScrollDownButtonTemplate")
-    scrollDown:SetPoint("TOP", scrollBar, "BOTTOM", 0, 2)
-    
-    scrollBar:SetScript("OnValueChanged", function(self, value)
-        infoFrame:SetVerticalScroll(value)
-    end)
-    
-    local function UpdateScrollRange()
-        local maxScroll = math.max(0, infoText:GetHeight() - infoFrame:GetHeight())
-        scrollBar:SetMinMaxValues(0, maxScroll)
-    end
-    
-    -- Update scroll after text is rendered
-    infoFrame:SetScript("OnShow", UpdateScrollRange)
-    infoText:SetScript("OnTextChanged", UpdateScrollRange)
     
     -- Channel settings section
     local channelLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    channelLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -295)
+    channelLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -270)
     channelLabel:SetText("|cffffffffEnabled Channels:|r")
     channelLabel:SetTextColor(1, 1, 0.8, 1)
     
-    local yOffset = -320
+    local yOffset = -295
     local checkboxes = {}
     
     -- Group channels logically
