@@ -35,8 +35,19 @@ local CHANNEL_MAP = {
     ["LFG"] = "LFG",
 }
 
+-- Map channel names to channel types
+local CHANNEL_NAME_MAP = {
+    ["Trade"] = "TRADE",
+    ["Trade - City"] = "TRADE",
+    ["General"] = "GENERAL",
+    ["General - City"] = "GENERAL",
+    ["LookingForGroup"] = "LFG",
+    ["World"] = "WORLD",
+    ["LocalDefense"] = "GENERAL", -- Often used as general chat
+}
+
 -- Get channel type from event
-local function GetChannelType(event)
+local function GetChannelType(event, channelName)
     if event == "CHAT_MSG_WHISPER" or event == "CHAT_MSG_WHISPER_INFORM" then
         return "WHISPER"
     elseif event == "CHAT_MSG_SAY" then
@@ -47,9 +58,23 @@ local function GetChannelType(event)
         return "RAID"
     elseif event == "CHAT_MSG_GUILD" then
         return "GUILD"
-    elseif event == "CHAT_MSG_CHANNEL" then
-        -- Would need to check channel name, but for now return nil for custom channels
-        return nil
+    elseif event == "CHAT_MSG_CHANNEL" and channelName then
+        -- Check if channel name matches known channels
+        -- Channel name format is often like "2. Trade - City" or just "Trade"
+        local normalized = channelName:match("[^%.]+$") or channelName -- Remove leading numbers like "2. "
+        normalized = normalized:match("^%s*(.-)%s*$") -- Trim whitespace
+        
+        -- Direct match
+        if CHANNEL_NAME_MAP[normalized] then
+            return CHANNEL_NAME_MAP[normalized]
+        end
+        
+        -- Partial match (e.g., "Trade - City" contains "Trade")
+        for name, type in pairs(CHANNEL_NAME_MAP) do
+            if normalized:find(name, 1, true) or name:find(normalized, 1, true) then
+                return type
+            end
+        end
     end
     return nil
 end
@@ -201,18 +226,21 @@ end
 -- Handle chat message
 local function OnChatMessage(self, event, ...)
     -- WoW Classic chat event arguments vary by event type
-    -- Common format: message, sender, language, channelString, target, ...
-    local message, sender = ...
+    -- CHAT_MSG_CHANNEL: message, sender, language, channelName, target, ...
+    -- Other events: message, sender, language, channelString, target, ...
+    local message, sender, language, channelName = ...
     
     -- Handle different event argument structures
     if not message or message == "" then
         -- Some events may have different argument order
         message = select(1, ...) or ""
         sender = select(2, ...) or ""
+        language = select(3, ...)
+        channelName = select(4, ...)
     end
     
-    -- Get channel type
-    local channelType = GetChannelType(event)
+    -- Get channel type (pass channelName for CHAT_MSG_CHANNEL events)
+    local channelType = GetChannelType(event, channelName)
     
     -- Check if channel is enabled
     if not IsChannelEnabled(channelType) then
@@ -325,6 +353,7 @@ function ChatHooks.Initialize()
     hookFrame:RegisterEvent("CHAT_MSG_SAY")
     hookFrame:RegisterEvent("CHAT_MSG_PARTY")
     hookFrame:RegisterEvent("CHAT_MSG_RAID")
+    hookFrame:RegisterEvent("CHAT_MSG_CHANNEL") -- For Trade, General, LFG, etc.
     
     -- Set script
     hookFrame:SetScript("OnEvent", function(self, event, ...)
@@ -336,6 +365,7 @@ function ChatHooks.Initialize()
     ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ChatFilterFunc)
     ChatFrame_AddMessageEventFilter("CHAT_MSG_PARTY", ChatFilterFunc)
     ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID", ChatFilterFunc)
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", ChatFilterFunc)
     
     -- Periodically clean up old message tracking
     hookFrame:SetScript("OnUpdate", function(self, elapsed)
