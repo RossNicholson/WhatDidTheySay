@@ -55,6 +55,11 @@ WDTS_Lang_de_Tokens = {
     ["geh"] = "go",
     ["geht"] = "go",
     ["gehe"] = "going",
+    ["nannte"] = "called/named", -- Past tense: "nannte man es" = "one called it"
+    ["nennen"] = "call/name", -- Infinitive
+    ["nennt"] = "calls/names", -- 3rd person
+    ["früher"] = "earlier/before/formerly", -- Temporal adverb: "früher nannte man" = "earlier one called"
+    ["stottern"] = "stuttering/stammering", -- Verb/noun: "stottern" = "to stutter/stuttering"
     
     -- Common nouns
     ["gruppe"] = "group",
@@ -85,6 +90,7 @@ WDTS_Lang_de_Tokens = {
     ["raucht"] = "smokes",
     ["rauch"] = "smoke",
     ["blech"] = "sheet metal/tin",
+    ["gift"] = "poison", -- Note: "Gift" in German means "poison", not "gift" (present)
     
     -- Actions
     ["einladen"] = "invite",
