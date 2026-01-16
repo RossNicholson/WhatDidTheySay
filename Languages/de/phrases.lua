@@ -7,6 +7,7 @@ WDTS_Lang_de_Phrases = {
     ["kannst du"] = "can you",
     ["könnt ihr"] = "can you",
     ["kann ich"] = "can i",
+    ["kann man"] = "can you/can one",
     ["willst du"] = "do you want",
     ["brauche ich"] = "do i need",
     ["brauchst du"] = "do you need",

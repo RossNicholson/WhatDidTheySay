@@ -223,4 +223,18 @@ WDTS_Lang_de_Patterns = {
         from = "wann ist (.+)",
         to = "when is %1",
     },
+    
+    -- "Kann man als X Y gehen?" -> "Can you go as X to Y?"
+    {
+        from = "kann man als (.+) (.+) gehen",
+        to = "can you go as %1 to %2",
+    },
+    {
+        from = "kann man (.+) gehen",
+        to = "can you go %1",
+    },
+    {
+        from = "kann man (.+) als (.+)",
+        to = "can you %1 as %2",
+    },
 }

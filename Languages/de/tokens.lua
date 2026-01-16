@@ -12,6 +12,10 @@ WDTS_Lang_de_Tokens = {
     -- Dungeons (German names/common terms)
     ["heulende"] = "Wailing Caverns",
     ["klamm"] = "Wailing Caverns",
+    ["höhlen"] = "caverns",
+    ["wehklagen"] = "wailing",
+    ["höhlen des wehklagens"] = "Wailing Caverns",
+    ["hdw"] = "Wailing Caverns", -- Abbreviation for Höhlen des Wehklagens
     ["totenminen"] = "Deadmines",
     ["dm"] = "Deadmines",
     ["burg"] = "Shadowfang Keep",
@@ -74,6 +78,7 @@ WDTS_Lang_de_Tokens = {
     ["mit"] = "with",
     ["und"] = "and",
     ["oder"] = "or",
+    ["als"] = "as",
     
     -- Common phrases
     ["danke"] = "thanks",
@@ -112,6 +117,11 @@ WDTS_Lang_de_Tokens = {
     ["leer"] = "empty",
     ["schnell"] = "fast",
     ["langsam"] = "slow",
+    
+    -- Faction terms
+    ["alli"] = "Alliance", -- Common abbreviation for Allianz
+    ["allianz"] = "Alliance",
+    ["horde"] = "Horde",
     
     -- Guild terms
     ["gilde"] = "guild",
@@ -289,6 +299,7 @@ WDTS_Lang_de_Tokens = {
     ["waren"] = "were",
     
     -- Pronouns and people
+    ["man"] = "one/you", -- Impersonal pronoun: "Kann man" = "Can one/Can you"
     ["jemand"] = "someone",
     ["jmd"] = "someone", -- Abbreviation for jemand
     ["irgendjemand"] = "anyone",
