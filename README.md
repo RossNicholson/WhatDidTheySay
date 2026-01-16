@@ -312,6 +312,16 @@ Developed by **Ross Nicholson** for World of Warcraft Classic players who want t
 
 ---
 
+## ☕ Support the Developer
+
+This addon has been a significant amount of work to develop, test, and refine. If **What Did They Say?** has helped you communicate better in-game or made your WoW Classic experience more enjoyable, please consider [buying me a coffee](https://buymeacoffee.com/rossnicholson) to show your support!
+
+Every contribution helps support continued development, improvements, and the addition of more language packs. Thank you! 🙏
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20Ross-yellow?logo=buy-me-a-coffee)](https://buymeacoffee.com/rossnicholson)
+
+---
+
 ## 📞 Support & Issues
 
 - **GitHub Issues**: [Report bugs or request features](../../issues)
