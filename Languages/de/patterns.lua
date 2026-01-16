@@ -20,6 +20,20 @@ WDTS_Lang_de_Patterns = {
         from = "kannst mich (.+)",
         to = "can you %1 me",
     },
+    -- "wir werden uns bissl loot klauen" -> "we will steal a bit of loot"
+    {
+        from = "wir werden uns bissl loot klauen",
+        to = "we will steal a bit of loot",
+    },
+    {
+        from = "wir werden uns bisschen loot klauen",
+        to = "we will steal a bit of loot",
+    },
+    -- "gehen da bestimmt noch öfter rein" -> "will definitely go in there more often"
+    {
+        from = "gehen da bestimmt noch öfter rein",
+        to = "will definitely go in there more often",
+    },
     -- "hat mir jemand X silber?" -> "does someone have X silver for me?"
     {
         from = "hat mir jemand (.+) silber",

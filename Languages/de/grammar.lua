@@ -293,5 +293,14 @@ WDTS_Lang_de_Grammar = {
             from = "has me someone (.+) silver",
             to = "does someone have %1 silver for me",
         },
+        -- Fix "we will us a bit loot steal but go there definitely still more often in"
+        {
+            from = "we will us (.+) loot steal but go there definitely still (.+) more often in",
+            to = "we will steal a bit of loot but will definitely go in there more often",
+        },
+        {
+            from = "we werden us (.+) loot klauen aber go there definitely still (.+) öfter rein",
+            to = "we will steal a bit of loot but will definitely go in there more often",
+        },
     },
 }
