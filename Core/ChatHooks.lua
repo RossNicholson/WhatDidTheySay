@@ -228,7 +228,7 @@ local function TranslationChanged(original, translated)
 end
 
 -- Display translation in chat
-local function DisplayTranslation(originalMessage, translatedMessage, confidence, intent)
+local function DisplayTranslation(originalMessage, translatedMessage, confidence, intent, delay)
     -- Don't show translation if it's identical or nearly identical to original
     if not TranslationChanged(originalMessage, translatedMessage) then
         return -- Translation didn't actually change anything, don't show it
@@ -247,13 +247,21 @@ local function DisplayTranslation(originalMessage, translatedMessage, confidence
     
     local output = color .. "→ " .. translatedMessage .. intentText .. "|r"
     
-    -- Display in all active chat frames for better visibility
-    local chatFrames = { ChatFrame1, ChatFrame2, ChatFrame3, ChatFrame4, ChatFrame5, ChatFrame6, ChatFrame7 }
-    for _, frame in ipairs(chatFrames) do
-        if frame and frame:IsShown() then
-            frame:AddMessage(output)
+    -- Helper function to actually add the message
+    local function AddTranslationMessage()
+        -- Display in all active chat frames for better visibility
+        local chatFrames = { ChatFrame1, ChatFrame2, ChatFrame3, ChatFrame4, ChatFrame5, ChatFrame6, ChatFrame7 }
+        for _, frame in ipairs(chatFrames) do
+            if frame and frame:IsShown() then
+                frame:AddMessage(output)
+            end
         end
     end
+    
+    -- Delay slightly to ensure translation appears AFTER original message
+    -- This is especially important for guild chat where event order can be different
+    delay = delay or 0.05 -- Default 50ms delay
+    C_Timer.After(delay, AddTranslationMessage)
 end
 
 -- Handle chat message
