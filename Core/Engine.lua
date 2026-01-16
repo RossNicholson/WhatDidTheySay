@@ -292,9 +292,23 @@ local function GetContextualTranslation(token, prevToken, nextToken, langPack)
             end
         end
         -- Default translation
-        return translation.default or translation[1]
+        if translation.default then
+            return translation.default
+        elseif translation[1] then
+            return translation[1]
+        else
+            -- Fallback: return the first string value found in the table
+            for _, v in pairs(translation) do
+                if type(v) == "string" then
+                    return v
+                end
+            end
+            -- If all else fails, return nil (no translation)
+            return nil
+        end
     end
     
+    -- If translation is not a table, return it as-is (should be a string or nil)
     return translation
 end
 
