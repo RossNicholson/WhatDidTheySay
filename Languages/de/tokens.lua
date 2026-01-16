@@ -203,6 +203,12 @@ WDTS_Lang_de_Tokens = {
     ["gilde"] = "guild",
     ["gilden"] = "guilds",
     ["levelgilde"] = "leveling guild", -- Compound word: Level + Gilde
+    ["satzung"] = "charter/statute",
+    ["satzungs"] = "charter/statute", -- Genitive form: "Gildensatzung" = "guild charter"
+    ["gildensatzung"] = "guild charter",
+    ["unterschrift"] = "signature",
+    ["unterschriften"] = "signatures",
+    ["gildensatzungsunterschriften"] = "guild charter signatures", -- Compound word
     ["level"] = "level", -- For compound words like "Levelgilde"
     ["aktiv"] = "active",
     ["aktive"] = "active",
