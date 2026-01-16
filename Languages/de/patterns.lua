@@ -239,9 +239,9 @@ WDTS_Lang_de_Patterns = {
     },
     
     -- Crafting/profession requests: "X gesucht für Y" -> "X wanted for Y"
-    -- Handle typos: "X gesucht cht für Y" or similar
+    -- Handle typos: "X gesucht cht für Y" or similar (allow extra words between gesucht and für)
     {
-        from = "(.+) gesucht%s+%w*%s*für (.+)",
+        from = "(.+) gesucht%s+.-%s*für%s+(.+)",
         to = "%1 wanted for %2",
     },
     {
