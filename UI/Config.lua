@@ -272,6 +272,46 @@ local function TestTranslation(message)
     DEFAULT_CHAT_FRAME:AddMessage(string.format("%s→ %s%s|r (confidence: %.2f)", transColor, translated, intentText, confidence))
 end
 
+-- Run test suite (common scenarios)
+local function RunTestSuite()
+    local tests = {
+        -- LFG
+        "suche gruppe für DM",
+        "sucht tank für SFK",
+        "LFM Heal für Gnomer",
+        
+        -- Trading
+        "schmied gesucht für [item]",
+        "verkaufe [item] für 50g",
+        "was kostet [item]?",
+        
+        -- Questions
+        "wo ist [location]?",
+        "kannst du [action]?",
+        "Kann man als Alli HDW gehen?",
+        
+        -- Requests
+        "brauch wen der mir die auf macht",
+        "suche jemand der mir hilft",
+        
+        -- Mixed language
+        "If tank heal dm dann abfahrt",
+        
+        -- Complex grammar
+        "Wer Blech raucht hat die Kontrolle verloren",
+    }
+    
+    DEFAULT_CHAT_FRAME:AddMessage("|cff00ff00=== Running Translation Test Suite ===|r")
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00Testing " .. #tests .. " common scenarios...|r")
+    
+    for i, testMsg in ipairs(tests) do
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("|cffaaaaaa[%d/%d]|r", i, #tests))
+        TestTranslation(testMsg)
+    end
+    
+    DEFAULT_CHAT_FRAME:AddMessage("|cff00ff00=== Test Suite Complete ===|r")
+end
+
 -- Initialize configuration (create slash command)
 function Config.Initialize()
     SLASH_WHATDIDTHESAY1 = "/wdts"
@@ -280,7 +320,15 @@ function Config.Initialize()
         local cmd = msg:match("^%s*(%S+)%s*(.*)$")
         if cmd == "test" then
             local testMessage = msg:match("^%s*test%s+(.*)$")
-            TestTranslation(testMessage)
+            if testMessage and testMessage ~= "" then
+                TestTranslation(testMessage)
+            else
+                -- Run test suite if no message provided
+                DEFAULT_CHAT_FRAME:AddMessage("|cffffff00Usage: /wdts test <message>|r")
+                DEFAULT_CHAT_FRAME:AddMessage("|cffffff00Or: /wdts suite - Run test suite|r")
+            end
+        elseif cmd == "suite" then
+            RunTestSuite()
         else
             Config.Toggle()
         end
