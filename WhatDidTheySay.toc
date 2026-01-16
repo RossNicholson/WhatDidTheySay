@@ -28,6 +28,7 @@ Languages/de/grammar.lua
 # UI
 UI/Widgets.lua
 UI/Config.lua
+UI/TitanPanel.lua
 
 # Main entry point
 WhatDidTheySay.lua
