@@ -127,6 +127,15 @@ WDTS_Lang_de_Patterns = {
         from = "wo sind (.+)",
         to = "where are %1",
     },
+    -- Price questions
+    {
+        from = "was kostet (.+)",
+        to = "what does %1 cost",
+    },
+    {
+        from = "was kostet (.+)\\?",
+        to = "what does %1 cost",
+    },
     {
         from = "komm zu (.+)",
         to = "come to %1",
@@ -167,6 +176,20 @@ WDTS_Lang_de_Patterns = {
     {
         from = "hat kontrolle über (.+) verloren",
         to = "has lost control over %1",
+    },
+    -- "hat die Kontrolle verloren" -> "has lost control"
+    {
+        from = "hat die kontrolle verloren",
+        to = "has lost control",
+    },
+    {
+        from = "hat kontrolle verloren",
+        to = "has lost control",
+    },
+    -- "Wer X hat Y verloren" -> "Who X has lost Y"
+    {
+        from = "wer (.+) hat (.+) verloren",
+        to = "who %1 has lost %2",
     },
     
     -- More complex subordinate clause patterns
@@ -227,6 +250,10 @@ WDTS_Lang_de_Patterns = {
     -- "Kann man als X Y gehen?" -> "Can you go as X to Y?"
     {
         from = "kann man als (.+) (.+) gehen",
+        to = "can you go as %1 to %2",
+    },
+    {
+        from = "kann man als (.+) (.+) gehen\\?",
         to = "can you go as %1 to %2",
     },
     {
