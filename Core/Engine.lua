@@ -425,6 +425,7 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
             ["priest"] = true, ["warlock"] = true, ["druid"] = true, ["shaman"] = true, ["paladin"] = true,
             ["item"] = true, ["items"] = true, ["gold"] = true, ["silver"] = true, ["copper"] = true,
             ["world"] = true, ["help"] = true,
+            ["bb"] = true, ["pls"] = true, ["summon"] = true, ["summons"] = true, ["sw"] = true,
         }
         
             -- Check if message contains actual German words (not just gaming abbreviations)
@@ -521,12 +522,28 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         end
     end
     
-    -- Check if message is likely already English (before checking sourceLang)
-    -- If detected language is English with high confidence, don't translate
-    local detectedLangAfterMixed = sourceLang or detectedLang
-    if detectedLangAfterMixed == "en" and (langConfidence or 0) >= 0.50 then
-        -- Message is clearly English - don't translate abbreviations like "BB", "pls"
-        -- These are already in English, just with abbreviations
+    -- Check if message is purely English abbreviations/gaming terms
+    -- If all words are universal gaming abbreviations, it's English and doesn't need translation
+    local allUniversalAbbrevs = true
+    local universalAbbrevsForCheck = {
+        ["bb"] = true, ["pls"] = true, ["summon"] = true, ["summons"] = true,
+        ["sw"] = true, ["lf"] = true, ["lfg"] = true, ["lfm"] = true,
+        ["wts"] = true, ["wtb"] = true, ["tank"] = true, ["heal"] = true,
+        ["dm"] = true, ["port"] = true, ["buff"] = true, ["quest"] = true,
+    }
+    local wordCount = 0
+    for _, token in ipairs(tokens) do
+        if token.type == "word" then
+            wordCount = wordCount + 1
+            local word = token.value:lower()
+            if not universalAbbrevsForCheck[word] then
+                allUniversalAbbrevs = false
+                break
+            end
+        end
+    end
+    -- If all words are universal abbreviations and no German words were found, it's English
+    if allUniversalAbbrevs and wordCount > 0 and (not sourceLang or sourceLang ~= "de") then
         return nil, 0.0, "already_english"
     end
     
