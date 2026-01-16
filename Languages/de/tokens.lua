@@ -89,11 +89,14 @@ WDTS_Lang_de_Tokens = {
     ["als"] = "as",
     
     -- Common phrases
+    ["huhu"] = "hi/hi there", -- Friendly greeting
     ["danke"] = "thanks",
     ["dankeschön"] = "thank you",
     ["bitte"] = "please",
     ["bitti"] = "please", -- Common typo/colloquial spelling
     ["hilfe"] = "help",
+    ["hilfsbereite"] = "helpful",
+    ["hilfsbereiten"] = "helpful",
     ["ja"] = "yes",
     ["nein"] = "no",
     ["ok"] = "ok",
