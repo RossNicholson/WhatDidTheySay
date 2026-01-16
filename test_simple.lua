@@ -86,7 +86,11 @@ print(string.format("Coverage: %.1f%%", tokenCoverage * 100))
 
 -- Test reconstruction
 local reconstructed = WDTS_Tokenizer.Reconstruct(translatedTokens)
-print("Reconstructed:", reconstructed)
+print("Reconstructed (from tokens):", reconstructed)
+
+-- Test applying patterns to reconstructed text
+local patterns = WDTS_Engine.ApplyPatterns(reconstructed, langPack)
+print("After patterns:", patterns)
 
 -- Test translation
 local translated, confidence, intent = WDTS_Engine.Translate(message, nil, "en", true)

@@ -499,13 +499,21 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     
     if patternWasApplied then
         -- Pattern matched - use pattern result as translation
-        -- Restore protected tokens in pattern-matched text
+        -- BUT: patterns may have captured untranslated German words (e.g., "suche X für Y" captures X and Y)
+        -- So we need to translate any remaining German words in the pattern result
+        -- Re-tokenize and translate the pattern-matched text
+        local patternTokens, _, _ = Tokenizer.Tokenize(patternMatchedText)
+        local translatedPatternTokens, patternCoverage, patternUnknownRatio = Engine.TranslateTokens(patternTokens, langPack)
+        local patternTranslatedText = Tokenizer.Reconstruct(translatedPatternTokens)
+        
+        -- Restore protected tokens
         for placeholderText, protected in pairs(patternPlaceholders) do
-            patternMatchedText = patternMatchedText:gsub(placeholderText:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0"), protected, 1)
+            patternTranslatedText = patternTranslatedText:gsub(placeholderText:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0"), protected, 1)
         end
-        translatedText = patternMatchedText
-        coverage = originalTokensCoverage
-        unknownRatio = originalTokensUnknownRatio
+        
+        translatedText = patternTranslatedText
+        coverage = math.max(originalTokensCoverage, patternCoverage) -- Use better coverage
+        unknownRatio = math.min(originalTokensUnknownRatio, patternUnknownRatio) -- Use lower unknown ratio
     else
         -- No pattern match - translate tokens normally
         local translatedTokens, tokenCoverage, tokenUnknownRatio = Engine.TranslateTokens(tokens, langPack)
