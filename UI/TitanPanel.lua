@@ -112,6 +112,7 @@ function WDTS_TitanPanel.Register()
         buttonTextFunction = "TitanPanelWDTSButton_GetButtonText",
         tooltipTitle = "What Did They Say?",
         tooltipTextFunction = "TitanPanelWDTSButton_GetTooltipText",
+        onClick = "TitanPanelWDTSButton_OnClick", -- Register click handler in registry
         cat = "Information", -- Use string literal, not variable
         version = "0.2.0",
         icon = "Interface\\Icons\\INV_Letter_01",
@@ -122,7 +123,7 @@ function WDTS_TitanPanel.Register()
         },
     }
     
-    -- Set up click handler
+    -- Also set up click handler directly on the button (some Titan versions need both)
     button:SetScript("OnClick", TitanPanelWDTSButton_OnClick)
     
     -- Register the plugin using Titan's function
