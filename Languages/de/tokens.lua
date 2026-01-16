@@ -112,6 +112,8 @@ WDTS_Lang_de_Tokens = {
     ["oder"] = "or",
     ["als"] = "as",
     ["an"] = "at/on", -- Preposition: "an wie" = "like/as"
+    ["im"] = "in the", -- Contraction of "in dem"
+    ["in"] = "in", -- Preposition
     ["anbieten"] = "offer",
     ["bieten"] = "offer",
     ["bietet"] = "offers",
