@@ -543,9 +543,10 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         ["bb"] = true, ["pls"] = true, ["summon"] = true, ["summons"] = true,
         ["sw"] = true, ["lf"] = true, ["lfg"] = true, ["lfm"] = true, ["lfw"] = true,
         ["wts"] = true, ["wtb"] = true, ["tank"] = true, ["heal"] = true, ["healer"] = true,
-        ["dm"] = true, ["port"] = true, ["buff"] = true, ["quest"] = true,
+        ["dm"] = true, ["port"] = true, ["portal"] = true, ["buff"] = true, ["quest"] = true,
         ["tp"] = true, ["tpn"] = true, ["darna"] = true, ["darnassus"] = true,
-        ["for"] = true, ["to"] = true, ["with"] = true, -- Common English prepositions
+        ["for"] = true, ["to"] = true, ["with"] = true, ["or"] = true, -- Common English prepositions
+        ["if"] = true, -- Ironforge abbreviation (uppercase IF in context means Ironforge, not "looking for")
         ["mage"] = true, ["warrior"] = true, ["rogue"] = true, ["hunter"] = true,
         ["priest"] = true, ["warlock"] = true, ["druid"] = true, ["shaman"] = true, ["paladin"] = true,
     }
