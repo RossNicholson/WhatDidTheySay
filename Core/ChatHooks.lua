@@ -12,6 +12,16 @@ ChatHooks.messageHistory = {}
 ChatHooks.throttleWindow = 2.0 -- seconds
 ChatHooks.maxMessagesPerWindow = 10
 
+-- Track translated messages (message hash -> {lang, confidence})
+ChatHooks.translatedMessages = {}
+ChatHooks.translatedMessagesCleanup = {} -- Track cleanup times
+ChatHooks.translatedMessagesMaxAge = 300 -- Clean up after 5 minutes
+
+-- Generate a simple hash for message tracking
+local function HashMessage(message, sender)
+    return tostring(#message) .. ":" .. (sender or "") .. ":" .. message:sub(1, math.min(20, #message))
+end
+
 -- Channel name mapping
 local CHANNEL_MAP = {
     ["WHISPER"] = "WHISPER",
@@ -75,6 +85,93 @@ local function ShouldThrottle()
     -- Add current message timestamp
     table.insert(ChatHooks.messageHistory, now)
     return false
+end
+
+-- Add underline to text using Unicode combining characters (U+0332)
+local function UnderlineText(text)
+    if not text or text == "" then
+        return text
+    end
+    
+    -- First extract and preserve color codes, then underline plain text
+    local parts = {}
+    local i = 1
+    while i <= #text do
+        local char = text:sub(i, i)
+        if char == "|" then
+            -- Handle color codes and escape sequences
+            if text:sub(i, i + 1) == "|c" then
+                -- Color code: |cAARRGGBB
+                local endPos = text:find("|r", i + 1)
+                if endPos then
+                    table.insert(parts, text:sub(i, endPos + 1))
+                    i = endPos + 1
+                else
+                    table.insert(parts, text:sub(i, i))
+                    i = i + 1
+                end
+            else
+                -- Other escape sequences
+                local endPos = text:find("|", i + 1)
+                if endPos then
+                    table.insert(parts, text:sub(i, endPos))
+                    i = endPos
+                else
+                    table.insert(parts, char)
+                    i = i + 1
+                end
+            end
+        else
+            -- Regular character - add with underline combining character
+            table.insert(parts, char .. "\204\178") -- U+0332 (combining low line)
+            i = i + 1
+        end
+    end
+    
+    return table.concat(parts, "")
+end
+
+-- Format original message with translation indicator
+local function FormatTranslatedMessage(originalMessage, confidence)
+    local indicatorStyle = WhatDidTheySayDB.showTranslationIndicator or "color" -- "none", "color", "tag", "underline", "tag_underline"
+    
+    if indicatorStyle == "none" then
+        return originalMessage
+    end
+    
+    local colored = originalMessage
+    local tag = ""
+    
+    -- Add color tint (subtle blue/green tint)
+    if indicatorStyle == "color" or indicatorStyle == "tag" or indicatorStyle == "tag_underline" then
+        if confidence >= 0.70 then
+            colored = "|cff88ffaa" .. originalMessage .. "|r" -- Light green tint
+        else
+            colored = "|cffffcc88" .. originalMessage .. "|r" -- Light yellow tint
+        end
+    end
+    
+    -- Add prefix tag
+    if indicatorStyle == "tag" or indicatorStyle == "tag_underline" then
+        tag = "|cff00ff00[T]|r "
+    end
+    
+    -- Add underline
+    local final = colored
+    if indicatorStyle == "underline" or indicatorStyle == "tag_underline" then
+        -- Remove color codes temporarily for underline, then reapply
+        local cleanText = originalMessage:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
+        local underlined = UnderlineText(cleanText)
+        if confidence >= 0.70 then
+            final = "|cff88ffaa" .. tag .. underlined .. "|r"
+        else
+            final = "|cffffcc88" .. tag .. underlined .. "|r"
+        end
+    else
+        final = tag .. colored
+    end
+    
+    return final
 end
 
 -- Display translation in chat
@@ -148,6 +245,16 @@ local function OnChatMessage(self, event, ...)
         return -- Failed or low confidence, stay silent
     end
     
+    -- Track this message as translated for the chat filter
+    local msgHash = HashMessage(message, sender)
+    ChatHooks.translatedMessages[msgHash] = {
+        original = message,
+        lang = "unknown", -- Could track detected language if needed
+        confidence = confidence,
+        timestamp = GetTime()
+    }
+    ChatHooks.translatedMessagesCleanup[msgHash] = GetTime() + ChatHooks.translatedMessagesMaxAge
+    
     -- Determine behavior based on confidence
     local behavior = Confidence.GetBehavior(confidence)
     
@@ -163,6 +270,33 @@ local function OnChatMessage(self, event, ...)
         end
     end
     -- behavior == "silent" - do nothing
+end
+
+-- Chat message filter to modify original messages
+local function ChatFilterFunc(self, event, message, sender, ...)
+    -- Check if this message was translated
+    local msgHash = HashMessage(message, sender)
+    local translationInfo = ChatHooks.translatedMessages[msgHash]
+    
+    if translationInfo then
+        -- This message was translated - add visual indicator
+        local formattedMessage = FormatTranslatedMessage(message, translationInfo.confidence)
+        return false, formattedMessage, sender, ... -- false = allow message, but use modified text
+    end
+    
+    -- Not translated, show normally
+    return false
+end
+
+-- Cleanup old translated message tracking
+local function CleanupTranslatedMessages()
+    local now = GetTime()
+    for msgHash, expireTime in pairs(ChatHooks.translatedMessagesCleanup) do
+        if now >= expireTime then
+            ChatHooks.translatedMessages[msgHash] = nil
+            ChatHooks.translatedMessagesCleanup[msgHash] = nil
+        end
+    end
 end
 
 -- Initialize chat hooks
@@ -195,6 +329,21 @@ function ChatHooks.Initialize()
     -- Set script
     hookFrame:SetScript("OnEvent", function(self, event, ...)
         OnChatMessage(self, event, ...)
+    end)
+    
+    -- Add chat message filters to modify original messages
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", ChatFilterFunc)
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ChatFilterFunc)
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_PARTY", ChatFilterFunc)
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID", ChatFilterFunc)
+    
+    -- Periodically clean up old message tracking
+    hookFrame:SetScript("OnUpdate", function(self, elapsed)
+        self.lastCleanup = (self.lastCleanup or 0) + elapsed
+        if self.lastCleanup >= 30 then -- Clean up every 30 seconds
+            CleanupTranslatedMessages()
+            self.lastCleanup = 0
+        end
     end)
     
     -- Store hook frame for cleanup if needed

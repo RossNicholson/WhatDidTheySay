@@ -21,11 +21,26 @@ if not WhatDidTheySayDB then
         showOriginal = true,
         minConfidence = 0.70,
         firstRun = true,
-        enabledLanguages = {
-            ["de"] = true, -- German enabled by default
-            ["en"] = false, -- English is target, not source
+        showTranslationIndicator = "color", -- "none", "color", "tag", "underline", "tag_underline"
+        enabledLanguagePacks = {
+            de = true, -- German enabled by default
         },
     }
+else
+    -- Migration: ensure new settings exist
+    if WhatDidTheySayDB.showTranslationIndicator == nil then
+        WhatDidTheySayDB.showTranslationIndicator = "color"
+    end
+    -- Migration: convert enabledLanguages to enabledLanguagePacks if needed
+    if WhatDidTheySayDB.enabledLanguages and not WhatDidTheySayDB.enabledLanguagePacks then
+        WhatDidTheySayDB.enabledLanguagePacks = {}
+        for lang, enabled in pairs(WhatDidTheySayDB.enabledLanguages) do
+            if lang ~= "en" then -- Skip English as it's the target language
+                WhatDidTheySayDB.enabledLanguagePacks[lang] = enabled
+            end
+        end
+        WhatDidTheySayDB.enabledLanguages = nil
+    end
 end
 
 -- Initialize addon after variables are loaded
