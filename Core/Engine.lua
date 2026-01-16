@@ -546,10 +546,12 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     local universalAbbrevsForCheck = {
         ["bb"] = true, ["pls"] = true, ["summon"] = true, ["summons"] = true,
         ["sw"] = true, ["lf"] = true, ["lfg"] = true, ["lfm"] = true, ["lfw"] = true,
-        ["wts"] = true, ["wtb"] = true, ["tank"] = true, ["heal"] = true,
+        ["wts"] = true, ["wtb"] = true, ["tank"] = true, ["heal"] = true, ["healer"] = true,
         ["dm"] = true, ["port"] = true, ["buff"] = true, ["quest"] = true,
         ["tp"] = true, ["tpn"] = true, ["darna"] = true, ["darnassus"] = true,
         ["for"] = true, ["to"] = true, ["with"] = true, -- Common English prepositions
+        ["mage"] = true, ["warrior"] = true, ["rogue"] = true, ["hunter"] = true,
+        ["priest"] = true, ["warlock"] = true, ["druid"] = true, ["shaman"] = true, ["paladin"] = true,
     }
     local wordCount = 0
     for _, token in ipairs(tokens) do
