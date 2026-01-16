@@ -111,6 +111,11 @@ WDTS_Lang_de_Tokens = {
     ["und"] = "and",
     ["oder"] = "or",
     ["als"] = "as",
+    ["anbieten"] = "offer",
+    ["bieten"] = "offer",
+    ["bietet"] = "offers",
+    ["bitten"] = "ask/request",
+    ["bitte"] = "please", -- Already exists, but keep for reference
     
     -- Common phrases
     ["huhu"] = "hi/hi there", -- Friendly greeting
