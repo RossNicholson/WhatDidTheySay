@@ -197,17 +197,14 @@ frame:SetScript("OnEvent", function(self, event, addonName)
             return
         end
         
-        -- Only register when Titan loads - Titan must be loaded first
-        -- This is the primary registration point
-        if addonName == "Titan" then
-            -- Titan just loaded, try to register immediately
-            -- WhatDidTheySayDB should exist by now (our addon loads before Titan due to OptionalDeps)
-            if WhatDidTheySayDB then
+        -- Try to register when either addon loads, as long as both are ready
+        -- This handles cases where Titan loads before or after our addon
+        if addonName == "Titan" or addonName == "WhatDidTheySay" then
+            -- Both must be loaded before we can register
+            if IsTitanPanelLoaded() and WhatDidTheySayDB then
                 TryRegister()
             end
         end
-        -- Note: We don't register on "WhatDidTheySay" event to prevent duplicate attempts
-        -- If Titan loads after our addon, the "Titan" event will handle registration
     end
 end)
 
