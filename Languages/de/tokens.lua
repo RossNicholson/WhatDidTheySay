@@ -486,9 +486,14 @@ WDTS_Lang_de_Tokens = {
     ["genau"] = "exactly",
     ["richtig"] = "right",
     ["falsch"] = "wrong",
+    ["gerne"] = "gladly/you're welcome",
+    ["tschüss"] = "bye",
+    ["tschau"] = "bye",
+    ["auf wiedersehen"] = "goodbye",
     
     -- Location and meeting
     ["hier"] = "here",
+    ["hierher"] = "here/to here",
     ["dort"] = "there",
     ["da"] = "there",
     ["bei"] = "at",
@@ -501,6 +506,8 @@ WDTS_Lang_de_Tokens = {
     ["zusammen"] = "together",
     ["alleine"] = "alone",
     ["allein"] = "alone",
+    ["leute"] = "people",
+    ["personen"] = "people",
     
     -- Abbreviations players use
     ["wts"] = "wts", -- Want to sell (often used as-is)
@@ -579,7 +586,9 @@ WDTS_Lang_de_Tokens = {
     ["zeitpunkt"] = "time/moment",
     ["stunde"] = "hour",
     ["minute"] = "minute",
+    ["minuten"] = "minutes",
     ["sekunde"] = "second",
+    ["sekunden"] = "seconds",
     ["tag"] = "day",
     ["tage"] = "days",
     ["woche"] = "week",
@@ -643,6 +652,9 @@ WDTS_Lang_de_Tokens = {
     ["los geht"] = "let's go",
     ["los gehts"] = "let's go",
     ["losgehen"] = "let's go",
+    ["porten"] = "port",
+    ["port"] = "port",
+    ["teleportieren"] = "teleport",
     
     -- More common gaming terms
     ["tank"] = "tank", -- Often used as-is in German WoW
@@ -660,4 +672,23 @@ WDTS_Lang_de_Tokens = {
     ["feuriger"] = "fiery", -- Inflected forms
     ["feurigen"] = "fiery",
     ["feuriges"] = "fiery",
+    
+    -- Trading terms
+    ["stapelweise"] = "in bulk",
+    ["verschiedene"] = "various/different",
+    ["verschiedenen"] = "various/different",
+    ["items"] = "items",
+    ["gegenstände"] = "items",
+    
+    -- Status/AFK
+    ["ruhe"] = "rest/peace",
+    ["zeit"] = "time", -- Already exists but adding for context
+    
+    -- Hardcore/gold
+    ["startgeld"] = "starting gold",
+    ["anfangsgeld"] = "starting gold",
+    
+    -- Common adjectives
+    ["fertig"] = "done/ready",
+    ["bereit"] = "ready",
 }

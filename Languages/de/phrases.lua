@@ -123,6 +123,13 @@ WDTS_Lang_de_Phrases = {
     ["ist weg"] = "is away",
     ["komme gleich"] = "coming soon",
     ["kommt gleich"] = "coming soon",
+    ["komme in"] = "coming in", -- "komme in 5 minuten" = "coming in 5 minutes"
+    ["komme in 5 minuten"] = "coming in 5 minutes",
+    ["mache gerade"] = "doing right now",
+    ["ist gerade"] = "just", -- "ist gerade gestorben" = "just died"
+    ["ist gerade gestorben"] = "just died",
+    ["gehe in ruhe"] = "going AFK",
+    ["in ruhe"] = "AFK/in peace",
     
     -- Quest and objective phrases
     ["suche quest"] = "looking for quest",
@@ -151,12 +158,18 @@ WDTS_Lang_de_Phrases = {
     -- Meeting/grouping up
     ["komm zu mir"] = "come to me",
     ["kommt zu mir"] = "come to me",
+    ["komm hierher"] = "come here",
+    ["kommt hierher"] = "come here",
     ["treffen uns"] = "meet us",
     ["triff uns"] = "meet us",
     ["trefft euch"] = "meet up",
     ["wo treffen"] = "where meet",
     ["wo treffen wir"] = "where do we meet",
     ["wo soll"] = "where should",
+    ["kann jemand mich porten"] = "can someone port me",
+    ["kannst du mich porten"] = "can you port me",
+    ["wann starten wir"] = "when do we start",
+    ["wann startet"] = "when does it start",
     ["wo wollen"] = "where want",
     
     -- Help and requests
