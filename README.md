@@ -22,6 +22,7 @@ An addon that helps players understand chat messages written in other languages 
 - ✅ **Safe & Conservative** - Stays quiet when confidence is low to avoid wrong translations
 - ✅ **Performance Optimized** - Translation caching and message throttling prevent lag
 - ✅ **Configurable** - Choose which chat channels to translate
+- ✅ **Titan Panel Support** - Optional integration with Titan Panel for status display
 
 ### Design Philosophy
 
@@ -88,6 +89,12 @@ cd WhatDidTheySay
 |---------|-------------|
 | `/wdts` | Open configuration window |
 | `/whatdidtheysay` | Alternative command (same as above) |
+| `/wdts test <message>` | Test translation of a message |
+| `/wdts test verbose <message>` | Test translation with detailed debugging output |
+| `/wdts suite` | Run predefined test suite |
+| `/wdts debug` or `/wdts log` | Show recent translation attempts |
+| `/wdts clear` | Clear translation history |
+| `/wdts clearcache` | Clear translation cache |
 
 ### First Time Setup
 
@@ -133,6 +140,7 @@ The addon automatically enables translation for all channels you have joined. Yo
 | SAY | ✅ Enabled | Local chat |
 | PARTY | ✅ Enabled | Party chat |
 | RAID | ✅ Enabled | Raid chat (when in raid) |
+| GUILD | ✅ Enabled | Guild chat |
 | GENERAL | ✅ Enabled | General channel (if joined) |
 | TRADE | ✅ Enabled | Trade channel (if joined) |
 | WORLD | ✅ Enabled | World channel (if joined) |
@@ -183,7 +191,8 @@ WhatDidTheySay/
 │       └── grammar.lua     # Grammar rules
 ├── UI/                      # User interface
 │   ├── Config.lua          # Configuration window
-│   └── Widgets.lua         # UI components
+│   ├── Widgets.lua         # UI components
+│   └── TitanPanel.lua      # Titan Panel integration (optional)
 ├── WhatDidTheySay.lua      # Addon entry point
 └── WhatDidTheySay.toc      # Addon manifest
 ```
@@ -284,6 +293,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Version 0.2.0
 
+- ✅ **Guild Chat Support** - Added translation support for guild chat channel
+- ✅ **Titan Panel Integration** - Optional status display in Titan Panel bar (if Titan Panel is installed)
+- ✅ **Testing Commands** - Added `/wdts test`, `/wdts suite`, `/wdts debug`, `/wdts clear`, `/wdts clearcache` for development and debugging
 - ✅ **Improved False Positive Protection** - Excludes universal gaming abbreviations (LF, LFM, WTS, WTB, tank, DM, etc.) from triggering German translation
 - ✅ **Enhanced Mixed-Language Detection** - Requires actual German function words or characters (ä, ö, ü, ß) before translating, preventing English messages with abbreviations from being incorrectly translated
 - ✅ **Expanded German Vocabulary** - Added common words: "zum", "leveln", "alles", "können", "güldischer", "bsf" (Blackfathom Deeps), and more
