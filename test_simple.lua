@@ -73,6 +73,21 @@ for i, token in ipairs(tokens) do
 end
 print(string.format("\nCoverage: %d/%d words (%.1f%%)", translatedCount, wordCount, (wordCount > 0 and (translatedCount/wordCount)*100 or 0)))
 
+-- Debug: show what TranslateTokens produces
+local langPack = WDTS_Engine.LoadLanguagePack("de")
+local translatedTokens, tokenCoverage, tokenUnknownRatio = WDTS_Engine.TranslateTokens(tokens, langPack)
+print("\n=== Translated Tokens ===")
+for i, token in ipairs(translatedTokens) do
+    if token.type == "word" then
+        print(string.format("  [%d] original=%s value=%s", i, token.original, token.value))
+    end
+end
+print(string.format("Coverage: %.1f%%", tokenCoverage * 100))
+
+-- Test reconstruction
+local reconstructed = WDTS_Tokenizer.Reconstruct(translatedTokens)
+print("Reconstructed:", reconstructed)
+
 -- Test translation
 local translated, confidence, intent = WDTS_Engine.Translate(message, nil, "en", true)
 
