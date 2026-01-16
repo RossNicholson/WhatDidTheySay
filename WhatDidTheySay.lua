@@ -14,12 +14,14 @@ local function DetectJoinedChannels()
     joinedChannels.PARTY = true
     
     -- Try to detect joined custom channels
-    -- GetChannelList() returns: name, channelId, disabled, ...
+    -- GetChannelList() returns pairs of (name, id, ...) but format varies
+    -- Safely iterate through the list
     local channelList = {GetChannelList()}
     
-    for i = 1, #channelList, 3 do
+    for i = 1, #channelList, 2 do
         local channelName = channelList[i]
-        if channelName then
+        -- Ensure channelName is a string before processing
+        if channelName and type(channelName) == "string" then
             -- Normalize channel name (remove numbers like "2. Trade - City")
             local normalized = channelName:match("[^%.]+$") or channelName
             normalized = normalized:match("^%s*(.-)%s*$") -- Trim
