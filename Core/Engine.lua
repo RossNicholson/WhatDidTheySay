@@ -455,24 +455,49 @@ function Engine.Translate(message, sourceLang, targetLang)
     local patternMatchedText = Engine.ApplyPatterns(originalForPatterns, langPack)
     local patternWasApplied = (patternMatchedText ~= originalForPatterns)
     
-    -- Step 5: Token translation
-    -- If pattern was applied, tokenize the pattern-matched text instead
-    local tokensToTranslate = tokens
+    -- Calculate coverage from ORIGINAL tokens (for pattern-matched messages, assume high coverage)
+    local originalTokensCoverage = 0.0
+    local originalTokensUnknownRatio = 1.0
     if patternWasApplied then
+        -- Pattern matched - assume high coverage since pattern translated the structure
+        -- Count how many words in original were part of the pattern
+        local originalWordCount = 0
+        for _, token in ipairs(tokens) do
+            if token.type == "word" then
+                originalWordCount = originalWordCount + 1
+            end
+        end
+        -- If pattern matched, assume most/all words were translated by the pattern
+        originalTokensCoverage = math.min(0.85, 1.0 - (1.0 / math.max(originalWordCount, 1)))
+        originalTokensUnknownRatio = 1.0 - originalTokensCoverage
+    else
+        -- No pattern match - will calculate coverage normally
+    end
+    
+    -- Step 5: Token translation
+    -- If pattern was applied, use pattern result directly; otherwise translate tokens
+    local translatedText = ""
+    local coverage = 0.0
+    local unknownRatio = 1.0
+    
+    if patternWasApplied then
+        -- Pattern matched - use pattern result as translation
         -- Restore protected tokens in pattern-matched text
         for placeholderText, protected in pairs(patternPlaceholders) do
             patternMatchedText = patternMatchedText:gsub(placeholderText:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0"), protected, 1)
         end
-        -- Re-tokenize the pattern-matched text
-        tokensToTranslate, protected, protectedMap = Tokenizer.Tokenize(patternMatchedText)
+        translatedText = patternMatchedText
+        coverage = originalTokensCoverage
+        unknownRatio = originalTokensUnknownRatio
+    else
+        -- No pattern match - translate tokens normally
+        local translatedTokens, tokenCoverage, tokenUnknownRatio = Engine.TranslateTokens(tokens, langPack)
+        translatedText = Tokenizer.Reconstruct(translatedTokens)
+        coverage = tokenCoverage
+        unknownRatio = tokenUnknownRatio
     end
     
-    local translatedTokens, coverage, unknownRatio = Engine.TranslateTokens(tokensToTranslate, langPack)
-    
-    -- Step 6: Reconstruct text
-    local translatedText = Tokenizer.Reconstruct(translatedTokens)
-    
-    -- Step 7: Apply patterns to translated text (for any patterns that work on English)
+    -- Step 6: Apply patterns to translated text (for any patterns that work on English)
     -- Only if we didn't already apply patterns to original
     if not patternWasApplied then
         translatedText = Engine.ApplyPatterns(translatedText, langPack)
