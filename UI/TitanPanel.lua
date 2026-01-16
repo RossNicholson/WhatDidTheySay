@@ -157,35 +157,47 @@ WDTS_TitanPanel.registered = false
 
 -- Try to register when Titan Panel is ready
 local function TryRegister()
-    -- PRIMARY CHECK: If button frame already exists, we're already registered
-    -- This is the most reliable check - Titan Panel creates the button when registered
+    if not IsTitanPanelLoaded() or not WhatDidTheySayDB then
+        return false
+    end
+    
+    -- PRIMARY CHECK: Use Titan Panel's own API to check if already registered
+    -- This is the most reliable method - Titan Panel knows its own state
+    if TitanUtils_IsPluginRegistered and TitanUtils_IsPluginRegistered("WDTS") then
+        WDTS_TitanPanel.registered = true
+        return true
+    end
+    
+    -- SECONDARY CHECK: If button frame already exists, we're already registered
     if _G["TitanPanelWDTSButton"] then
         WDTS_TitanPanel.registered = true
         return true
     end
     
-    -- SECONDARY CHECK: If flag is set, don't attempt again
+    -- TERTIARY CHECK: If flag is set, don't attempt again
     if WDTS_TitanPanel.registered then
         return false
     end
     
-    if IsTitanPanelLoaded() and WhatDidTheySayDB then
-        -- Set flag IMMEDIATELY to prevent race conditions
-        -- If both events fire simultaneously, only the first will proceed
-        WDTS_TitanPanel.registered = true
-        
-        local success = WDTS_TitanPanel.Register()
-        if not success then
-            -- Registration failed, reset flag so we can try again later
-            -- But only if button doesn't exist (might have been created elsewhere)
+    -- Set flag IMMEDIATELY to prevent race conditions
+    -- If both events fire simultaneously, only the first will proceed
+    WDTS_TitanPanel.registered = true
+    
+    local success = WDTS_TitanPanel.Register()
+    if not success then
+        -- Registration failed, reset flag so we can try again later
+        -- But only if Titan Panel doesn't think it's registered
+        if not (TitanUtils_IsPluginRegistered and TitanUtils_IsPluginRegistered("WDTS")) then
             if not _G["TitanPanelWDTSButton"] then
                 WDTS_TitanPanel.registered = false
             end
-            return false
+        else
+            -- Titan Panel thinks it's registered, so mark our flag
+            WDTS_TitanPanel.registered = true
         end
-        return true
+        return false
     end
-    return false
+    return true
 end
 
 -- Wait for Titan Panel to load
