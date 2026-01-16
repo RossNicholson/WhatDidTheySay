@@ -249,6 +249,7 @@ local function MatchPhraseAt(tokens, startIdx, langPack)
     end
     
     -- Try to match phrases of decreasing length (longest first)
+    -- For same-length phrases, we match against the actual token text to find the exact match
     if tokens[startIdx].type == "word" then
         for phraseLen = math.min(maxPhraseLength, #tokens - startIdx + 1), 2, -1 do
             local phraseWords = {}
@@ -263,10 +264,11 @@ local function MatchPhraseAt(tokens, startIdx, langPack)
             end
             
             if allWords then
+                -- Build the actual phrase key from tokens
                 local phraseKey = table.concat(phraseWords, " ")
                 local phraseData = langPack._phraseLookupCache[phraseKey]
                 if phraseData then
-                    -- Found a matching phrase
+                    -- Found a matching phrase - this is the exact match for this length
                     return {
                         length = phraseLen,
                         translation = phraseData.translation
