@@ -316,6 +316,23 @@ WDTS_Lang_de_Tokens = {
     ["nächsten"] = "next",
     ["nächstes"] = "next",
     ["nächster"] = "next",
+    
+    -- Item name components (common German words in item names)
+    ["schädel"] = "skull",
+    ["schädelbrecher"] = "skullbreaker",
+    ["brecher"] = "breaker",
+    ["streitaxt"] = "war axe",
+    ["ring"] = "ring",
+    ["wüstenring"] = "desert ring",
+    ["wüste"] = "desert",
+    ["des"] = "of the", -- Genitive article
+    ["des affen"] = "of the ape",
+    ["affen"] = "ape",
+    ["affe"] = "ape",
+    ["blanchard"] = "Blanchard", -- Proper name (keep as-is but allow recognition)
+    ["alexanders"] = "Alexander's", -- Possessive
+    ["alexander"] = "Alexander", -- Proper name
+    ["lord"] = "lord", -- Common in item names
     ["zukünftige"] = "future",
     ["zukünftigen"] = "future",
     ["zukünftiges"] = "future",
