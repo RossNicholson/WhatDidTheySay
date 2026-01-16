@@ -17,6 +17,10 @@ ChatHooks.translatedMessages = {}
 ChatHooks.translatedMessagesCleanup = {} -- Track cleanup times
 ChatHooks.translatedMessagesMaxAge = 300 -- Clean up after 5 minutes
 
+-- Track ALL translation attempts for debugging (both successful and failed)
+ChatHooks.translationHistory = {}
+ChatHooks.translationHistoryMaxSize = 50 -- Keep last 50 attempts
+
 -- Generate a simple hash for message tracking
 local function HashMessage(message, sender)
     return tostring(#message) .. ":" .. (sender or "") .. ":" .. message:sub(1, math.min(20, #message))
@@ -307,6 +311,24 @@ local function OnChatMessage(self, event, ...)
     -- Translate message
     local translated, confidence, intent = Engine.Translate(message, nil, targetLang)
     
+    -- Track ALL translation attempts for debugging
+    local historyEntry = {
+        message = message,
+        sender = sender or "unknown",
+        channel = channelType or "unknown",
+        translated = translated,
+        confidence = confidence or 0.0,
+        intent = intent,
+        timestamp = GetTime(),
+        success = translated ~= nil
+    }
+    
+    -- Add to history (FIFO, keep last N entries)
+    table.insert(ChatHooks.translationHistory, historyEntry)
+    if #ChatHooks.translationHistory > ChatHooks.translationHistoryMaxSize then
+        table.remove(ChatHooks.translationHistory, 1)
+    end
+    
     if not translated then
         return -- Failed or low confidence, stay silent
     end
@@ -418,6 +440,24 @@ function ChatHooks.Initialize()
     ChatHooks.hookFrame = hookFrame
     
     ChatHooks.initialized = true
+end
+
+-- Get recent translation history for debugging
+function ChatHooks.GetTranslationHistory(limit)
+    limit = limit or 50
+    local count = math.min(limit, #ChatHooks.translationHistory)
+    local result = {}
+    for i = #ChatHooks.translationHistory - count + 1, #ChatHooks.translationHistory do
+        if ChatHooks.translationHistory[i] then
+            table.insert(result, ChatHooks.translationHistory[i])
+        end
+    end
+    return result
+end
+
+-- Clear translation history
+function ChatHooks.ClearTranslationHistory()
+    ChatHooks.translationHistory = {}
 end
 
 WDTS_ChatHooks = ChatHooks

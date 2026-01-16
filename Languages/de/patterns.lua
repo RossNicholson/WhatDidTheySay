@@ -118,6 +118,21 @@ WDTS_Lang_de_Patterns = {
         from = "lfm (.+)",
         to = "lfm %1",
     },
+    -- "LF X für Y" -> "LF X for Y" (mixed language pattern)
+    {
+        from = "lf%s+(.+)%s+für%s+(.+)",
+        to = "LF %1 for %2",
+    },
+    -- "LFM X für Y" -> "LFM X for Y"
+    {
+        from = "lfm%s+(.+)%s+für%s+(.+)",
+        to = "LFM %1 for %2",
+    },
+    -- "LFG X für Y" -> "LFG X for Y"
+    {
+        from = "lfg%s+(.+)%s+für%s+(.+)",
+        to = "LFG %1 for %2",
+    },
     -- Location patterns
     {
         from = "wo ist (.+)",

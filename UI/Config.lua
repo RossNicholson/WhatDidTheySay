@@ -312,6 +312,59 @@ local function RunTestSuite()
     DEFAULT_CHAT_FRAME:AddMessage("|cff00ff00=== Test Suite Complete ===|r")
 end
 
+-- Show translation history (recent translation attempts)
+local function ShowTranslationHistory()
+    local ChatHooks = WDTS_ChatHooks
+    if not ChatHooks then
+        DEFAULT_CHAT_FRAME:AddMessage("|cffff0000Translation history not available.|r")
+        return
+    end
+    
+    local history = ChatHooks.GetTranslationHistory(20) -- Last 20 attempts
+    
+    if #history == 0 then
+        DEFAULT_CHAT_FRAME:AddMessage("|cffffff00No translation history yet.|r")
+        DEFAULT_CHAT_FRAME:AddMessage("|cffaaaaaaChat messages will be tracked here.|r")
+        return
+    end
+    
+    DEFAULT_CHAT_FRAME:AddMessage("|cff00ff00=== Translation History (Last " .. #history .. " attempts) ===|r")
+    
+    for i, entry in ipairs(history) do
+        local statusColor = entry.success and "|cff00ff00✓|r" or "|cffff0000✗|r"
+        local confColor = entry.confidence >= 0.70 and "|cff00ff00" or (entry.confidence >= 0.45 and "|cffffff00" or "|cffff0000")
+        
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("%s [%s] %s[%s]|r |cffaaaaaa%s:|r %s",
+            statusColor,
+            entry.channel or "unknown",
+            confColor,
+            string.format("%.2f", entry.confidence or 0.0),
+            entry.sender or "unknown",
+            entry.message or ""
+        ))
+        
+        if entry.success and entry.translated then
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("  → %s", entry.translated))
+        elseif not entry.success then
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("  |cffaaaaaa(No translation - reason: %s)|r", entry.intent or "low confidence"))
+        end
+    end
+    
+    DEFAULT_CHAT_FRAME:AddMessage("|cff00ff00=== End History ===|r")
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00Use '/wdts clear' to clear history|r")
+end
+
+-- Clear translation history
+local function ClearTranslationHistory()
+    local ChatHooks = WDTS_ChatHooks
+    if ChatHooks then
+        ChatHooks.ClearTranslationHistory()
+        DEFAULT_CHAT_FRAME:AddMessage("|cff00ff00Translation history cleared.|r")
+    else
+        DEFAULT_CHAT_FRAME:AddMessage("|cffff0000Translation history not available.|r")
+    end
+end
+
 -- Initialize configuration (create slash command)
 function Config.Initialize()
     SLASH_WHATDIDTHESAY1 = "/wdts"
@@ -329,6 +382,10 @@ function Config.Initialize()
             end
         elseif cmd == "suite" then
             RunTestSuite()
+        elseif cmd == "debug" or cmd == "log" then
+            ShowTranslationHistory()
+        elseif cmd == "clear" then
+            ClearTranslationHistory()
         else
             Config.Toggle()
         end
