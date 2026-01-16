@@ -12,7 +12,7 @@ function Config.CreateFrame()
     end
     
     local frame = CreateFrame("Frame", "WDTSConfigFrame", UIParent)
-    frame:SetSize(440, 520)
+    frame:SetSize(440, 540)
     frame:SetPoint("CENTER", UIParent, "CENTER")
     
     -- Create backdrop - simple solid background
@@ -162,7 +162,7 @@ function Config.CreateFrame()
     -- Close button (centered, better positioned with more space)
     local closeBtn = CreateFrame("Button", nil, frame, "GameMenuButtonTemplate")
     closeBtn:SetSize(120, 32)
-    closeBtn:SetPoint("BOTTOM", frame, "BOTTOM", 0, 20)
+    closeBtn:SetPoint("BOTTOM", frame, "BOTTOM", 0, 25)
     closeBtn:SetText("Close")
     closeBtn:SetScript("OnClick", function()
         frame:Hide()
