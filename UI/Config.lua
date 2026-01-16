@@ -153,7 +153,7 @@ function Config.CreateFrame()
     local checkboxes = {}
     
     -- Group channels logically
-    local primaryChannels = { "WHISPER", "SAY", "PARTY", "RAID" }
+    local primaryChannels = { "WHISPER", "SAY", "PARTY", "RAID", "GUILD" }
     local globalChannels = { "GENERAL", "TRADE", "WORLD", "LFG" }
     
     -- Primary channels
