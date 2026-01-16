@@ -401,6 +401,9 @@ WDTS_Lang_de_Tokens = {
     -- Articles (a/an/the)
     ["ein"] = "a",
     ["eine"] = "a",
+    ["anschluss"] = "connection/join",
+    ["usw"] = "etc.", -- "und so weiter" = "and so on"
+    ["usw."] = "etc.",
     ["einer"] = "a/one", -- Feminine dative form
     ["einem"] = "a/one", -- Masculine/neuter dative form
     ["einen"] = "a",

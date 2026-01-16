@@ -135,5 +135,23 @@ WDTS_Lang_de_Grammar = {
             from = "can me who to (.+) port pls",
             to = "can someone port me to %1 please",
         },
+        
+        -- Fix "anschluss an a" -> "connection to a" or "join a"
+        {
+            from = "anschluss an a ",
+            to = "connection to a ",
+        },
+        {
+            from = "anschluss an eine ",
+            to = "connection to a ",
+        },
+        {
+            from = "looking for anschluss an a ",
+            to = "looking for connection to a ",
+        },
+        {
+            from = "looking for anschluss an eine ",
+            to = "looking for connection to a ",
+        },
     },
 }
