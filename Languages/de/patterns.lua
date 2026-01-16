@@ -333,4 +333,36 @@ WDTS_Lang_de_Patterns = {
         from = "braucht wen die (.+)",
         to = "need someone who %1",
     },
+    
+    -- Profession crafting requests: "X der [item] kann" -> "X who can [item]"
+    -- This pattern matches profession names followed by relative clause with item
+    {
+        from = "schneider der (.+) kann",
+        to = "tailor who can %1",
+    },
+    {
+        from = "schmied der (.+) kann",
+        to = "blacksmith who can %1",
+    },
+    {
+        from = "alchemist der (.+) kann",
+        to = "alchemist who can %1",
+    },
+    {
+        from = "verzauberer der (.+) kann",
+        to = "enchanter who can %1",
+    },
+    {
+        from = "kürschner der (.+) kann",
+        to = "leatherworker who can %1",
+    },
+    {
+        from = "ingenieur der (.+) kann",
+        to = "engineer who can %1",
+    },
+    -- Generic pattern: "X der Y kann" -> "X who can Y" (fallback for any profession)
+    {
+        from = "(.+) der (.+) kann",
+        to = "%1 who can %2",
+    },
 }
