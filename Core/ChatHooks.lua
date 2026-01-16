@@ -255,12 +255,22 @@ local function DisplayTranslation(originalMessage, translatedMessage, confidence
     local function AddTranslationMessage()
         -- Get the chat frames that received the original message
         local targetFrames = {}
-        if msgHash and ChatHooks.messageFrames[msgHash] then
-            -- Only display in frames that received the original message
-            targetFrames = ChatHooks.messageFrames[msgHash]
-        else
-            -- Fallback: if we don't have frame tracking, use all visible frames
-            -- This handles edge cases where message wasn't tracked
+        
+        -- Check frame tracking - frames are added as ChatFilterFunc processes each frame
+        if msgHash and ChatHooks.messageFrames[msgHash] and #ChatHooks.messageFrames[msgHash] > 0 then
+            -- Use only frames that received the original message
+            for _, frame in ipairs(ChatHooks.messageFrames[msgHash]) do
+                -- Validate frame still exists and is visible before adding
+                if frame and frame:IsShown() then
+                    table.insert(targetFrames, frame)
+                end
+            end
+        end
+        
+        -- Fallback: if no frames were tracked (shouldn't happen, but safety check)
+        if #targetFrames == 0 then
+            -- This shouldn't happen if frame tracking works correctly
+            -- But if it does, fall back to all visible frames as last resort
             local chatFrames = { ChatFrame1, ChatFrame2, ChatFrame3, ChatFrame4, ChatFrame5, ChatFrame6, ChatFrame7 }
             for _, frame in ipairs(chatFrames) do
                 if frame and frame:IsShown() then
