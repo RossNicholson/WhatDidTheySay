@@ -50,15 +50,38 @@ loadFile("Languages/de/phrases.lua")
 
 WDTS_Engine.Initialize()
 
+-- Debug: show tokenization
+local Tokenizer = WDTS_Tokenizer
+local tokens, protected, protectedMap = Tokenizer.Tokenize(message)
+print("\n=== Tokenization ===")
+print(string.format("Found %d tokens:", #tokens))
+local wordCount = 0
+local translatedCount = 0
+for i, token in ipairs(tokens) do
+    if token.type == "word" then
+        wordCount = wordCount + 1
+        local langPack = WDTS_Engine.LoadLanguagePack("de")
+        local translation = langPack and langPack.tokens and langPack.tokens[token.value] or nil
+        local status = translation and ("✓ → " .. translation) or "✗ (no translation)"
+        print(string.format("  [%d] %s -> %s %s", i, token.original, token.value, status))
+        if translation then
+            translatedCount = translatedCount + 1
+        end
+    else
+        print(string.format("  [%d] %s (type: %s)", i, token.original, token.type))
+    end
+end
+print(string.format("\nCoverage: %d/%d words (%.1f%%)", translatedCount, wordCount, (wordCount > 0 and (translatedCount/wordCount)*100 or 0)))
+
 -- Test translation
 local translated, confidence, intent = WDTS_Engine.Translate(message, nil, "en", true)
 
-print("Result:")
+print("\n=== Translation Result ===")
 if translated then
     print("  Translated:", translated)
     print("  Confidence:", string.format("%.2f", confidence))
     if intent then
-        print("  Intent:", intent.id)
+        print("  Intent:", intent.id or "unknown")
     end
 else
     print("  ❌ Translation failed")

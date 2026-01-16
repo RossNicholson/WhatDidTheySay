@@ -110,10 +110,22 @@ function Tokenizer.Tokenize(text)
 end
 
 -- Reconstruct text from tokens
+-- Use token.value (translated) if present, otherwise token.original
 function Tokenizer.Reconstruct(tokens)
     local parts = {}
     for _, token in ipairs(tokens) do
-        table.insert(parts, token.original)
+        -- Use translated value if it exists and differs from original, otherwise use original
+        -- This preserves punctuation and formatting while using translations
+        if token.value and token.value ~= token.original then
+            -- Use translated value for the text, but preserve original formatting for non-words
+            if token.type == "word" then
+                table.insert(parts, token.value)
+            else
+                table.insert(parts, token.original)
+            end
+        else
+            table.insert(parts, token.original)
+        end
     end
     return table.concat(parts, " ")
 end

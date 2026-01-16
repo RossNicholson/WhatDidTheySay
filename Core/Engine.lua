@@ -574,26 +574,36 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         translationSimilarity = similarity, -- Pass similarity for penalty
     })
     
-    local intentId = intent and intent.id or nil
+    local intentId = nil
+    if intent then
+        if type(intent) == "table" then
+            intentId = intent.id
+        else
+            intentId = intent
+        end
+    end
     
     -- Cache successful translations (only if confidence is reasonable)
     if finalConfidence >= Confidence.THRESHOLD.MANUAL_OPTION and translatedText then
-        -- Limit cache size
-        local cacheSize = 0
-        for _ in pairs(Engine.translationCache) do
-            cacheSize = cacheSize + 1
+        -- Create cache key (might be nil if bypassCache was true, but that's okay)
+        if cacheKey then
+            -- Limit cache size
+            local cacheSize = 0
+            for _ in pairs(Engine.translationCache) do
+                cacheSize = cacheSize + 1
+            end
+            
+            if cacheSize >= Engine.cacheMaxSize then
+                -- Remove oldest entry (simple strategy: clear cache if full)
+                Engine.translationCache = {}
+            end
+            
+            Engine.translationCache[cacheKey] = {
+                translated = translatedText,
+                confidence = finalConfidence,
+                intent = intentId,
+            }
         end
-        
-        if cacheSize >= Engine.cacheMaxSize then
-            -- Remove oldest entry (simple strategy: clear cache if full)
-            Engine.translationCache = {}
-        end
-        
-        Engine.translationCache[cacheKey] = {
-            translated = translatedText,
-            confidence = finalConfidence,
-            intent = intentId,
-        }
     end
     
     return translatedText, finalConfidence, intentId
