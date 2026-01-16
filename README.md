@@ -1,8 +1,8 @@
 # What Did They Say?
 
-> **Offline chat translation for World of Warcraft Classic**
+> **In-game chat translation for World of Warcraft Classic**
 
-An addon that helps players understand chat messages written in other languages using only in-game Lua logic. Runs entirely offline—no API keys, no internet access, and no external services required.
+An addon that helps players understand chat messages written in other languages using only in-game Lua logic. All translation processing happens locally in the game—no external APIs, translation services, or web requests required.
 
 [![WoW Classic](https://img.shields.io/badge/WoW-Classic%20Era-orange)](https://worldofwarcraft.blizzard.com/en-us/game/wow-classic)
 [![Interface Version](https://img.shields.io/badge/Interface-11508-blue)](https://www.wowhead.com/)
@@ -16,7 +16,7 @@ An addon that helps players understand chat messages written in other languages 
 
 ### Key Features
 
-- ✅ **100% Offline** - Works completely offline with no internet connection
+- ✅ **No External Services** - All translation logic runs locally in-game, no external APIs or translation services needed
 - ✅ **Automated Processing** - Automatically translates messages when confidence is sufficient
 - ✅ **Intent Detection** - Understands player intent (LFG, invites, ready status, etc.)
 - ✅ **Safe & Conservative** - Stays quiet when confidence is low to avoid wrong translations
@@ -295,9 +295,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Credits
 
-**What Did They Say?** - Offline chat translation for WoW Classic
+**What Did They Say?** - In-game chat translation for WoW Classic
 
-Developed for World of Warcraft Classic players who want to communicate across language barriers without relying on external services.
+Developed for World of Warcraft Classic players who want to communicate across language barriers without relying on external translation services or APIs.
 
 ---
 
