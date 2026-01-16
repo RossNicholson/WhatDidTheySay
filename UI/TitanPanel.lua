@@ -74,8 +74,8 @@ end
 function TitanPanelWDTSButton_OnClick(self, button)
     if button == "LeftButton" then
         -- Open config
-        if Config and Config.Show then
-            Config.Show()
+        if WDTS_Config and WDTS_Config.Show then
+            WDTS_Config.Show()
         end
     elseif button == "RightButton" then
         -- Toggle auto-translate
@@ -155,39 +155,33 @@ local function TryRegister()
 end
 
 -- Wait for Titan Panel to load
--- Titan Panel collects plugins during ADDON_LOADED events and registers them at PLAYER_ENTERING_WORLD
+-- Titan Panel collects plugins during ADDON_LOADED events (before PLAYER_ENTERING_WORLD)
+-- We must register synchronously during ADDON_LOADED, not with timers
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
-frame:RegisterEvent("PLAYER_ENTERING_WORLD")
-
-local registrationAttempted = false
 
 frame:SetScript("OnEvent", function(self, event, addonName)
-    -- Don't attempt registration more than once
-    if registrationAttempted then
-        return
-    end
-    
     if event == "ADDON_LOADED" then
-        -- Register when Titan loads, or when our addon loads (if Titan is already loaded)
+        -- Only register when Titan loads (it needs to be loaded first)
+        -- OR when our addon loads if Titan is already loaded
         if addonName == "Titan" then
-            -- Titan just loaded, register immediately (Titan collects plugins during ADDON_LOADED)
-            if WhatDidTheySayDB then
-                registrationAttempted = true
-                TryRegister()
+            -- Titan just loaded, try to register immediately
+            -- WhatDidTheySayDB should exist by now (our addon loads before Titan due to OptionalDeps)
+            if WhatDidTheySayDB and not WDTS_TitanPanel.registered then
+                local success = TryRegister()
+                if success then
+                    WDTS_TitanPanel.registered = true
+                end
             end
         elseif addonName == "WhatDidTheySay" then
             -- Our addon loaded, check if Titan is already available
-            if IsTitanPanelLoaded() and WhatDidTheySayDB then
-                registrationAttempted = true
-                TryRegister()
+            -- This handles the case where Titan loaded before our addon
+            if IsTitanPanelLoaded() and WhatDidTheySayDB and not WDTS_TitanPanel.registered then
+                local success = TryRegister()
+                if success then
+                    WDTS_TitanPanel.registered = true
+                end
             end
-        end
-    elseif event == "PLAYER_ENTERING_WORLD" then
-        -- Final attempt - Titan Panel processes registrations at this point
-        if not registrationAttempted and IsTitanPanelLoaded() and WhatDidTheySayDB then
-            registrationAttempted = true
-            TryRegister()
         end
     end
 end)
