@@ -19,9 +19,10 @@ Engine.cacheMaxSize = 500 -- Limit cache size to avoid memory issues
 
 -- Load language pack
 function Engine.LoadLanguagePack(lang)
-    if Engine.languagePacks[lang] then
-        return Engine.languagePacks[lang]
-    end
+    -- Always reload to pick up new vocabulary (cache cleared on reload anyway)
+    -- if Engine.languagePacks[lang] then
+    --     return Engine.languagePacks[lang]
+    -- end
     
     local pack = {
         tokens = {},
