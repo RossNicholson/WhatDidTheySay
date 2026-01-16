@@ -33,6 +33,8 @@ WDTS_Lang_de_Tokens = {
     ["brauche"] = "need",
     ["braucht"] = "need",
     ["brauch"] = "need", -- Colloquial form
+    ["benötige"] = "need", -- Formal form
+    ["benötigt"] = "needs", -- Formal form
     ["will"] = "want",
     ["willst"] = "want",
     ["kannst"] = "can you",
@@ -119,6 +121,9 @@ WDTS_Lang_de_Tokens = {
     
     -- Status words
     ["tot"] = "dead",
+    ["gestorben"] = "died",
+    ["gestorbene"] = "died",
+    ["eben"] = "just",
     ["lebend"] = "alive",
     ["voll"] = "full",
     ["leer"] = "empty",
@@ -129,6 +134,22 @@ WDTS_Lang_de_Tokens = {
     ["alli"] = "Alliance", -- Common abbreviation for Allianz
     ["allianz"] = "Alliance",
     ["horde"] = "Horde",
+    
+    -- Races
+    ["menschen"] = "humans",
+    ["mensch"] = "human",
+    ["zwerge"] = "dwarves",
+    ["zwerg"] = "dwarf",
+    ["nachtelfen"] = "night elves",
+    ["nachtelf"] = "night elf",
+    ["gnome"] = "gnomes",
+    ["gnom"] = "gnome",
+    ["orks"] = "orcs",
+    ["ork"] = "orc",
+    ["trolle"] = "trolls",
+    ["troll"] = "troll",
+    ["untote"] = "undead",
+    ["untoter"] = "undead",
     
     -- Guild terms
     ["gilde"] = "guild",
@@ -170,8 +191,10 @@ WDTS_Lang_de_Tokens = {
     ["krieger"] = "warrior",
     ["paladin"] = "paladin",
     ["jäger"] = "hunter",
+    ["jägerin"] = "huntress", -- Female form
     ["schurke"] = "rogue",
     ["priester"] = "priest",
+    ["priesterin"] = "priestess", -- Female form
     ["schattenpriester"] = "shadow priest",
     ["schamane"] = "shaman",
     ["magier"] = "mage",
@@ -280,6 +303,10 @@ WDTS_Lang_de_Tokens = {
     ["nächsten"] = "next",
     ["nächstes"] = "next",
     ["nächster"] = "next",
+    ["zukünftige"] = "future",
+    ["zukünftigen"] = "future",
+    ["zukünftiges"] = "future",
+    ["zukünftiger"] = "future",
     
     -- Quality and attributes
     ["gut"] = "good",
@@ -363,7 +390,9 @@ WDTS_Lang_de_Tokens = {
     ["mehr"] = "more",
     ["mehrere"] = "several",
     ["weniger"] = "less",
-    ["etwas"] = "something",
+    ["etwas"] = "some/something",
+    ["gibts"] = "are there/is there", -- Colloquial "Gibt es"
+    ["gibt es"] = "are there/is there",
     ["evtl"] = "maybe/perhaps", -- Abbreviation for eventuell
     ["eventuell"] = "maybe/perhaps",
     

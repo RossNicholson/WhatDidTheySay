@@ -245,4 +245,15 @@ WDTS_Lang_de_Phrases = {
     ["die auf mach"] = "open them",
     ["mir die auf macht"] = "opens them for me",
     ["mir die auf mach"] = "open them for me",
+    
+    -- Death and status
+    ["ist gestorben"] = "has died",
+    ["ist eben gestorben"] = "just died",
+    ["eben gestorben"] = "just died",
+    
+    -- Help requests
+    ["mir helfen könnten"] = "could help me",
+    ["mir helfen können"] = "can help me",
+    ["die mir helfen könnten"] = "who could help me",
+    ["die mir helfen können"] = "who can help me",
 }
