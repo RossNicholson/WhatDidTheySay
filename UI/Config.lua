@@ -317,7 +317,7 @@ local function TestTranslation(message, verbose)
     
     -- Show translation
     local transColor = confidence >= 0.70 and "|cff00ff00" or "|cffffff00"
-    local intentText = intent and (" [" .. intent.id .. "]") or ""
+    local intentText = (intent and intent.id) and (" [" .. intent.id .. "]") or ""
     DEFAULT_CHAT_FRAME:AddMessage(string.format("%s→ %s%s|r (confidence: %.2f)", transColor, translated, intentText, confidence))
 end
 
