@@ -588,6 +588,12 @@ WDTS_Lang_de_Tokens = {
     -- Numbers (for trading/levels)
     ["eins"] = "one",
     ["zwei"] = "two",
+    ["ab"] = "from", -- "ab wann" = "from when"
+    ["dolche"] = "daggers",
+    ["dolch"] = "dagger",
+    ["nutzen"] = "use",
+    ["nutzt"] = "uses",
+    ["nutze"] = "use",
     ["drei"] = "three",
     ["vier"] = "four",
     ["fünf"] = "five",

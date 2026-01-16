@@ -83,8 +83,12 @@ WDTS_Lang_de_Patterns = {
     },
     -- Conversational patterns
     {
-        from = "wo (.+)",
+        from = "^wo (.+)$",
         to = "where %1",
+    },
+    {
+        from = " wo (.+)",
+        to = " where %1",
     },
     {
         from = "wer (.+)",

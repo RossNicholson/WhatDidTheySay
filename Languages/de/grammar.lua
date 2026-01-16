@@ -153,5 +153,24 @@ WDTS_Lang_de_Grammar = {
             from = "looking for anschluss an eine ",
             to = "looking for connection to a ",
         },
+        
+        -- Fix "from when can you as rogue two daggers use" -> "from when can you use two daggers as a rogue"
+        {
+            from = "from when can (.+) as (.+) two daggers use",
+            to = "from when can %1 use two daggers as a %2",
+        },
+        {
+            from = "from when can (.+) as (.+) two (.+) use",
+            to = "from when can %1 use two %3 as a %2",
+        },
+        -- Also handle "can you as X Y use" -> "can you use Y as X"
+        {
+            from = "can you as (.+) (.+) use",
+            to = "can you use %2 as a %1",
+        },
+        {
+            from = "can one as (.+) (.+) use",
+            to = "can one use %2 as a %1",
+        },
     },
 }

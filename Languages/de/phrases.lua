@@ -29,6 +29,9 @@ WDTS_Lang_de_Phrases = {
     ["wie geht"] = "how is",
     ["wie viel"] = "how much",
     ["wie viele"] = "how many",
+    ["ab wann"] = "from when",
+    ["von wann"] = "from when",
+    ["wann kann man"] = "when can you/when can one",
     ["kann mich wer"] = "can someone", -- "kann mich wer" = "can me someone" -> "can someone"
     ["kann mich jemand"] = "can someone", -- Alternative form
     
