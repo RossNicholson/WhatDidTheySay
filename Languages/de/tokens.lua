@@ -831,6 +831,7 @@ WDTS_Lang_de_Tokens = {
     ["ganz"] = "quite/entirely",
     ["fast"] = "almost",
     ["nur"] = "only",
+    ["nurnoch"] = "just/only", -- Compound of "nur noch" (just/only) written as one word
     ["auch nur"] = "even only",
     
     -- More prepositions/connectors
