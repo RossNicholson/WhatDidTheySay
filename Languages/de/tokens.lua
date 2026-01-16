@@ -183,6 +183,7 @@ WDTS_Lang_de_Tokens = {
     ["gold"] = "gold",
     ["silber"] = "silver",
     ["kupfer"] = "copper",
+    ["geld"] = "money",
     ["angebot"] = "offer",
     ["angebote"] = "offers",
     ["leihen"] = "lend",
@@ -192,6 +193,7 @@ WDTS_Lang_de_Tokens = {
     ["borgen"] = "borrow",
     ["borgt"] = "borrows",
     ["borg"] = "borrow",
+    ["bettler"] = "beggar",
     
     -- Common WoW verbs
     ["gehen"] = "go",
@@ -209,6 +211,8 @@ WDTS_Lang_de_Tokens = {
     ["hilft"] = "helps",
     ["spielen"] = "play",
     ["spielt"] = "plays",
+    ["spiel"] = "play",
+    ["spiele"] = "play",
     ["mitmachen"] = "join",
     ["macht"] = "makes",
     ["schauen"] = "look",
