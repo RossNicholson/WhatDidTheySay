@@ -1,187 +1,331 @@
 # What Did They Say?
 
-**Offline chat translation for World of Warcraft Classic**
+> **Offline chat translation for World of Warcraft Classic**
 
-What Did They Say? helps players understand chat messages written in other languages using only in-game Lua logic. The addon runs entirely offline, requires no API keys, no internet access, and no external services.
+An addon that helps players understand chat messages written in other languages using only in-game Lua logic. Runs entirely offline—no API keys, no internet access, and no external services required.
 
-## Features
+[![WoW Classic](https://img.shields.io/badge/WoW-Classic%20Era-orange)](https://worldofwarcraft.blizzard.com/en-us/game/wow-classic)
+[![Interface Version](https://img.shields.io/badge/Interface-11508-blue)](https://www.wowhead.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-- **Offline Translation** - Works completely offline with no internet connection required
-- **Automated Processing** - Automatically translates messages when confidence is high enough
-- **Intent Detection** - Understands player intent (LFG, invites, ready status, etc.)
-- **Safe & Conservative** - Stays quiet when confidence is low to avoid wrong translations
-- **Performance Optimized** - Caching and throttling prevent lag
-- **Configurable Channels** - Choose which chat channels to translate
+---
 
-## Supported Languages
+## 📖 Overview
 
-- **German (de) → English (en)** - Full support with vocabulary, intents, and patterns
-- More languages can be added in the future
+**What Did They Say?** is a gameplay-focused communication aid for World of Warcraft Classic. Unlike general-purpose translators, this addon is specifically designed to help players coordinate in groups, whisper, and communicate across language barriers during gameplay.
 
-## Installation
+### Key Features
 
-1. Download the latest release or clone this repository
-2. Place the `WhatDidTheySay` folder in your WoW Classic AddOns directory:
-   - **Windows**: `World of Warcraft\_classic_era_\Interface\AddOns\`
-   - **Mac**: `World of Warcraft/_classic_era_/Interface/AddOns/`
-3. Restart World of Warcraft or type `/reload` in-game
-4. The addon will appear in your AddOns list (accessible via Character Selection screen)
+- ✅ **100% Offline** - Works completely offline with no internet connection
+- ✅ **Automated Processing** - Automatically translates messages when confidence is sufficient
+- ✅ **Intent Detection** - Understands player intent (LFG, invites, ready status, etc.)
+- ✅ **Safe & Conservative** - Stays quiet when confidence is low to avoid wrong translations
+- ✅ **Performance Optimized** - Translation caching and message throttling prevent lag
+- ✅ **Configurable** - Choose which chat channels to translate
 
-## Usage
+### Design Philosophy
 
-### First Time Setup
-
-When you first load the addon, the configuration window will open automatically. You can:
-- Enable/disable translation for specific channels (WHISPER, SAY, PARTY, RAID, etc.)
-- Configure auto-translate settings
-
-### Commands
-
-- `/wdts` - Open configuration window
-- `/whatdidtheysay` - Alternative command to open configuration
-
-### How It Works
-
-1. The addon monitors enabled chat channels (WHISPER, SAY, PARTY by default)
-2. When a foreign-language message is detected, it runs through the translation pipeline:
-   - Tokenization (extracts words, protects links/names/numbers)
-   - Language detection (identifies source language)
-   - Intent detection (understands player intent)
-   - Translation (applies vocabulary and patterns)
-   - Confidence scoring (determines translation quality)
-3. If confidence is high enough (≥0.70), the translation is automatically displayed
-4. The original message is never replaced - translations appear as separate messages
-
-## Configuration
-
-Access configuration via `/wdts` or `/whatdidtheysay`.
-
-### Settings
-
-- **Enabled Channels**: Choose which chat channels to monitor for translation
-  - WHISPER (default: enabled)
-  - SAY (default: enabled)
-  - PARTY (default: enabled)
-  - RAID (default: disabled)
-  - GENERAL, TRADE, WORLD, LFG (default: disabled)
-  
-- **Auto-translate**: Automatically display translations when confidence is sufficient
-
-### Confidence Thresholds
-
-- **≥ 0.70**: Automatically display translation (green)
-- **0.45 - 0.69**: Show with lower confidence (yellow)
-- **< 0.45**: Stay silent (no translation shown)
-
-## Requirements
-
-- **World of Warcraft Classic** (Era)
-- **Client Build**: 1.15.8 (65300) / Interface: 11508
-- No additional dependencies required
-
-## Design Philosophy
-
-This addon is **not** a general-purpose translator. It is a gameplay-focused communication aid designed for:
-
+This addon prioritizes:
 - **Clarity over literal accuracy** - Understandable meaning over perfect grammar
 - **Intent over grammar perfection** - Focus on what the player wants, not how they say it
 - **Silence over wrong translations** - Better to stay quiet than give incorrect information
 - **Automation without noise** - Works quietly in the background
 
-### What This Addon Is
+---
 
-- A communication bridge for whispers, party chat, and small group coordination
-- A best-effort interpreter, not a linguistic authority
-- A WoW-aware system that understands how players actually talk in-game
+## 🌐 Supported Languages
 
-### What This Addon Is NOT
+| Language | Status | Direction |
+|----------|--------|-----------|
+| German (de) | ✅ Full Support | de → en |
+| More languages | 🔜 Coming Soon | - |
 
-- A universal translator
-- A machine-learning system
-- A replacement for voice chat
-- A phrasebook for real-world conversation
-- A spam translator for Trade or General chat
+### Current Capabilities
 
-## Technical Details
+- **Vocabulary Translation** - High-value WoW terms (roles, dungeons, actions)
+- **Intent Recognition** - LFG requests, invites, ready status, movement commands
+- **Pattern Matching** - Common phrase structures
+- **Grammar Post-Processing** - Basic corrections and reordering
 
-### Architecture
+---
 
-The addon is organized into strictly separated layers:
+## 🚀 Installation
 
-- **Core/** - Translation engine, tokenization, language detection, confidence scoring
-- **Languages/** - Language packs (tokens, intents, patterns, grammar rules)
-- **UI/** - Configuration interface and widgets
+### For Players
+
+1. **Download** the latest release from the [Releases](../../releases) page, or clone this repository
+2. **Extract** the `WhatDidTheySay` folder to your WoW Classic AddOns directory:
+
+   **Windows:**
+   ```
+   World of Warcraft\_classic_era_\Interface\AddOns\WhatDidTheySay\
+   ```
+
+   **Mac:**
+   ```
+   World of Warcraft/_classic_era_/Interface/AddOns/WhatDidTheySay/
+   ```
+
+3. **Launch** World of Warcraft Classic
+4. At the character selection screen, click **AddOns** and ensure "What Did They Say?" is enabled
+5. Log in - the configuration window will open automatically on first load
+
+### For Developers
+
+```bash
+git clone https://github.com/RossNicholson/WhatDidTheySay.git
+cd WhatDidTheySay
+# Place in your WoW Classic AddOns directory
+```
+
+---
+
+## 💻 Usage
+
+### Commands
+
+| Command | Description |
+|---------|-------------|
+| `/wdts` | Open configuration window |
+| `/whatdidtheysay` | Alternative command (same as above) |
+
+### First Time Setup
+
+On first load, the configuration window opens automatically. Configure:
+- **Enabled Channels** - Select which chat channels to monitor (WHISPER, SAY, PARTY enabled by default)
+- **Auto-translate** - Enable automatic translation display
+
+### How It Works
+
+1. **Monitoring** - Addon monitors enabled chat channels
+2. **Detection** - When a foreign-language message is detected:
+   - Tokenizes the message (extracts words, protects links/names/numbers)
+   - Detects source language using function words and character hints
+   - Identifies player intent (LFG, invite, ready, etc.)
+   - Translates using vocabulary and phrase patterns
+   - Calculates confidence score
+3. **Display** - If confidence ≥ 0.70, translation is automatically shown
+4. **Preservation** - Original message is never replaced; translations appear separately
+
+### Translation Display
+
+Translations appear in chat as:
+```
+→ [Translated meaning] [INTENT]
+```
+
+- **Green text** - High confidence (≥ 0.70)
+- **Yellow text** - Medium confidence (0.45 - 0.69)
+
+---
+
+## ⚙️ Configuration
+
+Access configuration via `/wdts` or `/whatdidtheysay`.
+
+### Channel Settings
+
+Choose which chat channels to monitor for translation:
+
+| Channel | Default | Description |
+|---------|---------|-------------|
+| WHISPER | ✅ Enabled | Private messages |
+| SAY | ✅ Enabled | Local chat |
+| PARTY | ✅ Enabled | Party chat |
+| RAID | ❌ Disabled | Raid chat |
+| GENERAL | ❌ Disabled | General channel (noisy) |
+| TRADE | ❌ Disabled | Trade channel (noisy) |
+| WORLD | ❌ Disabled | World channel (noisy) |
+| LFG | ❌ Disabled | Looking for Group channel |
+
+**Note:** Global channels (GENERAL, TRADE, WORLD) are disabled by default as they're too noisy and slang-heavy for reliable translation.
+
+### Confidence Thresholds
+
+| Confidence | Behavior |
+|------------|----------|
+| ≥ 0.70 | ✅ Automatically display translation (green) |
+| 0.45 - 0.69 | ⚠️ Show with lower confidence (yellow) |
+| < 0.45 | 🔇 Stay silent (no translation shown) |
+
+---
+
+## 📋 Requirements
+
+- **World of Warcraft Classic** (Era version)
+- **Client Build**: 1.15.8 (65300)
+- **Interface Version**: 11508
+- **Dependencies**: None
+
+---
+
+## 🏗️ Technical Architecture
+
+### Project Structure
+
+```
+WhatDidTheySay/
+├── Core/                    # Core translation engine
+│   ├── Engine.lua          # Main translation pipeline
+│   ├── Tokenizer.lua       # Tokenization and protection logic
+│   ├── LanguageDetect.lua  # Language detection
+│   ├── Confidence.lua      # Confidence scoring
+│   ├── ChatHooks.lua       # Chat event interception
+│   └── Utils.lua           # Shared utilities
+├── Languages/               # Language packs
+│   ├── en/                 # English (target language)
+│   └── de/                 # German (source language)
+│       ├── tokens.lua      # Vocabulary dictionary
+│       ├── intents.lua     # Intent patterns
+│       ├── patterns.lua    # Phrase patterns
+│       └── grammar.lua     # Grammar rules
+├── UI/                      # User interface
+│   ├── Config.lua          # Configuration window
+│   └── Widgets.lua         # UI components
+├── WhatDidTheySay.lua      # Addon entry point
+└── WhatDidTheySay.toc      # Addon manifest
+```
 
 ### Translation Pipeline
 
 Every message goes through these steps in order:
 
-1. Channel filtering
-2. Tokenization (with protected token extraction)
-3. Language detection
-4. Intent detection (highest priority)
-5. Phrase and pattern translation
-6. Grammar post-processing
-7. Confidence scoring
-8. Output gating
+1. **Channel Filtering** - Ignore disabled channels immediately
+2. **Tokenization** - Split into structured tokens (words, numbers, punctuation, protected items)
+3. **Language Detection** - Determine source language using function words and character hints
+4. **Intent Detection** - Identify player intent (highest priority)
+5. **Pattern Translation** - Apply phrase patterns and vocabulary
+6. **Grammar Post-Processing** - Apply safe, deterministic grammar rules
+7. **Confidence Scoring** - Calculate final confidence (0.0 - 1.0)
+8. **Output Gating** - Display or suppress based on confidence
 
-### Performance
+### Protected Tokens
 
-- Translation caching to avoid reprocessing identical messages
-- Message throttling to handle chat bursts safely
-- No heavy per-frame logic
-- Designed to not introduce FPS or UI lag
+These are never modified during translation:
+- Player names
+- Item links (`|c...|Hitem:...|h...|h|r`)
+- Spell links (`|c...|Hspell:...|h...|h|r`)
+- Quest links (`|c...|Hquest:...|h...|h|r`)
+- Raid icons (`{rt1}` - `{rt8}`)
+- Numbers and coordinates
 
-## Troubleshooting
+### Performance Features
 
-**Translations not showing?**
-- Check that the channel is enabled in configuration (`/wdts`)
-- Verify the message is in a supported language (currently German)
-- Low confidence messages (< 0.45) are intentionally silent
-
-**Addon not loading?**
-- Verify the folder structure is correct
-- Check that Interface version matches (11508)
-- Look for Lua errors in chat (type `/console scriptErrors 1`)
-
-**Too many translations?**
-- Disable channels you don't want translated in `/wdts`
-- Disable auto-translate if you want manual control
-
-## Contributing
-
-Contributions are welcome! This addon is designed to scale cleanly to additional languages. To add a new language:
-
-1. Create a new folder in `Languages/` with the language code (e.g., `fr` for French)
-2. Add the four required files:
-   - `tokens.lua` - Vocabulary dictionary
-   - `intents.lua` - Intent patterns
-   - `patterns.lua` - Phrase patterns
-   - `grammar.lua` - Grammar rules
-3. Follow the existing patterns in the `de/` folder
-4. Add function words to `Core/LanguageDetect.lua`
-
-## License
-
-MIT License - See LICENSE file for details
-
-## Credits
-
-**What Did They Say?** - Offline chat translation for WoW Classic
-
-## Version History
-
-### 1.0.0
-- Initial release
-- German → English translation support
-- Automatic translation with confidence scoring
-- Configurable channels and settings
-- Translation caching and throttling
-
-## Support
-
-For issues, questions, or contributions, please visit the [GitHub repository](https://github.com/RossNicholson/WhatDidTheySay).
+- **Translation Caching** - Caches successful translations (max 500 entries)
+- **Message Throttling** - Limits processing to 10 messages per 2-second window
+- **No Heavy Logic** - Avoids per-frame updates and unbounded loops
+- **Memory Efficient** - Designed to not impact FPS or UI responsiveness
 
 ---
 
-*Remember: This addon prioritizes silence over wrong translations. If it's not confident, it won't translate.*
+## 🐛 Troubleshooting
+
+### Translations Not Showing?
+
+- ✅ Check that the channel is enabled in configuration (`/wdts`)
+- ✅ Verify the message is in a supported language (currently German)
+- ✅ Low confidence messages (< 0.45) are intentionally silent (by design)
+
+### Addon Not Loading?
+
+- ✅ Verify folder structure is correct
+- ✅ Check Interface version matches (11508)
+- ✅ Ensure "What Did They Say?" is enabled in AddOns list
+- ✅ Enable Lua errors: `/console scriptErrors 1`
+
+### Too Many Translations?
+
+- ✅ Disable channels you don't want translated (`/wdts`)
+- ✅ Disable auto-translate for manual control
+
+### Performance Issues?
+
+- ✅ Translation caching should prevent reprocessing
+- ✅ Message throttling handles chat bursts
+- ✅ If issues persist, disable channels you don't need
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! This addon is designed to scale cleanly to additional languages.
+
+### Adding a New Language
+
+1. Create a new folder in `Languages/` with the language code (e.g., `fr` for French)
+2. Add the four required files:
+   - `tokens.lua` - High-value vocabulary dictionary
+   - `intents.lua` - Intent detection patterns
+   - `patterns.lua` - Reusable phrase structures
+   - `grammar.lua` - Grammar post-processing rules
+3. Follow existing patterns in the `Languages/de/` folder
+4. Add function words to `Core/LanguageDetect.lua`
+5. Test thoroughly and submit a pull request
+
+### Development Guidelines
+
+- Follow existing code style and structure
+- Maintain separation of concerns (Core, Languages, UI)
+- Ensure all translations have confidence scoring
+- Test with real in-game chat messages
+- Update README if adding new features
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 📚 Version History
+
+### Version 1.0.0
+
+- ✅ Initial release
+- ✅ German → English translation support
+- ✅ Automatic translation with confidence scoring
+- ✅ Configurable channels and settings
+- ✅ Translation caching and throttling
+- ✅ Intent detection (LFG, invites, ready status, etc.)
+- ✅ Protected token handling (links, names, numbers)
+- ✅ Performance optimizations
+
+---
+
+## 🙏 Credits
+
+**What Did They Say?** - Offline chat translation for WoW Classic
+
+Developed for World of Warcraft Classic players who want to communicate across language barriers without relying on external services.
+
+---
+
+## 📞 Support & Issues
+
+- **GitHub Issues**: [Report bugs or request features](../../issues)
+- **GitHub Discussions**: [Ask questions or share feedback](../../discussions)
+
+---
+
+## ⚠️ Important Notes
+
+### What This Addon Is
+
+- ✅ A communication bridge for whispers, party chat, and small group coordination
+- ✅ A best-effort interpreter, not a linguistic authority
+- ✅ A WoW-aware system that understands how players actually talk in-game
+
+### What This Addon Is NOT
+
+- ❌ A universal translator
+- ❌ A machine-learning system
+- ❌ A replacement for voice chat
+- ❌ A phrasebook for real-world conversation
+- ❌ A spam translator for Trade or General chat
+
+**Remember:** This addon prioritizes silence over wrong translations. If it's not confident, it won't translate. This is by design.
+
+---
+
+*Made with ❤️ for the WoW Classic community*
