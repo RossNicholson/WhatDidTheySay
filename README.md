@@ -144,9 +144,11 @@ The addon automatically enables translation for all channels you have joined. Yo
 
 | Confidence | Behavior |
 |------------|----------|
-| ≥ 0.70 | ✅ Automatically display translation (green) |
-| 0.45 - 0.69 | ⚠️ Show with lower confidence (yellow) |
-| < 0.45 | 🔇 Stay silent (no translation shown) |
+| ≥ 0.50 | ✅ Automatically display translation (green) |
+| 0.30 - 0.49 | ⚠️ Show with lower confidence (yellow) |
+| < 0.30 | 🔇 Stay silent (no translation shown) |
+
+**Note:** Thresholds were adjusted in v0.2.0 to be more lenient for mixed-language messages while maintaining accuracy.
 
 ---
 
@@ -280,9 +282,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📚 Version History
 
-### Version 1.0.0
+### Version 0.2.0
 
-- ✅ Initial release
+- ✅ **Improved False Positive Protection** - Excludes universal gaming abbreviations (LF, LFM, WTS, WTB, tank, DM, etc.) from triggering German translation
+- ✅ **Enhanced Mixed-Language Detection** - Requires actual German function words or characters (ä, ö, ü, ß) before translating, preventing English messages with abbreviations from being incorrectly translated
+- ✅ **Expanded German Vocabulary** - Added common words: "zum", "leveln", "alles", "können", "güldischer", "bsf" (Blackfathom Deeps), and more
+- ✅ **Better Phrase Matching** - Added phrases like "zum leveln", "noch alles" for more accurate translations
+- ✅ **Refined Language Detection** - More accurate distinction between English and German messages, especially for abbreviation-heavy messages
+
+### Version 0.1.0
+
+- ✅ Initial stable release
 - ✅ German → English translation support
 - ✅ Automatic translation with confidence scoring
 - ✅ Configurable channels and settings
@@ -290,6 +300,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - ✅ Intent detection (LFG, invites, ready status, etc.)
 - ✅ Protected token handling (links, names, numbers)
 - ✅ Performance optimizations
+- ✅ Comprehensive test suite
 
 ---
 
