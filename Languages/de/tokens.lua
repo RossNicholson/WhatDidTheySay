@@ -912,6 +912,11 @@ WDTS_Lang_de_Tokens = {
     ["bewahren"] = "preserve",
     ["crushridge"] = "Crushridge",
     ["kriegstreiber"] = "warmonger",
+    ["braut"] = "bride",
+    ["einbalsamierer"] = "embalmer",
+    ["einbalsamierers"] = "embalmer",
+    ["morbent"] = "Morbent",
+    ["fel"] = "Fel",
     ["von"] = {
         default = "from",
         -- In item/quest names, "von" means "of"

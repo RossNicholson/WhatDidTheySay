@@ -65,9 +65,10 @@ function Tokenizer.ExtractProtected(text)
         index = index + 1
     end
     
-    -- Extract simple number brackets like [20] as protected tokens
+    -- Extract simple number brackets like [20] or [30+] as protected tokens
     -- These should be preserved as-is (not translated) to avoid breaking nested brackets
-    for numBracket in processed:gmatch("%[%d+%]") do
+    -- Match [digits] or [digits+symbol] like [30+], [20-]
+    for numBracket in processed:gmatch("%[%d+[%+%-]?%]") do
         local placeholder = "|WDTS_PROTECTED_" .. index .. "|"
         protected[index] = { type = "number_bracket", value = numBracket }
         protectedMap[placeholder] = numBracket
