@@ -425,7 +425,7 @@ WDTS_Lang_de_Tokens = {
     ["zukünftiger"] = "future",
     
     -- Quality and attributes
-    ["einfach"] = "simple/simply",
+    ["einfach"] = "simply",
     ["gut"] = "good",
     ["gute"] = "good",
     ["besser"] = "better",
@@ -784,7 +784,7 @@ WDTS_Lang_de_Tokens = {
     ["magnet"] = "magnet",
     ["kräuter"] = "herbs",
     ["kraut"] = "herb",
-    ["abzugeben"] = "to give away/giving away",
+    ["abzugeben"] = "to give away",
     ["abgeben"] = "give away",
     ["gibt ab"] = "gives away",
     ["besucher"] = "visitor",
@@ -794,7 +794,7 @@ WDTS_Lang_de_Tokens = {
     ["zentren"] = "centers",
     ["besucherzentrum"] = "visitor center",
     ["anhandelt"] = "trades/negotiates",
-    ["anhandeln"] = "trade/negotiate",
+    ["anhandeln"] = "trade",
     ["handelt"] = "trades",
     ["handeln"] = "trade",
     ["questgeber"] = "quest giver",
