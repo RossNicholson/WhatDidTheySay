@@ -7,6 +7,11 @@ local ChatHooks = {}
 
 ChatHooks.initialized = false
 
+-- Message throttling
+ChatHooks.messageHistory = {}
+ChatHooks.throttleWindow = 2.0 -- seconds
+ChatHooks.maxMessagesPerWindow = 10
+
 -- Channel name mapping
 local CHANNEL_MAP = {
     ["WHISPER"] = "WHISPER",
@@ -47,6 +52,31 @@ local function IsChannelEnabled(channelType)
     return WhatDidTheySayDB.channels[channelType] == true
 end
 
+-- Throttle messages to avoid processing bursts
+local function ShouldThrottle()
+    local now = GetTime()
+    local cutoff = now - ChatHooks.throttleWindow
+    
+    -- Clean old messages
+    local i = 1
+    while i <= #ChatHooks.messageHistory do
+        if ChatHooks.messageHistory[i] < cutoff then
+            table.remove(ChatHooks.messageHistory, i)
+        else
+            i = i + 1
+        end
+    end
+    
+    -- Check if we're over the limit
+    if #ChatHooks.messageHistory >= ChatHooks.maxMessagesPerWindow then
+        return true
+    end
+    
+    -- Add current message timestamp
+    table.insert(ChatHooks.messageHistory, now)
+    return false
+end
+
 -- Display translation in chat
 local function DisplayTranslation(originalMessage, translatedMessage, confidence, intent)
     -- Simple output: show translation below original in a subtle color
@@ -62,19 +92,27 @@ local function DisplayTranslation(originalMessage, translatedMessage, confidence
     
     local output = color .. "→ " .. translatedMessage .. intentText .. "|r"
     
-    -- This would need to be integrated with chat frame
-    -- For now, we'll use a simple print to chat
-    -- In a real implementation, this would add to the chat frame
-    DEFAULT_CHAT_FRAME:AddMessage(output)
+    -- Display in all active chat frames for better visibility
+    local chatFrames = { ChatFrame1, ChatFrame2, ChatFrame3, ChatFrame4, ChatFrame5, ChatFrame6, ChatFrame7 }
+    for _, frame in ipairs(chatFrames) do
+        if frame and frame:IsShown() then
+            frame:AddMessage(output)
+        end
+    end
 end
 
 -- Handle chat message
 local function OnChatMessage(self, event, ...)
     -- WoW Classic chat event arguments vary by event type
-    -- For most events: message, sender, language, channelString, target, ...
-    local arg1, arg2, arg3 = ...
-    local message = arg1 or ""
-    local sender = arg2 or ""
+    -- Common format: message, sender, language, channelString, target, ...
+    local message, sender = ...
+    
+    -- Handle different event argument structures
+    if not message or message == "" then
+        -- Some events may have different argument order
+        message = select(1, ...) or ""
+        sender = select(2, ...) or ""
+    end
     
     -- Get channel type
     local channelType = GetChannelType(event)
@@ -91,6 +129,11 @@ local function OnChatMessage(self, event, ...)
     
     -- Skip empty messages
     if not message or message == "" then
+        return
+    end
+    
+    -- Throttle to avoid processing bursts
+    if ShouldThrottle() then
         return
     end
     

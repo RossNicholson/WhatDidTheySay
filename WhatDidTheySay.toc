@@ -1,5 +1,5 @@
 ## Interface: 11508
-## Title: WhatDidTheySay
+## Title: What Did They Say?
 ## Notes: Offline chat translation for World of Warcraft Classic
 ## Author: WhatDidTheySay
 ## Version: 1.0.0
@@ -26,7 +26,6 @@ Languages/de/grammar.lua
 # UI
 UI/Widgets.lua
 UI/Config.lua
-UI/FirstRun.lua
 
 # Main entry point
 WhatDidTheySay.lua

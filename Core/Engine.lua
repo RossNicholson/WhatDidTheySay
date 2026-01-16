@@ -12,6 +12,10 @@ Engine.initialized = false
 -- Language pack cache
 Engine.languagePacks = {}
 
+-- Translation cache (message hash -> translation result)
+Engine.translationCache = {}
+Engine.cacheMaxSize = 500 -- Limit cache size to avoid memory issues
+
 -- Load language pack
 function Engine.LoadLanguagePack(lang)
     if Engine.languagePacks[lang] then
@@ -65,6 +69,10 @@ function Engine.DetectIntent(tokens, langPack)
             table.insert(words, token.value)
         end
     end
+    if #words == 0 then
+        return nil, 0.0
+    end
+    
     local text = table.concat(words, " "):lower()
     
     local bestIntent = nil
@@ -73,19 +81,30 @@ function Engine.DetectIntent(tokens, langPack)
     for _, intent in ipairs(langPack.intents) do
         if intent.patterns then
             for _, pattern in ipairs(intent.patterns) do
-                -- Simple pattern matching
-                local matches = 0
-                for word in text:gmatch("%S+") do
-                    if word:find(pattern:lower(), 1, true) then
-                        matches = matches + 1
-                    end
-                end
+                local patternLower = pattern:lower()
                 
-                if matches > 0 then
-                    local score = (intent.score or 0.5) * (matches / #words)
+                -- First try full phrase match (more confident)
+                if text:find(patternLower, 1, true) then
+                    local score = (intent.score or 0.5) * 1.0 -- Full match gets full score
                     if score > bestScore then
                         bestScore = score
                         bestIntent = intent
+                    end
+                else
+                    -- Fall back to word-level matching
+                    local matches = 0
+                    for word in text:gmatch("%S+") do
+                        if word:find(patternLower, 1, true) then
+                            matches = matches + 1
+                        end
+                    end
+                    
+                    if matches > 0 then
+                        local score = (intent.score or 0.5) * (matches / #words) * 0.7 -- Partial match gets lower score
+                        if score > bestScore then
+                            bestScore = score
+                            bestIntent = intent
+                        end
                     end
                 end
             end
@@ -104,7 +123,7 @@ end
 
 -- Apply phrase patterns
 function Engine.ApplyPatterns(text, langPack)
-    if not langPack.patterns then
+    if not langPack.patterns or not text or text == "" then
         return text
     end
     
@@ -112,11 +131,14 @@ function Engine.ApplyPatterns(text, langPack)
     
     for _, pattern in ipairs(langPack.patterns) do
         if pattern.from and pattern.to then
-            -- Simple pattern replacement
-            local success, replaced = pcall(function()
-                return text:gsub(pattern.from, pattern.to)
+            -- Pattern replacement with capture group support (%1, %2, etc.)
+            local success, replaced, count = pcall(function()
+                -- Use gsub to match and replace (supports capture groups)
+                local replacedText, replaceCount = text:gsub(pattern.from, pattern.to, 1)
+                return replacedText, replaceCount
             end)
-            if success and replaced ~= text then
+            
+            if success and replaced and count and count > 0 and replaced ~= text then
                 result = replaced
                 break -- Use first matching pattern
             end
@@ -182,10 +204,22 @@ function Engine.ApplyGrammar(text, langPack)
     return result
 end
 
+-- Create cache key from message and languages
+local function CreateCacheKey(message, sourceLang, targetLang)
+    return string.format("%s:%s:%s", message or "", sourceLang or "", targetLang or "en")
+end
+
 -- Main translation pipeline
 function Engine.Translate(message, sourceLang, targetLang)
     -- Default target language
     targetLang = targetLang or "en"
+    
+    -- Check cache first
+    local cacheKey = CreateCacheKey(message, sourceLang, targetLang)
+    if Engine.translationCache[cacheKey] then
+        local cached = Engine.translationCache[cacheKey]
+        return cached.translated, cached.confidence, cached.intent
+    end
     
     -- Step 1: Tokenization
     local tokens, protected, protectedMap = Tokenizer.Tokenize(message)
@@ -242,7 +276,29 @@ function Engine.Translate(message, sourceLang, targetLang)
         messageLength = #tokens,
     })
     
-    return translatedText, finalConfidence, intent and intent.id or nil
+    local intentId = intent and intent.id or nil
+    
+    -- Cache successful translations (only if confidence is reasonable)
+    if finalConfidence >= Confidence.THRESHOLD.MANUAL_OPTION and translatedText then
+        -- Limit cache size
+        local cacheSize = 0
+        for _ in pairs(Engine.translationCache) do
+            cacheSize = cacheSize + 1
+        end
+        
+        if cacheSize >= Engine.cacheMaxSize then
+            -- Remove oldest entry (simple strategy: clear cache if full)
+            Engine.translationCache = {}
+        end
+        
+        Engine.translationCache[cacheKey] = {
+            translated = translatedText,
+            confidence = finalConfidence,
+            intent = intentId,
+        }
+    end
+    
+    return translatedText, finalConfidence, intentId
 end
 
 -- Initialize engine

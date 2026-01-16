@@ -30,7 +30,7 @@ function FirstRun.CreateDialog()
     frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
     
     -- Title
-    local title = Widgets.CreateLabel(frame, "Welcome to WhatDidTheySay", 20, -20, 16)
+    local title = Widgets.CreateLabel(frame, "Welcome to What Did They Say?", 20, -20, 16)
     title:SetFont("Fonts\\FRIZQT__.TTF", 16, "OUTLINE")
     
     -- Description text
@@ -40,7 +40,7 @@ function FirstRun.CreateDialog()
     descText:SetJustifyH("LEFT")
     descText:SetJustifyV("TOP")
     descText:SetText([[
-WhatDidTheySay helps you understand chat messages in other languages using offline, rule-based translation.
+What Did They Say? helps you understand chat messages in other languages using offline, rule-based translation.
 
 What this addon does:
 • Translates whispers, party chat, and group coordination messages
@@ -77,7 +77,7 @@ Use /wdts or /whatdidtheysay to open configuration.
     local continueBtn = Widgets.CreateButton(frame, "Continue", 200, -350, 100, 30, function()
         WhatDidTheySayDB.firstRun = false
         frame:Hide()
-        WDTS.Config:Initialize()
+        -- Slash commands already initialized in main init, no need to call again
     end)
     
     FirstRun.frame = frame

@@ -84,4 +84,20 @@ WDTS_Lang_de_Tokens = {
     ["add"] = "add",
     ["patrouille"] = "patrol",
     ["pat"] = "patrol",
+    
+    -- Common question words
+    ["was"] = "what",
+    ["wo"] = "where",
+    ["wann"] = "when",
+    ["wer"] = "who",
+    ["warum"] = "why",
+    ["wie"] = "how",
+    
+    -- Status words
+    ["tot"] = "dead",
+    ["lebend"] = "alive",
+    ["voll"] = "full",
+    ["leer"] = "empty",
+    ["schnell"] = "fast",
+    ["langsam"] = "slow",
 }

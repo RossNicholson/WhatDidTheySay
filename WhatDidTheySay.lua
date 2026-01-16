@@ -30,17 +30,31 @@ local function InitializeAddon()
     WDTS.Engine = WDTS_Engine
     WDTS.ChatHooks = WDTS_ChatHooks
     WDTS.Config = WDTS_Config
-    WDTS.FirstRun = WDTS_FirstRun
     
     -- Initialize modules
-    WDTS.Engine:Initialize()
-    WDTS.ChatHooks:Initialize()
+    WDTS.Engine.Initialize()
+    WDTS.ChatHooks.Initialize()
     
-    -- Show first-run dialog if needed
+    -- Initialize slash commands (always needed)
+    WDTS.Config.Initialize()
+    
+    -- Display startup message with slash commands
+    local addonColor = "|cff00ff00" -- Green
+    local cmdColor = "|cffffff00" -- Yellow
+    
+    DEFAULT_CHAT_FRAME:AddMessage(
+        string.format("%sWhat Did They Say?|r v%s loaded. Type %s/wdts|r or %s/whatdidtheysay|r to configure.",
+            addonColor,
+            "1.0.0",
+            cmdColor,
+            cmdColor
+        )
+    )
+    
+    -- Show config page on first run
     if WhatDidTheySayDB.firstRun then
-        WDTS.FirstRun:Show()
-    else
-        WDTS.Config:Initialize()
+        WhatDidTheySayDB.firstRun = false
+        WDTS.Config.Show()
     end
 end
 

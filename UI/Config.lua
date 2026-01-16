@@ -31,13 +31,20 @@ function Config.CreateFrame()
     frame:Hide()
     
     -- Title
-    local title = Widgets.CreateLabel(frame, "WhatDidTheySay Configuration", 20, -20, 14)
+    local title = Widgets.CreateLabel(frame, "What Did They Say? Configuration", 20, -20, 14)
     title:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE")
     
-    -- Channel settings
-    local channelLabel = Widgets.CreateLabel(frame, "Enabled Channels:", 20, -60)
+    -- Welcome/info text (subtle, not too prominent)
+    local infoText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    infoText:SetPoint("TOPLEFT", frame, "TOPLEFT", 20, -45)
+    infoText:SetSize(360, 40)
+    infoText:SetJustifyH("LEFT")
+    infoText:SetText("Offline translation for whispers, party chat, and group coordination. Select which channels to translate:")
     
-    local yOffset = -90
+    -- Channel settings
+    local channelLabel = Widgets.CreateLabel(frame, "Enabled Channels:", 20, -90)
+    
+    local yOffset = -115
     local checkboxes = {}
     
     local channels = {
