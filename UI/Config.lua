@@ -254,24 +254,48 @@ local function TestTranslation(message, verbose)
     -- Verbose mode: show tokenization and vocabulary matches
     if verbose then
         local Tokenizer = WDTS_Tokenizer
+        local LanguageDetect = WDTS_LanguageDetect
         local tokens, protected, protectedMap = Tokenizer.Tokenize(message)
-        DEFAULT_CHAT_FRAME:AddMessage("|cff00ffff=== Tokenization Debug ===|r")
+        
+        DEFAULT_CHAT_FRAME:AddMessage("|cff00ffff=== Translation Debug ===|r")
+        
+        -- Show language detection
+        local detectedLang, langConfidence = LanguageDetect.Detect(tokens)
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("|cffffff00Language Detection: %s (confidence: %.2f)|r", detectedLang or "unknown", langConfidence or 0))
+        
+        -- Load language pack
+        local langPack = Engine.LoadLanguagePack("de")
+        if not langPack or not langPack.tokens then
+            DEFAULT_CHAT_FRAME:AddMessage("|cffff0000ERROR: German language pack not loaded!|r")
+        else
+            DEFAULT_CHAT_FRAME:AddMessage(string.format("|cff00ff00Language pack loaded: %d tokens in vocabulary|r", 
+                (function() local count = 0; for _ in pairs(langPack.tokens) do count = count + 1 end return count end)()))
+        end
+        
         DEFAULT_CHAT_FRAME:AddMessage(string.format("|cffaaaaaaFound %d tokens:|r", #tokens))
+        local wordCount = 0
+        local translatedCount = 0
         for i, token in ipairs(tokens) do
-            local tokenInfo = string.format("  [%d] type=%s value=%s original=%s", i, token.type, token.value, token.original)
+            local tokenInfo = string.format("  [%d] type=%s value=|cffffffff%s|r original=|cffffffff%s|r", i, token.type, token.value, token.original)
             if token.type == "word" then
-                local langPack = Engine.LoadLanguagePack("de")
+                wordCount = wordCount + 1
                 if langPack and langPack.tokens then
                     local translation = langPack.tokens[token.value]
                     if translation then
-                        tokenInfo = tokenInfo .. string.format(" |cff00ff00→ %s|r", translation)
+                        tokenInfo = tokenInfo .. string.format(" |cff00ff00✓ → %s|r", translation)
+                        translatedCount = translatedCount + 1
                     else
-                        tokenInfo = tokenInfo .. " |cffff0000(no translation)|r"
+                        tokenInfo = tokenInfo .. " |cffff0000✗ (no translation)|r"
                     end
                 end
             end
             DEFAULT_CHAT_FRAME:AddMessage(tokenInfo)
         end
+        
+        local coverage = wordCount > 0 and (translatedCount / wordCount) or 0
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("|cffffff00Coverage: %d/%d words (%.1f%%)|r", translatedCount, wordCount, coverage * 100))
+        DEFAULT_CHAT_FRAME:AddMessage("|cff00ffff=== End Debug ===|r")
+        DEFAULT_CHAT_FRAME:AddMessage("")
     end
     
     -- Translate the test message (bypass cache for fresh results)
