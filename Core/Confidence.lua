@@ -55,6 +55,15 @@ function Confidence.Calculate(params)
         score = score + 0.10 -- Additional boost for moderate-confidence mixed messages
     end
     
+    -- Special boost for bracket-only messages (quest/item names) with German words
+    -- Even with low coverage due to proper nouns/numbers, if we translated German words it's useful
+    -- Check if this is likely a bracket-only message (params can include message text via similarity check)
+    -- For now, we'll boost if coverage is >= 0.25 and we're in the mixed-language range
+    if coverage >= 0.25 and coverage < 0.5 and langConf >= 0.4 and langConf < 0.7 then
+        -- Likely a bracket-only message with some German words - boost confidence
+        score = score + 0.15 -- Boost for bracket-only messages with German words
+    end
+    
     -- Special boost for short messages (2-3 words) with high coverage
     -- These are often common phrases that translate reliably
     if length >= 2 and length <= 3 and coverage >= 0.9 then
