@@ -438,14 +438,45 @@ function Engine.Translate(message, sourceLang, targetLang)
     -- Step 4: Intent detection
     local intent, intentConfidence = Engine.DetectIntent(tokens, langPack)
     
+    -- Step 4b: Apply patterns to ORIGINAL message (before translation)
+    -- Patterns should match German text, not translated English
+    -- Replace protected tokens with placeholders for pattern matching
+    local originalForPatterns = message
+    local patternPlaceholders = {}
+    local placeholderIndex = 1
+    for placeholder, protected in pairs(protectedMap) do
+        local placeholderText = "|WDTS_ITEM_" .. placeholderIndex .. "|"
+        patternPlaceholders[placeholderText] = protected
+        originalForPatterns = originalForPatterns:gsub(placeholder:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0"), placeholderText, 1)
+        placeholderIndex = placeholderIndex + 1
+    end
+    
+    -- Try patterns on original German text
+    local patternMatchedText = Engine.ApplyPatterns(originalForPatterns, langPack)
+    local patternWasApplied = (patternMatchedText ~= originalForPatterns)
+    
     -- Step 5: Token translation
-    local translatedTokens, coverage, unknownRatio = Engine.TranslateTokens(tokens, langPack)
+    -- If pattern was applied, tokenize the pattern-matched text instead
+    local tokensToTranslate = tokens
+    if patternWasApplied then
+        -- Restore protected tokens in pattern-matched text
+        for placeholderText, protected in pairs(patternPlaceholders) do
+            patternMatchedText = patternMatchedText:gsub(placeholderText:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0"), protected, 1)
+        end
+        -- Re-tokenize the pattern-matched text
+        tokensToTranslate, protected, protectedMap = Tokenizer.Tokenize(patternMatchedText)
+    end
+    
+    local translatedTokens, coverage, unknownRatio = Engine.TranslateTokens(tokensToTranslate, langPack)
     
     -- Step 6: Reconstruct text
     local translatedText = Tokenizer.Reconstruct(translatedTokens)
     
-    -- Step 7: Apply patterns
-    translatedText = Engine.ApplyPatterns(translatedText, langPack)
+    -- Step 7: Apply patterns to translated text (for any patterns that work on English)
+    -- Only if we didn't already apply patterns to original
+    if not patternWasApplied then
+        translatedText = Engine.ApplyPatterns(translatedText, langPack)
+    end
     
     -- Step 8: Apply grammar
     translatedText = Engine.ApplyGrammar(translatedText, langPack)
