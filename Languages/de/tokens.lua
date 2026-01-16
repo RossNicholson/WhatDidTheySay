@@ -491,7 +491,7 @@ WDTS_Lang_de_Tokens = {
     
     -- Common connecting words
     ["auch"] = "also",
-    ["noch"] = "still/yet",
+    ["noch"] = "still",
     ["nochmal"] = "again/another time", -- "nochmal" = "again" or "another time"
     ["noch einmal"] = "once again",
     ["schon"] = "already",
