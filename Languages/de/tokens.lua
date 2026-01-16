@@ -750,6 +750,11 @@ WDTS_Lang_de_Tokens = {
     ["beschwören"] = "summon",
     ["beschwörung"] = "summoning",
     ["beschwöre"] = "summon",
+    ["prinzessin"] = "princess",
+    ["botschafter"] = "ambassador",
+    ["botschafterin"] = "ambassador",
+    ["bösen"] = "evil", -- Genitive: "des Bösen" = "of evil"
+    ["böse"] = "evil",
     ["einladung"] = "invitation",
     ["stärke"] = "strength",
     ["kreuzfahrer"] = "Crusader",
