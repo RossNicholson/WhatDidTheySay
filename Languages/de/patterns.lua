@@ -104,11 +104,11 @@ WDTS_Lang_de_Patterns = {
     -- Trading patterns
     {
         from = "wts (.+)",
-        to = "wts %1",
+        to = "WTS %1", -- Preserve WTS but translate the items
     },
     {
         from = "wtb (.+)",
-        to = "wtb %1",
+        to = "WTB %1", -- Preserve WTB but translate the items
     },
     {
         from = "lfg (.+)",

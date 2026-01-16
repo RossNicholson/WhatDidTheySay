@@ -78,6 +78,9 @@ WDTS_Lang_de_Phrases = {
     ["organisierte buffs"] = "organized buffs",
     ["täglich organisierte"] = "daily organized",
     ["instanz run"] = "instance run",
+    ["wir porten dann"] = "we'll port then",
+    ["wir porten"] = "we port/teleport",
+    ["porten dann"] = "port then",
     ["dungeon run"] = "dungeon run",
     ["raid run"] = "raid run",
     
