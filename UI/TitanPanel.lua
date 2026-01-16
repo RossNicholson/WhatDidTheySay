@@ -5,7 +5,7 @@ local WDTS_TitanPanel = {}
 
 -- Check if Titan Panel is loaded
 local function IsTitanPanelLoaded()
-    return TitanPanelButton_OnLoad ~= nil
+    return TitanPanelButton_OnLoad ~= nil or TitanUtils_RegisterPlugin ~= nil
 end
 
 -- Button text function (must be global)
@@ -94,21 +94,46 @@ function WDTS_TitanPanel.Register()
         return false
     end
     
-    -- Create a frame for the plugin (Titan expects a frame with GetName method)
+    -- Try using TitanUtils_RegisterPlugin if available (newer method)
+    if TitanUtils_RegisterPlugin then
+        local success, err = pcall(function()
+            TitanUtils_RegisterPlugin({
+                id = "WDTS",
+                name = "What Did They Say?",
+                menuText = "What Did They Say?",
+                buttonTextFunction = "TitanPanelWDTSButton_GetButtonText",
+                tooltipTitle = "What Did They Say?",
+                tooltipTextFunction = "TitanPanelWDTSButton_GetTooltipText",
+                cat = TITAN_PANEL_CATEGORY_INFORMATION or "Information",
+                version = "0.2.0",
+                icon = "Interface\\Icons\\INV_Letter_01",
+                iconWidth = 16,
+                savedVariables = {
+                    ShowLabelText = false,
+                    ShowIcon = true,
+                },
+            })
+        end)
+        if success then
+            return true
+        end
+    end
+    
+    -- Fallback to traditional method: Create frame and use TitanPanelButton_OnLoad
     local button = CreateFrame("Button", "TitanPanelWDTSButton", UIParent, "TitanPanelComboTemplate")
     if not button then
         return false
     end
     
     -- Set up the registry on the button
-    -- Note: Category should match Titan Panel's expected categories
+    -- Use "cat" instead of "category" (Titan Panel uses "cat")
     button.registry = {
         id = "WDTS",
         menuText = "What Did They Say?",
         buttonTextFunction = "TitanPanelWDTSButton_GetButtonText",
         tooltipTitle = "What Did They Say?",
         tooltipTextFunction = "TitanPanelWDTSButton_GetTooltipText",
-        category = TITAN_PANEL_CATEGORY_INFORMATION or "Information",
+        cat = TITAN_PANEL_CATEGORY_INFORMATION or "Information", -- Use "cat" not "category"
         version = "0.2.0",
         icon = "Interface\\Icons\\INV_Letter_01",
         iconWidth = 16,
@@ -123,17 +148,25 @@ function WDTS_TitanPanel.Register()
     
     -- Register the plugin using Titan's function
     if TitanPanelButton_OnLoad then
-        TitanPanelButton_OnLoad(button)
+        local success, err = pcall(function()
+            TitanPanelButton_OnLoad(button)
+        end)
+        if not success then
+            -- Registration failed, but don't error out
+            return false
+        end
+        return true
     end
     
-    return true
+    return false
 end
 
 -- Try to register when Titan Panel is ready
 local function TryRegister()
-    if IsTitanPanelLoaded() then
+    if IsTitanPanelLoaded() and WhatDidTheySayDB then
         local success = WDTS_TitanPanel.Register()
         if success then
+            WDTS_TitanPanel.registered = true
             return true
         end
     end
@@ -141,31 +174,33 @@ local function TryRegister()
 end
 
 -- Wait for Titan Panel to load
+-- Titan Panel collects plugins until PLAYER_ENTERING_WORLD, so we need to register before then
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 frame:SetScript("OnEvent", function(self, event, addonName)
     if event == "ADDON_LOADED" then
-        if addonName == "Titan" or addonName == "WhatDidTheySay" then
-            -- Both addons need to be loaded, wait for Titan to fully initialize
-            if IsTitanPanelLoaded() and WhatDidTheySayDB and not WDTS_TitanPanel.registered then
-                -- Wait a bit more for Titan's plugin system to be ready
-                C_Timer.After(2, function()
-                    if TryRegister() then
-                        WDTS_TitanPanel.registered = true
-                    end
+        -- Register when Titan loads, or when our addon loads (if Titan is already loaded)
+        if addonName == "Titan" then
+            -- Titan just loaded, wait a moment for it to initialize
+            C_Timer.After(0.5, function()
+                if not WDTS_TitanPanel.registered then
+                    TryRegister()
+                end
+            end)
+        elseif addonName == "WhatDidTheySay" then
+            -- Our addon loaded, check if Titan is already available
+            if IsTitanPanelLoaded() and not WDTS_TitanPanel.registered then
+                C_Timer.After(0.5, function()
+                    TryRegister()
                 end)
             end
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
-        -- Final attempt to register if not already done
+        -- Final attempt before Titan stops collecting plugins
         if IsTitanPanelLoaded() and WhatDidTheySayDB and not WDTS_TitanPanel.registered then
-            C_Timer.After(2, function()
-                if TryRegister() then
-                    WDTS_TitanPanel.registered = true
-                end
-            end)
+            TryRegister()
         end
     end
 end)
