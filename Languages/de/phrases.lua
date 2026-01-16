@@ -43,6 +43,8 @@ WDTS_Lang_de_Phrases = {
     ["danke dir"] = "thank you",
     ["danke euch"] = "thank you all",
     ["bitte schön"] = "you're welcome",
+    ["viel glück"] = "good luck",
+    ["kein problem"] = "no problem",
     
     -- Status phrases
     ["bin tot"] = "am dead",

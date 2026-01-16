@@ -450,6 +450,8 @@ WDTS_Lang_de_Tokens = {
     
     -- Social and communication
     ["willkommen"] = "welcome",
+    ["glück"] = "luck",
+    ["glücklich"] = "happy/lucky",
     ["genießen"] = "enjoy",
     ["genieße"] = "enjoy", -- 1st person: "ich genieße" = "I enjoy"
     ["genießt"] = "enjoy", -- 3rd person: "er/sie genießt" = "he/she enjoys"

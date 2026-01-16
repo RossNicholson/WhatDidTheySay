@@ -65,6 +65,22 @@ function Tokenizer.ExtractProtected(text)
         index = index + 1
     end
     
+    -- Extract simple item names in brackets [Item Name] (not WoW links, just bracket notation)
+    -- This protects items written as [Item Name] from being tokenized incorrectly
+    -- Only match if NOT already inside a WoW link (which would have |h before it)
+    for fullBracket in processed:gmatch("%[[^%]]+%]") do
+        -- Check if this is NOT part of a WoW link (links have |h|r at the end)
+        if not fullBracket:match("|h|r$") then
+            local placeholder = "|WDTS_PROTECTED_" .. index .. "|"
+            protected[index] = { type = "item_bracket", value = fullBracket }
+            protectedMap[placeholder] = fullBracket
+            -- Escape special characters for gsub
+            local escaped = fullBracket:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0")
+            processed = processed:gsub(escaped, placeholder, 1)
+            index = index + 1
+        end
+    end
+    
     return processed, protected, protectedMap
 end
 
