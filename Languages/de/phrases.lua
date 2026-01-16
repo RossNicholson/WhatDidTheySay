@@ -58,4 +58,68 @@ WDTS_Lang_de_Phrases = {
     ["nach unten"] = "down",
     ["nach links"] = "left",
     ["nach rechts"] = "right",
+    
+    -- Guild recruitment phrases
+    ["aktive gilde"] = "active guild",
+    ["deutsche gilde"] = "German guild",
+    ["sucht gilde"] = "looking for guild",
+    ["suche gilde"] = "looking for guild",
+    ["gilde sucht"] = "guild looking for",
+    ["beitritt gilde"] = "join guild",
+    ["zur gilde"] = "to the guild",
+    ["in die gilde"] = "into the guild",
+    
+    -- Game mechanics phrases
+    ["world buffs"] = "world buffs",
+    ["world buff"] = "world buff",
+    ["organisierte buffs"] = "organized buffs",
+    ["täglich organisierte"] = "daily organized",
+    ["instanz run"] = "instance run",
+    ["dungeon run"] = "dungeon run",
+    ["raid run"] = "raid run",
+    
+    -- Time-based phrases
+    ["jeden tag"] = "every day",
+    ["täglich organisiert"] = "daily organized",
+    ["regelmäßig organisiert"] = "regularly organized",
+    
+    -- Action phrases (expanded)
+    ["komm mit"] = "come with",
+    ["kommt mit"] = "come with",
+    ["geh mit"] = "go with",
+    ["geht mit"] = "go with",
+    ["mach mit"] = "join in",
+    ["macht mit"] = "join in",
+    ["will mit"] = "want to join",
+    ["willst mit"] = "do you want to join",
+    
+    -- Trading phrases
+    ["will kaufen"] = "want to buy",
+    ["will verkaufen"] = "want to sell",
+    ["kaufe für"] = "buying for",
+    ["verkaufe für"] = "selling for",
+    ["preis verhandeln"] = "negotiate price",
+    
+    -- More status phrases
+    ["bin da"] = "am here",
+    ["ist da"] = "is here",
+    ["sind da"] = "are here",
+    ["bin weg"] = "am away",
+    ["ist weg"] = "is away",
+    ["komme gleich"] = "coming soon",
+    ["kommt gleich"] = "coming soon",
+    
+    -- Quest and objective phrases
+    ["suche quest"] = "looking for quest",
+    ["mache quest"] = "doing quest",
+    ["macht quest"] = "doing quest",
+    ["quest zusammen"] = "quest together",
+    ["gemeinsam quest"] = "quest together",
+    
+    -- Group coordination
+    ["warten auf"] = "waiting for",
+    ["warte auf"] = "waiting for",
+    ["wartet auf"] = "waiting for",
+    ["bereit für"] = "ready for",
+    ["fertig für"] = "ready for",
 }
