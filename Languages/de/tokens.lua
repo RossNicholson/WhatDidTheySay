@@ -220,7 +220,6 @@ WDTS_Lang_de_Tokens = {
     ["mara"] = "Maraudon",
     ["versunkener"] = "Sunken Temple",
     ["tempel"] = "Sunken Temple",
-    ["st"] = "Sunken Temple",
     ["blackrock"] = "Blackrock",
     ["brd"] = "Blackrock Depths",
     ["schwarzfels"] = "Blackrock",
@@ -230,7 +229,7 @@ WDTS_Lang_de_Tokens = {
     ["scholo"] = "Scholomance",
     ["stratholme"] = "Stratholme",
     ["strat"] = "Stratholme",
-    ["st"] = "Stratholme", -- Common abbreviation (also could be Sunken Temple, but ST usually means Stratholme)
+    ["st"] = "Stratholme", -- Common abbreviation (more often Stratholme than Sunken Temple in Classic)
     ["dire"] = "Dire Maul",
     ["maul"] = "Dire Maul",
     
