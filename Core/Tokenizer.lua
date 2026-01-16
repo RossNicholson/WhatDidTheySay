@@ -65,6 +65,17 @@ function Tokenizer.ExtractProtected(text)
         index = index + 1
     end
     
+    -- Extract simple number brackets like [20] as protected tokens
+    -- These should be preserved as-is (not translated) to avoid breaking nested brackets
+    for numBracket in processed:gmatch("%[%d+%]") do
+        local placeholder = "|WDTS_PROTECTED_" .. index .. "|"
+        protected[index] = { type = "number_bracket", value = numBracket }
+        protectedMap[placeholder] = numBracket
+        local escaped = numBracket:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0")
+        processed = processed:gsub(escaped, placeholder, 1)
+        index = index + 1
+    end
+    
     -- Extract simple item names in brackets [Item Name] (not WoW links, just bracket notation)
     -- BUT: Don't protect plain text in brackets - allow translation of German quest/item names
     -- Only protect if it looks like a game link (has |h|r) or is just a number/abbreviation
@@ -109,15 +120,7 @@ function Tokenizer.Tokenize(text)
     local bracketCounter = 0
     local processedForTokenize = processed
     
-    -- First, protect simple number brackets like [20] as a single unit to avoid breaking nested brackets
-    -- This prevents [[20] ...] from being split incorrectly
-    for numBracket in processedForTokenize:gmatch("%[%d+%]") do
-        bracketCounter = bracketCounter + 1
-        local placeholder = "|WDTS_BRACKET_" .. bracketCounter .. "|"
-        bracketMap[placeholder] = numBracket
-        local escaped = numBracket:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0")
-        processedForTokenize = processedForTokenize:gsub(escaped, placeholder, 1)
-    end
+    -- Note: Simple number brackets like [20] are already protected in ExtractProtected
     
     -- Find all plain brackets (not already protected WoW links or number brackets)
     -- Match brackets from right to left to handle nesting correctly
@@ -144,7 +147,7 @@ function Tokenizer.Tokenize(text)
         
         if depth == 0 then
             local fullBracket = processedForTokenize:sub(start, endPos)
-            -- Skip if it's a protected placeholder or a simple number bracket we already handled
+            -- Skip if it's a protected placeholder (number brackets are already protected)
             if not fullBracket:match("|WDTS_PROTECTED_%d+|") and not fullBracket:match("|WDTS_BRACKET_%d+|") then
                 table.insert(bracketPositions, {start = start, finish = endPos, bracket = fullBracket})
             end
