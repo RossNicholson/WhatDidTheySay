@@ -120,48 +120,27 @@ function Engine.DetectIntent(tokens, langPack)
                 local isShortPattern = #patternLower <= 3
                 local patternMatches = false
                 
-                -- First try full phrase match (more confident)
-                if text:find(patternLower, 1, true) then
-                    -- For short patterns, verify it's a whole word, not just a substring
-                    if isShortPattern then
-                        -- Check if pattern appears as a whole word (at start, end, or surrounded by spaces)
-                        local patternEscaped = patternLower:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0")
-                        if text:match("^" .. patternEscaped .. "$") or text:match("^" .. patternEscaped .. "%s") or text:match("%s" .. patternEscaped .. "$") or text:match("%s" .. patternEscaped .. "%s") then
+                -- For short patterns, always check word-by-word to avoid false positives
+                if isShortPattern then
+                    -- Check each word individually - require exact match for short patterns
+                    for _, word in ipairs(words) do
+                        if word:lower() == patternLower then
                             patternMatches = true
-                        end
-                    else
-                        patternMatches = true
-                    end
-                    
-                    if patternMatches then
-                        local score = (intent.score or 0.5) * 1.0 -- Full match gets full score
-                        if score > bestScore then
-                            bestScore = score
-                            bestIntent = intent
+                            break
                         end
                     end
                 else
-                    -- Fall back to word-level matching
-                    local matches = 0
-                    for word in text:gmatch("%S+") do
-                        -- For short patterns, require exact word match
-                        if isShortPattern then
-                            if word == patternLower then
-                                matches = matches + 1
-                            end
-                        else
-                            if word:find(patternLower, 1, true) then
-                                matches = matches + 1
-                            end
-                        end
+                    -- For longer patterns, check if it appears in the text
+                    if text:find(patternLower, 1, true) then
+                        patternMatches = true
                     end
-                    
-                    if matches > 0 then
-                        local score = (intent.score or 0.5) * (matches / #words) * 0.7 -- Partial match gets lower score
-                        if score > bestScore then
-                            bestScore = score
-                            bestIntent = intent
-                        end
+                end
+                
+                if patternMatches then
+                    local score = (intent.score or 0.5) * 1.0 -- Full match gets full score
+                    if score > bestScore then
+                        bestScore = score
+                        bestIntent = intent
                     end
                 end
             end
