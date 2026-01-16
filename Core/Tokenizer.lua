@@ -302,7 +302,10 @@ function Tokenizer.Reconstruct(tokens)
                 local nextIsAttachingPunct = nextToken.type == "punctuation" and nextToken.original:match("^[,%.%!%?%)%]]$")
                 -- Don't add space after opening punctuation (like opening parens, brackets)
                 local currIsOpeningPunct = token.type == "punctuation" and (token.original:match("^[%(%[]$") or token.hasOpenBracket)
-                if not (nextIsAttachingPunct or currIsOpeningPunct) then
+                -- Don't add space around hyphens (compound words)
+                local currIsHyphen = token.type == "punctuation" and token.original == "-"
+                local nextIsHyphen = nextToken.type == "punctuation" and nextToken.original == "-"
+                if not (nextIsAttachingPunct or currIsOpeningPunct or currIsHyphen or nextIsHyphen) then
                     table.insert(parts, " ")
                 end
             end
