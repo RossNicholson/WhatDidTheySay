@@ -38,14 +38,13 @@ local function loadFile(path)
     local content = file:read("*all")
     file:close()
     
-    -- Create a safe environment for loading
-    local env = setmetatable({}, {__index = _G})
-    local func = load(content, path, "t", env)
+    -- Lua 5.1 uses loadstring instead of load
+    local func = loadstring(content, path)
     if not func then
         error("Error loading file: " .. path)
     end
+    setfenv(func, _G)
     func()
-    return env
 end
 
 print("Loading addon modules...")

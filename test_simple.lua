@@ -24,8 +24,14 @@ local function loadFile(path)
     if not file then
         error("Could not open: " .. path)
     end
-    local func = load(file:read("*all"), path, "t", _G)
+    local content = file:read("*all")
     file:close()
+    -- Lua 5.1 uses loadstring instead of load with string
+    local func = loadstring(content, path)
+    if not func then
+        error("Error compiling: " .. path)
+    end
+    setfenv(func, _G)
     func()
 end
 
