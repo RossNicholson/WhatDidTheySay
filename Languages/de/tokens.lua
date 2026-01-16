@@ -52,6 +52,7 @@ WDTS_Lang_de_Tokens = {
     ["kommst"] = "come",
     ["geh"] = "go",
     ["geht"] = "go",
+    ["gehe"] = "going",
     
     -- Common nouns
     ["gruppe"] = "group",
@@ -223,8 +224,17 @@ WDTS_Lang_de_Tokens = {
     ["schattenpriester"] = "shadow priest",
     ["schamane"] = "shaman",
     ["magier"] = "mage",
+    ["mage"] = "mage", -- Often used in mixed-language messages
     ["hexenmeister"] = "warlock",
+    ["warlock"] = "warlock",
     ["druide"] = "druid",
+    ["druid"] = "druid",
+    ["warrior"] = "warrior",
+    ["paladin"] = "paladin",
+    ["hunter"] = "hunter",
+    ["rogue"] = "rogue",
+    ["priest"] = "priest",
+    ["shaman"] = "shaman",
     
     -- More dungeons
     ["uldamann"] = "Uldaman",
@@ -328,6 +338,7 @@ WDTS_Lang_de_Tokens = {
     ["morgen"] = "tomorrow",
     ["jetzt"] = "now",
     ["gleich"] = "soon",
+    ["gerade"] = "just/right now",
     ["später"] = "later",
     ["immer"] = "always",
     ["nächste"] = "next",
@@ -398,6 +409,10 @@ WDTS_Lang_de_Tokens = {
     ["ist"] = "is",
     ["war"] = "was",
     ["waren"] = "were",
+    ["habe"] = "have",
+    ["hast"] = "have",
+    ["hat"] = "has",
+    ["haben"] = "have",
     
     -- Pronouns and people
     ["man"] = "one/you", -- Impersonal pronoun: "Kann man" = "Can one/Can you"
@@ -487,6 +502,7 @@ WDTS_Lang_de_Tokens = {
     ["richtig"] = "right",
     ["falsch"] = "wrong",
     ["gerne"] = "gladly/you're welcome",
+    ["leider"] = "unfortunately",
     ["tschüss"] = "bye",
     ["tschau"] = "bye",
     ["auf wiedersehen"] = "goodbye",
@@ -497,6 +513,7 @@ WDTS_Lang_de_Tokens = {
     ["dort"] = "there",
     ["da"] = "there",
     ["bei"] = "at",
+    ["in"] = "in",
     ["zu"] = "to",
     ["von"] = "from",
     ["nach"] = "to",
@@ -512,9 +529,12 @@ WDTS_Lang_de_Tokens = {
     -- Abbreviations players use
     ["wts"] = "wts", -- Want to sell (often used as-is)
     ["wtb"] = "wtb", -- Want to buy
+    ["lf"] = "looking for", -- Looking for
     ["lfm"] = "lfm", -- Looking for more
     ["lfg"] = "lfg", -- Looking for group
+    ["lf1m"] = "lf1m", -- Looking for 1 more
     ["ifg"] = "lfg", -- Common typo for LFG
+    ["help"] = "help", -- Often used in mixed-language messages
     ["innis"] = "instances/dungeons", -- Abbreviation for Instanzen (dungeons/instances)
     ["instanzen"] = "instances/dungeons",
     ["world"] = "world", -- Often used in German WoW context

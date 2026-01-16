@@ -89,5 +89,19 @@ WDTS_Lang_de_Grammar = {
             from = "is is ",
             to = "is ",
         },
+        
+        -- Fix word order for common German structures
+        {
+            from = "habe no ",
+            to = "have no ",
+        },
+        {
+            from = "must leider ",
+            to = "unfortunately must ",
+        },
+        {
+            from = "muss leider ",
+            to = "unfortunately must ",
+        },
     },
 }

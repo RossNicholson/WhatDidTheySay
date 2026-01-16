@@ -160,6 +160,7 @@ WDTS_Lang_de_Phrases = {
     ["kommt zu mir"] = "come to me",
     ["komm hierher"] = "come here",
     ["kommt hierher"] = "come here",
+    ["komm hier"] = "come here", -- Alternative form
     ["treffen uns"] = "meet us",
     ["triff uns"] = "meet us",
     ["trefft euch"] = "meet up",
@@ -170,6 +171,13 @@ WDTS_Lang_de_Phrases = {
     ["kannst du mich porten"] = "can you port me",
     ["wann starten wir"] = "when do we start",
     ["wann startet"] = "when does it start",
+    
+    -- Common status/leaving phrases
+    ["habe keine zeit mehr"] = "don't have time anymore",
+    ["keine zeit mehr"] = "no time anymore",
+    ["muss leider gehen"] = "unfortunately have to go",
+    ["muss gehen"] = "have to go",
+    ["leider gehen"] = "unfortunately go",
     ["wo wollen"] = "where want",
     
     -- Help and requests
