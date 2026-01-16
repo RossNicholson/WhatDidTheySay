@@ -230,6 +230,7 @@ WDTS_Lang_de_Tokens = {
     ["scholo"] = "Scholomance",
     ["stratholme"] = "Stratholme",
     ["strat"] = "Stratholme",
+    ["st"] = "Stratholme", -- Common abbreviation (also could be Sunken Temple, but ST usually means Stratholme)
     ["dire"] = "Dire Maul",
     ["maul"] = "Dire Maul",
     
