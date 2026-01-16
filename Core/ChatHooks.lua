@@ -418,18 +418,24 @@ end
 
 -- Chat message filter to modify original messages and track which frames receive them
 local function ChatFilterFunc(self, event, message, sender, ...)
+    if not message or message == "" then
+        return false
+    end
+    
     -- Track which chat frame is processing this message
     -- 'self' is the chat frame that's processing the message
     local msgHash = HashMessage(message, sender)
     
     -- Store this frame as one that received the message
-    if self and self:GetName() then
-        -- Only track named frames (ChatFrame1, ChatFrame2, etc.)
+    -- Only track valid, named chat frames
+    if self and type(self.GetName) == "function" then
         local frameName = self:GetName()
-        if frameName:match("^ChatFrame%d+$") then
+        if frameName and frameName:match("^ChatFrame%d+$") then
+            -- Initialize frame list for this message hash if needed
             if not ChatHooks.messageFrames[msgHash] then
                 ChatHooks.messageFrames[msgHash] = {}
             end
+            
             -- Add this frame to the list if not already present
             local found = false
             for _, frame in ipairs(ChatHooks.messageFrames[msgHash]) do
