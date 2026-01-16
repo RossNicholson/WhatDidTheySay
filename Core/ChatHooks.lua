@@ -413,6 +413,7 @@ function ChatHooks.Initialize()
     hookFrame:RegisterEvent("CHAT_MSG_SAY")
     hookFrame:RegisterEvent("CHAT_MSG_PARTY")
     hookFrame:RegisterEvent("CHAT_MSG_RAID")
+    hookFrame:RegisterEvent("CHAT_MSG_GUILD")
     hookFrame:RegisterEvent("CHAT_MSG_CHANNEL") -- For Trade, General, LFG, etc.
     
     -- Set script
@@ -425,6 +426,7 @@ function ChatHooks.Initialize()
     ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ChatFilterFunc)
     ChatFrame_AddMessageEventFilter("CHAT_MSG_PARTY", ChatFilterFunc)
     ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID", ChatFilterFunc)
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_GUILD", ChatFilterFunc)
     ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", ChatFilterFunc)
     
     -- Periodically clean up old message tracking

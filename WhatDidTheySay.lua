@@ -58,6 +58,7 @@ if not WhatDidTheySayDB then
             SAY = true,
             PARTY = true,
             RAID = joinedChannels.RAID or true, -- Enable by default, or if in raid
+            GUILD = true, -- Enable by default if in guild
             GENERAL = joinedChannels.GENERAL or true, -- Enable if joined, otherwise true
             TRADE = joinedChannels.TRADE or true, -- Enable if joined, otherwise true
             WORLD = joinedChannels.WORLD or true, -- Enable if joined, otherwise true
@@ -99,7 +100,7 @@ else
             end
         end
         -- Also enable common channels by default if not explicitly disabled
-        local commonChannels = {"RAID", "GENERAL", "TRADE", "WORLD", "LFG"}
+        local commonChannels = {"RAID", "GUILD", "GENERAL", "TRADE", "WORLD", "LFG"}
         for _, channelType in ipairs(commonChannels) do
             if WhatDidTheySayDB.channels[channelType] == nil then
                 WhatDidTheySayDB.channels[channelType] = true
