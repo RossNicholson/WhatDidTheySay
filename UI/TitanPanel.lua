@@ -218,14 +218,23 @@ frame:SetScript("OnEvent", function(self, event, addonName)
             return
         end
         
-        -- Try to register when either addon loads, as long as both are ready
-        -- This handles cases where Titan loads before or after our addon
-        if addonName == "Titan" or addonName == "WhatDidTheySay" then
+        -- Only register when Titan loads - this is the ONLY event we listen for
+        -- Since Titan is OptionalDeps, it loads after our addon, so WhatDidTheySayDB will exist
+        if addonName == "Titan" then
+            -- Check if button already exists with proper registry
+            local btn = _G["TitanPanelWDTSButton"]
+            if btn and btn.registry and btn.registry.id == "WDTS" then
+                WDTS_TitanPanel.registered = true
+                return
+            end
+            
             -- Both must be loaded before we can register
             if IsTitanPanelLoaded() and WhatDidTheySayDB then
                 TryRegister()
             end
         end
+        -- NOTE: We do NOT register on "WhatDidTheySay" event to prevent duplicates
+        -- If Titan loads after our addon, the "Titan" event will still fire and handle registration
     end
 end)
 
