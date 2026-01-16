@@ -329,5 +329,19 @@ WDTS_Lang_de_Grammar = {
             from = "wanted will ein (.+) for (.+)",
             to = "looking for a %1 for %2",
         },
+        
+        -- Fix "am still low priest" -> "am still a low priest" (missing article)
+        {
+            from = "am still low priest",
+            to = "am still a low priest",
+        },
+        {
+            from = "am still low (.+)",
+            to = "am still a low %1",
+        },
+        {
+            from = "bin still low (.+)",
+            to = "am still a low %1",
+        },
     },
 }
