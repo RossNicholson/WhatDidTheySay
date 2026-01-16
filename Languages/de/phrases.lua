@@ -172,6 +172,17 @@ WDTS_Lang_de_Phrases = {
     ["wann starten wir"] = "when do we start",
     ["wann startet"] = "when does it start",
     
+    -- Common social phrases
+    ["keine halben sachen"] = "no half measures",
+    ["lust auf"] = "interested in",
+    ["hat lust auf"] = "is interested in",
+    ["ein bissel questen"] = "do some questing",
+    ["kurz ne quest helfen"] = "briefly help with a quest",
+    ["kurz ne qest helfen"] = "briefly help with a quest",
+    ["kann öffnen"] = "can open",
+    ["kann mir öffnen"] = "can open for me",
+    ["kann mir 2x öffnen"] = "can open 2x for me",
+    
     -- Common status/leaving phrases
     ["habe keine zeit mehr"] = "don't have time anymore",
     ["keine zeit mehr"] = "no time anymore",

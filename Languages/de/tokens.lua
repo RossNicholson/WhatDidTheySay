@@ -219,6 +219,7 @@ WDTS_Lang_de_Tokens = {
     ["jäger"] = "hunter",
     ["jägerin"] = "huntress", -- Female form
     ["schurke"] = "rogue",
+    ["schurken"] = "rogues",
     ["priester"] = "priest",
     ["priesterin"] = "priestess", -- Female form
     ["schattenpriester"] = "shadow priest",
@@ -263,6 +264,8 @@ WDTS_Lang_de_Tokens = {
     ["verkaufen"] = "sell",
     ["verkaufe"] = "selling",
     ["verkauft"] = "sells",
+    ["vk"] = "selling", -- Abbreviation for verkaufe
+    ["je"] = "each",
     ["kaufen"] = "buy",
     ["kaufe"] = "buying",
     ["kauft"] = "buys",
@@ -711,4 +714,29 @@ WDTS_Lang_de_Tokens = {
     -- Common adjectives
     ["fertig"] = "done/ready",
     ["bereit"] = "ready",
+    
+    -- Common nouns (items, places, objects)
+    ["truhe"] = "chest",
+    ["kiste"] = "chest/box",
+    ["öffnen"] = "open",
+    ["öffnet"] = "opens",
+    ["geöffnet"] = "opened",
+    ["leichentuch"] = "shroud",
+    ["wollstofftasche"] = "woolen bag",
+    ["wollstofftaschen"] = "woolen bags",
+    ["eisenbeschlägen"] = "iron-bound",
+    ["eisen"] = "iron",
+    ["verlies"] = "Deadmines", -- Alternative word for Deadmines (Verlies = dungeon/dungeon)
+    ["eisenschmiede"] = "Ironforge",
+    ["lust"] = "interest/interested",
+    ["herstellen"] = "make/produce",
+    ["stellt her"] = "makes",
+    ["hergestellt"] = "made/produced",
+    ["qest"] = "quest", -- Common typo
+    ["füre"] = "for", -- Typo for "für"
+    ["waldmannsaxt"] = "forester axe",
+    ["bären"] = "bears",
+    ["bär"] = "bear",
+    ["halben"] = "half",
+    ["sachen"] = "things/stuff",
 }
