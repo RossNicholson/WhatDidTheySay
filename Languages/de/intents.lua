@@ -75,10 +75,10 @@ WDTS_Lang_de_Intents = {
     {
         id = "MOVEMENT",
         patterns = {
-            "geh",
-            "geht",
-            "komm",
-            "kommt",
+            "geh", -- But not in phrases like "geh zu"
+            "geht", -- But not in phrases like "geht zu"
+            "komm hier", -- Specific: "come here"
+            "kommt hier", -- Specific: "come here"
             "stop",
             "halt",
         },

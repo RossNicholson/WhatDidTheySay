@@ -90,6 +90,10 @@ WDTS_Lang_de_Tokens = {
     ["lagert"] = "stores/keeps",
     ["lagere"] = "store/keep",
     
+    -- Pronouns
+    ["du"] = "you",
+    ["dich"] = "you", -- Already added elsewhere, but here for completeness
+    
     -- LFG related
     ["für"] = "for",
     ["mit"] = "with",
