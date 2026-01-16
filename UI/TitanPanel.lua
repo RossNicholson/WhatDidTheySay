@@ -94,14 +94,18 @@ function WDTS_TitanPanel.Register()
         return false
     end
     
-    -- PRIMARY CHECK: If button frame already exists, registration was successful
-    -- This prevents attempting to create a duplicate frame
-    if _G["TitanPanelWDTSButton"] then
+    -- PRIMARY CHECK: If button frame already exists AND has a registry, we're registered
+    -- Check both existence and whether it's been properly set up
+    local existingButton = _G["TitanPanelWDTSButton"]
+    if existingButton and existingButton.registry and existingButton.registry.id == "WDTS" then
         return true
     end
     
-    -- Flag should be set by TryRegister() before calling this function
-    -- But we don't strictly require it here - button existence is the real indicator
+    -- SECONDARY CHECK: If button exists but no registry, something went wrong
+    -- Don't try to re-register, just return false
+    if existingButton then
+        return false
+    end
     
     -- Create the button frame FIRST (Titan needs the frame to exist)
     local button = CreateFrame("Button", "TitanPanelWDTSButton", UIParent, "TitanPanelComboTemplate")
