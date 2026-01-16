@@ -312,11 +312,21 @@ function Engine.TranslateTokens(tokens, langPack)
             
             if phraseMatch then
                 -- Translate the entire phrase
-                translated[#translated + 1] = {
+                local newToken = {
                     type = "word",
                     value = phraseMatch.translation,
                     original = token.original,
                 }
+                -- Preserve bracket flags from first token in phrase
+                if token.hasOpenBracket then
+                    newToken.hasOpenBracket = true
+                end
+                -- Preserve bracket flags from last token in phrase
+                local lastTokenInPhrase = tokens[i + phraseMatch.length - 1]
+                if lastTokenInPhrase and lastTokenInPhrase.hasCloseBracket then
+                    newToken.hasCloseBracket = true
+                end
+                translated[#translated + 1] = newToken
                 translatedCount = translatedCount + phraseMatch.length
                 totalWords = totalWords + phraseMatch.length - 1 -- Already counted first word
                 -- Skip the remaining words in the phrase
@@ -328,14 +338,22 @@ function Engine.TranslateTokens(tokens, langPack)
                 local trans = GetContextualTranslation(token, prevToken, nextToken, langPack)
                 
                 if trans then
-                    translated[#translated + 1] = {
+                    local newToken = {
                         type = token.type,
                         value = trans,
                         original = token.original,
                     }
+                    -- Preserve bracket flags from original token
+                    if token.hasOpenBracket then
+                        newToken.hasOpenBracket = true
+                    end
+                    if token.hasCloseBracket then
+                        newToken.hasCloseBracket = true
+                    end
+                    translated[#translated + 1] = newToken
                     translatedCount = translatedCount + 1
                 else
-                    -- Keep original if no translation
+                    -- Keep original if no translation (bracket flags already present)
                     translated[#translated + 1] = token
                 end
                 i = i + 1
