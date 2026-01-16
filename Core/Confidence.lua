@@ -44,8 +44,15 @@ function Confidence.Calculate(params)
         local germanWordCoverage = coverage -- For now, use overall coverage as proxy
         if germanWordCoverage >= 0.4 then
             -- We translated at least some German words - boost confidence
-            score = score + 0.15 -- Boost for successfully translating German in mixed messages
+            score = score + 0.25 -- Increased boost for successfully translating German in mixed messages
         end
+    end
+    -- Additional boost for messages with German function words (für, von, etc.) in mixed context
+    -- These are high-confidence translations even with low overall coverage
+    if coverage >= 0.3 and coverage <= 0.6 and langConf >= 0.4 then
+        -- We have moderate language confidence and translated some words
+        -- Likely a useful mixed-language translation
+        score = score + 0.10 -- Additional boost for moderate-confidence mixed messages
     end
     
     -- Special boost for short messages (2-3 words) with high coverage
