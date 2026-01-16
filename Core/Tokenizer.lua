@@ -104,21 +104,64 @@ function Tokenizer.Tokenize(text)
     
     -- Pre-process: replace plain brackets [content] with placeholders to preserve structure
     -- This allows content inside brackets to be tokenized separately while preserving brackets
+    -- Handle nested brackets by matching from right to left (inside to outside)
     local bracketMap = {}
     local bracketCounter = 0
     local processedForTokenize = processed
     
-    -- Find all plain brackets (not already protected WoW links)
-    for fullBracket in processedForTokenize:gmatch("%[[^%]]+%]") do
-        -- Check it's not a protected placeholder
-        if not fullBracket:match("|WDTS_PROTECTED_%d+|") then
-            bracketCounter = bracketCounter + 1
-            local placeholder = "|WDTS_BRACKET_" .. bracketCounter .. "|"
-            bracketMap[placeholder] = fullBracket
-            -- Escape for gsub
-            local escaped = fullBracket:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0")
-            processedForTokenize = processedForTokenize:gsub(escaped, placeholder, 1)
+    -- First, protect simple number brackets like [20] as a single unit to avoid breaking nested brackets
+    -- This prevents [[20] ...] from being split incorrectly
+    for numBracket in processedForTokenize:gmatch("%[%d+%]") do
+        bracketCounter = bracketCounter + 1
+        local placeholder = "|WDTS_BRACKET_" .. bracketCounter .. "|"
+        bracketMap[placeholder] = numBracket
+        local escaped = numBracket:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0")
+        processedForTokenize = processedForTokenize:gsub(escaped, placeholder, 1)
+    end
+    
+    -- Find all plain brackets (not already protected WoW links or number brackets)
+    -- Match brackets from right to left to handle nesting correctly
+    local bracketPositions = {}
+    local pos = 1
+    while true do
+        local start, finish = processedForTokenize:find("%[", pos)
+        if not start then break end
+        
+        -- Find matching closing bracket by counting nesting
+        local depth = 1
+        local endPos = start + 1
+        while depth > 0 and endPos <= #processedForTokenize do
+            local char = processedForTokenize:sub(endPos, endPos)
+            if char == "[" then
+                depth = depth + 1
+            elseif char == "]" then
+                depth = depth - 1
+            end
+            if depth > 0 then
+                endPos = endPos + 1
+            end
         end
+        
+        if depth == 0 then
+            local fullBracket = processedForTokenize:sub(start, endPos)
+            -- Skip if it's a protected placeholder or a simple number bracket we already handled
+            if not fullBracket:match("|WDTS_PROTECTED_%d+|") and not fullBracket:match("|WDTS_BRACKET_%d+|") then
+                table.insert(bracketPositions, {start = start, finish = endPos, bracket = fullBracket})
+            end
+        end
+        pos = start + 1
+    end
+    
+    -- Replace brackets from right to left to avoid position shifts
+    table.sort(bracketPositions, function(a, b) return a.start > b.start end)
+    for _, bp in ipairs(bracketPositions) do
+        local fullBracket = bp.bracket
+        bracketCounter = bracketCounter + 1
+        local placeholder = "|WDTS_BRACKET_" .. bracketCounter .. "|"
+        bracketMap[placeholder] = fullBracket
+        -- Escape for gsub
+        local escaped = fullBracket:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0")
+        processedForTokenize = processedForTokenize:gsub(escaped, placeholder, 1)
     end
     
     -- Now tokenize the processed text
