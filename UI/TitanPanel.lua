@@ -143,8 +143,16 @@ function WDTS_TitanPanel.Register()
     return false
 end
 
+-- Initialize registered flag
+WDTS_TitanPanel.registered = false
+
 -- Try to register when Titan Panel is ready
 local function TryRegister()
+    -- Prevent duplicate registration
+    if WDTS_TitanPanel.registered then
+        return false
+    end
+    
     if IsTitanPanelLoaded() and WhatDidTheySayDB then
         local success = WDTS_TitanPanel.Register()
         if success then
@@ -163,25 +171,25 @@ frame:RegisterEvent("ADDON_LOADED")
 
 frame:SetScript("OnEvent", function(self, event, addonName)
     if event == "ADDON_LOADED" then
+        -- Only register once, when both Titan and our addon are loaded
+        -- Check if already registered to prevent duplicates
+        if WDTS_TitanPanel.registered then
+            return
+        end
+        
         -- Only register when Titan loads (it needs to be loaded first)
         -- OR when our addon loads if Titan is already loaded
         if addonName == "Titan" then
             -- Titan just loaded, try to register immediately
             -- WhatDidTheySayDB should exist by now (our addon loads before Titan due to OptionalDeps)
-            if WhatDidTheySayDB and not WDTS_TitanPanel.registered then
-                local success = TryRegister()
-                if success then
-                    WDTS_TitanPanel.registered = true
-                end
+            if WhatDidTheySayDB then
+                TryRegister()
             end
         elseif addonName == "WhatDidTheySay" then
             -- Our addon loaded, check if Titan is already available
             -- This handles the case where Titan loaded before our addon
-            if IsTitanPanelLoaded() and WhatDidTheySayDB and not WDTS_TitanPanel.registered then
-                local success = TryRegister()
-                if success then
-                    WDTS_TitanPanel.registered = true
-                end
+            if IsTitanPanelLoaded() and WhatDidTheySayDB then
+                TryRegister()
             end
         end
     end
