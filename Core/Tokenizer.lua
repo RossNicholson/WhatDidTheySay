@@ -66,11 +66,11 @@ function Tokenizer.ExtractProtected(text)
     end
     
     -- Extract simple item names in brackets [Item Name] (not WoW links, just bracket notation)
-    -- This protects items written as [Item Name] from being tokenized incorrectly
-    -- Only match if NOT already inside a WoW link (which would have |h before it)
+    -- BUT: Don't protect plain text in brackets - allow translation of German quest/item names
+    -- Only protect if it looks like a game link (has |h|r) or is just a number/abbreviation
     for fullBracket in processed:gmatch("%[[^%]]+%]") do
-        -- Check if this is NOT part of a WoW link (links have |h|r at the end)
-        if not fullBracket:match("|h|r$") then
+        -- Check if this is a WoW link (has |h|r at the end) - always protect these
+        if fullBracket:match("|h|r$") then
             local placeholder = "|WDTS_PROTECTED_" .. index .. "|"
             protected[index] = { type = "item_bracket", value = fullBracket }
             protectedMap[placeholder] = fullBracket
@@ -78,6 +78,8 @@ function Tokenizer.ExtractProtected(text)
             local escaped = fullBracket:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0")
             processed = processed:gsub(escaped, placeholder, 1)
             index = index + 1
+        -- Otherwise, allow translation of plain text in brackets (e.g., German quest names)
+        -- This improves translation quality while still protecting actual game links
         end
     end
     
