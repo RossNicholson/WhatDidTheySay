@@ -552,6 +552,10 @@ WDTS_Lang_de_Tokens = {
     ["bei"] = "at",
     ["in"] = "in",
     ["zu"] = "to",
+    ["auf"] = "on/up/at", -- Context-dependent: "auf süß" might be dialect, "aufmachen" = open
+    ["süß"] = "sweet/cute/nice",
+    ["zauberstab"] = "wand/staff",
+    ["stab"] = "staff/stick",
     ["zum"] = "to/for", -- Contraction of "zu dem" = "to the/for the"
     ["zur"] = "to the", -- Contraction of "zu der" = "to the" (feminine)
     ["von"] = "from",

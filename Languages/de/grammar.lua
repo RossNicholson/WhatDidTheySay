@@ -173,6 +173,11 @@ WDTS_Lang_de_Grammar = {
             to = "can one use %2 as a %1",
         },
         
+        -- Fix "can me someone" -> "can someone"
+        {
+            from = "can me someone (.+)",
+            to = "can someone %1",
+        },
         -- Fix "can me someone at X help" -> "can someone help me with X"
         {
             from = "can me someone at (.+) help",
@@ -185,6 +190,15 @@ WDTS_Lang_de_Grammar = {
         {
             from = "can you me at (.+) help please",
             to = "can you help me with %1 please",
+        },
+        -- Fix "can someone buy me sweet a wand" -> "can someone buy me a sweet wand"
+        {
+            from = "can someone buy me sweet a (.+)",
+            to = "can someone buy me a sweet %1",
+        },
+        {
+            from = "can someone buy me (.+) a (.+)",
+            to = "can someone buy me a %1 %2", -- Fixes word order
         },
         -- Fix "need help at X" -> "need help with X"
         {
