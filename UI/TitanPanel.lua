@@ -90,8 +90,10 @@ end
 
 -- Register with Titan Panel
 function WDTS_TitanPanel.Register()
-    -- Prevent duplicate registration
-    if WDTS_TitanPanel.registered then
+    -- Prevent duplicate registration - but note: flag should already be set by TryRegister()
+    -- This check prevents Register() from being called if flag wasn't set
+    if not WDTS_TitanPanel.registered then
+        -- This shouldn't happen if called from TryRegister(), but guard against direct calls
         return false
     end
     
@@ -100,8 +102,10 @@ function WDTS_TitanPanel.Register()
     end
     
     -- Check if button already exists (prevent duplicate frame creation)
+    -- If it exists, Titan Panel already registered this plugin - return success
     if _G["TitanPanelWDTSButton"] then
-        return false
+        -- Button already exists, registration was already successful
+        return true
     end
     
     -- Create the button frame FIRST (Titan needs the frame to exist)
