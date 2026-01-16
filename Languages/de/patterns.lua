@@ -135,4 +135,92 @@ WDTS_Lang_de_Patterns = {
         from = "kommt zu (.+)",
         to = "come to %1",
     },
+    
+    -- German verb-final subordinate clauses (common structure: "Wer X hat Y verloren")
+    -- "Wer X hat Y verloren" -> "Who X has lost Y"
+    {
+        from = "wer (.+) hat (.+) verloren",
+        to = "who %1 has lost %2",
+    },
+    {
+        from = "wer (.+) hat (.+) gemacht",
+        to = "who %1 has made %2",
+    },
+    {
+        from = "wer (.+) hat (.+) gesagt",
+        to = "who %1 has said %2",
+    },
+    {
+        from = "wer (.+) ist (.+)",
+        to = "who %1 is %2",
+    },
+    {
+        from = "wer (.+) war (.+)",
+        to = "who %1 was %2",
+    },
+    
+    -- "hat die Kontrolle über X verloren" -> "has lost control over X"
+    {
+        from = "hat die kontrolle über (.+) verloren",
+        to = "has lost control over %1",
+    },
+    {
+        from = "hat kontrolle über (.+) verloren",
+        to = "has lost control over %1",
+    },
+    
+    -- More complex subordinate clause patterns
+    -- "Wer X tut hat Y" -> "Who does X has Y"
+    {
+        from = "wer (.+) tut hat (.+)",
+        to = "who does %1 has %2",
+    },
+    {
+        from = "wer (.+) macht hat (.+)",
+        to = "who makes %1 has %2",
+    },
+    
+    -- Past tense with haben
+    {
+        from = "hat (.+) verloren",
+        to = "has lost %1",
+    },
+    {
+        from = "hat (.+) gemacht",
+        to = "has made %1",
+    },
+    {
+        from = "hat (.+) gesagt",
+        to = "has said %1",
+    },
+    {
+        from = "hat (.+) gehabt",
+        to = "has had %1",
+    },
+    
+    -- More conversational patterns
+    {
+        from = "was hast du (.+)",
+        to = "what have you %1",
+    },
+    {
+        from = "was hat (.+)",
+        to = "what has %1",
+    },
+    {
+        from = "wo ist (.+)",
+        to = "where is %1",
+    },
+    {
+        from = "wo war (.+)",
+        to = "where was %1",
+    },
+    {
+        from = "wann kommt (.+)",
+        to = "when is %1 coming",
+    },
+    {
+        from = "wann ist (.+)",
+        to = "when is %1",
+    },
 }
