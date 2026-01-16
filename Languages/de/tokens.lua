@@ -261,6 +261,9 @@ WDTS_Lang_de_Tokens = {
     ["schneider"] = "tailor",
     ["alchemist"] = "alchemist",
     ["verzauberer"] = "enchanter",
+    ["verzauberung"] = "enchantment",
+    ["verzauberungen"] = "enchantments",
+    ["vz"] = "enchantment", -- Common abbreviation for Verzauberung
     ["ingenieur"] = "engineer",
     ["kräuterkundiger"] = "herbalist",
     ["kräuterkundige"] = "herbalist",
@@ -625,4 +628,13 @@ WDTS_Lang_de_Tokens = {
     ["dd"] = "dps/damage dealer",
     ["dps"] = "dps",
     ["dm"] = "Dire Maul", -- Common abbreviation
+    
+    -- Weapon and item terms
+    ["waffe"] = "weapon",
+    ["waffen"] = "weapons",
+    ["feurige"] = "fiery", -- Adjective form
+    ["feurig"] = "fiery", -- Base form
+    ["feuriger"] = "fiery", -- Inflected forms
+    ["feurigen"] = "fiery",
+    ["feuriges"] = "fiery",
 }

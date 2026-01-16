@@ -109,6 +109,9 @@ WDTS_Lang_de_Phrases = {
     ["kaufe für"] = "buying for",
     ["verkaufe für"] = "selling for",
     ["preis verhandeln"] = "negotiate price",
+    ["suche vz für"] = "looking for enchantment for",
+    ["sucht vz für"] = "looking for enchantment for",
+    ["feurige waffe"] = "fiery weapon",
     
     -- More status phrases
     ["bin da"] = "am here",
