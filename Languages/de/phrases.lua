@@ -63,8 +63,10 @@ WDTS_Lang_de_Phrases = {
     -- Guild recruitment phrases
     ["aktive gilde"] = "active guild",
     ["deutsche gilde"] = "German guild",
+    ["deutsche levelgilde"] = "German leveling guild",
     ["sucht gilde"] = "looking for guild",
     ["suche gilde"] = "looking for guild",
+    ["suche auch"] = "also looking for",
     ["gilde sucht"] = "guild looking for",
     ["beitritt gilde"] = "join guild",
     ["zur gilde"] = "to the guild",

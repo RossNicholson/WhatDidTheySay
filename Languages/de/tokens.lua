@@ -164,6 +164,8 @@ WDTS_Lang_de_Tokens = {
     -- Guild terms
     ["gilde"] = "guild",
     ["gilden"] = "guilds",
+    ["levelgilde"] = "leveling guild", -- Compound word: Level + Gilde
+    ["level"] = "level", -- For compound words like "Levelgilde"
     ["aktiv"] = "active",
     ["aktive"] = "active",
     ["deutsch"] = "German",
