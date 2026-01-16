@@ -185,6 +185,13 @@ WDTS_Lang_de_Tokens = {
     ["kupfer"] = "copper",
     ["angebot"] = "offer",
     ["angebote"] = "offers",
+    ["leihen"] = "lend",
+    ["leiht"] = "lends",
+    ["leih"] = "lend",
+    ["geliehen"] = "lent",
+    ["borgen"] = "borrow",
+    ["borgt"] = "borrows",
+    ["borg"] = "borrow",
     
     -- Common WoW verbs
     ["gehen"] = "go",
@@ -247,6 +254,34 @@ WDTS_Lang_de_Tokens = {
     ["ist"] = "is",
     ["war"] = "was",
     ["waren"] = "were",
+    
+    -- Pronouns and people
+    ["jemand"] = "someone",
+    ["irgendjemand"] = "anyone",
+    ["niemand"] = "no one",
+    ["jeder"] = "everyone",
+    ["alle"] = "all",
+    
+    -- Pronouns (dative/accusative)
+    ["mir"] = "me",
+    ["mich"] = "me",
+    ["dir"] = "you",
+    ["dich"] = "you",
+    ["ihm"] = "him",
+    ["ihr"] = "her/you",
+    ["ihn"] = "him",
+    ["uns"] = "us",
+    ["euch"] = "you",
+    ["ihnen"] = "them",
+    
+    -- Relative pronouns and connectors
+    ["der"] = "who/that",
+    ["die"] = "who/that",
+    ["das"] = "that",
+    ["den"] = "whom/that",
+    ["dem"] = "whom/that",
+    ["dessen"] = "whose",
+    ["deren"] = "whose",
     
     -- Common connecting words
     ["auch"] = "also",

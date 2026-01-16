@@ -211,4 +211,17 @@ WDTS_Lang_de_Phrases = {
     ["stimmt nicht"] = "that's wrong",
     ["glaube nicht"] = "don't think so",
     ["denke schon"] = "think so",
-}
+    
+    -- Lending/borrowing phrases
+    ["kann leihen"] = "can lend",
+    ["kannst leihen"] = "can lend",
+    ["könnt leihen"] = "can lend",
+    ["leihen kann"] = "can lend",
+    ["leihen kannst"] = "can lend",
+    ["leihen könnt"] = "can lend",
+    ["mir leihen"] = "lend me",
+    ["leih mir"] = "lend me",
+    ["leiht mir"] = "lends me",
+    ["jemand der"] = "someone who",
+    ["jemand die"] = "someone who",
+]
