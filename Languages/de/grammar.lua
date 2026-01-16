@@ -228,5 +228,25 @@ WDTS_Lang_de_Grammar = {
             from = "where must one/you for (.+) to/there",
             to = "where do you go for %1",
         },
+        
+        -- Fix "can me someone X buy" -> "can someone buy me X"
+        {
+            from = "can me someone (.+) buy",
+            to = "can someone buy me %1",
+        },
+        -- Fix "can someone on/up/at sweet/cute/nice a wand/staff buy" -> "can someone buy me a sweet wand"
+        {
+            from = "can someone on/up/at (.+)/.+/(.+) a (.+)/.+/(.+) buy",
+            to = "can someone buy me a %1 %3",
+        },
+        {
+            from = "can someone on/up/at (.+) a (.+) buy",
+            to = "can someone buy me a %1 %2",
+        },
+        -- Fix "can someone a X buy" -> "can someone buy me a X"
+        {
+            from = "can someone a (.+) buy",
+            to = "can someone buy me a %1",
+        },
     },
 }
