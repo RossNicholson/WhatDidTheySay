@@ -320,5 +320,14 @@ WDTS_Lang_de_Grammar = {
             from = "come nochmal a (.+)",
             to = "is there another %1 coming",
         },
+        -- Fix "wanted will a friendly mage" -> "looking for a friendly mage"
+        {
+            from = "wanted will a (.+) for (.+)",
+            to = "looking for a %1 for %2",
+        },
+        {
+            from = "wanted will ein (.+) for (.+)",
+            to = "looking for a %1 for %2",
+        },
     },
 }

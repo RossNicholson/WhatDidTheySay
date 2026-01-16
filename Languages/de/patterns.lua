@@ -2,6 +2,15 @@
 -- Reusable phrase structures with captures
 
 WDTS_Lang_de_Patterns = {
+    -- "gesucht wird ein X für Y" -> "looking for a X for Y" (passive voice)
+    {
+        from = "gesucht wird ein (.+) für (.+)",
+        to = "looking for a %1 for %2",
+    },
+    {
+        from = "gesucht wird eine (.+) für (.+)",
+        to = "looking for a %1 for %2",
+    },
     -- "suche X für Y" -> "looking for X for Y"
     {
         from = "suche (.+) für (.+)",
