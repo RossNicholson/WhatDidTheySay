@@ -29,7 +29,7 @@ WDTS_Lang_de_Tokens = {
     -- Common verbs
     ["suche"] = "looking for",
     ["sucht"] = "looking for",
-    ["gesucht"] = "wanted/looking for", -- Past participle: "schmied gesucht" = "blacksmith wanted"
+    ["gesucht"] = "wanted", -- Past participle: "schmied gesucht" = "blacksmith wanted"
     ["brauche"] = "need",
     ["braucht"] = "need",
     ["will"] = "want",
