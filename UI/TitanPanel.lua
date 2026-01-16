@@ -212,29 +212,33 @@ frame:RegisterEvent("ADDON_LOADED")
 
 frame:SetScript("OnEvent", function(self, event, addonName)
     if event == "ADDON_LOADED" then
-        -- Only register once, when both Titan and our addon are loaded
-        -- Check if already registered to prevent duplicates
+        -- Check if already registered - check button existence FIRST (most reliable)
+        local btn = _G["TitanPanelWDTSButton"]
+        if btn and btn.registry and btn.registry.id == "WDTS" then
+            WDTS_TitanPanel.registered = true
+            return
+        end
+        
+        -- Also check our flag
         if WDTS_TitanPanel.registered then
             return
         end
         
-        -- Only register when Titan loads - this is the ONLY event we listen for
-        -- Since Titan is OptionalDeps, it loads after our addon, so WhatDidTheySayDB will exist
+        -- Try to register when either addon loads, as long as BOTH are ready
+        -- This handles cases where Titan loads before or after our addon
+        local shouldTry = false
         if addonName == "Titan" then
-            -- Check if button already exists with proper registry
-            local btn = _G["TitanPanelWDTSButton"]
-            if btn and btn.registry and btn.registry.id == "WDTS" then
-                WDTS_TitanPanel.registered = true
-                return
-            end
-            
-            -- Both must be loaded before we can register
-            if IsTitanPanelLoaded() and WhatDidTheySayDB then
-                TryRegister()
-            end
+            -- Titan just loaded, check if our addon is ready
+            shouldTry = (WhatDidTheySayDB ~= nil)
+        elseif addonName == "WhatDidTheySay" then
+            -- Our addon just loaded, check if Titan is ready
+            shouldTry = IsTitanPanelLoaded()
         end
-        -- NOTE: We do NOT register on "WhatDidTheySay" event to prevent duplicates
-        -- If Titan loads after our addon, the "Titan" event will still fire and handle registration
+        
+        -- Only attempt registration if both addons are loaded
+        if shouldTry and IsTitanPanelLoaded() and WhatDidTheySayDB then
+            TryRegister()
+        end
     end
 end)
 
