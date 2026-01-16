@@ -15,54 +15,54 @@ function Config.CreateFrame()
     frame:SetSize(420, 520)
     frame:SetPoint("CENTER", UIParent, "CENTER")
     
-    -- Create backdrop with better appearance
+    -- Create backdrop - simple solid background
     local backdrop = frame:CreateTexture(nil, "BACKGROUND")
     backdrop:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
     backdrop:SetAllPoints(frame)
-    backdrop:SetVertexColor(0.1, 0.1, 0.1, 0.95)
+    backdrop:SetVertexColor(0.15, 0.15, 0.15, 0.98)
     
-    -- Title bar background
+    -- Title bar background - simple solid color
     local titleBar = frame:CreateTexture(nil, "BORDER")
-    titleBar:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Header")
-    titleBar:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 8)
-    titleBar:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, 8)
-    titleBar:SetHeight(40)
-    titleBar:SetTexCoord(0, 1, 0, 0.25)
+    titleBar:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+    titleBar:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+    titleBar:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, 0)
+    titleBar:SetHeight(48)
+    titleBar:SetVertexColor(0.2, 0.2, 0.25, 1)
     
-    -- Simple clean border using thin lines
-    local borderThickness = 2
+    -- Simple solid color border (no texture coordinates)
+    local borderThickness = 1
     
-    -- Top border
-    local borderTop = frame:CreateTexture(nil, "BORDER")
-    borderTop:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
+    -- Top border - solid color
+    local borderTop = frame:CreateTexture(nil, "ARTWORK")
+    borderTop:SetTexture("Interface\\Buttons\\WHITE8X8")
     borderTop:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
     borderTop:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, 0)
     borderTop:SetHeight(borderThickness)
-    borderTop:SetVertexColor(0.6, 0.6, 0.6, 0.8)
+    borderTop:SetVertexColor(0.8, 0.8, 0.8, 1)
     
     -- Bottom border
-    local borderBottom = frame:CreateTexture(nil, "BORDER")
-    borderBottom:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
+    local borderBottom = frame:CreateTexture(nil, "ARTWORK")
+    borderBottom:SetTexture("Interface\\Buttons\\WHITE8X8")
     borderBottom:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", 0, 0)
     borderBottom:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, 0)
     borderBottom:SetHeight(borderThickness)
-    borderBottom:SetVertexColor(0.6, 0.6, 0.6, 0.8)
+    borderBottom:SetVertexColor(0.8, 0.8, 0.8, 1)
     
     -- Left border
-    local borderLeft = frame:CreateTexture(nil, "BORDER")
-    borderLeft:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
+    local borderLeft = frame:CreateTexture(nil, "ARTWORK")
+    borderLeft:SetTexture("Interface\\Buttons\\WHITE8X8")
     borderLeft:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
     borderLeft:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", 0, 0)
     borderLeft:SetWidth(borderThickness)
-    borderLeft:SetVertexColor(0.6, 0.6, 0.6, 0.8)
+    borderLeft:SetVertexColor(0.8, 0.8, 0.8, 1)
     
     -- Right border
-    local borderRight = frame:CreateTexture(nil, "BORDER")
-    borderRight:SetTexture("Interface\\Tooltips\\UI-Tooltip-Border")
+    local borderRight = frame:CreateTexture(nil, "ARTWORK")
+    borderRight:SetTexture("Interface\\Buttons\\WHITE8X8")
     borderRight:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, 0)
     borderRight:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, 0)
     borderRight:SetWidth(borderThickness)
-    borderRight:SetVertexColor(0.6, 0.6, 0.6, 0.8)
+    borderRight:SetVertexColor(0.8, 0.8, 0.8, 1)
     
     frame:EnableMouse(true)
     frame:SetMovable(true)
