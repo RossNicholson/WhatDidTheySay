@@ -17,6 +17,11 @@ Engine.languagePacks = {}
 Engine.translationCache = {}
 Engine.cacheMaxSize = 500 -- Limit cache size to avoid memory issues
 
+-- Clear translation cache (useful after vocabulary updates)
+function Engine.ClearCache()
+    Engine.translationCache = {}
+end
+
 -- Load language pack
 function Engine.LoadLanguagePack(lang)
     -- Always reload to pick up new vocabulary (cache cleared on reload anyway)

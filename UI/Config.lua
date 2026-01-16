@@ -386,6 +386,14 @@ function Config.Initialize()
             ShowTranslationHistory()
         elseif cmd == "clear" then
             ClearTranslationHistory()
+        elseif cmd == "clearcache" then
+            local Engine = WDTS_Engine
+            if Engine and Engine.ClearCache then
+                Engine.ClearCache()
+                DEFAULT_CHAT_FRAME:AddMessage("|cff00ff00Translation cache cleared.|r")
+            else
+                DEFAULT_CHAT_FRAME:AddMessage("|cffff0000Translation engine not available.|r")
+            end
         else
             Config.Toggle()
         end
