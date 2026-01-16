@@ -224,7 +224,14 @@ WDTS_Lang_de_Tokens = {
     -- Game mechanics
     ["quest"] = "quest",
     ["quests"] = "quests",
-    ["aufgabe"] = "quest",
+    ["aufgabe"] = "task/quest",
+    ["aufgaben"] = "tasks/quests",
+    ["grausige"] = "gruesome",
+    ["grausig"] = "gruesome",
+    ["dunkeleisenkrieg"] = "Dark Iron War", -- Quest name: "Der Dunkeleisenkrieg"
+    ["dunkel"] = "dark",
+    ["eisen"] = "iron",
+    ["krieg"] = "war",
     ["aufgaben"] = "quests",
     ["buff"] = "buff",
     ["buffs"] = "buffs",
