@@ -53,6 +53,9 @@ WDTS_Lang_de_Tokens = {
     ["tasche"] = "bag",
     ["taschen"] = "bags",
     ["tasschen"] = "bags", -- Diminutive form (small bags)
+    ["wurst"] = "sausage",
+    ["würste"] = "sausages",
+    ["würstchen"] = "sausage", -- Diminutive form (little sausage)
     
     -- Actions
     ["einladen"] = "invite",
