@@ -850,6 +850,10 @@ WDTS_Lang_de_Tokens = {
     ["darnassus"] = "Darnassus",
     ["pls"] = "please", -- Common abbreviation
     ["teleportieren"] = "teleport",
+    ["tpn"] = "teleport/port", -- Gaming abbreviation for teleport
+    ["tp"] = "teleport/port", -- Gaming abbreviation
+    ["bb"] = "Booty Bay",
+    ["booty bay"] = "Booty Bay",
     
     -- More common gaming terms
     ["tank"] = "tank", -- Often used as-is in German WoW

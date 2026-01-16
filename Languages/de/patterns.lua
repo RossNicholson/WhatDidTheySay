@@ -20,6 +20,19 @@ WDTS_Lang_de_Patterns = {
         from = "kannst mich (.+)",
         to = "can you %1 me",
     },
+    -- "kann jemand nach X tpn" -> "can someone port/teleport to X"
+    {
+        from = "kann jemand nach (.+) tpn",
+        to = "can someone port to %1",
+    },
+    {
+        from = "kann jemand nach (.+) tp",
+        to = "can someone port to %1",
+    },
+    {
+        from = "kann jemand nach (.+) teleportieren",
+        to = "can someone teleport to %1",
+    },
     -- "kann mir jemand auf süß einen X kaufen" -> "can someone buy me a sweet X"
     {
         from = "kann mir jemand auf (.+) einen (.+) kaufen",

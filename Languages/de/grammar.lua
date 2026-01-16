@@ -248,5 +248,14 @@ WDTS_Lang_de_Grammar = {
             from = "can someone a (.+) buy",
             to = "can someone buy me a %1",
         },
+        -- Fix "can someone to X port" -> "can someone port to X" (if pattern didn't match)
+        {
+            from = "can someone to (.+) port",
+            to = "can someone port to %1",
+        },
+        {
+            from = "can someone to (.+) teleport",
+            to = "can someone teleport to %1",
+        },
     },
 }
