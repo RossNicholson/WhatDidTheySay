@@ -237,10 +237,11 @@ function Config.Toggle()
 end
 
 -- Test translation directly
-local function TestTranslation(message)
+local function TestTranslation(message, verbose)
     if not message or message == "" then
         DEFAULT_CHAT_FRAME:AddMessage("|cffff0000Usage: /wdts test <german message>|r")
         DEFAULT_CHAT_FRAME:AddMessage("|cffffff00Example: /wdts test schmied gesucht für item|r")
+        DEFAULT_CHAT_FRAME:AddMessage("|cffffff00Use: /wdts test verbose <message> for detailed debugging|r")
         return
     end
     
@@ -248,6 +249,29 @@ local function TestTranslation(message)
     if not Engine or not Engine.Translate then
         DEFAULT_CHAT_FRAME:AddMessage("|cffff0000Translation engine not initialized yet.|r")
         return
+    end
+    
+    -- Verbose mode: show tokenization and vocabulary matches
+    if verbose then
+        local Tokenizer = WDTS_Tokenizer
+        local tokens, protected, protectedMap = Tokenizer.Tokenize(message)
+        DEFAULT_CHAT_FRAME:AddMessage("|cff00ffff=== Tokenization Debug ===|r")
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("|cffaaaaaaFound %d tokens:|r", #tokens))
+        for i, token in ipairs(tokens) do
+            local tokenInfo = string.format("  [%d] type=%s value=%s original=%s", i, token.type, token.value, token.original)
+            if token.type == "word" then
+                local langPack = Engine.LoadLanguagePack("de")
+                if langPack and langPack.tokens then
+                    local translation = langPack.tokens[token.value]
+                    if translation then
+                        tokenInfo = tokenInfo .. string.format(" |cff00ff00→ %s|r", translation)
+                    else
+                        tokenInfo = tokenInfo .. " |cffff0000(no translation)|r"
+                    end
+                end
+            end
+            DEFAULT_CHAT_FRAME:AddMessage(tokenInfo)
+        end
     end
     
     -- Translate the test message (bypass cache for fresh results)
@@ -268,7 +292,7 @@ local function TestTranslation(message)
     
     -- Show translation
     local transColor = confidence >= 0.70 and "|cff00ff00" or "|cffffff00"
-    local intentText = intent and (" [" .. intent .. "]") or ""
+    local intentText = intent and (" [" .. intent.id .. "]") or ""
     DEFAULT_CHAT_FRAME:AddMessage(string.format("%s→ %s%s|r (confidence: %.2f)", transColor, translated, intentText, confidence))
 end
 
