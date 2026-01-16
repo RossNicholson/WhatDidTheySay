@@ -69,6 +69,8 @@ WDTS_Lang_de_Tokens = {
     ["mana"] = "mana",
     ["gesundheit"] = "health",
     ["leben"] = "health",
+    ["ausdauer"] = "stamina",
+    ["stamina"] = "stamina", -- Often used in mixed-language messages
     ["tasche"] = "bag",
     ["taschen"] = "bags",
     ["tasschen"] = "bags", -- Diminutive form (small bags)
@@ -289,6 +291,8 @@ WDTS_Lang_de_Tokens = {
     ["silber"] = "silver",
     ["kupfer"] = "copper",
     ["geld"] = "money",
+    ["armschienen"] = "bracers",
+    ["armschiene"] = "bracer",
     ["angebot"] = "offer",
     ["angebote"] = "offers",
     
