@@ -25,6 +25,7 @@ function Engine.LoadLanguagePack(lang)
     
     local pack = {
         tokens = {},
+        phrases = {}, -- Multi-word phrases (e.g., "kannst du" = "can you")
         intents = {},
         patterns = {},
         grammar = {},
@@ -38,6 +39,22 @@ function Engine.LoadLanguagePack(lang)
         pack.tokens = _G[packName .. "_Tokens"]
     end
     
+    -- Extract phrases from tokens (keys with spaces or multiple words)
+    -- Also check for explicit Phrases table
+    if _G[packName .. "_Phrases"] then
+        pack.phrases = _G[packName .. "_Phrases"]
+    else
+        -- Extract multi-word phrases from tokens (keys containing spaces)
+        pack.phrases = {}
+        if pack.tokens then
+            for key, value in pairs(pack.tokens) do
+                if type(key) == "string" and key:find("%s") then
+                    pack.phrases[key:lower()] = value
+                end
+            end
+        end
+    end
+    
     -- Load intents
     if _G[packName .. "_Intents"] then
         pack.intents = _G[packName .. "_Intents"]
@@ -46,6 +63,12 @@ function Engine.LoadLanguagePack(lang)
     -- Load patterns
     if _G[packName .. "_Patterns"] then
         pack.patterns = _G[packName .. "_Patterns"]
+        -- Sort patterns by specificity (longer patterns first)
+        table.sort(pack.patterns, function(a, b)
+            local lenA = a.from and #a.from or 0
+            local lenB = b.from and #b.from or 0
+            return lenA > lenB
+        end)
     end
     
     -- Load grammar
@@ -122,26 +145,37 @@ function Engine.DetectIntent(tokens, langPack)
     return nil, 0.0
 end
 
--- Apply phrase patterns
+-- Apply phrase patterns (ordered by specificity, multiple matches allowed)
 function Engine.ApplyPatterns(text, langPack)
     if not langPack.patterns or not text or text == "" then
         return text
     end
     
     local result = text
+    local changed = true
+    local maxIterations = 10 -- Prevent infinite loops
+    local iterations = 0
     
-    for _, pattern in ipairs(langPack.patterns) do
-        if pattern.from and pattern.to then
-            -- Pattern replacement with capture group support (%1, %2, etc.)
-            local success, replaced, count = pcall(function()
-                -- Use gsub to match and replace (supports capture groups)
-                local replacedText, replaceCount = text:gsub(pattern.from, pattern.to, 1)
-                return replacedText, replaceCount
-            end)
-            
-            if success and replaced and count and count > 0 and replaced ~= text then
-                result = replaced
-                break -- Use first matching pattern
+    -- Apply patterns until no more matches (up to max iterations)
+    while changed and iterations < maxIterations do
+        changed = false
+        iterations = iterations + 1
+        
+        for _, pattern in ipairs(langPack.patterns) do
+            if pattern.from and pattern.to then
+                -- Pattern replacement with capture group support (%1, %2, etc.)
+                local success, replaced, count = pcall(function()
+                    -- Use gsub to match and replace (supports capture groups)
+                    local replacedText, replaceCount = result:gsub(pattern.from, pattern.to, 1)
+                    return replacedText, replaceCount
+                end)
+                
+                if success and replaced and count and count > 0 and replaced ~= result then
+                    result = replaced
+                    changed = true
+                    -- Break to restart pattern matching with new text
+                    break
+                end
             end
         end
     end
@@ -149,31 +183,152 @@ function Engine.ApplyPatterns(text, langPack)
     return result
 end
 
--- Translate tokens using language pack
+-- Match multi-word phrases starting at a given token index
+local function MatchPhraseAt(tokens, startIdx, langPack)
+    if not langPack.phrases or not next(langPack.phrases) then
+        return nil
+    end
+    
+    -- Build lookup table of phrase words (cache on first call per pack)
+    if not langPack._phraseLookupCache then
+        langPack._phraseLookupCache = {}
+        langPack._maxPhraseLength = 0
+        
+        for phraseKey, phraseValue in pairs(langPack.phrases) do
+            local words = {}
+            for word in phraseKey:gmatch("%S+") do
+                table.insert(words, word:lower())
+            end
+            local phraseLen = #words
+            if phraseLen > langPack._maxPhraseLength then
+                langPack._maxPhraseLength = phraseLen
+            end
+            langPack._phraseLookupCache[phraseKey:lower()] = {
+                words = words,
+                translation = phraseValue
+            }
+        end
+    end
+    
+    local maxPhraseLength = langPack._maxPhraseLength
+    if maxPhraseLength < 2 or startIdx > #tokens then
+        return nil
+    end
+    
+    -- Try to match phrases of decreasing length (longest first)
+    if tokens[startIdx].type == "word" then
+        for phraseLen = math.min(maxPhraseLength, #tokens - startIdx + 1), 2, -1 do
+            local phraseWords = {}
+            local allWords = true
+            for j = 0, phraseLen - 1 do
+                if tokens[startIdx + j] and tokens[startIdx + j].type == "word" then
+                    table.insert(phraseWords, tokens[startIdx + j].value:lower())
+                else
+                    allWords = false
+                    break
+                end
+            end
+            
+            if allWords then
+                local phraseKey = table.concat(phraseWords, " ")
+                local phraseData = langPack._phraseLookupCache[phraseKey]
+                if phraseData then
+                    -- Found a matching phrase
+                    return {
+                        length = phraseLen,
+                        translation = phraseData.translation
+                    }
+                end
+            end
+        end
+    end
+    
+    return nil
+end
+
+-- Get context-aware translation for a token
+local function GetContextualTranslation(token, prevToken, nextToken, langPack)
+    if not langPack.tokens then
+        return nil
+    end
+    
+    local tokenLower = token.value:lower()
+    local translation = langPack.tokens[tokenLower]
+    
+    -- Simple context rules (can be extended)
+    -- Check if token has context-dependent translations
+    if translation and type(translation) == "table" then
+        -- Token has multiple possible translations based on context
+        -- Simple context checking (can be expanded)
+        if prevToken and prevToken.type == "word" then
+            local prevLower = prevToken.value:lower()
+            if translation.after and translation.after[prevLower] then
+                return translation.after[prevLower]
+            end
+        end
+        if nextToken and nextToken.type == "word" then
+            local nextLower = nextToken.value:lower()
+            if translation.before and translation.before[nextLower] then
+                return translation.before[nextLower]
+            end
+        end
+        -- Default translation
+        return translation.default or translation[1]
+    end
+    
+    return translation
+end
+
+-- Translate tokens using language pack (with phrase matching and context awareness)
 function Engine.TranslateTokens(tokens, langPack)
     local translated = {}
     local translatedCount = 0
     local totalWords = 0
+    local i = 1
     
-    for _, token in ipairs(tokens) do
+    while i <= #tokens do
+        local token = tokens[i]
+        
         if token.type == "word" then
             totalWords = totalWords + 1
-            -- Look up translation
-            if langPack.tokens and langPack.tokens[token.value] then
-                local trans = langPack.tokens[token.value]
+            
+            -- First, try to match multi-word phrases starting at this position
+            local phraseMatch = MatchPhraseAt(tokens, i, langPack)
+            
+            if phraseMatch then
+                -- Translate the entire phrase
                 translated[#translated + 1] = {
-                    type = token.type,
-                    value = trans,
+                    type = "word",
+                    value = phraseMatch.translation,
                     original = token.original,
                 }
-                translatedCount = translatedCount + 1
+                translatedCount = translatedCount + phraseMatch.length
+                totalWords = totalWords + phraseMatch.length - 1 -- Already counted first word
+                -- Skip the remaining words in the phrase
+                i = i + phraseMatch.length
             else
-                -- Keep original if no translation
-                translated[#translated + 1] = token
+                -- Single word translation with context awareness
+                local prevToken = i > 1 and tokens[i - 1] or nil
+                local nextToken = i < #tokens and tokens[i + 1] or nil
+                local trans = GetContextualTranslation(token, prevToken, nextToken, langPack)
+                
+                if trans then
+                    translated[#translated + 1] = {
+                        type = token.type,
+                        value = trans,
+                        original = token.original,
+                    }
+                    translatedCount = translatedCount + 1
+                else
+                    -- Keep original if no translation
+                    translated[#translated + 1] = token
+                end
+                i = i + 1
             end
         else
             -- Preserve non-word tokens
             translated[#translated + 1] = token
+            i = i + 1
         end
     end
     

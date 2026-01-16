@@ -20,6 +20,7 @@ Languages/en/intents.lua
 Languages/en/patterns.lua
 Languages/en/grammar.lua
 Languages/de/tokens.lua
+Languages/de/phrases.lua
 Languages/de/intents.lua
 Languages/de/patterns.lua
 Languages/de/grammar.lua
