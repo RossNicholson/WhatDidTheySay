@@ -250,9 +250,8 @@ WDTS_Lang_de_Tokens = {
     
     -- Common connecting words
     ["auch"] = "also",
-    ["noch"] = "still",
+    ["noch"] = "still/yet",
     ["schon"] = "already",
-    ["noch"] = "yet",
     ["nicht"] = "not",
     ["kein"] = "no",
     ["keine"] = "no",
@@ -270,4 +269,81 @@ WDTS_Lang_de_Tokens = {
     ["suchen"] = "looking for",
     ["finden"] = "find",
     ["findet"] = "finds",
+    
+    -- Practical conversation words
+    ["machst"] = "are you doing",
+    ["mache"] = "doing",
+    ["macht"] = "does",
+    ["müssen"] = "must",
+    ["muss"] = "must",
+    ["soll"] = "should",
+    ["sollen"] = "should",
+    ["sollst"] = "should",
+    ["möchte"] = "would like",
+    ["möchtest"] = "would you like",
+    
+    -- Common conversational responses
+    ["super"] = "great",
+    ["gut"] = "good",
+    ["schlecht"] = "bad",
+    ["vielleicht"] = "maybe",
+    ["bestimmt"] = "definitely",
+    ["natürlich"] = "of course",
+    ["klar"] = "sure",
+    ["genau"] = "exactly",
+    ["richtig"] = "right",
+    ["falsch"] = "wrong",
+    
+    -- Location and meeting
+    ["hier"] = "here",
+    ["dort"] = "there",
+    ["da"] = "there",
+    ["bei"] = "at",
+    ["zu"] = "to",
+    ["von"] = "from",
+    ["nach"] = "to",
+    ["treffen"] = "meet",
+    ["triff"] = "meet",
+    ["trefft"] = "meet",
+    ["zusammen"] = "together",
+    ["alleine"] = "alone",
+    ["allein"] = "alone",
+    
+    -- Abbreviations players use
+    ["wts"] = "wts", -- Want to sell (often used as-is)
+    ["wtb"] = "wtb", -- Want to buy
+    ["lfm"] = "lfm", -- Looking for more
+    ["lfg"] = "lfg", -- Looking for group
+    ["gg"] = "gg", -- Good game (used as-is)
+    ["wp"] = "wp", -- Well played
+    ["gl"] = "gl", -- Good luck
+    ["hf"] = "hf", -- Have fun
+    ["brb"] = "brb", -- Be right back
+    ["afk"] = "afk", -- Away from keyboard
+    ["wc"] = "wc", -- Water closet/toilet
+    ["kurz"] = "quickly",
+    ["kurz wc"] = "brb bathroom",
+    
+    -- Who/what/where questions
+    ["wer"] = "who",
+    ["wem"] = "whom",
+    ["wen"] = "whom",
+    ["wessen"] = "whose",
+    ["womit"] = "with what",
+    ["wofür"] = "for what",
+    ["wovon"] = "from what",
+    ["wohin"] = "where to",
+    ["woher"] = "where from",
+    
+    -- Numbers (for trading/levels)
+    ["eins"] = "one",
+    ["zwei"] = "two",
+    ["drei"] = "three",
+    ["vier"] = "four",
+    ["fünf"] = "five",
+    ["sechs"] = "six",
+    ["sieben"] = "seven",
+    ["acht"] = "eight",
+    ["neun"] = "nine",
+    ["zehn"] = "ten",
 }

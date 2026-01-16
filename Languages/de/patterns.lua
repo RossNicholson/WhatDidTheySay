@@ -64,4 +64,75 @@ WDTS_Lang_de_Patterns = {
         from = "regelmäßig (.+)",
         to = "regularly %1",
     },
+    -- Conversational patterns
+    {
+        from = "wo (.+)",
+        to = "where %1",
+    },
+    {
+        from = "wer (.+)",
+        to = "who %1",
+    },
+    {
+        from = "was (.+)",
+        to = "what %1",
+    },
+    {
+        from = "komm (.+)",
+        to = "come %1",
+    },
+    {
+        from = "kommt (.+)",
+        to = "come %1",
+    },
+    {
+        from = "treff (.+)",
+        to = "meet %1",
+    },
+    {
+        from = "triff (.+)",
+        to = "meet %1",
+    },
+    {
+        from = "kannst (.+)",
+        to = "can you %1",
+    },
+    {
+        from = "könnt (.+)",
+        to = "can you %1",
+    },
+    -- Trading patterns
+    {
+        from = "wts (.+)",
+        to = "wts %1",
+    },
+    {
+        from = "wtb (.+)",
+        to = "wtb %1",
+    },
+    {
+        from = "lfg (.+)",
+        to = "lfg %1",
+    },
+    {
+        from = "lfm (.+)",
+        to = "lfm %1",
+    },
+    -- Location patterns
+    {
+        from = "wo ist (.+)",
+        to = "where is %1",
+    },
+    {
+        from = "wo sind (.+)",
+        to = "where are %1",
+    },
+    {
+        from = "komm zu (.+)",
+        to = "come to %1",
+    },
+    {
+        from = "kommt zu (.+)",
+        to = "come to %1",
+    },
 }

@@ -122,4 +122,93 @@ WDTS_Lang_de_Phrases = {
     ["wartet auf"] = "waiting for",
     ["bereit für"] = "ready for",
     ["fertig für"] = "ready for",
+    
+    -- Quick conversational questions
+    ["was machst du"] = "what are you doing",
+    ["was macht ihr"] = "what are you doing",
+    ["wo bist du"] = "where are you",
+    ["wo seid ihr"] = "where are you",
+    ["wer will"] = "who wants",
+    ["wer möchte"] = "who wants",
+    ["wer kann"] = "who can",
+    ["wer hat"] = "who has",
+    
+    -- Meeting/grouping up
+    ["komm zu mir"] = "come to me",
+    ["kommt zu mir"] = "come to me",
+    ["treffen uns"] = "meet us",
+    ["triff uns"] = "meet us",
+    ["trefft euch"] = "meet up",
+    ["wo treffen"] = "where meet",
+    ["wo treffen wir"] = "where do we meet",
+    ["wo soll"] = "where should",
+    ["wo wollen"] = "where want",
+    
+    -- Help and requests
+    ["kannst du mir helfen"] = "can you help me",
+    ["kannst mir helfen"] = "can you help me",
+    ["könnt ihr helfen"] = "can you help",
+    ["brauche hilfe"] = "need help",
+    ["braucht hilfe"] = "need help",
+    ["kannst du"] = "can you",
+    ["könnt ihr"] = "can you",
+    ["kannst mir"] = "can you",
+    
+    -- Short status updates
+    ["bin gleich da"] = "am coming soon",
+    ["komme gleich"] = "coming soon",
+    ["bin unterwegs"] = "on my way",
+    ["kurz wc"] = "brb bathroom",
+    ["bin zurück"] = "am back",
+    ["bin wieder da"] = "am back",
+    ["war kurz weg"] = "was away briefly",
+    
+    -- Common responses
+    ["kein problem"] = "no problem",
+    ["keine ursache"] = "no problem",
+    ["gerne"] = "gladly",
+    ["gern"] = "gladly",
+    ["gern geschehen"] = "you're welcome",
+    ["macht nichts"] = "doesn't matter",
+    ["ist ok"] = "is ok",
+    ["passt"] = "works/fits",
+    ["passt schon"] = "it's fine",
+    
+    -- Trading specific
+    ["habe für"] = "have for",
+    ["habe zu verkaufen"] = "have for sale",
+    ["kaufe für"] = "buying for",
+    ["verkaufe für"] = "selling for",
+    ["wie viel"] = "how much",
+    ["was kostet"] = "what does it cost",
+    ["kostet wie viel"] = "costs how much",
+    ["zu teuer"] = "too expensive",
+    ["zu billig"] = "too cheap",
+    
+    -- Time-based coordination
+    ["in 5 min"] = "in 5 min",
+    ["in 10 min"] = "in 10 min",
+    ["gleich los"] = "starting soon",
+    ["geht los"] = "starting",
+    ["fangen an"] = "starting",
+    ["fangen gleich an"] = "starting soon",
+    
+    -- Combat/action coordination
+    ["pull jetzt"] = "pull now",
+    ["pull gleich"] = "pull soon",
+    ["nicht pullen"] = "don't pull",
+    ["wartet mit pull"] = "wait with pull",
+    ["adds kommen"] = "adds coming",
+    ["adds da"] = "adds here",
+    ["vorsicht"] = "careful",
+    ["aufpassen"] = "watch out",
+    ["achte auf"] = "watch for",
+    
+    -- Common player expressions
+    ["hast recht"] = "you're right",
+    ["du hast recht"] = "you're right",
+    ["stimmt"] = "that's right",
+    ["stimmt nicht"] = "that's wrong",
+    ["glaube nicht"] = "don't think so",
+    ["denke schon"] = "think so",
 }
