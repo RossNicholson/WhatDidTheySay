@@ -692,9 +692,11 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     
     -- Step 6: Apply patterns to translated text (for any patterns that work on English)
     -- Only if we didn't already apply patterns to original
-    if not patternWasApplied then
-        translatedText = Engine.ApplyPatterns(translatedText, langPack)
-    end
+    -- Note: Patterns should primarily match German text, not English, so we skip this
+    -- to avoid false positives on already-translated text
+    -- if not patternWasApplied then
+    --     translatedText = Engine.ApplyPatterns(translatedText, langPack)
+    -- end
     
     -- Step 8: Apply grammar
     translatedText = Engine.ApplyGrammar(translatedText, langPack)

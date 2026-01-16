@@ -455,8 +455,14 @@ WDTS_Lang_de_Patterns = {
         to = "engineer who can %1",
     },
     -- Generic pattern: "X der Y kann" -> "X who can Y" (fallback for any profession)
+    -- Note: Made more specific to avoid false positives on English text like "viewer guild"
+    -- Only match if "der" is surrounded by German words (not English like "viewer")
     {
-        from = "(.+) der (.+) kann",
+        from = "^(.+) der (.+) kann$",
         to = "%1 who can %2",
+    },
+    {
+        from = " (.+) der (.+) kann ",
+        to = " %1 who can %2 ",
     },
 }
