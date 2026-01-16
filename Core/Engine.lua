@@ -266,8 +266,9 @@ local function GetContextualTranslation(token, prevToken, nextToken, langPack)
         return nil
     end
     
-    local tokenLower = token.value:lower()
-    local translation = langPack.tokens[tokenLower]
+    -- token.value is already normalized (lowercased) by tokenizer
+    local tokenKey = token.value
+    local translation = langPack.tokens[tokenKey]
     
     -- Simple context rules (can be extended)
     -- Check if token has context-dependent translations
