@@ -277,9 +277,10 @@ local function DisplayTranslation(originalMessage, translatedMessage, confidence
         end
     end
     
-    -- Delay slightly to ensure translation appears AFTER original message
+    -- Delay to ensure translation appears AFTER original message and frame tracking is complete
+    -- Need longer delay to ensure all chat frames have processed the message via ChatFilterFunc
     -- This is especially important for guild chat where event order can be different
-    delay = delay or 0.05 -- Default 50ms delay
+    delay = delay or 0.15 -- Default 150ms delay (increased from 50ms to allow frame tracking to complete)
     C_Timer.After(delay, AddTranslationMessage)
 end
 
