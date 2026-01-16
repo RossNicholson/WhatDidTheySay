@@ -101,13 +101,14 @@ function WDTS_TitanPanel.Register()
     end
     
     -- Set up the registry on the button
+    -- Note: Category should match Titan Panel's expected categories
     button.registry = {
         id = "WDTS",
         menuText = "What Did They Say?",
         buttonTextFunction = "TitanPanelWDTSButton_GetButtonText",
         tooltipTitle = "What Did They Say?",
         tooltipTextFunction = "TitanPanelWDTSButton_GetTooltipText",
-        category = "Information",
+        category = TITAN_PANEL_CATEGORY_INFORMATION or "Information",
         version = "0.2.0",
         icon = "Interface\\Icons\\INV_Letter_01",
         iconWidth = 16,
@@ -145,13 +146,22 @@ frame:RegisterEvent("ADDON_LOADED")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 frame:SetScript("OnEvent", function(self, event, addonName)
-    if event == "ADDON_LOADED" and addonName == "Titan" then
-        -- Titan Panel just loaded, try to register
-        C_Timer.After(1, TryRegister) -- Wait a bit for Titan to fully initialize
+    if event == "ADDON_LOADED" then
+        if addonName == "Titan" or addonName == "WhatDidTheySay" then
+            -- Both addons need to be loaded, wait for Titan to fully initialize
+            if IsTitanPanelLoaded() and WhatDidTheySayDB and not WDTS_TitanPanel.registered then
+                -- Wait a bit more for Titan's plugin system to be ready
+                C_Timer.After(2, function()
+                    if TryRegister() then
+                        WDTS_TitanPanel.registered = true
+                    end
+                end)
+            end
+        end
     elseif event == "PLAYER_ENTERING_WORLD" then
-        -- Try to register if Titan is already loaded
-        if IsTitanPanelLoaded() and not WDTS_TitanPanel.registered then
-            C_Timer.After(1, function()
+        -- Final attempt to register if not already done
+        if IsTitanPanelLoaded() and WhatDidTheySayDB and not WDTS_TitanPanel.registered then
+            C_Timer.After(2, function()
                 if TryRegister() then
                     WDTS_TitanPanel.registered = true
                 end
