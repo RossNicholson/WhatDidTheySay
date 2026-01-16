@@ -75,6 +75,8 @@ WDTS_Lang_de_Phrases = {
     ["beitritt gilde"] = "join guild",
     ["zur gilde"] = "to the guild",
     ["in die gilde"] = "into the guild",
+    ["zum leveln"] = "for leveling",
+    ["noch alles"] = "still everything/all",
     
     -- Game mechanics phrases
     ["world buffs"] = "world buffs",

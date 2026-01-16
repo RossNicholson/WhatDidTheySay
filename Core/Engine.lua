@@ -409,27 +409,90 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     
     -- Special handling for mixed-language messages (e.g., "If tank heal dm dann abfahrt")
     -- If detected as English but contains known German words, try German translation
+    -- BUT: Don't trigger on universal gaming abbreviations that exist in both languages
     if (not sourceLang or sourceLang == "en" or langConfidence < LanguageDetect.MIN_CONFIDENCE) and LanguagePackManager.IsEnabled("de") then
-        -- Check if message contains any German words from enabled language packs
-        local langPack = Engine.LoadLanguagePack("de")
-        if langPack and langPack.tokens then
-            local hasGermanWords = false
-            for _, token in ipairs(tokens) do
-                if token.type == "word" then
-                    local word = token.value:lower()
-                    if langPack.tokens[word] then
-                        hasGermanWords = true
-                        break
+        -- Common gaming abbreviations that are universal (English and German) - exclude from German detection
+        local universalAbbreviations = {
+            ["lf"] = true, ["lfb"] = true, ["lfm"] = true, ["lfg"] = true, ["lf1m"] = true,
+            ["wts"] = true, ["wtb"] = true, ["wtt"] = true,
+            ["tank"] = true, ["heal"] = true, ["healer"] = true, ["dps"] = true,
+            ["dm"] = true, ["st"] = true, ["sfk"] = true, ["rfk"] = true, ["rfd"] = true,
+            ["uld"] = true, ["zf"] = true, ["mara"] = true, ["scholo"] = true, ["strat"] = true,
+            ["port"] = true, ["buff"] = true, ["buff"] = true, ["quest"] = true, ["quests"] = true,
+            ["afk"] = true, ["brb"] = true, ["gg"] = true, ["wp"] = true, ["gl"] = true, ["hf"] = true,
+            ["raid"] = true, ["dungeon"] = true, ["group"] = true, ["guild"] = true,
+            ["mage"] = true, ["warrior"] = true, ["rogue"] = true, ["hunter"] = true,
+            ["priest"] = true, ["warlock"] = true, ["druid"] = true, ["shaman"] = true, ["paladin"] = true,
+            ["item"] = true, ["items"] = true, ["gold"] = true, ["silver"] = true, ["copper"] = true,
+            ["world"] = true, ["help"] = true,
+        }
+        
+            -- Check if message contains actual German words (not just gaming abbreviations)
+            local langPack = Engine.LoadLanguagePack("de")
+            if langPack and langPack.tokens then
+                local hasGermanCharacters = false
+                local germanFunctionWords = 0
+                local germanVocabularyWords = 0
+                
+                -- Check for German-specific characters first (strongest indicator)
+                local messageText = message:lower()
+                if messageText:find("ä") or messageText:find("ö") or messageText:find("ü") or messageText:find("ß") then
+                    hasGermanCharacters = true
+                end
+                
+                -- Check for German function words (also strong indicators)
+                local germanFunctionWordsList = {
+                    "der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem", "eines",
+                    "und", "oder", "aber", "für", "von", "mit", "durch", "über", "unter",
+                    "ist", "sind", "war", "waren", "bin", "bist", "seid", "hat", "haben",
+                    "kann", "kannst", "können", "muss", "musst", "müssen",
+                    "ich", "du", "er", "sie", "es", "wir", "ihr",
+                    "mir", "dich", "ihn", "uns", "euch", "mein", "dein", "sein", "ihr",
+                    "zu", "zum", "zur", "nach", "bei", "aus", "an", "auf", "in",
+                }
+                
+                for _, token in ipairs(tokens) do
+                    if token.type == "word" then
+                        local word = token.value:lower()
+                        
+                        -- Skip universal gaming abbreviations
+                        if not universalAbbreviations[word] then
+                            -- Check if it's a German function word
+                            local isFunctionWord = false
+                            for _, fw in ipairs(germanFunctionWordsList) do
+                                if word == fw then
+                                    germanFunctionWords = germanFunctionWords + 1
+                                    isFunctionWord = true
+                                    break
+                                end
+                            end
+                            
+                            -- If not a function word, check if it's in German vocabulary
+                            -- and has a translation that's different from the word itself (not a passthrough)
+                            if not isFunctionWord and langPack.tokens[word] then
+                                local translation = langPack.tokens[word]
+                                if translation ~= word and translation:lower() ~= word then
+                                    -- This is a genuine German word with a translation
+                                    germanVocabularyWords = germanVocabularyWords + 1
+                                end
+                            end
+                        end
                     end
                 end
+                
+                -- Only override to German if we have strong indicators:
+                -- 1. German-specific characters, OR
+                -- 2. 2+ German function words, OR
+                -- 3. 1 German function word + 1+ German vocabulary words, OR
+                -- 4. 2+ German vocabulary words (genuine German, not abbreviations)
+                if hasGermanCharacters or 
+                   germanFunctionWords >= 2 or 
+                   (germanFunctionWords >= 1 and germanVocabularyWords >= 1) or
+                   germanVocabularyWords >= 2 then
+                    sourceLang = "de"
+                    langConfidence = 0.5 -- Give it moderate confidence for mixed messages
+                end
             end
-            
-            -- If we found German words, override language detection to German
-            if hasGermanWords then
-                sourceLang = "de"
-                langConfidence = 0.5 -- Give it moderate confidence for mixed messages
-            end
-        end
     end
     
     -- Special case: Very short messages (1-2 words) that are likely English greetings
