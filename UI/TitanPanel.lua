@@ -174,32 +174,38 @@ local function TryRegister()
 end
 
 -- Wait for Titan Panel to load
--- Titan Panel collects plugins until PLAYER_ENTERING_WORLD, so we need to register before then
+-- Titan Panel collects plugins during ADDON_LOADED events and registers them at PLAYER_ENTERING_WORLD
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 
+local registrationAttempted = false
+
 frame:SetScript("OnEvent", function(self, event, addonName)
+    -- Don't attempt registration more than once
+    if registrationAttempted then
+        return
+    end
+    
     if event == "ADDON_LOADED" then
         -- Register when Titan loads, or when our addon loads (if Titan is already loaded)
         if addonName == "Titan" then
-            -- Titan just loaded, wait a moment for it to initialize
-            C_Timer.After(0.5, function()
-                if not WDTS_TitanPanel.registered then
-                    TryRegister()
-                end
-            end)
+            -- Titan just loaded, register immediately (Titan collects plugins during ADDON_LOADED)
+            if WhatDidTheySayDB then
+                registrationAttempted = true
+                TryRegister()
+            end
         elseif addonName == "WhatDidTheySay" then
             -- Our addon loaded, check if Titan is already available
-            if IsTitanPanelLoaded() and not WDTS_TitanPanel.registered then
-                C_Timer.After(0.5, function()
-                    TryRegister()
-                end)
+            if IsTitanPanelLoaded() and WhatDidTheySayDB then
+                registrationAttempted = true
+                TryRegister()
             end
         end
     elseif event == "PLAYER_ENTERING_WORLD" then
-        -- Final attempt before Titan stops collecting plugins
-        if IsTitanPanelLoaded() and WhatDidTheySayDB and not WDTS_TitanPanel.registered then
+        -- Final attempt - Titan Panel processes registrations at this point
+        if not registrationAttempted and IsTitanPanelLoaded() and WhatDidTheySayDB then
+            registrationAttempted = true
             TryRegister()
         end
     end

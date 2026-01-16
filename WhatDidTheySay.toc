@@ -3,6 +3,7 @@
 ## Notes: Offline chat translation for World of Warcraft Classic
 ## Author: Ross Nicholson
 ## Version: 0.2.0
+## OptionalDeps: Titan
 ## SavedVariables: WhatDidTheySayDB
 
 # Core modules
