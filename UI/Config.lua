@@ -12,7 +12,7 @@ function Config.CreateFrame()
     end
     
     local frame = CreateFrame("Frame", "WDTSConfigFrame", UIParent)
-    frame:SetSize(420, 480)
+    frame:SetSize(440, 500)
     frame:SetPoint("CENTER", UIParent, "CENTER")
     
     -- Create backdrop - simple solid background
@@ -87,6 +87,7 @@ function Config.CreateFrame()
     local infoText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     infoText:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -75)
     infoText:SetWidth(390)
+    infoText:SetNonSpaceWrap(false)
     infoText:SetJustifyH("LEFT")
     infoText:SetJustifyV("TOP")
     infoText:SetText([[
