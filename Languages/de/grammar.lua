@@ -284,5 +284,14 @@ WDTS_Lang_de_Grammar = {
             from = "ifm / lfg the (.+) (.+)",
             to = "lfm / lfg %2 the %1",
         },
+        -- Fix "has me someone X" -> "does someone have X for me"
+        {
+            from = "has me someone (.+)",
+            to = "does someone have %1 for me",
+        },
+        {
+            from = "has me someone (.+) silver",
+            to = "does someone have %1 silver for me",
+        },
     },
 }

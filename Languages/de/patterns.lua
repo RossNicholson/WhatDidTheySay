@@ -20,6 +20,16 @@ WDTS_Lang_de_Patterns = {
         from = "kannst mich (.+)",
         to = "can you %1 me",
     },
+    -- "hat mir jemand X silber?" -> "does someone have X silver for me?"
+    {
+        from = "hat mir jemand (.+) silber",
+        to = "does someone have %1 silver for me",
+    },
+    -- "hat mir jemand X?" -> "does someone have X for me?"
+    {
+        from = "hat mir jemand (.+)%?",
+        to = "does someone have %1 for me",
+    },
     -- "kann jemand nach X tpn" -> "can someone port/teleport to X"
     {
         from = "kann jemand nach (.+) tpn",
