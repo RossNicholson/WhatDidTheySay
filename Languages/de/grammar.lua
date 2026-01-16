@@ -343,5 +343,12 @@ WDTS_Lang_de_Grammar = {
             from = "bin still low (.+)",
             to = "am still a low %1",
         },
+        
+        -- Fix "the main stone break" -> "break the main stone"
+        -- "Den Hauptstein zerbrechen" = "Break the main stone"
+        {
+            from = "the main stone break",
+            to = "break the main stone",
+        },
     },
 }
