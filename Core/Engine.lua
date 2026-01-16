@@ -107,8 +107,21 @@ function Engine.DetectIntent(tokens, langPack)
             for _, pattern in ipairs(intent.patterns) do
                 local patternLower = pattern:lower()
                 
+                -- For single-character or very short patterns (like "r", "rdy"), require exact word match
+                -- Otherwise they match too many false positives (e.g., "r" matches in "für", "waffe", etc.)
+                local isShortPattern = #patternLower <= 3
+                
                 -- First try full phrase match (more confident)
                 if text:find(patternLower, 1, true) then
+                    -- For short patterns, verify it's a whole word, not just a substring
+                    if isShortPattern then
+                        -- Check if pattern appears as a whole word (surrounded by word boundaries or spaces)
+                        local patternEscaped = patternLower:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0")
+                        if not text:match("%f[%w]" .. patternEscaped .. "%f[%W]") and not text:match("^" .. patternEscaped .. "$") and not text:match("^" .. patternEscaped .. "%s") and not text:match("%s" .. patternEscaped .. "$") and not text:match("%s" .. patternEscaped .. "%s") then
+                            -- Pattern not found as whole word, skip it
+                            goto continue_pattern
+                        end
+                    end
                     local score = (intent.score or 0.5) * 1.0 -- Full match gets full score
                     if score > bestScore then
                         bestScore = score
@@ -118,8 +131,15 @@ function Engine.DetectIntent(tokens, langPack)
                     -- Fall back to word-level matching
                     local matches = 0
                     for word in text:gmatch("%S+") do
-                        if word:find(patternLower, 1, true) then
-                            matches = matches + 1
+                        -- For short patterns, require exact word match
+                        if isShortPattern then
+                            if word == patternLower then
+                                matches = matches + 1
+                            end
+                        else
+                            if word:find(patternLower, 1, true) then
+                                matches = matches + 1
+                            end
                         end
                     end
                     
@@ -131,6 +151,8 @@ function Engine.DetectIntent(tokens, langPack)
                         end
                     end
                 end
+                
+                ::continue_pattern::
             end
         end
     end
