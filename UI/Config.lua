@@ -204,10 +204,10 @@ function Config.CreateFrame()
     autoCheck:SetChecked(WhatDidTheySayDB.autoTranslate or true)
     
     -- Close button (centered, positioned with adequate space from auto-translate checkbox)
-    -- Ensure at least 50px gap between checkbox and button to prevent overlap
+    -- Ensure clear gap between checkbox and button to prevent overlap
     local closeBtn = CreateFrame("Button", nil, frame, "GameMenuButtonTemplate")
     closeBtn:SetSize(120, 32)
-    closeBtn:SetPoint("BOTTOM", frame, "BOTTOM", 0, 45)
+    closeBtn:SetPoint("BOTTOM", frame, "BOTTOM", 0, 50)
     closeBtn:SetText("Close")
     closeBtn:SetScript("OnClick", function()
         frame:Hide()
