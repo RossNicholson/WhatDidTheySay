@@ -20,14 +20,20 @@ WDTS_Lang_de_Patterns = {
         from = "kannst mich (.+)",
         to = "can you %1 me",
     },
-    -- "kann mir jemand X kaufen" -> "can someone buy me X"
+    -- "kann mir jemand auf süß einen X kaufen" -> "can someone buy me a sweet X"
+    {
+        from = "kann mir jemand auf (.+) einen (.+) kaufen",
+        to = "can someone buy me a %1 %2", -- Handles "auf süß einen Zauberstab" -> "a sweet wand"
+    },
+    -- "kann mir jemand einen X kaufen" -> "can someone buy me a X"
+    {
+        from = "kann mir jemand einen (.+) kaufen",
+        to = "can someone buy me a %1",
+    },
+    -- "kann mir jemand X kaufen" -> "can someone buy me X" (fallback)
     {
         from = "kann mir jemand (.+) kaufen",
         to = "can someone buy me %1",
-    },
-    {
-        from = "kann mir jemand auf (.+) (.+) kaufen",
-        to = "can someone buy me %1 %2", -- Handles "auf süß einen Zauberstab" -> "sweet a wand"
     },
     -- Guild recruitment patterns
     {
