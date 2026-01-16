@@ -150,7 +150,7 @@ function Engine.DetectIntent(tokens, langPack)
     -- Clamp score
     bestScore = Utils.Clamp(bestScore, 0.0, 1.0)
     
-    if bestScore > 0.3 then
+    if bestScore > 0.3 and bestIntent then
         return bestIntent, bestScore
     end
     
