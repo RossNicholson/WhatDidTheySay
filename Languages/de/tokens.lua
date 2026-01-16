@@ -50,6 +50,9 @@ WDTS_Lang_de_Tokens = {
     ["mana"] = "mana",
     ["gesundheit"] = "health",
     ["leben"] = "health",
+    ["tasche"] = "bag",
+    ["taschen"] = "bags",
+    ["tasschen"] = "bags", -- Diminutive form (small bags)
     
     -- Actions
     ["einladen"] = "invite",
@@ -253,6 +256,19 @@ WDTS_Lang_de_Tokens = {
     ["klein"] = "small",
     ["kleine"] = "small",
     
+    -- Articles (a/an/the)
+    ["ein"] = "a",
+    ["eine"] = "a",
+    ["einen"] = "a",
+    ["einem"] = "a",
+    ["eines"] = "a",
+    ["der"] = "the", -- Can mean "who/that" in context, but also "the"
+    ["die"] = "the", -- Can mean "who/that" in context, but also "the"
+    ["das"] = "the", -- Can mean "that" in context, but also "the"
+    ["den"] = "the", -- Also "whom/that"
+    ["dem"] = "the", -- Also "whom/that"
+    ["des"] = "the",
+    
     -- Possession and existence
     ["haben"] = "have",
     ["habt"] = "have",
@@ -267,10 +283,13 @@ WDTS_Lang_de_Tokens = {
     
     -- Pronouns and people
     ["jemand"] = "someone",
+    ["jmd"] = "someone", -- Abbreviation for jemand
     ["irgendjemand"] = "anyone",
     ["niemand"] = "no one",
     ["jeder"] = "everyone",
     ["alle"] = "all",
+    ["neuling"] = "newbie",
+    ["neulinge"] = "newbies",
     
     -- Pronouns (dative/accusative)
     ["mir"] = "me",
@@ -304,6 +323,9 @@ WDTS_Lang_de_Tokens = {
     ["mehr"] = "more",
     ["mehrere"] = "several",
     ["weniger"] = "less",
+    ["etwas"] = "something",
+    ["evtl"] = "maybe/perhaps", -- Abbreviation for eventuell
+    ["eventuell"] = "maybe/perhaps",
     
     -- Social and communication
     ["willkommen"] = "welcome",
