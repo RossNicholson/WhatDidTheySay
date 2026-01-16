@@ -35,16 +35,35 @@ local CHANNEL_MAP = {
     ["LFG"] = "LFG",
 }
 
--- Map channel names to channel types
+-- Map channel names to channel types (support multiple name variations)
 local CHANNEL_NAME_MAP = {
     ["Trade"] = "TRADE",
     ["Trade - City"] = "TRADE",
     ["General"] = "GENERAL",
     ["General - City"] = "GENERAL",
     ["LookingForGroup"] = "LFG",
+    ["Looking For Group"] = "LFG", -- Handle spaced version
     ["World"] = "WORLD",
     ["LocalDefense"] = "GENERAL", -- Often used as general chat
 }
+
+-- Normalize channel name for matching
+local function NormalizeChannelName(channelName)
+    if not channelName then
+        return nil
+    end
+    
+    -- Remove leading numbers like "5. " or "2. "
+    local normalized = channelName:match("[^%.]+$") or channelName
+    -- Trim whitespace
+    normalized = normalized:match("^%s*(.-)%s*$")
+    
+    -- Also try removing any trailing spaces or formatting
+    normalized = normalized:gsub("%s+", " ") -- Normalize multiple spaces to one
+    normalized = normalized:match("^%s*(.-)%s*$") -- Trim again
+    
+    return normalized
+end
 
 -- Get channel type from event
 local function GetChannelType(event, channelName)
@@ -59,21 +78,37 @@ local function GetChannelType(event, channelName)
     elseif event == "CHAT_MSG_GUILD" then
         return "GUILD"
     elseif event == "CHAT_MSG_CHANNEL" and channelName then
-        -- Check if channel name matches known channels
-        -- Channel name format is often like "2. Trade - City" or just "Trade"
-        local normalized = channelName:match("[^%.]+$") or channelName -- Remove leading numbers like "2. "
-        normalized = normalized:match("^%s*(.-)%s*$") -- Trim whitespace
+        -- Normalize channel name
+        local normalized = NormalizeChannelName(channelName)
+        if not normalized then
+            return nil
+        end
         
         -- Direct match
         if CHANNEL_NAME_MAP[normalized] then
             return CHANNEL_NAME_MAP[normalized]
         end
         
-        -- Partial match (e.g., "Trade - City" contains "Trade")
+        -- Case-insensitive match
+        local normalizedLower = normalized:lower()
         for name, type in pairs(CHANNEL_NAME_MAP) do
-            if normalized:find(name, 1, true) or name:find(normalized, 1, true) then
+            if name:lower() == normalizedLower then
                 return type
             end
+        end
+        
+        -- Partial match (e.g., "Trade - City" contains "Trade")
+        -- Check if normalized contains any of our channel keywords
+        if normalizedLower:find("trade", 1, true) then
+            return "TRADE"
+        elseif normalizedLower:find("general", 1, true) then
+            return "GENERAL"
+        elseif normalizedLower:find("looking") and normalizedLower:find("group", 1, true) then
+            return "LFG"
+        elseif normalizedLower:find("lfg", 1, true) then
+            return "LFG"
+        elseif normalizedLower:find("world", 1, true) then
+            return "WORLD"
         end
     end
     return nil
@@ -237,6 +272,15 @@ local function OnChatMessage(self, event, ...)
         sender = select(2, ...) or ""
         language = select(3, ...)
         channelName = select(4, ...)
+    end
+    
+    -- For CHAT_MSG_CHANNEL, channelName might be at position 9 (after other args)
+    -- Try to get it from multiple positions if not found at position 4
+    if event == "CHAT_MSG_CHANNEL" and (not channelName or channelName == "") then
+        channelName = select(9, ...) -- Channel name is often at position 9
+        if not channelName or channelName == "" then
+            channelName = select(4, ...) -- Fallback to position 4
+        end
     end
     
     -- Get channel type (pass channelName for CHAT_MSG_CHANNEL events)
