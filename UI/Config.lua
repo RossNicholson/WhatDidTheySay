@@ -12,7 +12,7 @@ function Config.CreateFrame()
     end
     
     local frame = CreateFrame("Frame", "WDTSConfigFrame", UIParent)
-    frame:SetSize(440, 500)
+    frame:SetSize(440, 520)
     frame:SetPoint("CENTER", UIParent, "CENTER")
     
     -- Create backdrop - simple solid background
