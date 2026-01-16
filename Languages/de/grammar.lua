@@ -302,5 +302,14 @@ WDTS_Lang_de_Grammar = {
             from = "we werden us (.+) loot klauen aber go there definitely still (.+) öfter rein",
             to = "we will steal a bit of loot but will definitely go in there more often",
         },
+        -- Fix "we want steal" -> "we will steal"
+        {
+            from = "we want steal a bit of loot but want definitely go in there more often",
+            to = "we will steal a bit of loot but will definitely go in there more often",
+        },
+        {
+            from = "we want (.+) but want (.+)",
+            to = "we will %1 but will %2",
+        },
     },
 }
