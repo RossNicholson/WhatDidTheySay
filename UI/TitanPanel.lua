@@ -162,20 +162,30 @@ WDTS_TitanPanel.registered = false
 
 -- Try to register when Titan Panel is ready
 local function TryRegister()
-    -- Prevent duplicate registration - set flag IMMEDIATELY to prevent race conditions
+    -- PRIMARY CHECK: If button frame already exists, we're already registered
+    -- This is the most reliable check - Titan Panel creates the button when registered
+    if _G["TitanPanelWDTSButton"] then
+        WDTS_TitanPanel.registered = true
+        return true
+    end
+    
+    -- SECONDARY CHECK: If flag is set, don't attempt again
     if WDTS_TitanPanel.registered then
         return false
     end
     
     if IsTitanPanelLoaded() and WhatDidTheySayDB then
-        -- Set flag BEFORE attempting registration to prevent race conditions
-        -- if TryRegister() is called from multiple events simultaneously
+        -- Set flag IMMEDIATELY to prevent race conditions
+        -- If both events fire simultaneously, only the first will proceed
         WDTS_TitanPanel.registered = true
         
         local success = WDTS_TitanPanel.Register()
         if not success then
             -- Registration failed, reset flag so we can try again later
-            WDTS_TitanPanel.registered = false
+            -- But only if button doesn't exist (might have been created elsewhere)
+            if not _G["TitanPanelWDTSButton"] then
+                WDTS_TitanPanel.registered = false
+            end
             return false
         end
         return true
