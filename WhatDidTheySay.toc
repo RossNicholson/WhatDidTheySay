@@ -1,0 +1,32 @@
+## Interface: 11508
+## Title: WhatDidTheySay
+## Notes: Offline chat translation for World of Warcraft Classic
+## Author: WhatDidTheySay
+## Version: 1.0.0
+## SavedVariables: WhatDidTheySayDB
+
+# Core modules
+Core/Utils.lua
+Core/Tokenizer.lua
+Core/LanguageDetect.lua
+Core/Confidence.lua
+Core/Engine.lua
+Core/ChatHooks.lua
+
+# Language packs
+Languages/en/tokens.lua
+Languages/en/intents.lua
+Languages/en/patterns.lua
+Languages/en/grammar.lua
+Languages/de/tokens.lua
+Languages/de/intents.lua
+Languages/de/patterns.lua
+Languages/de/grammar.lua
+
+# UI
+UI/Widgets.lua
+UI/Config.lua
+UI/FirstRun.lua
+
+# Main entry point
+WhatDidTheySay.lua
