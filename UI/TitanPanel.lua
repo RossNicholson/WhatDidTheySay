@@ -90,7 +90,17 @@ end
 
 -- Register with Titan Panel
 function WDTS_TitanPanel.Register()
+    -- Prevent duplicate registration
+    if WDTS_TitanPanel.registered then
+        return false
+    end
+    
     if not IsTitanPanelLoaded() then
+        return false
+    end
+    
+    -- Check if button already exists (prevent duplicate frame creation)
+    if _G["TitanPanelWDTSButton"] then
         return false
     end
     
