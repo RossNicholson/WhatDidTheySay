@@ -521,6 +521,15 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         end
     end
     
+    -- Check if message is likely already English (before checking sourceLang)
+    -- If detected language is English with high confidence, don't translate
+    local detectedLangAfterMixed = sourceLang or detectedLang
+    if detectedLangAfterMixed == "en" and (langConfidence or 0) >= 0.50 then
+        -- Message is clearly English - don't translate abbreviations like "BB", "pls"
+        -- These are already in English, just with abbreviations
+        return nil, 0.0, "already_english"
+    end
+    
     if not sourceLang or langConfidence < LanguageDetect.MIN_CONFIDENCE then
         return nil, 0.0, "language_unknown"
     end
