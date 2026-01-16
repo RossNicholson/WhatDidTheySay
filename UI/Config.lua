@@ -96,7 +96,6 @@ function Config.CreateFrame()
 
 |cffffd700Developer:|r Ross Nicholson |cffffd700Supported:|r German (de) → English (en)
 |cffffd700Confidence:|r ≥70% auto-display, <45% silent (by design)
-|cffffd700Protected:|r Player names, links, numbers never translated
 |cffffd700Note:|r Translations appear in main chat window only (WoW UI limitation)
 |cffffd700Command:|r |cffffff00/wdts|r]])
     infoText:SetTextColor(0.9, 0.9, 0.9, 1)
