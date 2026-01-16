@@ -256,4 +256,30 @@ WDTS_Lang_de_Patterns = {
         from = "(.+) gesucht",
         to = "%1 wanted",
     },
+    
+    -- Relative clause requests: "brauch wen der X" -> "need someone who X"
+    {
+        from = "brauch wen der (.+)",
+        to = "need someone who %1",
+    },
+    {
+        from = "brauche wen der (.+)",
+        to = "need someone who %1",
+    },
+    {
+        from = "braucht wen der (.+)",
+        to = "need someone who %1",
+    },
+    {
+        from = "brauch wen die (.+)",
+        to = "need someone who %1",
+    },
+    {
+        from = "brauche wen die (.+)",
+        to = "need someone who %1",
+    },
+    {
+        from = "braucht wen die (.+)",
+        to = "need someone who %1",
+    },
 }

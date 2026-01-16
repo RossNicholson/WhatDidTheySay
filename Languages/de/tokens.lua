@@ -32,6 +32,7 @@ WDTS_Lang_de_Tokens = {
     ["gesucht"] = "wanted", -- Past participle: "schmied gesucht" = "blacksmith wanted"
     ["brauche"] = "need",
     ["braucht"] = "need",
+    ["brauch"] = "need", -- Colloquial form
     ["will"] = "want",
     ["willst"] = "want",
     ["kannst"] = "can you",
@@ -73,6 +74,10 @@ WDTS_Lang_de_Tokens = {
     ["beschwören"] = "summon",
     ["bereit"] = "ready",
     ["fertig"] = "ready",
+    ["aufmachen"] = "open",
+    ["aufmacht"] = "opens",
+    ["auf"] = "open/up", -- Separable prefix: "macht auf" = "opens"
+    ["aufgemacht"] = "opened",
     
     -- LFG related
     ["für"] = "for",
@@ -85,6 +90,7 @@ WDTS_Lang_de_Tokens = {
     ["danke"] = "thanks",
     ["dankeschön"] = "thank you",
     ["bitte"] = "please",
+    ["bitti"] = "please", -- Common typo/colloquial spelling
     ["hilfe"] = "help",
     ["ja"] = "yes",
     ["nein"] = "no",
