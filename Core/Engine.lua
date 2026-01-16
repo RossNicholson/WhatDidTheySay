@@ -514,6 +514,36 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
             end
     end
     
+    -- Check if message is purely English abbreviations/gaming terms
+    -- Do this EARLY before mixed-language detection to prevent false positives
+    -- If all words are universal gaming abbreviations, it's English and doesn't need translation
+    local allUniversalAbbrevs = true
+    local universalAbbrevsForCheck = {
+        ["bb"] = true, ["pls"] = true, ["summon"] = true, ["summons"] = true,
+        ["sw"] = true, ["lf"] = true, ["lfg"] = true, ["lfm"] = true, ["lfw"] = true,
+        ["wts"] = true, ["wtb"] = true, ["tank"] = true, ["heal"] = true, ["healer"] = true,
+        ["dm"] = true, ["port"] = true, ["buff"] = true, ["quest"] = true,
+        ["tp"] = true, ["tpn"] = true, ["darna"] = true, ["darnassus"] = true,
+        ["for"] = true, ["to"] = true, ["with"] = true, -- Common English prepositions
+        ["mage"] = true, ["warrior"] = true, ["rogue"] = true, ["hunter"] = true,
+        ["priest"] = true, ["warlock"] = true, ["druid"] = true, ["shaman"] = true, ["paladin"] = true,
+    }
+    local wordCount = 0
+    for _, token in ipairs(tokens) do
+        if token.type == "word" then
+            wordCount = wordCount + 1
+            local word = token.value:lower()
+            if not universalAbbrevsForCheck[word] then
+                allUniversalAbbrevs = false
+                break
+            end
+        end
+    end
+    -- If all words are universal abbreviations, it's English and doesn't need translation
+    if allUniversalAbbrevs and wordCount > 0 then
+        return nil, 0.0, "already_english"
+    end
+    
     -- Special case: Very short messages (1-2 words) that are likely English greetings
     -- These don't need translation - they're universal
     if #tokens <= 2 then
@@ -538,35 +568,6 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
             -- Skip translation for universal English greetings
             return nil, 0.0, "english_greeting"
         end
-    end
-    
-    -- Check if message is purely English abbreviations/gaming terms
-    -- If all words are universal gaming abbreviations, it's English and doesn't need translation
-    local allUniversalAbbrevs = true
-    local universalAbbrevsForCheck = {
-        ["bb"] = true, ["pls"] = true, ["summon"] = true, ["summons"] = true,
-        ["sw"] = true, ["lf"] = true, ["lfg"] = true, ["lfm"] = true, ["lfw"] = true,
-        ["wts"] = true, ["wtb"] = true, ["tank"] = true, ["heal"] = true, ["healer"] = true,
-        ["dm"] = true, ["port"] = true, ["buff"] = true, ["quest"] = true,
-        ["tp"] = true, ["tpn"] = true, ["darna"] = true, ["darnassus"] = true,
-        ["for"] = true, ["to"] = true, ["with"] = true, -- Common English prepositions
-        ["mage"] = true, ["warrior"] = true, ["rogue"] = true, ["hunter"] = true,
-        ["priest"] = true, ["warlock"] = true, ["druid"] = true, ["shaman"] = true, ["paladin"] = true,
-    }
-    local wordCount = 0
-    for _, token in ipairs(tokens) do
-        if token.type == "word" then
-            wordCount = wordCount + 1
-            local word = token.value:lower()
-            if not universalAbbrevsForCheck[word] then
-                allUniversalAbbrevs = false
-                break
-            end
-        end
-    end
-    -- If all words are universal abbreviations and no German words were found, it's English
-    if allUniversalAbbrevs and wordCount > 0 and (not sourceLang or sourceLang ~= "de") then
-        return nil, 0.0, "already_english"
     end
     
     if not sourceLang or langConfidence < LanguageDetect.MIN_CONFIDENCE then
