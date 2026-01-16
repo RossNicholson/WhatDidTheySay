@@ -14,15 +14,47 @@ function Config.CreateFrame()
     local frame = CreateFrame("Frame", "WDTSConfigFrame", UIParent)
     frame:SetSize(400, 500)
     frame:SetPoint("CENTER", UIParent, "CENTER")
-    frame:SetBackdrop({
-        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-        edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
-        tile = true,
-        tileSize = 32,
-        edgeSize = 32,
-        insets = { left = 8, right = 8, top = 8, bottom = 8 },
-    })
-    frame:SetBackdropColor(0, 0, 0, 1)
+    
+    -- Create backdrop manually for Classic compatibility
+    local backdrop = CreateFrame("Frame", nil, frame)
+    backdrop:SetAllPoints(frame)
+    backdrop:SetFrameLevel(frame:GetFrameLevel() - 1)
+    
+    -- Background texture
+    local bg = backdrop:CreateTexture(nil, "BACKGROUND")
+    bg:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
+    bg:SetAllPoints(backdrop)
+    bg:SetVertexColor(0, 0, 0, 1)
+    
+    -- Border textures (simplified for Classic)
+    local borderTop = backdrop:CreateTexture(nil, "BORDER")
+    borderTop:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Border")
+    borderTop:SetPoint("TOPLEFT", backdrop, "TOPLEFT", -32, 32)
+    borderTop:SetPoint("TOPRIGHT", backdrop, "TOPRIGHT", 32, 32)
+    borderTop:SetHeight(32)
+    borderTop:SetTexCoord(0, 1, 0, 0.25)
+    
+    local borderBottom = backdrop:CreateTexture(nil, "BORDER")
+    borderBottom:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Border")
+    borderBottom:SetPoint("BOTTOMLEFT", backdrop, "BOTTOMLEFT", -32, -32)
+    borderBottom:SetPoint("BOTTOMRIGHT", backdrop, "BOTTOMRIGHT", 32, -32)
+    borderBottom:SetHeight(32)
+    borderBottom:SetTexCoord(0, 1, 0.75, 1)
+    
+    local borderLeft = backdrop:CreateTexture(nil, "BORDER")
+    borderLeft:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Border")
+    borderLeft:SetPoint("TOPLEFT", backdrop, "TOPLEFT", -32, 32)
+    borderLeft:SetPoint("BOTTOMLEFT", backdrop, "BOTTOMLEFT", -32, -32)
+    borderLeft:SetWidth(32)
+    borderLeft:SetTexCoord(0, 0.25, 0, 1)
+    
+    local borderRight = backdrop:CreateTexture(nil, "BORDER")
+    borderRight:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Border")
+    borderRight:SetPoint("TOPRIGHT", backdrop, "TOPRIGHT", 32, 32)
+    borderRight:SetPoint("BOTTOMRIGHT", backdrop, "BOTTOMRIGHT", 32, -32)
+    borderRight:SetWidth(32)
+    borderRight:SetTexCoord(0.75, 1, 0, 1)
+    
     frame:EnableMouse(true)
     frame:SetMovable(true)
     frame:RegisterForDrag("LeftButton")
