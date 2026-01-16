@@ -207,7 +207,7 @@ function Config.CreateFrame()
     -- Ensure clear gap between checkbox and button to prevent overlap
     local closeBtn = CreateFrame("Button", nil, frame, "GameMenuButtonTemplate")
     closeBtn:SetSize(120, 32)
-    closeBtn:SetPoint("BOTTOM", frame, "BOTTOM", 0, 50)
+    closeBtn:SetPoint("BOTTOM", frame, "BOTTOM", 0, 55)
     closeBtn:SetText("Close")
     closeBtn:SetScript("OnClick", function()
         frame:Hide()
