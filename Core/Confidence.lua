@@ -25,20 +25,40 @@ function Confidence.Calculate(params)
     local coverage = params.phraseCoverage or 0.0
     local unknownRatio = params.unknownTokenRatio or 0.0
     local length = params.messageLength or 0
+    local similarity = params.translationSimilarity or 0.0
     
     -- Base score from language detection
-    local score = langConf * 0.4
+    local score = langConf * 0.3 -- Reduced weight
+    
+    -- Coverage is CRITICAL - heavily weight it
+    -- If we didn't translate most words, confidence should be low
+    score = score + (coverage * 0.4) -- Increased weight from 0.2 to 0.4
     
     -- Intent confidence bonus (if intent was detected)
     if intentConf > 0 then
-        score = score + (intentConf * 0.3)
+        score = score + (intentConf * 0.2) -- Reduced weight
     end
     
-    -- Coverage bonus (how much we translated)
-    score = score + (coverage * 0.2)
+    -- Unknown token penalty (more severe)
+    score = score - (unknownRatio * 0.3) -- Increased penalty from 0.2 to 0.3
     
-    -- Unknown token penalty
-    score = score - (unknownRatio * 0.2)
+    -- Similarity penalty: if translation is too similar to original, heavily penalize
+    if similarity > 0.60 then
+        -- More than 60% similar means we barely translated anything
+        score = score * (1.0 - (similarity - 0.6) * 2.5) -- Reduce score significantly
+    end
+    
+    -- Coverage-based penalties (critical check)
+    if coverage < 0.3 then
+        -- Less than 30% translated - very low confidence
+        score = score * 0.4
+    elseif coverage < 0.5 then
+        -- Less than 50% translated - low confidence
+        score = score * 0.6
+    elseif coverage < 0.7 then
+        -- Less than 70% translated - moderate penalty
+        score = score * 0.8
+    end
     
     -- Length adjustment (very short messages are harder)
     if length < 3 then
