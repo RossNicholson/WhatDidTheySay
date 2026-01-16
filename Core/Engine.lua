@@ -25,9 +25,10 @@ end
 -- Load language pack
 function Engine.LoadLanguagePack(lang)
     -- Always reload to pick up new vocabulary (cache cleared on reload anyway)
-    -- if Engine.languagePacks[lang] then
-    --     return Engine.languagePacks[lang]
-    -- end
+    -- Clear phrase cache to force rebuild
+    if Engine.languagePacks[lang] then
+        Engine.languagePacks[lang]._phraseLookupCache = nil
+    end
     
     local pack = {
         tokens = {},
@@ -35,6 +36,7 @@ function Engine.LoadLanguagePack(lang)
         intents = {},
         patterns = {},
         grammar = {},
+        _phraseLookupCache = nil, -- Will be built on first use
     }
     
     -- Try to load language pack files
