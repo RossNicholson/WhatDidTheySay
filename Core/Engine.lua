@@ -290,6 +290,13 @@ local function GetContextualTranslation(token, prevToken, nextToken, langPack)
             if tokenKey == "von" and nextToken.original:match("^[A-Z]") then
                 return "of"
             end
+            -- Special case: "den" before a noun (especially in quest/item names) means "the"
+            -- "den" can mean "whom/that" as a relative pronoun, but when followed by a noun it's an article
+            if tokenKey == "den" and nextToken.type == "word" then
+                -- Check if it's likely an article (followed by a noun/object, not a verb)
+                -- Common patterns: "den Hauptstein", "den Buff", etc.
+                return "the"
+            end
         end
         -- Default translation
         if translation.default then
