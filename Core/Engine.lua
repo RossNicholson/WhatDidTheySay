@@ -5,6 +5,7 @@ local Utils = WDTS_Utils
 local Tokenizer = WDTS_Tokenizer
 local LanguageDetect = WDTS_LanguageDetect
 local Confidence = WDTS_Confidence
+local LanguagePackManager = WDTS_LanguagePackManager
 
 local Engine = {}
 Engine.initialized = false
@@ -243,7 +244,12 @@ function Engine.Translate(message, sourceLang, targetLang)
         return nil, 0.0, "same_language"
     end
     
-    -- Step 3: Load language pack
+    -- Step 3: Check if language pack is enabled
+    if not LanguagePackManager.IsEnabled(sourceLang) then
+        return nil, 0.0, "language_pack_disabled"
+    end
+    
+    -- Step 3b: Load language pack
     local langPack = Engine.LoadLanguagePack(sourceLang)
     if not langPack or not langPack.tokens then
         return nil, 0.0, "language_pack_missing"
@@ -307,8 +313,19 @@ function Engine.Initialize()
         return
     end
     
-    -- Preload default language packs (en is usually not needed, but load de)
-    Engine.LoadLanguagePack("de")
+    -- Initialize language pack manager
+    LanguagePackManager.Initialize()
+    
+    -- Connect LanguagePackManager to LanguageDetect
+    LanguageDetect.LanguagePackManager = LanguagePackManager
+    
+    -- Preload enabled language packs
+    local packs = LanguagePackManager.GetAvailablePacks()
+    for lang, pack in pairs(packs) do
+        if LanguagePackManager.IsEnabled(lang) then
+            Engine.LoadLanguagePack(lang)
+        end
+    end
     
     Engine.initialized = true
 end

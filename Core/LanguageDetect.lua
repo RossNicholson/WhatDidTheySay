@@ -4,6 +4,9 @@
 local Utils = WDTS_Utils
 local LanguageDetect = {}
 
+-- Will be set during initialization
+LanguageDetect.LanguagePackManager = nil
+
 -- Function words for each language (high-frequency, language-specific)
 LanguageDetect.FUNCTION_WORDS = {
     en = {
@@ -55,41 +58,49 @@ function LanguageDetect.Detect(tokens)
     -- Build text from tokens for character analysis
     local text = table.concat(wordTokens, " ")
     
-    -- Score each language
+    -- Score each language (only enabled ones)
     local scores = {}
     for lang, functionWords in pairs(LanguageDetect.FUNCTION_WORDS) do
-        local score = 0.0
-        local matches = 0
-        
-        -- Function word matching
-        for _, word in ipairs(wordTokens) do
-            for _, fw in ipairs(functionWords) do
-                if word == fw then
-                    matches = matches + 1
-                    break
+        -- Skip if language pack is disabled (but "en" is okay as it's the target)
+        if lang ~= "en" then
+            if LanguageDetect.LanguagePackManager and not LanguageDetect.LanguagePackManager.IsEnabled(lang) then
+                -- Skip disabled languages
+            else
+                -- Language is enabled, score it
+                local score = 0.0
+                local matches = 0
+                
+                -- Function word matching
+                for _, word in ipairs(wordTokens) do
+                    for _, fw in ipairs(functionWords) do
+                        if word == fw then
+                            matches = matches + 1
+                            break
+                        end
+                    end
                 end
+                
+                -- Normalize by word count
+                if #wordTokens > 0 then
+                    score = matches / #wordTokens
+                end
+                
+                -- Character hint bonus
+                local charHints = LanguageDetect.CHAR_HINTS[lang]
+                if charHints then
+                    local charMatches = 0
+                    for _, char in ipairs(charHints) do
+                        if text:find(char, 1, true) then
+                            charMatches = charMatches + 1
+                        end
+                    end
+                    -- Small bonus for character hints
+                    score = score + (charMatches * 0.1)
+                end
+                
+                scores[lang] = score
             end
         end
-        
-        -- Normalize by word count
-        if #wordTokens > 0 then
-            score = matches / #wordTokens
-        end
-        
-        -- Character hint bonus
-        local charHints = LanguageDetect.CHAR_HINTS[lang]
-        if charHints then
-            local charMatches = 0
-            for _, char in ipairs(charHints) do
-                if text:find(char, 1, true) then
-                    charMatches = charMatches + 1
-                end
-            end
-            -- Small bonus for character hints
-            score = score + (charMatches * 0.1)
-        end
-        
-        scores[lang] = score
     end
     
     -- Find best match
@@ -126,6 +137,11 @@ function LanguageDetect.HasCharHints(text, lang)
     end
     
     return false
+end
+
+-- Initialize language detection (called after LanguagePackManager is available)
+function LanguageDetect.Initialize()
+    -- This will be called from Engine.Initialize after LanguagePackManager is set
 end
 
 WDTS_LanguageDetect = LanguageDetect

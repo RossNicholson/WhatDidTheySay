@@ -21,6 +21,10 @@ if not WhatDidTheySayDB then
         showOriginal = true,
         minConfidence = 0.70,
         firstRun = true,
+        enabledLanguages = {
+            ["de"] = true, -- German enabled by default
+            ["en"] = false, -- English is target, not source
+        },
     }
 end
 

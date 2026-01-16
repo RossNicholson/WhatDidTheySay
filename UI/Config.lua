@@ -4,6 +4,7 @@
 local Widgets = WDTS_Widgets
 local Config = {}
 Config.frame = nil
+local LanguagePackManager = WDTS_LanguagePackManager
 
 -- Create configuration frame
 function Config.CreateFrame()
@@ -12,7 +13,7 @@ function Config.CreateFrame()
     end
     
     local frame = CreateFrame("Frame", "WDTSConfigFrame", UIParent)
-    frame:SetSize(440, 540)
+    frame:SetSize(440, 600)
     frame:SetPoint("CENTER", UIParent, "CENTER")
     
     -- Create backdrop - simple solid background
@@ -99,13 +100,55 @@ function Config.CreateFrame()
 |cffffd700Command:|r |cffffff00/wdts|r]])
     infoText:SetTextColor(0.9, 0.9, 0.9, 1)
     
+    -- Language Packs section (before channels)
+    local langPackLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    langPackLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -150)
+    langPackLabel:SetText("|cffffffffLanguage Packs:|r")
+    langPackLabel:SetTextColor(1, 1, 0.8, 1)
+    
+    -- Discover and display available language packs
+    LanguagePackManager.DiscoverPacks()
+    local packs = LanguagePackManager.GetAvailablePacks()
+    local langPackYOffset = -175
+    local langPackCheckboxes = {}
+    
+    -- Sort languages for display
+    local sortedLangs = {}
+    for lang, pack in pairs(packs) do
+        if lang ~= "en" then -- Skip English as it's the target language
+            table.insert(sortedLangs, {lang = lang, pack = pack})
+        end
+    end
+    table.sort(sortedLangs, function(a, b) return a.lang < b.lang end)
+    
+    for i, item in ipairs(sortedLangs) do
+        local lang = item.lang
+        local pack = item.pack
+        local displayText = pack.name
+        if pack.nativeName and pack.nativeName ~= pack.name then
+            displayText = displayText .. " (" .. pack.nativeName .. ")"
+        end
+        displayText = displayText .. " - " .. pack.direction
+        
+        local check, label = Widgets.CreateCheckbox(frame, displayText, 35, langPackYOffset, function(checked)
+            if checked then
+                LanguagePackManager.EnablePack(lang)
+            else
+                LanguagePackManager.DisablePack(lang)
+            end
+        end)
+        check:SetChecked(LanguagePackManager.IsEnabled(lang))
+        langPackCheckboxes[lang] = check
+        langPackYOffset = langPackYOffset - 25
+    end
+    
     -- Channel settings section
     local channelLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    channelLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -150)
+    channelLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, langPackYOffset - 15)
     channelLabel:SetText("|cffffffffEnabled Channels:|r")
     channelLabel:SetTextColor(1, 1, 0.8, 1)
     
-    local yOffset = -175
+    local yOffset = langPackYOffset - 35
     local checkboxes = {}
     
     -- Group channels logically
