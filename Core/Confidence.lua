@@ -34,6 +34,12 @@ function Confidence.Calculate(params)
     -- If we translated most German words (even if some are English), that's good
     score = score + (coverage * 0.45) -- Increased weight, but less penalizing overall
     
+    -- Special boost for short messages (2-3 words) with high coverage
+    -- These are often common phrases that translate reliably
+    if length >= 2 and length <= 3 and coverage >= 0.9 then
+        score = score + 0.15 -- Significant boost for reliable short phrases
+    end
+    
     -- Intent confidence bonus (if intent was detected)
     if intentConf > 0 then
         score = score + (intentConf * 0.15) -- Intent helps but not critical
@@ -66,9 +72,17 @@ function Confidence.Calculate(params)
     end
     -- coverage >= 0.7 gets no penalty
     
-    -- Length adjustment (very short messages are harder)
+    -- Length adjustment (very short messages - but if we have high coverage, boost confidence)
     if length < 3 then
-        score = score * 0.9
+        if coverage >= 1.0 then
+            -- Perfect coverage for short messages is actually good - boost it
+            score = score * 1.1
+        else
+            score = score * 0.9
+        end
+    elseif length == 2 and coverage >= 0.8 then
+        -- Two-word messages with good coverage are reliable
+        score = score * 1.05
     elseif length > 15 then
         score = score * 0.95 -- Slightly harder for very long messages
     end

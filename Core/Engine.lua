@@ -432,6 +432,32 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         end
     end
     
+    -- Special case: Very short messages (1-2 words) that are likely English greetings
+    -- These don't need translation - they're universal
+    if #tokens <= 2 then
+        local allEnglishGreetings = true
+        local englishGreetings = {"hi", "hey", "yo", "ok", "okay", "r", "rdy", "ready"}
+        for _, token in ipairs(tokens) do
+            if token.type == "word" then
+                local isGreeting = false
+                for _, greeting in ipairs(englishGreetings) do
+                    if token.value:lower() == greeting then
+                        isGreeting = true
+                        break
+                    end
+                end
+                if not isGreeting then
+                    allEnglishGreetings = false
+                    break
+                end
+            end
+        end
+        if allEnglishGreetings then
+            -- Skip translation for universal English greetings
+            return nil, 0.0, "english_greeting"
+        end
+    end
+    
     if not sourceLang or langConfidence < LanguageDetect.MIN_CONFIDENCE then
         return nil, 0.0, "language_unknown"
     end
