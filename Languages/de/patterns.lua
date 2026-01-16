@@ -26,6 +26,10 @@ WDTS_Lang_de_Patterns = {
         to = "are you looking for a %1 guild",
     },
     {
+        from = "du suchst eine (.+) gilde",
+        to = "you are looking for a %1 guild",
+    },
+    {
         from = "sucht eine (.+) gilde",
         to = "looking for a %1 guild",
     },
@@ -41,6 +45,10 @@ WDTS_Lang_de_Patterns = {
     {
         from = "komm zu \"(.+)\"",
         to = "come to \"%1\"",
+    },
+    {
+        from = "komm zu (.+) und",
+        to = "come to %1 and",
     },
     {
         from = "kommt zu \"(.+)\"",

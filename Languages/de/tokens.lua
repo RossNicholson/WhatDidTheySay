@@ -17,6 +17,7 @@ WDTS_Lang_de_Tokens = {
     ["höhlen des wehklagens"] = "Wailing Caverns",
     ["hdw"] = "Wailing Caverns", -- Abbreviation for Höhlen des Wehklagens
     ["totenminen"] = "Deadmines",
+    ["todesminen"] = "Deadmines", -- Alternative spelling
     ["dm"] = "Deadmines",
     ["burg"] = "Shadowfang Keep",
     ["schattenfang"] = "Shadowfang Keep",
@@ -29,6 +30,7 @@ WDTS_Lang_de_Tokens = {
     -- Common verbs
     ["suche"] = "looking for",
     ["sucht"] = "looking for",
+    ["suchst"] = "are looking for", -- 2nd person: "Du suchst" = "You are looking for"
     ["gesucht"] = "wanted", -- Past participle: "schmied gesucht" = "blacksmith wanted"
     ["brauche"] = "need",
     ["braucht"] = "need",
@@ -445,6 +447,8 @@ WDTS_Lang_de_Tokens = {
     -- Social and communication
     ["willkommen"] = "welcome",
     ["genießen"] = "enjoy",
+    ["genieße"] = "enjoy", -- 1st person: "ich genieße" = "I enjoy"
+    ["genießt"] = "enjoy", -- 3rd person: "er/sie genießt" = "he/she enjoys"
     ["genießt"] = "enjoys",
     ["freuen"] = "be happy",
     ["freut"] = "is happy",
@@ -497,6 +501,10 @@ WDTS_Lang_de_Tokens = {
     ["wtb"] = "wtb", -- Want to buy
     ["lfm"] = "lfm", -- Looking for more
     ["lfg"] = "lfg", -- Looking for group
+    ["ifg"] = "lfg", -- Common typo for LFG
+    ["innis"] = "instances/dungeons", -- Abbreviation for Instanzen (dungeons/instances)
+    ["instanzen"] = "instances/dungeons",
+    ["world"] = "world", -- Often used in German WoW context
     ["gg"] = "gg", -- Good game (used as-is)
     ["wp"] = "wp", -- Well played
     ["gl"] = "gl", -- Good luck
