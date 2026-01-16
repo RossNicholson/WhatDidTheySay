@@ -601,6 +601,12 @@ WDTS_Lang_de_Tokens = {
     ["wovon"] = "from what",
     ["wohin"] = "where to",
     ["woher"] = "where from",
+    ["hin"] = "to/there", -- "wohin" = "where to", "hin gehen" = "go there"
+    ["eigentlich"] = "actually", -- "eigentlich" = "actually/in fact"
+    
+    -- Raid/Dungeon abbreviations
+    ["zg"] = "Zul'Gurub",
+    ["zulgurub"] = "Zul'Gurub",
     
     -- Numbers (for trading/levels)
     ["eins"] = "one",
