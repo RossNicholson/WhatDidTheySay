@@ -67,7 +67,7 @@ if not WhatDidTheySayDB then
         showOriginal = true,
         minConfidence = 0.70,
         firstRun = true,
-        showTranslationIndicator = "color", -- "none", "color", "tag", "underline", "tag_underline"
+        showTranslationIndicator = "color", -- "none" = no indicator, "color" = subtle color tint only
         enabledLanguagePacks = {
             de = true, -- German enabled by default
         },

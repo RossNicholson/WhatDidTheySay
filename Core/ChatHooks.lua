@@ -192,46 +192,21 @@ local function UnderlineText(text)
 end
 
 -- Format original message with translation indicator
+-- Simple: just change the message text color, preserve everything else (channel, player name, etc.)
 local function FormatTranslatedMessage(originalMessage, confidence)
-    local indicatorStyle = WhatDidTheySayDB.showTranslationIndicator or "color" -- "none", "color", "tag", "underline", "tag_underline"
+    local indicatorStyle = WhatDidTheySayDB.showTranslationIndicator or "color"
     
     if indicatorStyle == "none" then
         return originalMessage
     end
     
-    local colored = originalMessage
-    local tag = ""
-    
-    -- Add color tint (subtle blue/green tint)
-    if indicatorStyle == "color" or indicatorStyle == "tag" or indicatorStyle == "tag_underline" then
-        if confidence >= 0.70 then
-            colored = "|cff88ffaa" .. originalMessage .. "|r" -- Light green tint
-        else
-            colored = "|cffffcc88" .. originalMessage .. "|r" -- Light yellow tint
-        end
-    end
-    
-    -- Add prefix tag
-    if indicatorStyle == "tag" or indicatorStyle == "tag_underline" then
-        tag = "|cff00ff00[T]|r "
-    end
-    
-    -- Add underline
-    local final = colored
-    if indicatorStyle == "underline" or indicatorStyle == "tag_underline" then
-        -- Remove color codes temporarily for underline, then reapply
-        local cleanText = originalMessage:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
-        local underlined = UnderlineText(cleanText)
-        if confidence >= 0.70 then
-            final = "|cff88ffaa" .. tag .. underlined .. "|r"
-        else
-            final = "|cffffcc88" .. tag .. underlined .. "|r"
-        end
+    -- Only apply color - nothing else (no tags, no underlines)
+    -- The message parameter is just the message text, channel info is handled separately by WoW
+    if confidence >= 0.70 then
+        return "|cff88ccff" .. originalMessage .. "|r" -- Light blue tint (subtle)
     else
-        final = tag .. colored
+        return "|cffffcc88" .. originalMessage .. "|r" -- Light yellow tint (less confident)
     end
-    
-    return final
 end
 
 -- Display translation in chat
