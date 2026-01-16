@@ -545,9 +545,11 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     local allUniversalAbbrevs = true
     local universalAbbrevsForCheck = {
         ["bb"] = true, ["pls"] = true, ["summon"] = true, ["summons"] = true,
-        ["sw"] = true, ["lf"] = true, ["lfg"] = true, ["lfm"] = true,
+        ["sw"] = true, ["lf"] = true, ["lfg"] = true, ["lfm"] = true, ["lfw"] = true,
         ["wts"] = true, ["wtb"] = true, ["tank"] = true, ["heal"] = true,
         ["dm"] = true, ["port"] = true, ["buff"] = true, ["quest"] = true,
+        ["tp"] = true, ["tpn"] = true, ["darna"] = true, ["darnassus"] = true,
+        ["for"] = true, ["to"] = true, ["with"] = true, -- Common English prepositions
     }
     local wordCount = 0
     for _, token in ipairs(tokens) do
