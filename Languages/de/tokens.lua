@@ -290,6 +290,10 @@ WDTS_Lang_de_Tokens = {
     
     -- Trading and economy
     ["handel"] = "trade",
+    ["intern"] = "internal",
+    ["entspannte"] = "relaxed",
+    ["entspannt"] = "relaxed",
+    ["community"] = "community", -- Often used as-is, but good to have
     ["verkaufen"] = "sell",
     ["verkaufe"] = "selling",
     ["verkauft"] = "sells",
