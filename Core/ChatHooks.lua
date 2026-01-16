@@ -232,7 +232,7 @@ local function TranslationChanged(original, translated)
 end
 
 -- Display translation in chat
-local function DisplayTranslation(originalMessage, translatedMessage, confidence, intent, delay)
+local function DisplayTranslation(originalMessage, translatedMessage, confidence, intent, msgHash, delay)
     -- Don't show translation if it's identical or nearly identical to original
     if not TranslationChanged(originalMessage, translatedMessage) then
         return -- Translation didn't actually change anything, don't show it
@@ -253,9 +253,24 @@ local function DisplayTranslation(originalMessage, translatedMessage, confidence
     
     -- Helper function to actually add the message
     local function AddTranslationMessage()
-        -- Display in all active chat frames for better visibility
-        local chatFrames = { ChatFrame1, ChatFrame2, ChatFrame3, ChatFrame4, ChatFrame5, ChatFrame6, ChatFrame7 }
-        for _, frame in ipairs(chatFrames) do
+        -- Get the chat frames that received the original message
+        local targetFrames = {}
+        if msgHash and ChatHooks.messageFrames[msgHash] then
+            -- Only display in frames that received the original message
+            targetFrames = ChatHooks.messageFrames[msgHash]
+        else
+            -- Fallback: if we don't have frame tracking, use all visible frames
+            -- This handles edge cases where message wasn't tracked
+            local chatFrames = { ChatFrame1, ChatFrame2, ChatFrame3, ChatFrame4, ChatFrame5, ChatFrame6, ChatFrame7 }
+            for _, frame in ipairs(chatFrames) do
+                if frame and frame:IsShown() then
+                    table.insert(targetFrames, frame)
+                end
+            end
+        end
+        
+        -- Display translation only in the frames that received the original message
+        for _, frame in ipairs(targetFrames) do
             if frame and frame:IsShown() then
                 frame:AddMessage(output)
             end
@@ -360,13 +375,13 @@ local function OnChatMessage(self, event, ...)
     
     if behavior == "auto_display" then
         if WhatDidTheySayDB.autoTranslate then
-            DisplayTranslation(message, translated, confidence, intent)
+            DisplayTranslation(message, translated, confidence, intent, msgHash)
         end
     elseif behavior == "manual_option" then
         -- Would show manual option UI here
         -- For now, do nothing unless auto-translate is enabled
         if WhatDidTheySayDB.autoTranslate then
-            DisplayTranslation(message, translated, confidence, intent)
+            DisplayTranslation(message, translated, confidence, intent, msgHash)
         end
     end
     -- behavior == "silent" - do nothing
