@@ -286,6 +286,10 @@ local function GetContextualTranslation(token, prevToken, nextToken, langPack)
             if translation.before and translation.before[nextLower] then
                 return translation.before[nextLower]
             end
+            -- Special case: "von" before a proper noun (capitalized) in item names means "of"
+            if tokenKey == "von" and nextToken.original:match("^[A-Z]") then
+                return "of"
+            end
         end
         -- Default translation
         return translation.default or translation[1]

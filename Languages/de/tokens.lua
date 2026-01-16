@@ -583,7 +583,7 @@ WDTS_Lang_de_Tokens = {
     ["stab"] = "staff/stick",
     ["zum"] = "to/for", -- Contraction of "zu dem" = "to the/for the"
     ["zur"] = "to the", -- Contraction of "zu der" = "to the" (feminine)
-    ["von"] = "from",
+    -- "von" handled below as context-aware (item names use "of", general use "from")
     ["nach"] = "to",
     ["treffen"] = "meet",
     ["triff"] = "meet",
@@ -900,6 +900,14 @@ WDTS_Lang_de_Tokens = {
     ["zerbricht"] = "breaks",
     ["abzeichen"] = "badge",
     ["stromgarde"] = "Stromgarde",
+    ["trelanes"] = "Trelane's",
+    ["trelane"] = "Trelane",
+    ["verteidigung"] = "defense",
+    ["von"] = {
+        default = "from",
+        -- In item/quest names, "von" means "of"
+        in_item_context = true, -- Special flag for context-aware translation
+    },
     
     -- More common gaming terms
     ["tank"] = "tank", -- Often used as-is in German WoW
