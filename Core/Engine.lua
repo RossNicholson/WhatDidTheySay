@@ -466,7 +466,7 @@ function Engine.Translate(message, sourceLang, targetLang)
         return nil, 0.0, "translation_too_similar"
     end
     
-    -- Step 10: Calculate confidence
+    -- Step 10: Calculate confidence (coverage penalties are handled in Confidence.Calculate)
     local finalConfidence = Confidence.Calculate({
         languageConfidence = langConfidence,
         intentConfidence = intentConfidence,
@@ -475,13 +475,6 @@ function Engine.Translate(message, sourceLang, targetLang)
         messageLength = #tokens,
         translationSimilarity = similarity, -- Pass similarity for penalty
     })
-    
-    -- Heavily penalize low coverage translations
-    if coverage < 0.3 then
-        finalConfidence = finalConfidence * 0.5 -- Cut confidence in half if less than 30% translated
-    elseif coverage < 0.5 then
-        finalConfidence = finalConfidence * 0.7 -- Reduce by 30% if less than 50% translated
-    end
     
     local intentId = intent and intent.id or nil
     
