@@ -153,6 +153,8 @@ WDTS_Lang_de_Phrases = {
     -- Guild/recruitment phrases
     ["neue gilde"] = "new guild",
     ["neue gilde sucht"] = "new guild looking for",
+    ["wir ziehen"] = "we pull/we attract",
+    ["ziehen an"] = "attract/pull at",
     ["viewer gilde"] = "viewer guild",
     ["viewergilde"] = "viewer guild",
     

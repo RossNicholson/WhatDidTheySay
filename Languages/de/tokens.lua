@@ -111,6 +111,7 @@ WDTS_Lang_de_Tokens = {
     ["und"] = "and",
     ["oder"] = "or",
     ["als"] = "as",
+    ["an"] = "at/on", -- Preposition: "an wie" = "like/as"
     ["anbieten"] = "offer",
     ["bieten"] = "offer",
     ["bietet"] = "offers",
@@ -164,7 +165,7 @@ WDTS_Lang_de_Tokens = {
     ["wann"] = "when",
     ["wer"] = "who",
     ["warum"] = "why",
-    ["wie"] = "how",
+    ["wie"] = "like/as", -- "wie" can mean "how" or "like/as" depending on context
     
     -- Status words
     ["tot"] = "dead",
@@ -699,6 +700,9 @@ WDTS_Lang_de_Tokens = {
     ["kommen"] = "come",
     ["kommt"] = "comes",
     ["zurückziehen"] = "retreat/pull back",
+    ["ziehen"] = "pull/attract",
+    ["zieht"] = "pulls/attracts",
+    ["ziehe"] = "pull/attract",
     ["zurück"] = "back",
     ["sammeln"] = "gather/collect",
     ["ziel"] = "target",
@@ -760,6 +764,9 @@ WDTS_Lang_de_Tokens = {
     ["schutz"] = "protection",
     ["abwehrfähigkeiten"] = "defensive abilities",
     ["spaß"] = "fun",
+    ["magnete"] = "magnets",
+    ["magneten"] = "magnets",
+    ["magnet"] = "magnet",
     ["questgeber"] = "quest giver",
     ["donnerfels"] = "Thunder Bluff",
     ["trinkgeld"] = "tip",

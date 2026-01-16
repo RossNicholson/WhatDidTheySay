@@ -350,5 +350,19 @@ WDTS_Lang_de_Grammar = {
             from = "the main stone break",
             to = "break the main stone",
         },
+        -- Fix "at/on like/as magnets" -> "like magnets"
+        {
+            from = "at/on like/as magnets",
+            to = "like magnets",
+        },
+        {
+            from = "at/on like/as (.+)",
+            to = "like %1",
+        },
+        -- Fix "we pull/we attract adds" -> "we attract adds"
+        {
+            from = "we pull/we attract (.+)",
+            to = "we attract %1",
+        },
     },
 }
