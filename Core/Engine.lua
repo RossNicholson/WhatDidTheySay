@@ -612,9 +612,11 @@ function Engine.Initialize()
     
     -- Preload enabled language packs
     local packs = LanguagePackManager.GetAvailablePacks()
-    for lang, pack in pairs(packs) do
-        if LanguagePackManager.IsEnabled(lang) then
-            Engine.LoadLanguagePack(lang)
+    if packs then
+        for lang, pack in pairs(packs) do
+            if lang and LanguagePackManager.IsEnabled(lang) then
+                Engine.LoadLanguagePack(lang)
+            end
         end
     end
     
