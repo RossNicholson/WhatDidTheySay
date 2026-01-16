@@ -434,7 +434,7 @@ WDTS_Lang_de_Tokens = {
     ["der"] = "the", -- Can mean "who/that" in context, but also "the"
     ["die"] = "the", -- Can mean "who/that" in context, but also "the"
     ["das"] = "the", -- Can mean "that" in context, but also "the"
-    ["den"] = "the", -- Also "whom/that"
+    -- Note: "den" is context-aware - handled below
     ["dem"] = "the", -- Also "whom/that"
     ["des"] = "the",
     
@@ -477,7 +477,6 @@ WDTS_Lang_de_Tokens = {
     ["uns"] = "us",
     ["euch"] = "you",
     ["ihnen"] = "them",
-    ["den"] = "the/whom", -- Accusative/dative masculine article: "den hauptstein" = "the main stone"
     
     -- Definite articles (masculine, feminine, neuter)
     ["der"] = "the", -- Masculine article: "der buff" = "the buff"
@@ -486,7 +485,14 @@ WDTS_Lang_de_Tokens = {
     -- Relative pronouns (context-dependent, but default to "the" for articles)
     -- ["der"] = "who/that", -- Only when used as relative pronoun
     -- ["die"] = "who/that", -- Only when used as relative pronoun
-    ["den"] = "whom/that",
+    ["den"] = {
+        default = "the",
+        after = {
+            ["hauptstein"] = "the",
+            ["buff"] = "the",
+            ["quest"] = "the",
+        },
+    },
     ["dem"] = "whom/that",
     ["dessen"] = "whose",
     ["deren"] = "whose",
