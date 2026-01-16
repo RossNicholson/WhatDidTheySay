@@ -266,5 +266,23 @@ WDTS_Lang_de_Grammar = {
             from = "when is the (.+) coming",
             to = "when is the %1 coming", -- Already correct, but ensure it stays
         },
+        -- Fix "lfm / lfg whom/that main stone break" -> "lfm / lfg break the main stone"
+        {
+            from = "ifm / lfg whom/that (.+) (.+)",
+            to = "lfm / lfg %2 the %1",
+        },
+        {
+            from = "lfm / lfg whom/that (.+) (.+)",
+            to = "lfm / lfg %2 the %1",
+        },
+        -- Fix "lfm / lfg the main stone break" -> "lfm / lfg break the main stone"
+        {
+            from = "lfm / lfg the (.+) (.+)",
+            to = "lfm / lfg %2 the %1",
+        },
+        {
+            from = "ifm / lfg the (.+) (.+)",
+            to = "lfm / lfg %2 the %1",
+        },
     },
 }

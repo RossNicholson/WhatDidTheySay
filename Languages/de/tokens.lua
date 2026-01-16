@@ -581,6 +581,8 @@ WDTS_Lang_de_Tokens = {
     ["lfg"] = "lfg", -- Looking for group
     ["lf1m"] = "lf1m", -- Looking for 1 more
     ["ifg"] = "lfg", -- Common typo for LFG
+    ["ifm"] = "lfm", -- Common typo for LFM (Looking For More)
+    ["lfm"] = "lfm", -- Looking For More
     ["if"] = "looking for", -- Common typo for LF (capital I instead of L)
     ["help"] = "help", -- Often used in mixed-language messages
     ["innis"] = "instances/dungeons", -- Abbreviation for Instanzen (dungeons/instances)
@@ -857,6 +859,13 @@ WDTS_Lang_de_Tokens = {
     ["tp"] = "teleport/port", -- Gaming abbreviation
     ["bb"] = "Booty Bay",
     ["booty bay"] = "Booty Bay",
+    
+    -- Quest-related vocabulary
+    ["hauptstein"] = "main stone",
+    ["zerbrechen"] = "break",
+    ["zerbricht"] = "breaks",
+    ["abzeichen"] = "badge",
+    ["stromgarde"] = "Stromgarde",
     
     -- More common gaming terms
     ["tank"] = "tank", -- Often used as-is in German WoW
