@@ -397,15 +397,17 @@ local function CreateCacheKey(message, sourceLang, targetLang)
 end
 
 -- Main translation pipeline
-function Engine.Translate(message, sourceLang, targetLang)
+function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     -- Default target language
     targetLang = targetLang or "en"
     
-    -- Check cache first
-    local cacheKey = CreateCacheKey(message, sourceLang, targetLang)
-    if Engine.translationCache[cacheKey] then
-        local cached = Engine.translationCache[cacheKey]
-        return cached.translated, cached.confidence, cached.intent
+    -- Check cache first (unless bypassed for testing)
+    if not bypassCache then
+        local cacheKey = CreateCacheKey(message, sourceLang, targetLang)
+        if Engine.translationCache[cacheKey] then
+            local cached = Engine.translationCache[cacheKey]
+            return cached.translated, cached.confidence, cached.intent
+        end
     end
     
     -- Step 1: Tokenization

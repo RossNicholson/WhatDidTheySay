@@ -250,8 +250,8 @@ local function TestTranslation(message)
         return
     end
     
-    -- Translate the test message
-    local translated, confidence, intent = Engine.Translate(message, nil, "en")
+    -- Translate the test message (bypass cache for fresh results)
+    local translated, confidence, intent = Engine.Translate(message, nil, "en", true)
     
     if not translated then
         DEFAULT_CHAT_FRAME:AddMessage(string.format("|cffff0000Translation failed or confidence too low (conf: %.2f)|r", confidence or 0))
