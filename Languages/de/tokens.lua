@@ -468,10 +468,13 @@ WDTS_Lang_de_Tokens = {
     ["euch"] = "you",
     ["ihnen"] = "them",
     
-    -- Relative pronouns and connectors
-    ["der"] = "who/that",
-    ["die"] = "who/that",
-    ["das"] = "that",
+    -- Definite articles (masculine, feminine, neuter)
+    ["der"] = "the", -- Masculine article: "der buff" = "the buff"
+    ["die"] = "the", -- Feminine article: "die quest" = "the quest"
+    ["das"] = "the", -- Neuter article: "das item" = "the item"
+    -- Relative pronouns (context-dependent, but default to "the" for articles)
+    -- ["der"] = "who/that", -- Only when used as relative pronoun
+    -- ["die"] = "who/that", -- Only when used as relative pronoun
     ["den"] = "whom/that",
     ["dem"] = "whom/that",
     ["dessen"] = "whose",

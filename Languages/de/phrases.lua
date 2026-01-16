@@ -324,6 +324,8 @@ WDTS_Lang_de_Phrases = {
     -- Time questions
     ["wann kommt"] = "when is",
     ["wann kommt der"] = "when is the",
+    ["kommt der"] = "is the",
+    ["wann kommt der"] = "when is the",
     ["wann kommt die"] = "when is the",
     ["wann kommt das"] = "when is the",
     ["wann kommt der nächste"] = "when is the next",

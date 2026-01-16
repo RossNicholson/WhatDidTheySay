@@ -257,5 +257,14 @@ WDTS_Lang_de_Grammar = {
             from = "can someone to (.+) teleport",
             to = "can someone teleport to %1",
         },
+        -- Fix "when is who/that X coming" -> "when is the X coming"
+        {
+            from = "when is who/that (.+) coming",
+            to = "when is the %1 coming",
+        },
+        {
+            from = "when is the (.+) coming",
+            to = "when is the %1 coming", -- Already correct, but ensure it stays
+        },
     },
 }
