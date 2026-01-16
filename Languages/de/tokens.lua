@@ -56,6 +56,10 @@ WDTS_Lang_de_Tokens = {
     ["wurst"] = "sausage",
     ["würste"] = "sausages",
     ["würstchen"] = "sausage", -- Diminutive form (little sausage)
+    ["rauchen"] = "smoke",
+    ["raucht"] = "smokes",
+    ["rauch"] = "smoke",
+    ["blech"] = "sheet metal/tin",
     
     -- Actions
     ["einladen"] = "invite",
