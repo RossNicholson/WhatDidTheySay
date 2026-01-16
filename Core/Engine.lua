@@ -521,11 +521,14 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
                 -- 1. German-specific characters, OR
                 -- 2. 2+ German function words, OR
                 -- 3. 1 German function word + 1+ German vocabulary words, OR
-                -- 4. 2+ German vocabulary words (genuine German, not abbreviations)
+                -- 4. 2+ German vocabulary words (genuine German, not abbreviations), OR
+                -- 5. 1+ German vocabulary word AND message is entirely in brackets (quest/item names)
+                local isBracketOnlyMessage = message:match("^%[.+%]$") or (message:match("^%[") and message:match("%]$"))
                 if hasGermanCharacters or 
                    germanFunctionWords >= 2 or 
                    (germanFunctionWords >= 1 and germanVocabularyWords >= 1) or
-                   germanVocabularyWords >= 2 then
+                   germanVocabularyWords >= 2 or
+                   (germanVocabularyWords >= 1 and isBracketOnlyMessage) then
                     sourceLang = "de"
                     langConfidence = 0.5 -- Give it moderate confidence for mixed messages
                 end
