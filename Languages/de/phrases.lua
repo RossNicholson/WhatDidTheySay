@@ -72,6 +72,8 @@ WDTS_Lang_de_Phrases = {
     -- Game mechanics phrases
     ["world buffs"] = "world buffs",
     ["world buff"] = "world buff",
+    ["worldbuff"] = "world buff",
+    ["worldbuffs"] = "world buffs",
     ["organisierte buffs"] = "organized buffs",
     ["täglich organisierte"] = "daily organized",
     ["instanz run"] = "instance run",
@@ -224,4 +226,12 @@ WDTS_Lang_de_Phrases = {
     ["leiht mir"] = "lends me",
     ["jemand der"] = "someone who",
     ["jemand die"] = "someone who",
+    
+    -- Time questions
+    ["wann kommt"] = "when is",
+    ["wann kommt der"] = "when is the",
+    ["wann kommt die"] = "when is the",
+    ["wann kommt das"] = "when is the",
+    ["wann kommt der nächste"] = "when is the next",
+    ["wann kommt die nächste"] = "when is the next",
 }

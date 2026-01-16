@@ -37,7 +37,9 @@ WDTS_Lang_de_Tokens = {
     ["warte"] = "wait",
     ["wartet"] = "wait",
     ["komm"] = "come",
-    ["kommt"] = "come",
+    ["kommt"] = "comes",
+    ["komme"] = "come",
+    ["kommst"] = "come",
     ["geh"] = "go",
     ["geht"] = "go",
     
@@ -232,6 +234,10 @@ WDTS_Lang_de_Tokens = {
     ["jetzt"] = "now",
     ["gleich"] = "soon",
     ["später"] = "later",
+    ["nächste"] = "next",
+    ["nächsten"] = "next",
+    ["nächstes"] = "next",
+    ["nächster"] = "next",
     
     -- Quality and attributes
     ["gut"] = "good",
