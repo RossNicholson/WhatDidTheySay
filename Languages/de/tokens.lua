@@ -18,7 +18,7 @@ WDTS_Lang_de_Tokens = {
     ["hdw"] = "Wailing Caverns", -- Abbreviation for Höhlen des Wehklagens
     ["totenminen"] = "Deadmines",
     ["todesminen"] = "Deadmines", -- Alternative spelling
-    ["dm"] = "Deadmines",
+    -- Note: "dm" not translated - can mean either Deadmines or Dire Maul depending on context
     ["burg"] = "Shadowfang Keep",
     ["schattenfang"] = "Shadowfang Keep",
     ["sfk"] = "Shadowfang Keep",
@@ -890,7 +890,7 @@ WDTS_Lang_de_Tokens = {
     ["healer"] = "healer",
     ["dd"] = "dps/damage dealer",
     ["dps"] = "dps",
-    ["dm"] = "Dire Maul", -- Common abbreviation
+    -- Note: "dm" not translated - can mean either Deadmines or Dire Maul depending on context
     
     -- Weapon and item terms
     ["waffe"] = "weapon",
