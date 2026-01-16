@@ -29,6 +29,15 @@ WDTS_Lang_de_Patterns = {
         from = "sucht eine (.+) gilde",
         to = "looking for a %1 guild",
     },
+    -- "suche deutsche gilde" -> "looking for German guild"
+    {
+        from = "suche deutsche gilde",
+        to = "looking for German guild",
+    },
+    {
+        from = "sucht deutsche gilde",
+        to = "looking for German guild",
+    },
     {
         from = "komm zu \"(.+)\"",
         to = "come to \"%1\"",
