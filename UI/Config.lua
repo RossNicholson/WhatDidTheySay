@@ -236,12 +236,54 @@ function Config.Toggle()
     end
 end
 
+-- Test translation directly
+local function TestTranslation(message)
+    if not message or message == "" then
+        DEFAULT_CHAT_FRAME:AddMessage("|cffff0000Usage: /wdts test <german message>|r")
+        DEFAULT_CHAT_FRAME:AddMessage("|cffffff00Example: /wdts test schmied gesucht für item|r")
+        return
+    end
+    
+    local Engine = WDTS_Engine
+    if not Engine or not Engine.Translate then
+        DEFAULT_CHAT_FRAME:AddMessage("|cffff0000Translation engine not initialized yet.|r")
+        return
+    end
+    
+    -- Translate the test message
+    local translated, confidence, intent = Engine.Translate(message, nil, "en")
+    
+    if not translated then
+        DEFAULT_CHAT_FRAME:AddMessage(string.format("|cffff0000Translation failed or confidence too low (conf: %.2f)|r", confidence or 0))
+        DEFAULT_CHAT_FRAME:AddMessage("|cffffff00This could mean:|r")
+        DEFAULT_CHAT_FRAME:AddMessage("|cffaaaaaa  - Message not detected as German|r")
+        DEFAULT_CHAT_FRAME:AddMessage("|cffaaaaaa  - Low translation coverage|r")
+        DEFAULT_CHAT_FRAME:AddMessage("|cffaaaaaa  - Translation too similar to original|r")
+        return
+    end
+    
+    -- Show original message as if from chat
+    local originalColor = "|cffffccff" -- Light pink
+    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s[Test] [TestPlayer]: %s|r", originalColor, message))
+    
+    -- Show translation
+    local transColor = confidence >= 0.70 and "|cff00ff00" or "|cffffff00"
+    local intentText = intent and (" [" .. intent .. "]") or ""
+    DEFAULT_CHAT_FRAME:AddMessage(string.format("%s→ %s%s|r (confidence: %.2f)", transColor, translated, intentText, confidence))
+end
+
 -- Initialize configuration (create slash command)
 function Config.Initialize()
     SLASH_WHATDIDTHESAY1 = "/wdts"
     SLASH_WHATDIDTHESAY2 = "/whatdidtheysay"
     SlashCmdList["WHATDIDTHESAY"] = function(msg)
-        Config.Toggle()
+        local cmd = msg:match("^%s*(%S+)%s*(.*)$")
+        if cmd == "test" then
+            local testMessage = msg:match("^%s*test%s+(.*)$")
+            TestTranslation(testMessage)
+        else
+            Config.Toggle()
+        end
     end
 end
 
