@@ -605,7 +605,8 @@ WDTS_Lang_de_Tokens = {
     ["ifg"] = "lfg", -- Common typo for LFG
     ["ifm"] = "lfm", -- Common typo for LFM (Looking For More)
     ["lfm"] = "lfm", -- Looking For More
-    ["if"] = "looking for", -- Common typo for LF (capital I instead of L)
+    -- Note: "if" was removed - "IF" in uppercase typically means "Ironforge" location, not "looking for" typo
+    -- The typo "if" instead of "lf" is now handled by context or universal abbreviations check
     ["help"] = "help", -- Often used in mixed-language messages
     ["innis"] = "instances/dungeons", -- Abbreviation for Instanzen (dungeons/instances)
     ["instanzen"] = "instances/dungeons",
