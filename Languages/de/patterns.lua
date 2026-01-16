@@ -44,6 +44,15 @@ WDTS_Lang_de_Patterns = {
         from = "hat mir jemand (.+)%?",
         to = "does someone have %1 for me",
     },
+    -- "kommt nochmal ein X?" -> "is there another X coming?"
+    {
+        from = "kommt nochmal ein (.+)%?",
+        to = "is there another %1 coming",
+    },
+    {
+        from = "kommt nochmal ein (.+)",
+        to = "is there another %1 coming",
+    },
     -- "kann jemand nach X tpn" -> "can someone port/teleport to X"
     {
         from = "kann jemand nach (.+) tpn",

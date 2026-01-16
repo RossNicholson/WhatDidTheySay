@@ -330,6 +330,9 @@ WDTS_Lang_de_Phrases = {
     ["wann kommt das"] = "when is the",
     ["wann kommt der nächste"] = "when is the next",
     ["wann kommt die nächste"] = "when is the next",
+    ["kommt nochmal"] = "is there another/coming again",
+    ["kommt nochmal ein"] = "is there another",
+    ["kommt nochmal ein buff"] = "is there another buff coming",
     
     -- Separable verbs (prefix separated)
     ["macht auf"] = "opens",

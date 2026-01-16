@@ -311,5 +311,14 @@ WDTS_Lang_de_Grammar = {
             from = "we want (.+) but want (.+)",
             to = "we will %1 but will %2",
         },
+        -- Fix "comes again a buff" -> "is there another buff coming"
+        {
+            from = "comes nochmal a (.+)",
+            to = "is there another %1 coming",
+        },
+        {
+            from = "come nochmal a (.+)",
+            to = "is there another %1 coming",
+        },
     },
 }
