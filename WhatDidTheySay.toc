@@ -2,7 +2,7 @@
 ## Title: What Did They Say?
 ## Notes: Offline chat translation for World of Warcraft Classic
 ## Author: WhatDidTheySay
-## Version: 1.0.0
+## Version: 0.1.0
 ## SavedVariables: WhatDidTheySayDB
 
 # Core modules

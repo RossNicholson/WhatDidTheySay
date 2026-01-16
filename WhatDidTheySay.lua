@@ -146,7 +146,7 @@ local function InitializeAddon()
     DEFAULT_CHAT_FRAME:AddMessage(
         string.format("%sWhat Did They Say?|r v%s loaded. Type %s/wdts|r or %s/whatdidtheysay|r to configure.",
             addonColor,
-            "1.0.0",
+            "0.1.0",
             cmdColor,
             cmdColor
         )
