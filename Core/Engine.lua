@@ -556,6 +556,7 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         ["if"] = true, -- Ironforge abbreviation (uppercase IF in context means Ironforge, not "looking for")
         ["mage"] = true, ["warrior"] = true, ["rogue"] = true, ["hunter"] = true,
         ["priest"] = true, ["warlock"] = true, ["druid"] = true, ["shaman"] = true, ["paladin"] = true,
+        ["dd"] = true, ["dps"] = true, -- Damage dealer abbreviations
     }
     local wordCount = 0
     for _, token in ipairs(tokens) do
