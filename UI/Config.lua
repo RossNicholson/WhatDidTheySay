@@ -398,10 +398,21 @@ function Config.Initialize()
         if cmd == "test" then
             local testMessage = msg:match("^%s*test%s+(.*)$")
             if testMessage and testMessage ~= "" then
-                TestTranslation(testMessage)
+                if testMessage:match("^verbose%s+(.+)$") then
+                    -- Verbose mode: extract message after "verbose"
+                    local verboseMessage = testMessage:match("^verbose%s+(.+)$")
+                    if verboseMessage then
+                        TestTranslation(verboseMessage, true)
+                    else
+                        DEFAULT_CHAT_FRAME:AddMessage("|cffff0000Usage: /wdts test verbose <message>|r")
+                    end
+                else
+                    TestTranslation(testMessage, false)
+                end
             else
                 -- Run test suite if no message provided
                 DEFAULT_CHAT_FRAME:AddMessage("|cffffff00Usage: /wdts test <message>|r")
+                DEFAULT_CHAT_FRAME:AddMessage("|cffffff00Or: /wdts test verbose <message> for debugging|r")
                 DEFAULT_CHAT_FRAME:AddMessage("|cffffff00Or: /wdts suite - Run test suite|r")
             end
         elseif cmd == "suite" then
