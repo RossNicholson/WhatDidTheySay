@@ -91,8 +91,12 @@ WDTS_Lang_de_Patterns = {
         to = "who %1",
     },
     {
-        from = "was (.+)",
+        from = "^was (.+)$",
         to = "what %1",
+    },
+    {
+        from = " was (.+)",
+        to = " what %1",
     },
     {
         from = "komm (.+)",

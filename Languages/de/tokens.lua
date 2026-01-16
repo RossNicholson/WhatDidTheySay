@@ -59,6 +59,8 @@ WDTS_Lang_de_Tokens = {
     -- Common nouns
     ["gruppe"] = "group",
     ["spieler"] = "player",
+    ["mutige"] = "brave",
+    ["mutig"] = "brave",
     ["char"] = "character", -- Gaming abbreviation
     ["charakter"] = "character",
     ["bank"] = "bank",
@@ -472,7 +474,7 @@ WDTS_Lang_de_Tokens = {
     ["mehr"] = "more",
     ["mehrere"] = "several",
     ["weniger"] = "less",
-    ["etwas"] = "some/something",
+    ["etwas"] = "something",
     ["gibts"] = "are there/is there", -- Colloquial "Gibt es"
     ["gibt es"] = "are there/is there",
     ["evtl"] = "maybe/perhaps", -- Abbreviation for eventuell
@@ -605,6 +607,9 @@ WDTS_Lang_de_Tokens = {
     ["gegangen"] = "gone",
     ["machte"] = "made",
     ["gemacht"] = "made/done",
+    ["bauen"] = "build",
+    ["baut"] = "builds",
+    ["gebaut"] = "built",
     ["sagte"] = "said",
     ["gesagt"] = "said",
     ["wurde"] = "became/was",
@@ -674,6 +679,7 @@ WDTS_Lang_de_Tokens = {
     ["ihren"] = "her/their",
     ["unser"] = "our",
     ["unsere"] = "our",
+    ["wir"] = "we",
     ["unseren"] = "our",
     ["euer"] = "your",
     ["eure"] = "your",
@@ -721,7 +727,14 @@ WDTS_Lang_de_Tokens = {
     
     -- Status/AFK
     ["ruhe"] = "rest/peace",
-    ["zeit"] = "time", -- Already exists but adding for context
+    ["zeit"] = "time",
+    ["anfang"] = "beginning/start",
+    ["dabei"] = "there/involved/along",
+    ["langfristig"] = "long-term",
+    ["langfristiges"] = "long-term",
+    ["erhebt"] = "rises",
+    ["erheben"] = "rise",
+    ["erhebe"] = "rise", -- Already exists but adding for context
     
     -- Hardcore/gold
     ["startgeld"] = "starting gold",

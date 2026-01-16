@@ -110,6 +110,17 @@ WDTS_Lang_de_Phrases = {
     -- Medical/First Aid phrases
     ["erste hilfe"] = "first aid",
     ["handbuch erste hilfe"] = "first aid manual",
+    ["erhebt sich"] = "rises/arises",
+    
+    -- Time/beginning phrases
+    ["von anfang"] = "from the beginning",
+    ["von anfang an"] = "from the beginning",
+    ["sei dabei"] = "be there/be involved",
+    ["sei von anfang an dabei"] = "be there from the beginning",
+    
+    -- Guild/recruitment phrases
+    ["neue gilde"] = "new guild",
+    ["neue gilde sucht"] = "new guild looking for",
     
     -- Trading phrases
     ["will kaufen"] = "want to buy",
