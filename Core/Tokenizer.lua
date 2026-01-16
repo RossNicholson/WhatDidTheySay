@@ -164,7 +164,16 @@ function Tokenizer.Tokenize(text)
         bracketMap[placeholder] = fullBracket
         -- Escape for gsub
         local escaped = fullBracket:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0")
-        processedForTokenize = processedForTokenize:gsub(escaped, placeholder, 1)
+        -- Replace bracket with placeholder, but preserve text before bracket by adding space if needed
+        -- This handles cases like "LFG[...]" -> "LFG |WDTS_BRACKET_X|"
+        local beforeBracket = processedForTokenize:sub(1, bp.start - 1)
+        local afterBracket = processedForTokenize:sub(bp.finish + 1)
+        if beforeBracket ~= "" and not beforeBracket:match("%s$") then
+            -- Add space before bracket placeholder to separate it from preceding text
+            processedForTokenize = beforeBracket .. " " .. placeholder .. afterBracket
+        else
+            processedForTokenize = beforeBracket .. placeholder .. afterBracket
+        end
     end
     
     -- Now tokenize the processed text
@@ -209,10 +218,36 @@ function Tokenizer.Tokenize(text)
             table.insert(tokens, CreateToken(Tokenizer.TOKEN_TYPE.PUNCTUATION, word, word))
         -- Otherwise it's a word
         else
-            -- Remove trailing punctuation for analysis, but preserve original
-            local clean = word:gsub("[%p]+$", "")
-            local normalized = Utils.Normalize(clean)
-            table.insert(tokens, CreateToken(Tokenizer.TOKEN_TYPE.WORD, normalized, word))
+            -- Check if word contains hyphens (compound words like "Crushridge-Kriegstreiber")
+            -- Split on hyphens to translate each part separately
+            if word:find("-") and not word:match("^%-") and not word:match("%-$") then
+                local parts = {}
+                for part in word:gmatch("[^-]+") do
+                    table.insert(parts, part)
+                end
+                if #parts > 1 then
+                    -- Tokenize each part separately
+                    for i, part in ipairs(parts) do
+                        local clean = part:gsub("[%p]+$", "")
+                        local normalized = Utils.Normalize(clean)
+                        table.insert(tokens, CreateToken(Tokenizer.TOKEN_TYPE.WORD, normalized, part))
+                        -- Add hyphen between parts (except after last part)
+                        if i < #parts then
+                            table.insert(tokens, CreateToken(Tokenizer.TOKEN_TYPE.PUNCTUATION, "-", "-"))
+                        end
+                    end
+                else
+                    -- Single word (no hyphens or only at edges)
+                    local clean = word:gsub("[%p]+$", "")
+                    local normalized = Utils.Normalize(clean)
+                    table.insert(tokens, CreateToken(Tokenizer.TOKEN_TYPE.WORD, normalized, word))
+                end
+            else
+                -- Remove trailing punctuation for analysis, but preserve original
+                local clean = word:gsub("[%p]+$", "")
+                local normalized = Utils.Normalize(clean)
+                table.insert(tokens, CreateToken(Tokenizer.TOKEN_TYPE.WORD, normalized, word))
+            end
         end
     end
     

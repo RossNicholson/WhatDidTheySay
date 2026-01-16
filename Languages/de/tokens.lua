@@ -903,6 +903,14 @@ WDTS_Lang_de_Tokens = {
     ["trelanes"] = "Trelane's",
     ["trelane"] = "Trelane",
     ["verteidigung"] = "defense",
+    ["vyrins"] = "Vyrin's",
+    ["vyrin"] = "Vyrin",
+    ["rache"] = "revenge",
+    ["söldner"] = "mercenary",
+    ["wissen"] = "knowledge",
+    ["bewahren"] = "preserve",
+    ["crushridge"] = "Crushridge",
+    ["kriegstreiber"] = "warmonger",
     ["von"] = {
         default = "from",
         -- In item/quest names, "von" means "of"
