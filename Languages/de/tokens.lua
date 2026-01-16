@@ -942,7 +942,7 @@ WDTS_Lang_de_Tokens = {
     ["tank"] = "tank", -- Often used as-is in German WoW
     ["heal"] = "heal", -- Often used as-is
     ["healer"] = "healer",
-    ["dd"] = "dps/damage dealer",
+    -- Note: "dd" removed - it's a universal abbreviation that should pass through unchanged
     ["dps"] = "dps",
     -- Note: "dm" not translated - can mean either Deadmines or Dire Maul depending on context
     
