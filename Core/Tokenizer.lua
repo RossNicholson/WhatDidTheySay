@@ -165,16 +165,25 @@ function Tokenizer.Tokenize(text)
         bracketMap[placeholder] = fullBracket
         -- Escape for gsub
         local escaped = fullBracket:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0")
-        -- Replace bracket with placeholder, but preserve text before bracket by adding space if needed
+        -- Replace bracket with placeholder, but preserve text before/after bracket by adding spaces if needed
         -- This handles cases like "LFG[...]" -> "LFG |WDTS_BRACKET_X|"
+        -- and adjacent brackets "(253)][[32+]" -> "(253)] |WDTS_BRACKET_X|"
         local beforeBracket = processedForTokenize:sub(1, bp.start - 1)
         local afterBracket = processedForTokenize:sub(bp.finish + 1)
+        local spaceBefore = ""
+        local spaceAfter = ""
         if beforeBracket ~= "" and not beforeBracket:match("%s$") then
             -- Add space before bracket placeholder to separate it from preceding text
-            processedForTokenize = beforeBracket .. " " .. placeholder .. afterBracket
-        else
-            processedForTokenize = beforeBracket .. placeholder .. afterBracket
+            spaceBefore = " "
         end
+        if afterBracket ~= "" and not afterBracket:match("^%s") then
+            -- Add space after bracket placeholder if next char is not whitespace
+            -- But only if it's not a closing bracket (adjacent brackets should have space)
+            if not afterBracket:match("^%]") then
+                spaceAfter = " "
+            end
+        end
+        processedForTokenize = beforeBracket .. spaceBefore .. placeholder .. spaceAfter .. afterBracket
     end
     
     -- Now tokenize the processed text
