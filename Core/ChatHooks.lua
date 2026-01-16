@@ -17,6 +17,10 @@ ChatHooks.translatedMessages = {}
 ChatHooks.translatedMessagesCleanup = {} -- Track cleanup times
 ChatHooks.translatedMessagesMaxAge = 300 -- Clean up after 5 minutes
 
+-- Track which chat frames received which messages (message hash -> {frame1, frame2, ...})
+ChatHooks.messageFrames = {}
+ChatHooks.messageFramesCleanup = {} -- Track cleanup times
+
 -- Track ALL translation attempts for debugging (both successful and failed)
 ChatHooks.translationHistory = {}
 ChatHooks.translationHistoryMaxSize = 50 -- Keep last 50 attempts
@@ -368,10 +372,37 @@ local function OnChatMessage(self, event, ...)
     -- behavior == "silent" - do nothing
 end
 
--- Chat message filter to modify original messages
+-- Chat message filter to modify original messages and track which frames receive them
 local function ChatFilterFunc(self, event, message, sender, ...)
-    -- Check if this message was translated
+    -- Track which chat frame is processing this message
+    -- 'self' is the chat frame that's processing the message
     local msgHash = HashMessage(message, sender)
+    
+    -- Store this frame as one that received the message
+    if self and self:GetName() then
+        -- Only track named frames (ChatFrame1, ChatFrame2, etc.)
+        local frameName = self:GetName()
+        if frameName:match("^ChatFrame%d+$") then
+            if not ChatHooks.messageFrames[msgHash] then
+                ChatHooks.messageFrames[msgHash] = {}
+            end
+            -- Add this frame to the list if not already present
+            local found = false
+            for _, frame in ipairs(ChatHooks.messageFrames[msgHash]) do
+                if frame == self then
+                    found = true
+                    break
+                end
+            end
+            if not found then
+                table.insert(ChatHooks.messageFrames[msgHash], self)
+            end
+            -- Set cleanup time for this message's frame tracking
+            ChatHooks.messageFramesCleanup[msgHash] = GetTime() + ChatHooks.translatedMessagesMaxAge
+        end
+    end
+    
+    -- Check if this message was translated
     local translationInfo = ChatHooks.translatedMessages[msgHash]
     
     if translationInfo then
