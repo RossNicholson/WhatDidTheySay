@@ -54,6 +54,10 @@ WDTS_Lang_de_Tokens = {
     -- Common nouns
     ["gruppe"] = "group",
     ["spieler"] = "player",
+    ["char"] = "character", -- Gaming abbreviation
+    ["charakter"] = "character",
+    ["bank"] = "bank",
+    ["bankchar"] = "bank character",
     ["mitglieder"] = "members",
     ["mana"] = "mana",
     ["gesundheit"] = "health",
@@ -80,6 +84,9 @@ WDTS_Lang_de_Tokens = {
     ["aufmacht"] = "opens",
     ["auf"] = "open/up", -- Separable prefix: "macht auf" = "opens"
     ["aufgemacht"] = "opened",
+    ["lagern"] = "store/keep",
+    ["lagert"] = "stores/keeps",
+    ["lagere"] = "store/keep",
     
     -- LFG related
     ["für"] = "for",
@@ -302,6 +309,7 @@ WDTS_Lang_de_Tokens = {
     ["jetzt"] = "now",
     ["gleich"] = "soon",
     ["später"] = "later",
+    ["immer"] = "always",
     ["nächste"] = "next",
     ["nächsten"] = "next",
     ["nächstes"] = "next",
@@ -312,6 +320,7 @@ WDTS_Lang_de_Tokens = {
     ["zukünftiger"] = "future",
     
     -- Quality and attributes
+    ["einfach"] = "simple/simply",
     ["gut"] = "good",
     ["gute"] = "good",
     ["besser"] = "better",
@@ -331,6 +340,7 @@ WDTS_Lang_de_Tokens = {
     ["einen"] = "a",
     ["einem"] = "a",
     ["eines"] = "a",
+    ["nen"] = "a", -- Colloquial form of "einen"
     ["der"] = "the", -- Can mean "who/that" in context, but also "the"
     ["die"] = "the", -- Can mean "who/that" in context, but also "the"
     ["das"] = "the", -- Can mean "that" in context, but also "the"
@@ -413,6 +423,7 @@ WDTS_Lang_de_Tokens = {
     ["machst"] = "are you doing",
     ["mache"] = "doing",
     ["macht"] = "does",
+    ["machen"] = "make",
     ["müssen"] = "must",
     ["muss"] = "must",
     ["soll"] = "should",
@@ -462,6 +473,8 @@ WDTS_Lang_de_Tokens = {
     ["wc"] = "wc", -- Water closet/toilet
     ["kurz"] = "quickly",
     ["kurz wc"] = "brb bathroom",
+    ["mats"] = "materials", -- Gaming abbreviation
+    ["materialien"] = "materials",
     
     -- Who/what/where questions
     ["wer"] = "who",
