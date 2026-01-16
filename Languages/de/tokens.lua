@@ -469,6 +469,9 @@ WDTS_Lang_de_Tokens = {
     ["dem"] = "whom/that",
     ["dessen"] = "whose",
     ["deren"] = "whose",
+    ["diese"] = "this",
+    ["dieser"] = "this",
+    ["dieses"] = "this",
     
     -- Common connecting words
     ["auch"] = "also",

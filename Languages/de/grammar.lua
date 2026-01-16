@@ -172,5 +172,37 @@ WDTS_Lang_de_Grammar = {
             from = "can one as (.+) (.+) use",
             to = "can one use %2 as a %1",
         },
+        
+        -- Fix "can me someone at X help" -> "can someone help me with X"
+        {
+            from = "can me someone at (.+) help",
+            to = "can someone help me with %1",
+        },
+        {
+            from = "can you me at (.+) help",
+            to = "can you help me with %1",
+        },
+        {
+            from = "can you me at (.+) help please",
+            to = "can you help me with %1 please",
+        },
+        -- Fix "need help at X" -> "need help with X"
+        {
+            from = "need help at (.+)",
+            to = "need help with %1",
+        },
+        -- Fix "at dieser quest" -> "with this quest"
+        {
+            from = "at dieser quest",
+            to = "with this quest",
+        },
+        {
+            from = "at diese quest",
+            to = "with this quest",
+        },
+        {
+            from = "at dieses quest",
+            to = "with this quest",
+        },
     },
 }

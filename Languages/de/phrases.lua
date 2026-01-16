@@ -22,6 +22,11 @@ WDTS_Lang_de_Phrases = {
     ["sucht gruppe"] = "looking for group",
     ["brauche gruppe"] = "need group",
     ["braucht gruppe"] = "need group",
+    ["hilfe bei"] = "help with",
+    ["helfen bei"] = "help with",
+    ["hilft bei"] = "helps with",
+    ["brauche hilfe bei"] = "need help with",
+    ["braucht hilfe bei"] = "needs help with",
     
     -- Common question phrases
     ["was ist"] = "what is",
