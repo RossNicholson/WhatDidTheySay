@@ -390,6 +390,31 @@ function Engine.Translate(message, sourceLang, targetLang)
         sourceLang = detectedLang
     end
     
+    -- Special handling for mixed-language messages (e.g., "If tank heal dm dann abfahrt")
+    -- If detected as English but contains known German words, try German translation
+    if (not sourceLang or sourceLang == "en" or langConfidence < LanguageDetect.MIN_CONFIDENCE) and LanguagePackManager.IsEnabled("de") then
+        -- Check if message contains any German words from enabled language packs
+        local langPack = Engine.LoadLanguagePack("de")
+        if langPack and langPack.tokens then
+            local hasGermanWords = false
+            for _, token in ipairs(tokens) do
+                if token.type == "word" then
+                    local word = token.value:lower()
+                    if langPack.tokens[word] then
+                        hasGermanWords = true
+                        break
+                    end
+                end
+            end
+            
+            -- If we found German words, override language detection to German
+            if hasGermanWords then
+                sourceLang = "de"
+                langConfidence = 0.5 -- Give it moderate confidence for mixed messages
+            end
+        end
+    end
+    
     if not sourceLang or langConfidence < LanguageDetect.MIN_CONFIDENCE then
         return nil, 0.0, "language_unknown"
     end

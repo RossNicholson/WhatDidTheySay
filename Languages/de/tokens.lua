@@ -505,4 +505,25 @@ WDTS_Lang_de_Tokens = {
     ["euer"] = "your",
     ["eure"] = "your",
     ["euren"] = "your",
+    
+    -- Time/sequence connectors
+    ["dann"] = "then",
+    ["danach"] = "after that",
+    ["davor"] = "before that",
+    
+    -- Movement/departure (common in WoW)
+    ["abfahrt"] = "departure/let's go",
+    ["los"] = "let's go/go",
+    ["geht los"] = "let's go",
+    ["los geht"] = "let's go",
+    ["los gehts"] = "let's go",
+    ["losgehen"] = "let's go",
+    
+    -- More common gaming terms
+    ["tank"] = "tank", -- Often used as-is in German WoW
+    ["heal"] = "heal", -- Often used as-is
+    ["healer"] = "healer",
+    ["dd"] = "dps/damage dealer",
+    ["dps"] = "dps",
+    ["dm"] = "Dire Maul", -- Common abbreviation
 }
