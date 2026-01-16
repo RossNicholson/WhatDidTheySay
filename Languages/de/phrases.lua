@@ -224,4 +224,4 @@ WDTS_Lang_de_Phrases = {
     ["leiht mir"] = "lends me",
     ["jemand der"] = "someone who",
     ["jemand die"] = "someone who",
-]
+}
