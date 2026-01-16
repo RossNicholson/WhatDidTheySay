@@ -209,8 +209,27 @@ local function FormatTranslatedMessage(originalMessage, confidence)
     end
 end
 
+-- Check if translation actually changed the message
+local function TranslationChanged(original, translated)
+    if not original or not translated then
+        return false
+    end
+    
+    -- Remove color codes and normalize for comparison
+    local origClean = original:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):lower():gsub("%s+", " "):gsub("%p", "")
+    local transClean = translated:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):lower():gsub("%s+", " "):gsub("%p", "")
+    
+    -- If they're essentially the same after normalization, translation didn't work
+    return origClean ~= transClean
+end
+
 -- Display translation in chat
 local function DisplayTranslation(originalMessage, translatedMessage, confidence, intent)
+    -- Don't show translation if it's identical or nearly identical to original
+    if not TranslationChanged(originalMessage, translatedMessage) then
+        return -- Translation didn't actually change anything, don't show it
+    end
+    
     -- Simple output: show translation below original in a subtle color
     local color = "|cff00ff00" -- Green for confident translations
     if confidence < 0.70 then

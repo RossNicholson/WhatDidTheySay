@@ -428,6 +428,44 @@ function Engine.Translate(message, sourceLang, targetLang)
     -- Step 9: Restore protected tokens
     translatedText = Tokenizer.RestoreProtected(translatedText, protectedMap)
     
+    -- Step 9b: Check if translation actually changed anything
+    -- Remove color codes and normalize for comparison
+    local originalClean = message:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):lower():gsub("%s+", " ")
+    local translatedClean = translatedText:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):lower():gsub("%s+", " ")
+    
+    -- If translation is too similar to original (less than 30% different), reject it
+    local similarity = 0.0
+    if #originalClean > 0 and #translatedClean > 0 then
+        -- Simple similarity check: count matching words
+        local origWords = {}
+        for word in originalClean:gmatch("%S+") do
+            origWords[word] = (origWords[word] or 0) + 1
+        end
+        local transWords = {}
+        for word in translatedClean:gmatch("%S+") do
+            transWords[word] = (transWords[word] or 0) + 1
+        end
+        
+        local matches = 0
+        local total = 0
+        for word, count in pairs(origWords) do
+            total = total + count
+            if transWords[word] then
+                matches = matches + math.min(count, transWords[word])
+            end
+        end
+        
+        if total > 0 then
+            similarity = matches / total
+        end
+    end
+    
+    -- If translation is more than 70% similar to original, it's not really a translation
+    if similarity > 0.70 and coverage < 0.5 then
+        -- Too similar and low coverage - this is basically untranslated
+        return nil, 0.0, "translation_too_similar"
+    end
+    
     -- Step 10: Calculate confidence
     local finalConfidence = Confidence.Calculate({
         languageConfidence = langConfidence,
@@ -435,7 +473,15 @@ function Engine.Translate(message, sourceLang, targetLang)
         phraseCoverage = coverage,
         unknownTokenRatio = unknownRatio,
         messageLength = #tokens,
+        translationSimilarity = similarity, -- Pass similarity for penalty
     })
+    
+    -- Heavily penalize low coverage translations
+    if coverage < 0.3 then
+        finalConfidence = finalConfidence * 0.5 -- Cut confidence in half if less than 30% translated
+    elseif coverage < 0.5 then
+        finalConfidence = finalConfidence * 0.7 -- Reduce by 30% if less than 50% translated
+    end
     
     local intentId = intent and intent.id or nil
     
