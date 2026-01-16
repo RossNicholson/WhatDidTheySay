@@ -13,7 +13,7 @@ function Config.CreateFrame()
     end
     
     local frame = CreateFrame("Frame", "WDTSConfigFrame", UIParent)
-    frame:SetSize(440, 600)
+    frame:SetSize(440, 620)
     frame:SetPoint("CENTER", UIParent, "CENTER")
     
     -- Create backdrop - simple solid background
@@ -84,9 +84,9 @@ function Config.CreateFrame()
     subtitle:SetText("Configuration")
     subtitle:SetTextColor(0.8, 0.8, 0.8, 1)
     
-    -- Information text area (simplified, compact)
+    -- Information text area (more compact)
     local infoText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    infoText:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -75)
+    infoText:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -70)
     infoText:SetWidth(390)
     infoText:SetNonSpaceWrap(false)
     infoText:SetJustifyH("LEFT")
@@ -94,24 +94,23 @@ function Config.CreateFrame()
     infoText:SetText([[
 |cffffffffWhat Did They Say?|r translates chat messages using offline, in-game logic.
 
-|cffffd700Developer:|r Ross Nicholson
-|cffffd700Supported:|r German (de) → English (en)
+|cffffd700Developer:|r Ross Nicholson |cffffd700Supported:|r German (de) → English (en)
 |cffffd700Confidence:|r ≥70% auto-display, <45% silent (by design)
 |cffffd700Protected:|r Player names, links, numbers never translated
 |cffffd700Note:|r Translations appear in main chat window only (WoW UI limitation)
 |cffffd700Command:|r |cffffff00/wdts|r]])
     infoText:SetTextColor(0.9, 0.9, 0.9, 1)
     
-    -- Language Packs section (before channels)
+    -- Language Packs section
     local langPackLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    langPackLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -150)
+    langPackLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -155)
     langPackLabel:SetText("|cffffffffLanguage Packs:|r")
     langPackLabel:SetTextColor(1, 1, 0.8, 1)
     
     -- Discover and display available language packs
     LanguagePackManager.DiscoverPacks()
     local packs = LanguagePackManager.GetAvailablePacks()
-    local langPackYOffset = -175
+    local langPackYOffset = -180
     local langPackCheckboxes = {}
     
     -- Sort languages for display
@@ -144,13 +143,13 @@ function Config.CreateFrame()
         langPackYOffset = langPackYOffset - 25
     end
     
-    -- Channel settings section
+    -- Channel settings section - ensure proper spacing after language packs
     local channelLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    channelLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, langPackYOffset - 15)
+    channelLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, langPackYOffset - 20)
     channelLabel:SetText("|cffffffffEnabled Channels:|r")
     channelLabel:SetTextColor(1, 1, 0.8, 1)
     
-    local yOffset = langPackYOffset - 35
+    local yOffset = langPackYOffset - 40
     local checkboxes = {}
     
     -- Group channels logically
@@ -190,24 +189,24 @@ function Config.CreateFrame()
         yOffset = yOffset - 25
     end
     
-    -- Settings section
-    yOffset = yOffset - 20
+    -- Settings section - ensure proper spacing before close button
+    yOffset = yOffset - 25
     local settingsLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     settingsLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, yOffset)
     settingsLabel:SetText("|cffffffffSettings:|r")
     settingsLabel:SetTextColor(1, 1, 0.8, 1)
     
-    yOffset = yOffset - 25
+    yOffset = yOffset - 30
     
     local autoCheck, autoLabelText = Widgets.CreateCheckbox(frame, "Auto-translate messages", 35, yOffset, function(checked)
         WhatDidTheySayDB.autoTranslate = checked
     end)
     autoCheck:SetChecked(WhatDidTheySayDB.autoTranslate or true)
     
-    -- Close button (centered, better positioned with more space)
+    -- Close button (centered, positioned with adequate space from settings)
     local closeBtn = CreateFrame("Button", nil, frame, "GameMenuButtonTemplate")
     closeBtn:SetSize(120, 32)
-    closeBtn:SetPoint("BOTTOM", frame, "BOTTOM", 0, 25)
+    closeBtn:SetPoint("BOTTOM", frame, "BOTTOM", 0, 30)
     closeBtn:SetText("Close")
     closeBtn:SetScript("OnClick", function()
         frame:Hide()
