@@ -107,6 +107,10 @@ WDTS_Lang_de_Phrases = {
     ["will mit"] = "want to join",
     ["willst mit"] = "do you want to join",
     
+    -- Medical/First Aid phrases
+    ["erste hilfe"] = "first aid",
+    ["handbuch erste hilfe"] = "first aid manual",
+    
     -- Trading phrases
     ["will kaufen"] = "want to buy",
     ["will verkaufen"] = "want to sell",
