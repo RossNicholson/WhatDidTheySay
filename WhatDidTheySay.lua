@@ -144,7 +144,7 @@ local function InitializeAddon()
     local cmdColor = "|cffffff00" -- Yellow
     
     DEFAULT_CHAT_FRAME:AddMessage(
-        string.format("%sWhat Did They Say?|r v%s loaded. Type %s/wdts|r or %s/whatdidtheysay|r to configure.",
+        string.format("%sWhat Did They Say?|r v%s by Ross Nicholson loaded. Type %s/wdts|r or %s/whatdidtheysay|r to configure.",
             addonColor,
             "0.2.0",
             cmdColor,

@@ -94,6 +94,7 @@ function Config.CreateFrame()
     infoText:SetText([[
 |cffffffffWhat Did They Say?|r translates chat messages using offline, in-game logic.
 
+|cffffd700Developer:|r Ross Nicholson
 |cffffd700Supported:|r German (de) → English (en)
 |cffffd700Confidence:|r ≥70% auto-display, <45% silent (by design)
 |cffffd700Protected:|r Player names, links, numbers never translated

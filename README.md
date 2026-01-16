@@ -308,7 +308,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **What Did They Say?** - In-game chat translation for WoW Classic
 
-Developed for World of Warcraft Classic players who want to communicate across language barriers without relying on external translation services or APIs.
+Developed by **Ross Nicholson** for World of Warcraft Classic players who want to communicate across language barriers without relying on external translation services or APIs.
 
 ---
 

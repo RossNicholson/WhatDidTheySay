@@ -1,7 +1,7 @@
 ## Interface: 11508
 ## Title: What Did They Say?
 ## Notes: Offline chat translation for World of Warcraft Classic
-## Author: WhatDidTheySay
+## Author: Ross Nicholson
 ## Version: 0.2.0
 ## SavedVariables: WhatDidTheySayDB
 
