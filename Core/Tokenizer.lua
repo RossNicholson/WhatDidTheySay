@@ -205,12 +205,18 @@ function Tokenizer.Reconstruct(tokens)
         -- Add space between tokens (except in special cases)
         if i < #tokens then
             local nextToken = tokens[i + 1]
-            -- Don't add space before closing bracket or after opening bracket
-            if not (token.hasCloseBracket or (nextToken and nextToken.hasOpenBracket)) then
+            -- Add space before opening bracket (when preceded by a word, not punctuation)
+            if nextToken and nextToken.hasOpenBracket and not token.hasOpenBracket then
+                -- Only add space if current token is a word or number, not punctuation
+                if token.type == "word" or token.type == "number" then
+                    table.insert(parts, " ")
+                end
+            -- Don't add space before closing bracket or right after opening bracket
+            elseif not (token.hasCloseBracket or (nextToken and nextToken.hasOpenBracket)) then
                 -- Don't add space before punctuation that attaches (like comma, period, closing parens)
                 local nextIsAttachingPunct = nextToken.type == "punctuation" and nextToken.original:match("^[,%.%!%?%)%]]$")
-                -- Don't add space after opening punctuation (like opening parens)
-                local currIsOpeningPunct = token.type == "punctuation" and token.original:match("^[%(%[]$")
+                -- Don't add space after opening punctuation (like opening parens, brackets)
+                local currIsOpeningPunct = token.type == "punctuation" and (token.original:match("^[%(%[]$") or token.hasOpenBracket)
                 if not (nextIsAttachingPunct or currIsOpeningPunct) then
                     table.insert(parts, " ")
                 end
