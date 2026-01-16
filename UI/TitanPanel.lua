@@ -94,46 +94,25 @@ function WDTS_TitanPanel.Register()
         return false
     end
     
-    -- Try using TitanUtils_RegisterPlugin if available (newer method)
-    if TitanUtils_RegisterPlugin then
-        local success, err = pcall(function()
-            TitanUtils_RegisterPlugin({
-                id = "WDTS",
-                name = "What Did They Say?",
-                menuText = "What Did They Say?",
-                buttonTextFunction = "TitanPanelWDTSButton_GetButtonText",
-                tooltipTitle = "What Did They Say?",
-                tooltipTextFunction = "TitanPanelWDTSButton_GetTooltipText",
-                cat = TITAN_PANEL_CATEGORY_INFORMATION or "Information",
-                version = "0.2.0",
-                icon = "Interface\\Icons\\INV_Letter_01",
-                iconWidth = 16,
-                savedVariables = {
-                    ShowLabelText = false,
-                    ShowIcon = true,
-                },
-            })
-        end)
-        if success then
-            return true
+    -- Create the button frame FIRST (Titan needs the frame to exist)
+    local button = CreateFrame("Button", "TitanPanelWDTSButton", UIParent, "TitanPanelComboTemplate")
+    if not button then
+        -- If template doesn't exist, try without template
+        button = CreateFrame("Button", "TitanPanelWDTSButton", UIParent)
+        if not button then
+            return false
         end
     end
     
-    -- Fallback to traditional method: Create frame and use TitanPanelButton_OnLoad
-    local button = CreateFrame("Button", "TitanPanelWDTSButton", UIParent, "TitanPanelComboTemplate")
-    if not button then
-        return false
-    end
-    
-    -- Set up the registry on the button
-    -- Use "cat" instead of "category" (Titan Panel uses "cat")
+    -- Set up the registry on the button BEFORE calling OnLoad
+    -- Titan Panel Classic uses "cat" for category
     button.registry = {
         id = "WDTS",
         menuText = "What Did They Say?",
         buttonTextFunction = "TitanPanelWDTSButton_GetButtonText",
         tooltipTitle = "What Did They Say?",
         tooltipTextFunction = "TitanPanelWDTSButton_GetTooltipText",
-        cat = TITAN_PANEL_CATEGORY_INFORMATION or "Information", -- Use "cat" not "category"
+        cat = "Information", -- Use string literal, not variable
         version = "0.2.0",
         icon = "Interface\\Icons\\INV_Letter_01",
         iconWidth = 16,
@@ -147,12 +126,14 @@ function WDTS_TitanPanel.Register()
     button:SetScript("OnClick", TitanPanelWDTSButton_OnClick)
     
     -- Register the plugin using Titan's function
+    -- This must be called during ADDON_LOADED for Titan to collect it
     if TitanPanelButton_OnLoad then
         local success, err = pcall(function()
             TitanPanelButton_OnLoad(button)
         end)
         if not success then
-            -- Registration failed, but don't error out
+            -- Log error if possible
+            DEFAULT_CHAT_FRAME:AddMessage("|cffff0000WDTS Titan Panel registration error: " .. tostring(err) .. "|r")
             return false
         end
         return true
