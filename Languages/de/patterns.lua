@@ -237,4 +237,18 @@ WDTS_Lang_de_Patterns = {
         from = "kann man (.+) als (.+)",
         to = "can you %1 as %2",
     },
+    
+    -- Crafting/profession requests: "X gesucht für Y" -> "X wanted for Y"
+    {
+        from = "(.+) gesucht für (.+)",
+        to = "%1 wanted for %2",
+    },
+    {
+        from = "(.+) gesucht für",
+        to = "%1 wanted for",
+    },
+    {
+        from = "(.+) gesucht",
+        to = "%1 wanted",
+    },
 }

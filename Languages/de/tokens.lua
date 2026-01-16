@@ -29,6 +29,7 @@ WDTS_Lang_de_Tokens = {
     -- Common verbs
     ["suche"] = "looking for",
     ["sucht"] = "looking for",
+    ["gesucht"] = "wanted/looking for", -- Past participle: "schmied gesucht" = "blacksmith wanted"
     ["brauche"] = "need",
     ["braucht"] = "need",
     ["will"] = "want",
@@ -208,6 +209,21 @@ WDTS_Lang_de_Tokens = {
     ["geld"] = "money",
     ["angebot"] = "offer",
     ["angebote"] = "offers",
+    
+    -- Professions and crafting
+    ["schmied"] = "blacksmith",
+    ["schmiedin"] = "blacksmith", -- Female form
+    ["schmiede"] = "blacksmithing",
+    ["kürschner"] = "leatherworker",
+    ["schneider"] = "tailor",
+    ["alchemist"] = "alchemist",
+    ["verzauberer"] = "enchanter",
+    ["ingenieur"] = "engineer",
+    ["kräuterkundiger"] = "herbalist",
+    ["kräuterkundige"] = "herbalist",
+    ["bergmann"] = "miner",
+    ["kräutersammler"] = "herbalist",
+    ["fischer"] = "fisherman/fisher",
     ["leihen"] = "lend",
     ["leiht"] = "lends",
     ["leih"] = "lend",
