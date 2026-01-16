@@ -476,6 +476,7 @@ WDTS_Lang_de_Tokens = {
     
     -- Pronouns and people
     ["man"] = "one/you", -- Impersonal pronoun: "Kann man" = "Can one/Can you"
+    ["es"] = "it", -- Neuter pronoun: "nannte man es" = "one called it"
     ["jemand"] = "someone",
     ["jmd"] = "someone", -- Abbreviation for jemand
     ["irgendjemand"] = "anyone",
