@@ -110,22 +110,27 @@ function Engine.DetectIntent(tokens, langPack)
                 -- For single-character or very short patterns (like "r", "rdy"), require exact word match
                 -- Otherwise they match too many false positives (e.g., "r" matches in "für", "waffe", etc.)
                 local isShortPattern = #patternLower <= 3
+                local patternMatches = false
                 
                 -- First try full phrase match (more confident)
                 if text:find(patternLower, 1, true) then
                     -- For short patterns, verify it's a whole word, not just a substring
                     if isShortPattern then
-                        -- Check if pattern appears as a whole word (surrounded by word boundaries or spaces)
+                        -- Check if pattern appears as a whole word (at start, end, or surrounded by spaces)
                         local patternEscaped = patternLower:gsub("[%(%)%.%+%-%*%?%[%]%^%$%%]", "%%%0")
-                        if not text:match("%f[%w]" .. patternEscaped .. "%f[%W]") and not text:match("^" .. patternEscaped .. "$") and not text:match("^" .. patternEscaped .. "%s") and not text:match("%s" .. patternEscaped .. "$") and not text:match("%s" .. patternEscaped .. "%s") then
-                            -- Pattern not found as whole word, skip it
-                            goto continue_pattern
+                        if text:match("^" .. patternEscaped .. "$") or text:match("^" .. patternEscaped .. "%s") or text:match("%s" .. patternEscaped .. "$") or text:match("%s" .. patternEscaped .. "%s") then
+                            patternMatches = true
                         end
+                    else
+                        patternMatches = true
                     end
-                    local score = (intent.score or 0.5) * 1.0 -- Full match gets full score
-                    if score > bestScore then
-                        bestScore = score
-                        bestIntent = intent
+                    
+                    if patternMatches then
+                        local score = (intent.score or 0.5) * 1.0 -- Full match gets full score
+                        if score > bestScore then
+                            bestScore = score
+                            bestIntent = intent
+                        end
                     end
                 else
                     -- Fall back to word-level matching
@@ -151,8 +156,6 @@ function Engine.DetectIntent(tokens, langPack)
                         end
                     end
                 end
-                
-                ::continue_pattern::
             end
         end
     end
