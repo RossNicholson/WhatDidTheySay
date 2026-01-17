@@ -89,6 +89,15 @@ function Config.CreateFrame()
     scrollFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 10, -100)
     scrollFrame:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -30, 50)
     
+    -- Add background to scrollbar for visibility
+    local scrollBar = _G[scrollFrame:GetName().."ScrollBar"]
+    if scrollBar then
+        local scrollBarBg = scrollBar:CreateTexture(nil, "BACKGROUND")
+        scrollBarBg:SetAllPoints(scrollBar)
+        scrollBarBg:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+        scrollBarBg:SetVertexColor(0.1, 0.1, 0.1, 0.8)
+    end
+    
     local contentFrame = CreateFrame("Frame", nil, scrollFrame)
     contentFrame:SetSize(400, 1200) -- Tall enough for all content
     scrollFrame:SetScrollChild(contentFrame)
