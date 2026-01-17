@@ -1453,6 +1453,8 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         ["links"] = true, ["link"] = true, -- Directions
         ["wait"] = true, ["back"] = true, -- Movement commands
         ["sec"] = true, ["seconds"] = true, ["min"] = true, ["mins"] = true, -- Time abbreviations
+        ["layer"] = true, ["layers"] = true, ["layering"] = true, -- WoW layering mechanic
+        ["inv"] = true, ["invite"] = true, -- Invite commands
         ["%"] = true, -- Percent sign
     }
     local wordCount = 0
@@ -1482,8 +1484,29 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     end
     -- If MOST words (>= 70%) are universal English gaming terms, it's probably English
     -- This catches messages like "LF2M for Uldaman" where "Uldaman" is a proper noun
-    if wordCount > 3 and (universalWordCount / wordCount) >= 0.70 then
+    -- Also catch 2-word messages where both words are universal (e.g., "layer pls")
+    if wordCount >= 2 and (universalWordCount / wordCount) >= 0.70 then
         return nil, 0.0, "already_english"
+    end
+    -- For 2-word messages, if at least one word is universal and the other is a common English word, skip
+    if wordCount == 2 and universalWordCount >= 1 then
+        -- Check if the non-universal word is a common English gaming term or word
+        for _, token in ipairs(tokens) do
+            if token.type == "word" then
+                local word = token.value:lower()
+                if not universalAbbrevsForCheck[word] then
+                    -- Check if it's a common English word (not likely to be translated)
+                    local commonEnglishWords = {
+                        ["layer"] = true, ["layers"] = true, ["layering"] = true,
+                        ["inv"] = true, ["invite"] = true, ["invites"] = true,
+                    }
+                    if commonEnglishWords[word] then
+                        -- Both words are English gaming terms, skip translation
+                        return nil, 0.0, "already_english"
+                    end
+                end
+            end
+        end
     end
     
     -- Special case: Very short messages (1-2 words) that are likely English greetings
