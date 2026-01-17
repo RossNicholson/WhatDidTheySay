@@ -74,11 +74,13 @@ This addon is focused on providing **the best translation possible**. It priorit
 - ✅ Core vocabulary and common phrases
 - ✅ Intent detection (LFG, invites, ready status)
 - ✅ Pattern matching for common structures
+- ✅ Dependency parsing for structure-based translation (v0.5.0)
 - 🚧 Ongoing vocabulary expansion based on real-world usage
 - 🚧 Grammar refinements and edge case handling
 
 ### Current Capabilities
 
+- **Dependency Parsing** - Structure-based translation using grammatical relationships (v0.5.0)
 - **Vocabulary Translation** - High-value WoW terms (roles, dungeons, actions)
 - **Intent Recognition** - LFG requests, invites, ready status, movement commands
 - **Pattern Matching** - Common phrase structures
