@@ -1,7 +1,7 @@
--- WhatDidTheySay - Russian Language Pack - Intents
+-- WhatDidTheySay - sv Language Pack - Intents
 -- PLACEHOLDER: Not yet implemented
 -- Only German (de) is currently available
 
-WDTS_Lang_ru_Intents = {
+WDTS_Lang_sv_Intents = {
     -- Placeholder
 }

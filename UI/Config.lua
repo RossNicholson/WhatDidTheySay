@@ -16,7 +16,7 @@ function Config.CreateFrame()
     frame:SetSize(440, 620)
     frame:SetPoint("CENTER", UIParent, "CENTER")
     
-    -- Create backdrop - simple solid background
+    -- Create backdrop - simple solid background (on outer frame)
     local backdrop = frame:CreateTexture(nil, "BACKGROUND")
     backdrop:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Background")
     backdrop:SetAllPoints(frame)
@@ -84,9 +84,21 @@ function Config.CreateFrame()
     subtitle:SetText("Configuration")
     subtitle:SetTextColor(0.8, 0.8, 0.8, 1)
     
+    -- Make frame scrollable - create scroll frame for content
+    local scrollFrame = CreateFrame("ScrollFrame", nil, frame, "UIPanelScrollFrameTemplate")
+    scrollFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 10, -100)
+    scrollFrame:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -30, 50)
+    
+    local contentFrame = CreateFrame("Frame", nil, scrollFrame)
+    contentFrame:SetSize(400, 1200) -- Tall enough for all content
+    scrollFrame:SetScrollChild(contentFrame)
+    
+    -- Use contentFrame for all content elements
+    local configContent = contentFrame
+    
     -- Information text area (more compact)
-    local infoText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    infoText:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -70)
+    local infoText = configContent:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    infoText:SetPoint("TOPLEFT", configContent, "TOPLEFT", 25, -20)
     infoText:SetWidth(390)
     infoText:SetNonSpaceWrap(false)
     infoText:SetJustifyH("LEFT")
@@ -103,8 +115,8 @@ function Config.CreateFrame()
     infoText:SetTextColor(0.9, 0.9, 0.9, 1)
     
     -- Language Packs section
-    local langPackLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    langPackLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, -155)
+    local langPackLabel = configContent:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    langPackLabel:SetPoint("TOPLEFT", configContent, "TOPLEFT", 25, -105)
     langPackLabel:SetText("|cffffffffLanguage Packs:|r")
     langPackLabel:SetTextColor(1, 1, 0.8, 1)
     
@@ -137,7 +149,7 @@ function Config.CreateFrame()
             displayText = displayText .. " |cff888888(Coming Soon)|r"
         end
         
-        local check, label = Widgets.CreateCheckbox(frame, displayText, 35, langPackYOffset, function(checked)
+        local check, label = Widgets.CreateCheckbox(configContent, displayText, 35, langPackYOffset, function(checked)
             if not isAvailable then
                 -- Prevent enabling unavailable languages
                 check:SetChecked(false)
@@ -164,8 +176,8 @@ function Config.CreateFrame()
     end
     
     -- Channel settings section - ensure proper spacing after language packs
-    local channelLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    channelLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, langPackYOffset - 20)
+    local channelLabel = configContent:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    channelLabel:SetPoint("TOPLEFT", configContent, "TOPLEFT", 25, langPackYOffset - 20)
     channelLabel:SetText("|cffffffffEnabled Channels:|r")
     channelLabel:SetTextColor(1, 1, 0.8, 1)
     
@@ -178,7 +190,7 @@ function Config.CreateFrame()
     
     -- Primary channels
     for i, channel in ipairs(primaryChannels) do
-        local check, label = Widgets.CreateCheckbox(frame, channel, 35, yOffset, function(checked)
+        local check, label = Widgets.CreateCheckbox(configContent, channel, 35, yOffset, function(checked)
             WhatDidTheySayDB.channels[channel] = checked
         end)
         check:SetChecked(WhatDidTheySayDB.channels[channel] or false)
@@ -190,8 +202,8 @@ function Config.CreateFrame()
     yOffset = yOffset - 15
     
     -- Global channels label
-    local globalLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    globalLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 35, yOffset)
+    local globalLabel = configContent:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    globalLabel:SetPoint("TOPLEFT", configContent, "TOPLEFT", 35, yOffset)
     globalLabel:SetText("|cffaaaaaaGlobal Channels:|r")
     globalLabel:SetTextColor(0.7, 0.7, 0.7, 1)
     
@@ -199,7 +211,7 @@ function Config.CreateFrame()
     
     -- Global channels
     for i, channel in ipairs(globalChannels) do
-        local check, label = Widgets.CreateCheckbox(frame, channel, 35, yOffset, function(checked)
+        local check, label = Widgets.CreateCheckbox(configContent, channel, 35, yOffset, function(checked)
             WhatDidTheySayDB.channels[channel] = checked
         end)
         check:SetChecked(WhatDidTheySayDB.channels[channel] or false)
@@ -211,23 +223,22 @@ function Config.CreateFrame()
     
     -- Settings section - ensure proper spacing before close button
     yOffset = yOffset - 25
-    local settingsLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    settingsLabel:SetPoint("TOPLEFT", frame, "TOPLEFT", 25, yOffset)
+    local settingsLabel = configContent:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    settingsLabel:SetPoint("TOPLEFT", configContent, "TOPLEFT", 25, yOffset)
     settingsLabel:SetText("|cffffffffSettings:|r")
     settingsLabel:SetTextColor(1, 1, 0.8, 1)
     
     yOffset = yOffset - 30
     
-    local autoCheck, autoLabelText = Widgets.CreateCheckbox(frame, "Auto-translate messages", 35, yOffset, function(checked)
+    local autoCheck, autoLabelText = Widgets.CreateCheckbox(configContent, "Auto-translate messages", 35, yOffset, function(checked)
         WhatDidTheySayDB.autoTranslate = checked
     end)
     autoCheck:SetChecked(WhatDidTheySayDB.autoTranslate or true)
     
-    -- Close button (centered, positioned with adequate space from auto-translate checkbox)
-    -- Ensure clear gap between checkbox and button to prevent overlap
+    -- Close button (on outer frame, not scrollable)
     local closeBtn = CreateFrame("Button", nil, frame, "GameMenuButtonTemplate")
     closeBtn:SetSize(120, 32)
-    closeBtn:SetPoint("BOTTOM", frame, "BOTTOM", 0, 55)
+    closeBtn:SetPoint("BOTTOM", frame, "BOTTOM", 0, 10)
     closeBtn:SetText("Close")
     closeBtn:SetScript("OnClick", function()
         frame:Hide()

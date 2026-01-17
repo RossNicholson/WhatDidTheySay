@@ -1,7 +1,7 @@
--- WhatDidTheySay - Russian Language Pack - Phrases
+-- WhatDidTheySay - nl Language Pack - Phrases
 -- PLACEHOLDER: Not yet implemented
 -- Only German (de) is currently available
 
-WDTS_Lang_ru_Phrases = {
+WDTS_Lang_nl_Phrases = {
     -- Placeholder
 }
