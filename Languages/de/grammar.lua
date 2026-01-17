@@ -682,6 +682,16 @@ WDTS_Lang_de_Grammar = {
             from = "but ich have it gestern already mentioned am noob newbie",
             to = "but I mentioned it yesterday, I'm a noob newbie",
         },
+        {
+            from = "but ich have it yesterday already mentioned am noob newbie",
+            to = "but I mentioned it yesterday, I'm a noob newbie",
+        },
+        
+        -- Fix "and have definitely already 5 chars in the exile d" -> "and definitely already have 5 chars in exile"
+        {
+            from = "and have definitely already (.+) chars in the exile (.+)",
+            to = "and definitely already have %1 chars in exile",
+        },
         
         -- Fix "such you someone where with you questet" -> "look for someone who quests with you"
         {
