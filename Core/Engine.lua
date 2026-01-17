@@ -1656,6 +1656,7 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         ["drop"] = true, ["drops"] = true, ["loot"] = true, ["looted"] = true, -- Loot terms
         ["blue"] = true, ["green"] = true, ["white"] = true, ["grey"] = true, -- Item quality
         ["staff"] = true, ["weapon"] = true, ["armor"] = true, -- Item types
+        ["enchant"] = true, ["enchantment"] = true, ["enchantments"] = true, ["enchanter"] = true, -- Enchanting terms
         ["screenshot"] = true, -- Screenshot
         ["skip"] = true, ["skipping"] = true, ["skipped"] = true, -- Skip terms
         ["patrol"] = true, ["pat"] = true, ["patrols"] = true, -- Patrol terms
