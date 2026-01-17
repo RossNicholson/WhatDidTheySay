@@ -2178,5 +2178,750 @@ WDTS_Lang_de_Grammar = {
             to = "Redemption of %1",
             priority = 12,
         },
+        
+        -- ============================================
+        -- ADDITIONAL SYSTEMATIC GRAMMAR FIXES
+        -- Common German-to-English translation issues
+        -- ============================================
+        
+        -- Fix verb position in questions (V2 word order)
+        {
+            from = "^(.+) are you (.+)$",
+            to = "are you %1 %2",
+            priority = 12,
+        },
+        {
+            from = "^(.+) do you (.+)$",
+            to = "do you %1 %2",
+            priority = 12,
+        },
+        {
+            from = "^(.+) can you (.+)$",
+            to = "can you %1 %2",
+            priority = 12,
+        },
+        {
+            from = "^(.+) have you (.+)$",
+            to = "have you %1 %2",
+            priority = 12,
+        },
+        {
+            from = "^(.+) will you (.+)$",
+            to = "will you %1 %2",
+            priority = 12,
+        },
+        {
+            from = "^(.+) should you (.+)$",
+            to = "should you %1 %2",
+            priority = 12,
+        },
+        
+        -- Fix article placement with adjectives
+        {
+            from = " a (.+) one$",
+            to = " a %1 one",
+            priority = 8,
+        },
+        {
+            from = " the (.+) one$",
+            to = " the %1 one",
+            priority = 8,
+        },
+        {
+            from = " an (.+) one$",
+            to = " an %1 one",
+            priority = 8,
+        },
+        
+        -- Fix double negation
+        {
+            from = " not no ",
+            to = " not ",
+            priority = 10,
+        },
+        {
+            from = " no not ",
+            to = " not ",
+            priority = 10,
+        },
+        {
+            from = " not don't ",
+            to = " don't ",
+            priority = 10,
+        },
+        {
+            from = " don't not ",
+            to = " don't ",
+            priority = 10,
+        },
+        
+        -- Fix verb-subject agreement
+        {
+            from = " he have ",
+            to = " he has ",
+            priority = 12,
+        },
+        {
+            from = " she have ",
+            to = " she has ",
+            priority = 12,
+        },
+        {
+            from = " it have ",
+            to = " it has ",
+            priority = 12,
+        },
+        {
+            from = " i has ",
+            to = " I have ",
+            priority = 12,
+        },
+        {
+            from = " you has ",
+            to = " you have ",
+            priority = 12,
+        },
+        {
+            from = " we has ",
+            to = " we have ",
+            priority = 12,
+        },
+        {
+            from = " they has ",
+            to = " they have ",
+            priority = 12,
+        },
+        
+        -- Fix infinitive constructions (modal + bare infinitive)
+        {
+            from = " can to ",
+            to = " can ",
+            priority = 12,
+        },
+        {
+            from = " must to ",
+            to = " must ",
+            priority = 12,
+        },
+        {
+            from = " should to ",
+            to = " should ",
+            priority = 12,
+        },
+        {
+            from = " will to ",
+            to = " will ",
+            priority = 12,
+        },
+        {
+            from = " would to ",
+            to = " would ",
+            priority = 12,
+        },
+        {
+            from = " may to ",
+            to = " may ",
+            priority = 12,
+        },
+        
+        -- Fix "to to" constructions
+        {
+            from = " to to ",
+            to = " to ",
+            priority = 10,
+        },
+        {
+            from = "^to to ",
+            to = "to ",
+            priority = 10,
+        },
+        
+        -- Fix past participle position
+        {
+            from = " have (.+) been ",
+            to = " have been %1 ",
+            priority = 10,
+        },
+        {
+            from = " has (.+) been ",
+            to = " has been %1 ",
+            priority = 10,
+        },
+        {
+            from = " had (.+) been ",
+            to = " had been %1 ",
+            priority = 10,
+        },
+        
+        -- Fix "been being" -> "been"
+        {
+            from = " been being ",
+            to = " been ",
+            priority = 12,
+        },
+        
+        -- Fix reflexive pronoun placement
+        {
+            from = " help me myself",
+            to = " help myself",
+            priority = 12,
+        },
+        {
+            from = " help you yourself",
+            to = " help yourself",
+            priority = 12,
+        },
+        {
+            from = " help yourself you",
+            to = " help yourself",
+            priority = 12,
+        },
+        {
+            from = " help himself he",
+            to = " he helps himself",
+            priority = 12,
+        },
+        
+        -- Fix preposition placement
+        {
+            from = " go to there$",
+            to = " go there",
+            priority = 10,
+        },
+        {
+            from = " come to here$",
+            to = " come here",
+            priority = 10,
+        },
+        {
+            from = " go to home$",
+            to = " go home",
+            priority = 10,
+        },
+        
+        -- Fix "at the here" / "at the there"
+        {
+            from = " at the here",
+            to = " here",
+            priority = 10,
+        },
+        {
+            from = " at the there",
+            to = " there",
+            priority = 10,
+        },
+        
+        -- Fix comparative constructions
+        {
+            from = " more better ",
+            to = " better ",
+            priority = 12,
+        },
+        {
+            from = " more worse ",
+            to = " worse ",
+            priority = 12,
+        },
+        {
+            from = " more faster ",
+            to = " faster ",
+            priority = 12,
+        },
+        {
+            from = " more slower ",
+            to = " slower ",
+            priority = 12,
+        },
+        
+        -- Fix superlative constructions
+        {
+            from = " the most best ",
+            to = " the best ",
+            priority = 12,
+        },
+        {
+            from = " the most worst ",
+            to = " the worst ",
+            priority = 12,
+        },
+        
+        -- Fix "a lot of of" -> "a lot of"
+        {
+            from = " a lot of of ",
+            to = " a lot of ",
+            priority = 10,
+        },
+        {
+            from = " lots of of ",
+            to = " lots of ",
+            priority = 10,
+        },
+        
+        -- Fix "each other each other" -> "each other"
+        {
+            from = " each other each other",
+            to = " each other",
+            priority = 10,
+        },
+        
+        -- Fix "the same same" -> "the same"
+        {
+            from = " the same same",
+            to = " the same",
+            priority = 10,
+        },
+        
+        -- Fix "more more" -> "more"
+        {
+            from = " more more ",
+            to = " more ",
+            priority = 10,
+        },
+        {
+            from = " less less ",
+            to = " less ",
+            priority = 10,
+        },
+        
+        -- Fix "all all" -> "all"
+        {
+            from = "^all all ",
+            to = "all ",
+            priority = 10,
+        },
+        {
+            from = " all all ",
+            to = " all ",
+            priority = 10,
+        },
+        
+        -- Fix "both both" -> "both"
+        {
+            from = " both both",
+            to = " both",
+            priority = 10,
+        },
+        
+        -- Fix "each each" -> "each"
+        {
+            from = " each each",
+            to = " each",
+            priority = 10,
+        },
+        
+        -- Fix "every every" -> "every"
+        {
+            from = " every every ",
+            to = " every ",
+            priority = 10,
+        },
+        
+        -- Fix "some some" -> "some"
+        {
+            from = " some some ",
+            to = " some ",
+            priority = 10,
+        },
+        
+        -- Fix "any any" -> "any"
+        {
+            from = " any any ",
+            to = " any ",
+            priority = 10,
+        },
+        
+        -- Fix "one one" -> "one"
+        {
+            from = " one one ",
+            to = " one ",
+            priority = 10,
+        },
+        
+        -- Fix duplicate prepositions
+        {
+            from = " from from ",
+            to = " from ",
+            priority = 10,
+        },
+        {
+            from = " to to ",
+            to = " to ",
+            priority = 10,
+        },
+        {
+            from = " at at ",
+            to = " at ",
+            priority = 10,
+        },
+        {
+            from = " in in ",
+            to = " in ",
+            priority = 10,
+        },
+        {
+            from = " on on ",
+            to = " on ",
+            priority = 10,
+        },
+        {
+            from = " with with ",
+            to = " with ",
+            priority = 10,
+        },
+        {
+            from = " by by ",
+            to = " by ",
+            priority = 10,
+        },
+        {
+            from = " for for ",
+            to = " for ",
+            priority = 10,
+        },
+        
+        -- Fix duplicate conjunctions
+        {
+            from = " and and ",
+            to = " and ",
+            priority = 10,
+        },
+        {
+            from = " but but ",
+            to = " but ",
+            priority = 10,
+        },
+        {
+            from = " or or ",
+            to = " or ",
+            priority = 10,
+        },
+        {
+            from = " so so ",
+            to = " so ",
+            priority = 10,
+        },
+        
+        -- Fix "that that" -> "that"
+        {
+            from = " that that ",
+            to = " that ",
+            priority = 10,
+        },
+        
+        -- Fix "what what" -> "what"
+        {
+            from = " what what ",
+            to = " what ",
+            priority = 10,
+        },
+        
+        -- Fix "who who" -> "who"
+        {
+            from = " who who ",
+            to = " who ",
+            priority = 10,
+        },
+        
+        -- Fix "where where" -> "where"
+        {
+            from = " where where ",
+            to = " where ",
+            priority = 10,
+        },
+        
+        -- Fix "when when" -> "when"
+        {
+            from = " when when ",
+            to = " when ",
+            priority = 10,
+        },
+        
+        -- Fix "why why" -> "why"
+        {
+            from = " why why ",
+            to = " why ",
+            priority = 10,
+        },
+        
+        -- Fix "how how" -> "how"
+        {
+            from = " how how ",
+            to = " how ",
+            priority = 10,
+        },
+        
+        -- Fix possessive pronoun duplication
+        {
+            from = " my my ",
+            to = " my ",
+            priority = 10,
+        },
+        {
+            from = " your your ",
+            to = " your ",
+            priority = 10,
+        },
+        {
+            from = " his his ",
+            to = " his ",
+            priority = 10,
+        },
+        {
+            from = " her her ",
+            to = " her ",
+            priority = 10,
+        },
+        {
+            from = " its its ",
+            to = " its ",
+            priority = 10,
+        },
+        {
+            from = " our our ",
+            to = " our ",
+            priority = 10,
+        },
+        {
+            from = " their their ",
+            to = " their ",
+            priority = 10,
+        },
+        
+        -- Fix "be be" -> "be"
+        {
+            from = " be be ",
+            to = " be ",
+            priority = 10,
+        },
+        {
+            from = " am am ",
+            to = " am ",
+            priority = 10,
+        },
+        {
+            from = " is is ",
+            to = " is ",
+            priority = 10,
+        },
+        {
+            from = " are are ",
+            to = " are ",
+            priority = 10,
+        },
+        {
+            from = " was was ",
+            to = " was ",
+            priority = 10,
+        },
+        {
+            from = " were were ",
+            to = " were ",
+            priority = 10,
+        },
+        
+        -- Fix "have have" -> "have"
+        {
+            from = " have have ",
+            to = " have ",
+            priority = 10,
+        },
+        {
+            from = " has has ",
+            to = " has ",
+            priority = 10,
+        },
+        {
+            from = " had had ",
+            to = " had ",
+            priority = 10,
+        },
+        
+        -- Fix "do do" -> "do"
+        {
+            from = " do do ",
+            to = " do ",
+            priority = 10,
+        },
+        {
+            from = " does does ",
+            to = " does ",
+            priority = 10,
+        },
+        {
+            from = " did did ",
+            to = " did ",
+            priority = 10,
+        },
+        
+        -- Fix "can can" -> "can"
+        {
+            from = " can can ",
+            to = " can ",
+            priority = 10,
+        },
+        {
+            from = " could could ",
+            to = " could ",
+            priority = 10,
+        },
+        
+        -- Fix "will will" -> "will"
+        {
+            from = " will will ",
+            to = " will ",
+            priority = 10,
+        },
+        {
+            from = " would would ",
+            to = " would ",
+            priority = 10,
+        },
+        
+        -- Fix "should should" -> "should"
+        {
+            from = " should should ",
+            to = " should ",
+            priority = 10,
+        },
+        
+        -- Fix "must must" -> "must"
+        {
+            from = " must must ",
+            to = " must ",
+            priority = 10,
+        },
+        
+        -- Fix "may may" -> "may"
+        {
+            from = " may may ",
+            to = " may ",
+            priority = 10,
+        },
+        
+        -- Fix "might might" -> "might"
+        {
+            from = " might might ",
+            to = " might ",
+            priority = 10,
+        },
+        
+        -- Fix "go go" -> "go"
+        {
+            from = " go go ",
+            to = " go ",
+            priority = 10,
+        },
+        {
+            from = " goes goes ",
+            to = " goes ",
+            priority = 10,
+        },
+        {
+            from = " went went ",
+            to = " went ",
+            priority = 10,
+        },
+        
+        -- Fix "get get" -> "get"
+        {
+            from = " get get ",
+            to = " get ",
+            priority = 10,
+        },
+        {
+            from = " gets gets ",
+            to = " gets ",
+            priority = 10,
+        },
+        {
+            from = " got got ",
+            to = " got ",
+            priority = 10,
+        },
+        
+        -- Fix "make make" -> "make"
+        {
+            from = " make make ",
+            to = " make ",
+            priority = 10,
+        },
+        {
+            from = " makes makes ",
+            to = " makes ",
+            priority = 10,
+        },
+        {
+            from = " made made ",
+            to = " made ",
+            priority = 10,
+        },
+        
+        -- Fix "take take" -> "take"
+        {
+            from = " take take ",
+            to = " take ",
+            priority = 10,
+        },
+        {
+            from = " takes takes ",
+            to = " takes ",
+            priority = 10,
+        },
+        {
+            from = " took took ",
+            to = " took ",
+            priority = 10,
+        },
+        
+        -- Fix "come come" -> "come"
+        {
+            from = " come come ",
+            to = " come ",
+            priority = 10,
+        },
+        {
+            from = " comes comes ",
+            to = " comes ",
+            priority = 10,
+        },
+        {
+            from = " came came ",
+            to = " came ",
+            priority = 10,
+        },
+        
+        -- Fix "see see" -> "see"
+        {
+            from = " see see ",
+            to = " see ",
+            priority = 10,
+        },
+        {
+            from = " sees sees ",
+            to = " sees ",
+            priority = 10,
+        },
+        {
+            from = " saw saw ",
+            to = " saw ",
+            priority = 10,
+        },
+        
+        -- Fix "know know" -> "know"
+        {
+            from = " know know ",
+            to = " know ",
+            priority = 10,
+        },
+        {
+            from = " knows knows ",
+            to = " knows ",
+            priority = 10,
+        },
+        {
+            from = " knew knew ",
+            to = " knew ",
+            priority = 10,
+        },
     },
 }
