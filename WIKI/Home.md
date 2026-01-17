@@ -4,6 +4,7 @@ Welcome to the **What Did They Say?** wiki! This addon helps World of Warcraft C
 
 ## 🎯 Quick Links
 
+- **[Releases](Releases)** - Current version, downloads, and release information
 - **[Installation Guide](Installation)** - How to install and set up the addon
 - **[User Guide](User-Guide)** - How to use the addon in-game
 - **[Configuration](Configuration)** - Detailed configuration options
