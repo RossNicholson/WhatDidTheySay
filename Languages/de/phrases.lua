@@ -126,6 +126,25 @@ WDTS_Lang_de_Phrases = {
     ["viel glück"] = "good luck",
     ["kein problem"] = "no problem",
     
+    -- Questions and phrases from guild chat
+    ["was für ein"] = "what kind of a", -- "was für ein addon" = "what kind of addon"
+    ["was für eine"] = "what kind of a", -- "was für eine" (feminine)
+    ["was für"] = "what kind of", -- "was für" = "what kind of"
+    ["ist das nochmal"] = "is that again",
+    ["ist das"] = "is that", -- "ist das" = "is that"
+    ["nochmal?"] = "again?",
+    ["brauchst kein"] = "you don't need", -- "brauchst kein addon" = "you don't need an addon"
+    ["brauchst kein addon"] = "you don't need an addon",
+    ["hab keine nachricht gesehen"] = "haven't seen a message",
+    ["hab keine nachricht"] = "have no message",
+    ["hab gesagt"] = "I said/have said",
+    ["ich hab"] = "I have",
+    ["ich hab nur"] = "I have only",
+    ["alle anderen"] = "all others/everyone else",
+    ["falls du ein willst"] = "if you want one",
+    ["bzgl statistiken"] = "regarding statistics",
+    ["usw ist es"] = "etc. it is",
+    
     -- Status phrases
     ["bin tot"] = "am dead",
     ["ist tot"] = "is dead",

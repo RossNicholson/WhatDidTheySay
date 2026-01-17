@@ -156,6 +156,10 @@ function LanguageDetect.Detect(tokens)
         effectiveThreshold = 0.20 -- Lower threshold for single-word vocabulary matches
     elseif #wordTokens == 2 and bestLang and vocabularyMatches[bestLang] and vocabularyMatches[bestLang] >= 1 then
         effectiveThreshold = 0.25 -- Slightly lower for 2-word messages
+        -- Special case: If one word is a German vocabulary word (like "geil"), boost confidence
+        if vocabularyMatches[bestLang] >= 1 then
+            bestScore = math.max(bestScore, 0.35) -- Boost for German word in 2-word message
+        end
     end
     
     -- Return nil if below threshold

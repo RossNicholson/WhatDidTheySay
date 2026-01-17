@@ -551,6 +551,21 @@ WDTS_Lang_de_Tokens = {
     ["waren"] = "were",
     ["habe"] = "have",
     ["hab"] = "have", -- Colloquial form: "ich hab" = "I have"
+    ["habe"] = "I have/have", -- "habe" = "I have" or "have"
+    ["nachricht"] = "message",
+    ["nachrichten"] = "messages",
+    ["brauchst"] = "need/you need", -- "brauchst" = "you need" (2nd person singular)
+    ["statistiken"] = "statistics",
+    ["statistik"] = "statistics",
+    ["bzgl"] = "regarding/concerning", -- "bezüglich" abbreviation
+    ["gesagt"] = "said", -- Past participle: "habe gesagt" = "I said/have said"
+    ["gesehen"] = "seen", -- Past participle: "habe gesehen" = "I saw/have seen"
+    ["sagten"] = "said", -- Past tense plural: "sie sagten" = "they said"
+    ["andere"] = "others/other", -- "andere" = "others" or "other"
+    ["anderen"] = "others/other", -- "anderen" = "others" or "other" (dative/accusative)
+    ["alle"] = "all/everyone", -- "alle" = "all" or "everyone"
+    ["ein"] = "a/an/one", -- "ein" = "a/an" or "one"
+    ["willst"] = "want", -- "willst" = "you want" (2nd person singular)
     ["hast"] = "have",
     ["hat"] = "has",
     ["haben"] = "have",
@@ -613,6 +628,22 @@ WDTS_Lang_de_Tokens = {
     ["auch"] = "also",
     ["noch"] = "still",
     ["nochmal"] = "again/another time", -- "nochmal" = "again" or "another time"
+    ["nachricht"] = "message",
+    ["nachrichten"] = "messages",
+    ["brauchst"] = "need/you need", -- "brauchst" = "you need" (2nd person singular)
+    ["statistiken"] = "statistics",
+    ["statistik"] = "statistics",
+    ["bzgl"] = "regarding/concerning", -- "bezüglich" abbreviation
+    ["gesagt"] = "said", -- Past participle: "habe gesagt" = "I said/have said"
+    ["gesehen"] = "seen", -- Past participle: "habe gesehen" = "I saw/have seen"
+    ["hab"] = "have", -- Colloquial form of "habe"
+    ["habe"] = "I have/have", -- "habe" = "I have" or "have"
+    ["sagten"] = "said", -- Past tense plural: "sie sagten" = "they said"
+    ["andere"] = "others/other", -- "andere" = "others" or "other"
+    ["anderen"] = "others/other", -- "anderen" = "others" or "other" (dative/accusative)
+    ["alle"] = "all/everyone", -- "alle" = "all" or "everyone"
+    ["ein"] = "a/an/one", -- "ein" = "a/an" or "one"
+    ["willst"] = "want", -- "willst" = "you want" (2nd person singular)
     ["noch einmal"] = "once again",
     ["schon"] = "already",
     ["nicht"] = "not",

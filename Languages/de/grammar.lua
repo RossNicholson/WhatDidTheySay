@@ -1436,11 +1436,57 @@ WDTS_Lang_de_Grammar = {
             to = "where are you",
             priority = 15,
         },
-        -- Fix "what is are" -> "what are you doing" (from "was machst du")
+        -- Fix "what kind of a addon is that again" -> "what kind of addon is that again"
         {
-            from = "what is are",
+            from = "what kind of a addon is that again",
+            to = "what kind of addon is that again",
+            priority = 20,
+        },
+        {
+            from = "what kind of a (.+) is (.+)",
+            to = "what kind of %1 is %2",
+            priority = 20,
+        },
+        -- Fix "what for in addon is that/is this again" -> "what kind of addon is that again"
+        {
+            from = "what for in addon is that/is this again",
+            to = "what kind of addon is that again",
+            priority = 10,
+        },
+        {
+            from = "what for in (.+) is that/is this again",
+            to = "what kind of %1 is that again",
+            priority = 10,
+        },
+        {
+            from = "what for (.+) is (.+)",
+            to = "what kind of %1 is %2",
+            priority = 8,
+        },
+        -- Fix "need no addon" -> "you don't need an addon"
+        {
+            from = "^need no addon$",
+            to = "you don't need an addon",
+            priority = 10,
+        },
+        -- Fix "what is are" -> "what are you doing" (from "was machst du")
+        -- BUT: Don't match if it's part of "what kind of..."
+        {
+            from = "^what is are$",
             to = "what are you doing",
             priority = 15,
+        },
+        {
+            from = "what is are ",
+            to = "what are you doing ",
+            priority = 15,
+        },
+        -- Prevent "what kind of" from being corrupted by "what is are" rule
+        -- This must run AFTER "what kind of a" fixes but before general "what is are"
+        {
+            from = "what kind of (a )?addon is (.+)",
+            to = "what kind of addon is %2",
+            priority = 18, -- Higher than "what is are" (15) but lower than "what kind of a" (20)
         },
         -- Remove duplicate - handled above
         -- Fix third person "want" -> "wants"
