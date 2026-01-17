@@ -4,6 +4,16 @@
 
 <div align="center">
 
+## ☕ Support the Developer
+
+If this addon has helped you, please consider [buying me a coffee](https://buymeacoffee.com/rossnicholson)! 🙏
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20Ross-yellow?logo=buy-me-a-coffee)](https://buymeacoffee.com/rossnicholson)
+
+</div>
+
+<div align="center">
+
 **⚠️ BETA VERSION ⚠️**
 
 Currently supports **German (de → en) translation**. Additional language packs coming soon.
@@ -115,14 +125,6 @@ Contributions welcome! See the [Contributing Guide](https://github.com/RossNicho
 ## 📝 License
 
 MIT License - see [LICENSE](LICENSE) file for details.
-
----
-
-## ☕ Support the Developer
-
-If this addon has helped you, please consider [buying me a coffee](https://buymeacoffee.com/rossnicholson)! 🙏
-
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20Ross-yellow?logo=buy-me-a-coffee)](https://buymeacoffee.com/rossnicholson)
 
 ---
 
