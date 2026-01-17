@@ -70,7 +70,7 @@ WDTS_Lang_de_Tokens = {
     ["geht"] = "goes/works", -- "das geht" = "that works/that goes"
     ["reinkommst"] = "come in/enter", -- "wenn du reinkommst" = "when you come in"
     ["reinkommen"] = "come in/enter",
-    ["gehe"] = "going",
+    ["gehe"] = "go",
     ["laufe"] = "running/going", -- "ich laufe" = "I'm running/going"
     ["laufen"] = "running/going",
     ["läuft"] = "runs/goes",
