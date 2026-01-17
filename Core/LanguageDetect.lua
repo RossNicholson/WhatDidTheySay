@@ -36,11 +36,41 @@ LanguageDetect.FUNCTION_WORDS = {
         "suche", "sucht", "suchst", "suchen", -- "suche" = "looking for"
         "brauche", "brauchst", "braucht", "brauchen", -- "brauche" = "need"
     },
+    fr = {
+        -- Articles
+        "le", "la", "les", "un", "une", "des", "du", "de",
+        -- Common pronouns
+        "je", "tu", "il", "elle", "nous", "vous", "ils", "elles",
+        "me", "te", "se", "nous", "vous",
+        -- Common verbs (present tense)
+        "être", "est", "sont", "suis", "es", "êtes",
+        "avoir", "a", "as", "ont", "avons", "avez",
+        "faire", "fait", "fais", "font",
+        "aller", "va", "vas", "vont", "allons", "allez",
+        "vouloir", "veux", "veut", "veulent", "voulez",
+        "pouvoir", "peut", "peux", "peuvent", "pouvez",
+        "devoir", "doit", "dois", "doivent", "devez",
+        "falloir", "faut",
+        -- Prepositions
+        "à", "au", "aux", "de", "du", "des", "dans", "sur", "sous", "avec", "sans", "pour", "par", "vers",
+        -- Conjunctions
+        "et", "ou", "mais", "donc", "car", "or", "ni",
+        -- Question words
+        "qui", "que", "quoi", "où", "quand", "comment", "pourquoi", "combien",
+        -- Common words
+        "ce", "cet", "cette", "ces", "mon", "ma", "mes", "ton", "ta", "tes",
+        "son", "sa", "ses", "notre", "nos", "votre", "vos", "leur", "leurs",
+        -- Common adverbs
+        "très", "plus", "moins", "beaucoup", "peu", "assez", "trop", "bien", "mal",
+        -- Common greetings/words
+        "bonjour", "salut", "bonsoir", "bonne", "bon", "merci", "s'il", "vous", "plaît",
+    },
 }
 
 -- Character hints (language-specific characters)
 LanguageDetect.CHAR_HINTS = {
     de = { "ä", "ö", "ü", "ß", "Ä", "Ö", "Ü" },
+    fr = { "é", "è", "ê", "ë", "à", "â", "ç", "ô", "ù", "û", "î", "ï", "É", "È", "Ê", "Ë", "À", "Â", "Ç", "Ô", "Ù", "Û", "Î", "Ï" },
     -- Add more languages as needed
 }
 

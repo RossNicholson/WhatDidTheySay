@@ -1,7 +1,155 @@
--- WhatDidTheySay - fr Language Pack - Tokens
--- PLACEHOLDER: Not yet implemented
--- Only German (de) is currently available
+-- WhatDidTheySay - French Language Pack - Tokens
+-- High-value vocabulary for WoW Classic French players
 
 WDTS_Lang_fr_Tokens = {
-    -- Placeholder
+    -- Roles
+    ["tank"] = "tank",
+    ["dps"] = "dps",
+    ["heal"] = "heal",
+    ["guérisseur"] = "healer",
+    ["soigneur"] = "healer",
+    
+    -- Common verbs
+    ["cherche"] = "looking for",
+    ["chercher"] = "to look for",
+    ["recherche"] = "looking for/search",
+    ["besoin"] = "need",
+    ["besoin de"] = "need",
+    ["avoir besoin"] = "to need",
+    ["veux"] = "want",
+    ["veut"] = "wants",
+    ["vouloir"] = "to want",
+    ["peux"] = "can",
+    ["peut"] = "can",
+    ["pouvoir"] = "to can/to be able",
+    ["sais"] = "know",
+    ["sait"] = "knows",
+    ["savoir"] = "to know",
+    ["vais"] = "am going/going",
+    ["va"] = "goes/is going",
+    ["aller"] = "to go",
+    ["suis"] = "am",
+    ["es"] = "are",
+    ["est"] = "is",
+    ["sommes"] = "are",
+    ["êtes"] = "are",
+    ["sont"] = "are",
+    ["être"] = "to be",
+    ["a"] = "has",
+    ["as"] = "have",
+    ["avoir"] = "to have",
+    ["fait"] = "does/makes",
+    ["faire"] = "to do/to make",
+    
+    -- Common nouns
+    ["groupe"] = "group",
+    ["joueur"] = "player",
+    ["joueurs"] = "players",
+    ["membre"] = "member",
+    ["membres"] = "members",
+    ["guilde"] = "guild",
+    ["quête"] = "quest",
+    ["quêtes"] = "quests",
+    ["donjon"] = "dungeon",
+    ["donjons"] = "dungeons",
+    ["raid"] = "raid",
+    ["raids"] = "raids",
+    ["instance"] = "instance",
+    
+    -- Pronouns
+    ["je"] = "I",
+    ["tu"] = "you",
+    ["il"] = "he",
+    ["elle"] = "she",
+    ["nous"] = "we",
+    ["vous"] = "you",
+    ["ils"] = "they",
+    ["elles"] = "they",
+    
+    -- LFG related
+    ["pour"] = "for",
+    ["avec"] = "with",
+    ["et"] = "and",
+    ["ou"] = "or",
+    ["mais"] = "but",
+    ["dans"] = "in",
+    ["sur"] = "on",
+    ["de"] = "of/from",
+    ["du"] = "of the/from the",
+    ["des"] = "of the/from the",
+    
+    -- Common phrases
+    ["bonjour"] = "hello",
+    ["salut"] = "hi",
+    ["bonsoir"] = "good evening",
+    ["au revoir"] = "goodbye",
+    ["merci"] = "thanks",
+    ["de rien"] = "you're welcome",
+    ["s'il vous plaît"] = "please",
+    ["s'il te plaît"] = "please",
+    ["svp"] = "please",
+    ["oui"] = "yes",
+    ["non"] = "no",
+    ["ok"] = "ok",
+    ["okay"] = "ok",
+    
+    -- Dungeons (French names/common terms)
+    ["caverne"] = "cavern",
+    ["souterrains"] = "underground",
+    ["mine"] = "mine",
+    ["mines"] = "mines",
+    
+    -- Trading
+    ["vendre"] = "sell",
+    ["vente"] = "sale",
+    ["acheter"] = "buy",
+    ["achat"] = "purchase",
+    ["échange"] = "trade",
+    ["échanger"] = "to trade",
+    
+    -- Actions
+    ["prêt"] = "ready",
+    ["prête"] = "ready",
+    ["prêts"] = "ready",
+    ["prêtes"] = "ready",
+    ["fini"] = "done",
+    ["finie"] = "done",
+    ["finis"] = "done",
+    ["finies"] = "done",
+    ["inviter"] = "invite",
+    ["invitation"] = "invitation",
+    ["invoquer"] = "summon",
+    ["invoquation"] = "summon",
+    
+    -- Status
+    ["vie"] = "health",
+    ["mana"] = "mana",
+    ["santé"] = "health",
+    
+    -- Common question words
+    ["qui"] = "who",
+    ["que"] = "what",
+    ["quoi"] = "what",
+    ["où"] = "where",
+    ["quand"] = "when",
+    ["comment"] = "how",
+    ["pourquoi"] = "why",
+    ["combien"] = "how much/how many",
+    
+    -- Common words
+    ["encore"] = "still/yet/again",
+    ["déjà"] = "already",
+    ["tout"] = "all/everything",
+    ["tous"] = "all",
+    ["toutes"] = "all",
+    ["toute"] = "all",
+    ["bien"] = "well/good",
+    ["mal"] = "bad/badly",
+    ["très"] = "very",
+    ["trop"] = "too much/too many",
+    ["assez"] = "enough",
+    ["beaucoup"] = "a lot/much/many",
+    ["peu"] = "little/few",
+    ["plus"] = "more/plus",
+    ["moins"] = "less/minus",
 }

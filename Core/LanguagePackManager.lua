@@ -29,9 +29,9 @@ function LanguagePackManager.DiscoverPacks()
         ["fr"] = {
             name = "French",
             nativeName = "Français",
-            description = "French → English translation (Coming Soon)",
+            description = "French → English translation",
             direction = "fr → en",
-            available = false,
+            available = true,
         },
         ["es"] = {
             name = "Spanish",
