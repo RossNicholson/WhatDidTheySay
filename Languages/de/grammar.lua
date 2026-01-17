@@ -1390,6 +1390,75 @@ WDTS_Lang_de_Grammar = {
             from = "I was/have been",
             to = "I was",
         },
+        
+        -- Fix duplicate words
+        {
+            from = "(.+) is is",
+            to = "%1 are you",
+            priority = 10,
+        },
+        {
+            from = "where are you you",
+            to = "where are you",
+            priority = 10,
+        },
+        {
+            from = "what are you doing you",
+            to = "what are you doing",
+            priority = 10,
+        },
+        
+        -- Fix past participles that were already fixed but may have variations
+        {
+            from = "have made",
+            to = "I did",
+            priority = 10,
+        },
+        {
+            from = "am come",
+            to = "I came",
+            priority = 10,
+        },
+        {
+            from = "am gone",
+            to = "I went",
+            priority = 10,
+        },
+        {
+            from = "does to",
+            to = "closes",
+            priority = 10,
+        },
+        -- Fix question verb forms
+        -- Fix "where is is" -> "where are you" (from "wo bist du")
+        {
+            from = "where is is",
+            to = "where are you",
+            priority = 15,
+        },
+        -- Fix "what is are" -> "what are you doing" (from "was machst du")
+        {
+            from = "what is are",
+            to = "what are you doing",
+            priority = 15,
+        },
+        -- Remove duplicate - handled above
+        -- Fix third person "want" -> "wants"
+        {
+            from = "who want (.+)",
+            to = "who wants %1",
+            priority = 8,
+        },
+        {
+            from = "he want (.+)",
+            to = "he wants %1",
+            priority = 8,
+        },
+        {
+            from = "she want (.+)",
+            to = "she wants %1",
+            priority = 8,
+        },
         -- Fix "and then no more haven't" -> "and then no more, but I haven't"
         {
             from = "and then no more haven't",

@@ -58,7 +58,7 @@ WDTS_Lang_de_Tokens = {
     ["zweit"] = "two/second", -- "zu zweit" = "with two/just the two of us"
     ["heilen"] = "heal", -- "ich kann heilen" = "I can heal"
     ["diszi"] = "disc/disciple priest", -- Gaming abbreviation for "Disziplinpriester" (Discipline Priest)
-    ["bist"] = "are you",
+    ["bist"] = "are", -- Fixed: "bist du" should use phrase, not token
     ["bin"] = "am",
     ["warte"] = "wait",
     ["wartet"] = "wait",
@@ -652,7 +652,7 @@ WDTS_Lang_de_Tokens = {
     ["findet"] = "finds",
     
     -- Practical conversation words
-    ["machst"] = "are you doing",
+    ["machst"] = "are doing", -- Fixed: "was machst du" should use phrase
     ["mache"] = "doing",
     ["macht"] = "does",
     ["machen"] = "make",

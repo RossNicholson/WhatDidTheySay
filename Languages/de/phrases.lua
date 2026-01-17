@@ -390,6 +390,8 @@ WDTS_Lang_de_Phrases = {
     
     -- Separable verbs (prefix separated)
     ["macht auf"] = "opens",
+    ["macht zu"] = "closes",
+    ["macht es zu"] = "closes it",
     ["mach auf"] = "open",
     ["auf macht"] = "opens",
     ["auf machen"] = "open",
