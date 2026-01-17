@@ -1803,6 +1803,11 @@ WDTS_Lang_de_Grammar = {
             to = "is %1 usable or can I %2 simply sell it at the vendor",
             priority = 12,
         },
+        {
+            from = "is (.+) brauchbar or can i (.+) simply (.+) sell",
+            to = "is %1 usable or can I %2 simply sell %3",
+            priority = 10,
+        },
         -- Fix "could 10er bags make" -> "could make 10-slot bags"
         {
             from = "could 10er bags make",

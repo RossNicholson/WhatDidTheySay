@@ -1658,6 +1658,8 @@ WDTS_Lang_de_Tokens = {
     ["einer"] = "someone", -- "einer von" = "someone from"
     ["könnte"] = "could", -- "Könnte machen" = "could make"
     ["10er"] = "10-slot", -- "10er taschen" = "10-slot bags"
+    ["nette"] = "nice/friendly", -- "nette gilde" = "nice guild"
+    ["netten"] = "nice/friendly", -- "netten gilde" = "nice guild"
     ["tod"] = "death", -- "Der Tod ist permanent" = "Death is permanent"
     ["bleibt"] = "stay/stays", -- "bleibt am Leben" = "stay alive"
     ["am leben"] = "alive", -- "bleibt am Leben" = "stay alive"
