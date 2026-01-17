@@ -61,6 +61,8 @@ WDTS_Lang_de_Phrases = {
     -- Common phrases
     ["keine sorge"] = "no worry/don't worry",
     ["gute nacht"] = "good night",
+    ["gn8"] = "good night", -- Abbreviation
+    ["gn8 all"] = "good night all", -- Abbreviation
     ["hallo zusammen"] = "hello everyone/hi all",
     ["guten abend"] = "good evening",
     ["bin kurz weg"] = "brb/briefly away",
@@ -416,6 +418,7 @@ WDTS_Lang_de_Phrases = {
     ["sind da"] = "are here",
     ["bin weg"] = "am away",
     ["ist weg"] = "is away",
+    ["bin mal off"] = "i'm logging off", -- "bin mal off" = "i'm logging off"
     ["komme gleich"] = "coming soon",
     ["kommt gleich"] = "coming soon",
     ["komme in"] = "coming in", -- "komme in 5 minuten" = "coming in 5 minutes"
@@ -2234,6 +2237,29 @@ WDTS_Lang_de_Phrases = {
     
     -- Complaints and frustration
     ["nie wieder"] = "never again",
+    
+    -- Expressions
+    ["so ein bullshit"] = "such bullshit",
+    ["so ein bullshit!"] = "such bullshit!",
+    ["so ein bullshit?"] = "such bullshit?",
+    
+    -- Agreement/Support (handle with pattern instead - see patterns.lua)
+    ["bin da ganz bei"] = "i'm completely with", -- "bin da ganz bei X" = "i'm completely with X on that"
+    
+    -- Item names in brackets (common WoW items)
+    ["[Großer grüner Sack]"] = "[Large green bag]",
+    ["[Großer roter Sack]"] = "[Large red bag]",
+    ["[großer grüner sack]"] = "[Large green bag]", -- Lowercase variant
+    ["[großer roter sack]"] = "[Large red bag]", -- Lowercase variant
+    
+    -- English gaming terms (should pass through when detected in German chat)
+    ["shadow priests"] = "shadow priests",
+    
+    -- Emoticons
+    [":)"] = ":)",
+    [":("] = ":(",
+    [":D"] = ":D",
+    [";-)"] = ";-)",
     
     -- ============================================
     -- END OF PHRASE PATTERNS

@@ -553,6 +553,23 @@ WDTS_Lang_de_Grammar = {
             to = "ah lol that works anyway",
         },
         
+        -- Fix "so ein" → "such" (e.g., "so ein Bullshit" → "such bullshit")
+        {
+            from = "^so ein ",
+            to = "such ",
+            priority = 15,
+        },
+        {
+            from = " so ein ",
+            to = " such ",
+            priority = 15,
+        },
+        {
+            from = "^so ein$",
+            to = "such",
+            priority = 15,
+        },
+        
         -- Fix Message 2: complex sentence structure improvements
         {
             from = "a slot the one/you not traded-there put/place one/you the to to be enchanted/enchanting weapon in",

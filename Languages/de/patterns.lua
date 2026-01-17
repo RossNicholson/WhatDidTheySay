@@ -1364,4 +1364,38 @@ WDTS_Lang_de_Patterns = {
         to = "so that %1 %2",
         priority = 10,
     },
+    
+    -- Agreement/Support: "bin da ganz bei X" → "i'm completely with X on that"
+    {
+        from = "bin da ganz bei (.+)",
+        to = "i'm completely with %1 on that",
+        priority = 15,
+    },
+    {
+        from = "am here quite at (.+)",
+        to = "i'm completely with %1 on that",
+        priority = 15,
+    },
+    
+    -- Item names in brackets (common WoW items) - patterns apply BEFORE tokenization
+    {
+        from = "%[Großer grüner Sack%]",
+        to = "[Large green bag]",
+        priority = 20,
+    },
+    {
+        from = "%[großer grüner sack%]",
+        to = "[Large green bag]",
+        priority = 20,
+    },
+    {
+        from = "%[Großer roter Sack%]",
+        to = "[Large red bag]",
+        priority = 20,
+    },
+    {
+        from = "%[großer roter sack%]",
+        to = "[Large red bag]",
+        priority = 20,
+    },
 }

@@ -1425,6 +1425,20 @@ WDTS_Lang_de_Tokens = {
     ["town"] = "town", -- Gaming term
     ["inv"] = "inventory", -- Gaming abbreviation
     ["eig"] = "actually/really", -- "eigentlich" abbreviation
+    ["eigtl"] = "actually/really", -- "eigentlich" abbreviation (alternative spelling)
+    ["gn8"] = "good night", -- Abbreviation for "gute nacht"
+    
+    -- English gaming terms that appear in German chat (pass through unchanged)
+    ["theorycraft"] = "theorycraft",
+    ["mindcontrol"] = "mindcontrol",
+    ["Classic"] = "Classic",
+    ["WOD"] = "WOD",
+    ["BFA"] = "BFA",
+    ["BC"] = "BC",
+    ["WotLK"] = "WotLK",
+    ["AQ"] = "AQ",
+    ["Patchwerk"] = "Patchwerk",
+    ["Razu"] = "Razu",
     ["endboss"] = "final boss", -- Gaming term
     ["klassiker"] = "classic/classic mistake", -- "Klassiker" = "classic" or "classic mistake"
     ["überzeugend"] = "convincing", -- "überzeugend" = "convincing"
