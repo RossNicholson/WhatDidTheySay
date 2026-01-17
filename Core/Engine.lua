@@ -1545,7 +1545,12 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
                                     -- If not a function word, check if it's in language vocabulary
                                     if langPack.tokens[word] then
                                         local translation = langPack.tokens[word]
-                                        if translation ~= word and translation:lower() ~= word then
+                                        -- Handle table translations (e.g., context-dependent)
+                                        if type(translation) == "table" then
+                                            translation = translation.default or translation[1]
+                                        end
+                                        -- Only check if translation is a string and different from word
+                                        if type(translation) == "string" and translation ~= word and translation:lower() ~= word then
                                             -- This is a genuine word with a translation
                                             languageVocabularyWords = languageVocabularyWords + 1
                                             matchScore = matchScore + 1
