@@ -2203,4 +2203,32 @@ WDTS_Lang_de_Tokens = {
     ["berg"] = "mountain", -- "auf den Berg" = "on the mountain"
     ["berge"] = "mountains",
     ["burg"] = "castle/keep",
+    
+    -- More common German words from chat analysis
+    ["müsstest"] = "must/would have to", -- "du müsstest" = "you must/would have to"
+    ["durfte"] = "was allowed to", -- "ich durfte" = "I was allowed to"
+    ["durftest"] = "were allowed to",
+    ["durften"] = "were allowed to",
+    ["sah"] = "saw", -- Past tense: "ich sah" = "I saw"
+    ["sahen"] = "saw",
+    ["nahm"] = "took", -- Past tense: "ich nahm" = "I took"
+    ["nahmen"] = "took",
+    ["gab"] = "gave", -- Past tense: "ich gab" = "I gave"
+    ["gaben"] = "gave",
+    ["fand"] = "found", -- Past tense: "ich fand" = "I found"
+    ["fanden"] = "found",
+    ["kaufte"] = "bought", -- Past tense: "ich kaufte" = "I bought"
+    ["kauften"] = "bought",
+    ["verkaufte"] = "sold", -- Past tense: "ich verkaufte" = "I sold"
+    ["verkauften"] = "sold",
+    
+    -- Common reflexive pronouns and particles
+    ["sich"] = "oneself/itself/himself/herself", -- Reflexive pronoun
+    ["dir"] = "you", -- Dative: "ich gebe dir" = "I give you"
+    ["mir"] = "me", -- Dative: "gib mir" = "give me"
+    ["ihm"] = "him/it", -- Dative: "gib ihm" = "give him"
+    ["ihr"] = "her/it/you", -- Dative/feminine
+    ["uns"] = "us", -- Dative: "gib uns" = "give us"
+    ["euch"] = "you", -- Dative plural: "gib euch" = "give you (pl)"
+    ["ihnen"] = "them", -- Dative: "gib ihnen" = "give them"
 }
