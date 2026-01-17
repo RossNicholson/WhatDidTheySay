@@ -1759,5 +1759,137 @@ WDTS_Lang_de_Grammar = {
             to = "I'm flying to",
             priority = 15,
         },
+        -- Fix "can i me from jemanden a bag schnorren" -> "can I borrow a bag from someone"
+        {
+            from = "can i me from jemanden a bag schnorren",
+            to = "can I borrow a bag from someone",
+            priority = 15,
+        },
+        {
+            from = "can i me from (.+) a bag schnorren",
+            to = "can I borrow a bag from %1",
+            priority = 12,
+        },
+        -- Fix "can someone kl bags spendieren/besorgen" -> "can someone donate/get small bags"
+        {
+            from = "can someone kl bags spendieren/besorgen",
+            to = "can someone donate/get small bags",
+            priority = 15,
+        },
+        {
+            from = "kl bags spendieren/besorgen",
+            to = "donate/get small bags",
+            priority = 12,
+        },
+        -- Fix "in case someone linen cloth in the inventar stört I würds take" -> "in case someone has linen cloth in inventory that's in the way, I would take it"
+        {
+            from = "in case someone linen cloth in the inventar stört I würds take",
+            to = "in case someone has linen cloth in inventory that's in the way, I would take it",
+            priority = 15,
+        },
+        {
+            from = "in the inventar stört",
+            to = "in inventory that's in the way",
+            priority = 12,
+        },
+        -- Fix "is ogermagierstab brauchbar or can i the simply beim händler sell" -> "is Ogre Mage Staff usable or can I simply sell it at the vendor"
+        {
+            from = "is ogermagierstab brauchbar or can i the simply beim händler sell",
+            to = "is Ogre Mage Staff usable or can I simply sell it at the vendor",
+            priority = 15,
+        },
+        {
+            from = "is (.+) brauchbar or can i (.+) simply beim händler sell",
+            to = "is %1 usable or can I %2 simply sell it at the vendor",
+            priority = 12,
+        },
+        -- Fix "could 10er bags make" -> "could make 10-slot bags"
+        {
+            from = "could 10er bags make",
+            to = "could make 10-slot bags",
+            priority = 15,
+        },
+        {
+            from = "could (.+) bags make",
+            to = "could make %1 bags",
+            priority = 12,
+        },
+        -- Fix "can me soon an of Westfall strand begleiten to Stormwind am level 1 priest" -> "can someone soon accompany me from Westfall beach to Stormwind, I'm level 1 priest"
+        {
+            from = "can me soon an of (.+) strand begleiten to (.+) am level (.+) priest",
+            to = "can someone soon accompany me from %1 beach to %2, I'm level %3 priest",
+            priority = 15,
+        },
+        -- Fix "what have because vor" -> "what do you have planned"
+        {
+            from = "what have because vor",
+            to = "what do you have planned",
+            priority = 15,
+        },
+        {
+            from = "what have denn vor",
+            to = "what do you have planned",
+            priority = 15,
+        },
+        {
+            from = "what (.+) denn vor",
+            to = "what %1 planned",
+            priority = 12,
+        },
+        -- Fix "someone there to open from 8xthoriumschließkassette" -> "someone there to open 8x thorium lockbox"
+        {
+            from = "someone there to open from 8xthoriumschließkassette",
+            to = "someone there to open 8x thorium lockbox",
+            priority = 15,
+        },
+        {
+            from = "to open from (.+)",
+            to = "to open %1",
+            priority = 12,
+        },
+        -- Fix "selling cloak-big defense" -> "selling cloak - Great Defense"
+        {
+            from = "selling cloak%-big defense",
+            to = "selling cloak - Great Defense",
+            priority = 15,
+        },
+        {
+            from = "selling (.+)%-big (.+)",
+            to = "selling %1 - Great %2",
+            priority = 12,
+        },
+        -- Fix "wts mur of the morts" -> "WTS Wall of the Dead"
+        {
+            from = "wts mur of the morts",
+            to = "WTS Wall of the Dead",
+            priority = 15,
+        },
+        {
+            from = "mur of the morts",
+            to = "Wall of the Dead",
+            priority = 15,
+        },
+        -- Fix "wts moorring of the tigers" -> "WTS Moor Ring of the Tiger"
+        {
+            from = "wts moorring of the tigers",
+            to = "WTS Moor Ring of the Tiger",
+            priority = 15,
+        },
+        {
+            from = "moorring of the tigers",
+            to = "Moor Ring of the Tiger",
+            priority = 15,
+        },
+        -- Fix "the erlösung of scrimshank" -> "The Redemption of Scrimshank"
+        {
+            from = "the erlösung of (.+)",
+            to = "The Redemption of %1",
+            priority = 15,
+        },
+        {
+            from = "erlösung of (.+)",
+            to = "Redemption of %1",
+            priority = 12,
+        },
     },
 }

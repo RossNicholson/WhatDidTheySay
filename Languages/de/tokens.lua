@@ -1626,6 +1626,38 @@ WDTS_Lang_de_Tokens = {
     ["sehe"] = "see",
     ["jo"] = "yes/yeah", -- "oh jo" = "oh yes/oh yeah"
     ["ach"] = "oh/ah", -- "ach das" = "oh that"
+    ["kollekte"] = "collection/group", -- "jemand ne kollekte" = "someone a collection/group"
+    ["verdreckte"] = "dirty/soiled", -- "für verdreckte" = "for dirty/soiled"
+    ["schnorren"] = "borrow/beg", -- "eine Tasche schnorren" = "borrow a bag"
+    ["spendieren"] = "donate/give", -- "Taschen spendieren" = "donate bags"
+    ["besorgen"] = "get/buy", -- "Taschen besorgen" = "get bags"
+    ["stört"] = "bothers/is in the way", -- "stört" = "bothers"
+    ["würds"] = "would take it", -- "ich würds nehmen" = "I would take it"
+    ["würde"] = "would", -- "würde auch Gold zahlen" = "would also pay gold"
+    ["brauchbar"] = "usable/useful", -- "ist brauchbar" = "is usable"
+    ["händler"] = "vendor/merchant", -- "beim händler" = "at the vendor"
+    ["denn"] = "", -- Particle, often omitted in English
+    ["vor"] = "ahead/planned", -- "was hast denn vor?" = "what do you have planned?"
+    ["öffnen"] = "open", -- "zum öffnen" = "to open"
+    ["thorium"] = "thorium", -- Material name
+    ["schließkassette"] = "lockbox", -- "Thoriumschließkassette" = "Thorium lockbox"
+    ["eisengegengewicht"] = "iron counterweight", -- Item name
+    ["feurige"] = "fiery", -- "Feurige Kriegsaxt" = "Fiery War Axe"
+    ["kriegsaxt"] = "war axe", -- "Feurige Kriegsaxt" = "Fiery War Axe"
+    ["ogermagierstab"] = "Ogre Mage Staff", -- Item name
+    ["begleiten"] = "accompany/escort", -- "begleiten nach" = "accompany to"
+    ["strand"] = "beach/strand", -- "von Westfall strand" = "from Westfall beach"
+    ["erlösung"] = "redemption/salvation", -- "Die Erlösung" = "The Redemption"
+    ["traumsänger"] = "Dreamsinger", -- "Beinschützer des Traumsängers" = "Leggings of the Dreamsinger"
+    ["beinschützer"] = "leggings", -- "Beinschützer" = "leggings"
+    ["moorring"] = "Moor Ring", -- Item name
+    ["mur"] = "Wall", -- "Mur des morts" = "Wall of the Dead"
+    ["morts"] = "dead", -- "Mur des morts" = "Wall of the Dead"
+    ["kl"] = "small", -- "kl. Taschen" = "small bags" (abbreviation)
+    ["gleich"] = "soon/right away", -- "kann mich gleich einer" = "can someone soon"
+    ["einer"] = "someone", -- "einer von" = "someone from"
+    ["könnte"] = "could", -- "Könnte machen" = "could make"
+    ["10er"] = "10-slot", -- "10er taschen" = "10-slot bags"
     ["tod"] = "death", -- "Der Tod ist permanent" = "Death is permanent"
     ["bleibt"] = "stay/stays", -- "bleibt am Leben" = "stay alive"
     ["am leben"] = "alive", -- "bleibt am Leben" = "stay alive"

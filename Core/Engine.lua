@@ -1455,6 +1455,7 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         ["sec"] = true, ["seconds"] = true, ["min"] = true, ["mins"] = true, -- Time abbreviations
         ["layer"] = true, ["layers"] = true, ["layering"] = true, -- WoW layering mechanic
         ["inv"] = true, ["invite"] = true, -- Invite commands
+        ["lf"] = true, ["lfg"] = true, ["lfm"] = true, -- Looking for group abbreviations
         ["%"] = true, -- Percent sign
     }
     local wordCount = 0
