@@ -48,19 +48,119 @@ function DependencyParser.Parse(tokens)
     local nodes = {}
     
     -- Create initial nodes for each word token
+    local nodeMap = {}  -- Map token index to node index
+    local nodeIndex = 1
     for i, token in ipairs(tokens) do
         if token.type == "word" then
-            nodes[i] = {
+            nodes[nodeIndex] = {
                 word = token.value:lower(),
                 original = token.original,
                 pos = DependencyParser._GuessPOS(token.value:lower()),
-                index = i,
+                tokenIndex = i,  -- Original token position
+                nodeIndex = nodeIndex,  -- Node position in nodes array
                 dependencies = {},
             }
+            nodeMap[i] = nodeIndex
+            nodeIndex = nodeIndex + 1
         end
     end
     
-    -- TODO: Build dependency relationships (will implement in next chunk)
+    -- Build dependency relationships for simple sentences
+    -- German word order: V2 (verb in second position in main clauses)
+    -- Pattern: [SUBJ/Topic] [VERB] [OBJ/PREP/MOD]
+    
+    local verbNode = nil
+    local verbIndex = nil
+    
+    -- Step 1: Find the main verb
+    for i, node in pairs(nodes) do
+        if node.pos == "VERB" and not verbNode then
+            verbNode = node
+            verbIndex = i
+            break
+        end
+    end
+    
+    if not verbNode then
+        -- No verb found, return nodes without dependencies
+        return nodes
+    end
+    
+    -- Step 2: Find subject (typically before verb in V2 word order)
+    -- Look for nominative pronouns (ich, du, er, sie, es, wir, ihr)
+    -- or nouns with nominative articles (der, die, das)
+    for i = verbIndex - 1, 1, -1 do
+        local node = nodes[i]
+        if node then
+            if node.pos == "PRONOUN" then
+                -- Nominative pronouns: ich, du, er, sie (singular), es, wir, ihr, sie (plural)
+                local nomPronouns = {
+                    ["ich"] = true, ["du"] = true, ["er"] = true,
+                    ["sie"] = true, ["es"] = true, ["wir"] = true, ["ihr"] = true
+                }
+                if nomPronouns[node.word] then
+                    -- Add SUBJ dependency
+                    verbNode.dependencies[#verbNode.dependencies + 1] = {
+                        relation = DependencyParser.RELATIONS.SUBJ,
+                        target = i,
+                    }
+                    break
+                end
+            elseif node.pos == "NOUN" or node.pos == "ARTICLE" then
+                -- Could be subject noun phrase
+                -- Simple heuristic: if article or noun before verb, likely subject
+                if i == verbIndex - 1 or (nodes[i-1] and nodes[i-1].pos == "ARTICLE") then
+                    verbNode.dependencies[#verbNode.dependencies + 1] = {
+                        relation = DependencyParser.RELATIONS.SUBJ,
+                        target = i,
+                    }
+                    break
+                end
+            end
+        end
+    end
+    
+    -- Step 3: Find objects and prepositional phrases (after verb)
+    local i = verbIndex + 1
+    while nodes[i] do
+        local node = nodes[i]
+        
+        -- Prepositional phrases (preposition + noun)
+        if node.pos == "PREP" and nodes[i+1] then
+            -- Prepositional phrase: PREP + NOUN
+            verbNode.dependencies[#verbNode.dependencies + 1] = {
+                relation = DependencyParser.RELATIONS.PREP,
+                target = i,  -- Points to preposition, will handle phrase later
+            }
+            i = i + 2  -- Skip preposition and its object
+        -- Direct object (accusative noun/pronoun)
+        elseif node.pos == "PRONOUN" or node.pos == "NOUN" then
+            -- Check if it's accusative pronoun (mich, dich, ihn, sie, es, uns, euch)
+            local accPronouns = {
+                ["mich"] = true, ["dich"] = true, ["ihn"] = true,
+                ["sie"] = true, ["es"] = true, ["uns"] = true, ["euch"] = true
+            }
+            if accPronouns[node.word] then
+                -- Accusative pronoun = direct object
+                verbNode.dependencies[#verbNode.dependencies + 1] = {
+                    relation = DependencyParser.RELATIONS.OBJ,
+                    target = i,
+                }
+                i = i + 1
+            elseif node.pos == "NOUN" then
+                -- Noun after verb, likely object
+                verbNode.dependencies[#verbNode.dependencies + 1] = {
+                    relation = DependencyParser.RELATIONS.OBJ,
+                    target = i,
+                }
+                i = i + 1
+            else
+                i = i + 1
+            end
+        else
+            i = i + 1
+        end
+    end
     
     return nodes
 end
