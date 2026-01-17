@@ -1360,6 +1360,36 @@ WDTS_Lang_de_Grammar = {
             from = "(.+) geändert$",
             to = "%1",
         },
+        
+        -- Fix common past participle phrases
+        {
+            from = "I said/have said",
+            to = "I said",
+        },
+        {
+            from = "I did/have done",
+            to = "I did",
+        },
+        {
+            from = "I saw/have seen",
+            to = "I saw",
+        },
+        {
+            from = "I had/have had",
+            to = "I had",
+        },
+        {
+            from = "I came/have come",
+            to = "I came",
+        },
+        {
+            from = "I went/have gone",
+            to = "I went",
+        },
+        {
+            from = "I was/have been",
+            to = "I was",
+        },
         -- Fix "and then no more haven't" -> "and then no more, but I haven't"
         {
             from = "and then no more haven't",

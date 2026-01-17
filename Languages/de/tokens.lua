@@ -810,6 +810,18 @@ WDTS_Lang_de_Tokens = {
     ["gegangen"] = "gone",
     ["machte"] = "made",
     ["gemacht"] = "made/done",
+    ["gesagt"] = "said", -- Past participle: "habe gesagt" = "have said"
+    ["gekommen"] = "come", -- Past participle: "bin gekommen" = "have come"
+    ["gegangen"] = "gone", -- Past participle: "bin gegangen" = "have gone"
+    ["gewesen"] = "been", -- Past participle: "bin gewesen" = "have been"
+    ["gehabt"] = "had", -- Past participle: "habe gehabt" = "have had"
+    ["gedacht"] = "thought", -- Past participle: "habe gedacht" = "have thought"
+    ["gesehen"] = "seen", -- Past participle: "habe gesehen" = "have seen"
+    ["gegeben"] = "given", -- Past participle: "habe gegeben" = "have given"
+    ["genommen"] = "taken", -- Past participle: "habe genommen" = "have taken"
+    ["gefunden"] = "found", -- Past participle: "habe gefunden" = "have found"
+    ["gekauft"] = "bought", -- Past participle: "habe gekauft" = "have bought"
+    ["verkauft"] = "sold", -- Past participle: "habe verkauft" = "have sold"
     ["bauen"] = "build",
     ["baut"] = "builds",
     ["gebaut"] = "built",
@@ -967,10 +979,19 @@ WDTS_Lang_de_Tokens = {
     ["wollten"] = "wanted",
     ["könnte"] = "could",
     ["könnten"] = "could",
+    ["könntest"] = "could", -- "du könntest" = "you could"
     ["würde"] = "would",
     ["würden"] = "would",
+    ["würdest"] = "would", -- "du würdest" = "you would"
     ["sollte"] = "should",
     ["sollten"] = "should",
+    ["solltest"] = "should", -- "du solltest" = "you should"
+    ["müsste"] = "must/would have to", -- "ich müsste" = "I must/would have to"
+    ["müsstest"] = "must/would have to",
+    ["müssten"] = "must/would have to",
+    ["möchte"] = "would like", -- Already exists
+    ["möchtest"] = "would like", -- "du möchtest" = "you would like"
+    ["möchten"] = "would like",
     
     -- Common nouns
     ["zeit"] = "time",
