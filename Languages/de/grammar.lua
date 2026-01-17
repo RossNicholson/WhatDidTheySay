@@ -746,5 +746,11 @@ WDTS_Lang_de_Grammar = {
             from = "the one want first/only with level (.+)",
             to = "the one wants first at level %1",
         },
+        
+        -- Fix "invite sie in xd" -> "invite her"
+        {
+            from = "invite (.+) in (.+)",
+            to = "invite %1", -- Remove "in xd" part
+        },
     },
 }
