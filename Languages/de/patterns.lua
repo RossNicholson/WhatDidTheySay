@@ -570,4 +570,798 @@ WDTS_Lang_de_Patterns = {
         from = "oh muss (.+) machen",
         to = "oh I need to do %1",
     },
+    
+    -- ============================================
+    -- ADDITIONAL COMMON SENTENCE PATTERNS
+    -- ============================================
+    
+    -- Perfect tense patterns with sein (movement verbs)
+    {
+        from = "bin (.+) gekommen",
+        to = "have come to %1/I came to %1",
+        priority = 10,
+    },
+    {
+        from = "ist (.+) gekommen",
+        to = "has come to %1/he came to %1",
+        priority = 10,
+    },
+    {
+        from = "sind (.+) gekommen",
+        to = "have come to %1/we came to %1",
+        priority = 10,
+    },
+    {
+        from = "bin (.+) gegangen",
+        to = "have gone to %1/I went to %1",
+        priority = 10,
+    },
+    {
+        from = "ist (.+) gegangen",
+        to = "has gone to %1/he went to %1",
+        priority = 10,
+    },
+    {
+        from = "sind (.+) gegangen",
+        to = "have gone to %1/we went to %1",
+        priority = 10,
+    },
+    
+    -- Future tense patterns
+    {
+        from = "werde (.+) machen",
+        to = "will do %1",
+        priority = 10,
+    },
+    {
+        from = "wirst (.+) machen",
+        to = "will do %1",
+        priority = 10,
+    },
+    {
+        from = "wird (.+) machen",
+        to = "will do %1",
+        priority = 10,
+    },
+    {
+        from = "werden (.+) machen",
+        to = "will do %1",
+        priority = 10,
+    },
+    {
+        from = "werde (.+) gehen",
+        to = "will go %1",
+        priority = 10,
+    },
+    {
+        from = "wirst (.+) gehen",
+        to = "will go %1",
+        priority = 10,
+    },
+    {
+        from = "wird (.+) gehen",
+        to = "will go %1",
+        priority = 10,
+    },
+    {
+        from = "werden (.+) gehen",
+        to = "will go %1",
+        priority = 10,
+    },
+    
+    -- Modal verb + infinitive patterns
+    {
+        from = "muss (.+) gehen",
+        to = "must go %1/have to go %1",
+        priority = 10,
+    },
+    {
+        from = "musst (.+) gehen",
+        to = "must go %1/have to go %1",
+        priority = 10,
+    },
+    {
+        from = "soll (.+) gehen",
+        to = "should go %1",
+        priority = 10,
+    },
+    {
+        from = "sollst (.+) gehen",
+        to = "should go %1",
+        priority = 10,
+    },
+    {
+        from = "kann (.+) gehen",
+        to = "can go %1",
+        priority = 10,
+    },
+    {
+        from = "kannst (.+) gehen",
+        to = "can go %1",
+        priority = 10,
+    },
+    {
+        from = "will (.+) gehen",
+        to = "want to go %1",
+        priority = 10,
+    },
+    {
+        from = "willst (.+) gehen",
+        to = "want to go %1",
+        priority = 10,
+    },
+    {
+        from = "darf (.+) gehen",
+        to = "may go %1",
+        priority = 10,
+    },
+    {
+        from = "darfst (.+) gehen",
+        to = "may go %1",
+        priority = 10,
+    },
+    
+    -- Subordinate clause patterns (wenn/weil/dass)
+    {
+        from = "wenn (.+) dann (.+)",
+        to = "if %1 then %2",
+        priority = 12,
+    },
+    {
+        from = "wenn (.+) (.+)",
+        to = "if %1 %2",
+        priority = 10,
+    },
+    {
+        from = "weil (.+) (.+)",
+        to = "because %1 %2",
+        priority = 10,
+    },
+    {
+        from = "dass (.+) (.+)",
+        to = "that %1 %2",
+        priority = 10,
+    },
+    {
+        from = "obwohl (.+) (.+)",
+        to = "although %1 %2",
+        priority = 10,
+    },
+    {
+        from = "bevor (.+) (.+)",
+        to = "before %1 %2",
+        priority = 10,
+    },
+    {
+        from = "nachdem (.+) (.+)",
+        to = "after %1 %2",
+        priority = 10,
+    },
+    {
+        from = "während (.+) (.+)",
+        to = "while %1 %2",
+        priority = 10,
+    },
+    
+    -- Question patterns with modal verbs
+    {
+        from = "kannst du (.+) machen%?",
+        to = "can you do %1",
+        priority = 12,
+    },
+    {
+        from = "kannst du (.+) machen",
+        to = "can you do %1",
+        priority = 12,
+    },
+    {
+        from = "kannst du (.+) gehen%?",
+        to = "can you go %1",
+        priority = 12,
+    },
+    {
+        from = "kannst du (.+) gehen",
+        to = "can you go %1",
+        priority = 12,
+    },
+    {
+        from = "willst du (.+) machen%?",
+        to = "do you want to do %1",
+        priority = 12,
+    },
+    {
+        from = "willst du (.+) machen",
+        to = "do you want to do %1",
+        priority = 12,
+    },
+    {
+        from = "musst du (.+) machen%?",
+        to = "do you have to do %1",
+        priority = 12,
+    },
+    {
+        from = "musst du (.+) machen",
+        to = "do you have to do %1",
+        priority = 12,
+    },
+    {
+        from = "sollst du (.+) machen%?",
+        to = "should you do %1",
+        priority = 12,
+    },
+    {
+        from = "sollst du (.+) machen",
+        to = "should you do %1",
+        priority = 12,
+    },
+    
+    -- Imperative patterns
+    {
+        from = "komm (.+)",
+        to = "come %1",
+        priority = 10,
+    },
+    {
+        from = "kommt (.+)",
+        to = "come %1",
+        priority = 10,
+    },
+    {
+        from = "geh (.+)",
+        to = "go %1",
+        priority = 10,
+    },
+    {
+        from = "geht (.+)",
+        to = "go %1",
+        priority = 10,
+    },
+    {
+        from = "mach (.+)",
+        to = "do %1",
+        priority = 10,
+    },
+    {
+        from = "macht (.+)",
+        to = "do %1",
+        priority = 10,
+    },
+    {
+        from = "warte (.+)",
+        to = "wait %1",
+        priority = 10,
+    },
+    {
+        from = "wartet (.+)",
+        to = "wait %1",
+        priority = 10,
+    },
+    {
+        from = "hilf (.+)",
+        to = "help %1",
+        priority = 10,
+    },
+    {
+        from = "helft (.+)",
+        to = "help %1",
+        priority = 10,
+    },
+    
+    -- Location + action patterns
+    {
+        from = "gehe nach (.+)",
+        to = "going to %1",
+        priority = 10,
+    },
+    {
+        from = "gehst nach (.+)",
+        to = "going to %1",
+        priority = 10,
+    },
+    {
+        from = "geht nach (.+)",
+        to = "going to %1",
+        priority = 10,
+    },
+    {
+        from = "gehen nach (.+)",
+        to = "going to %1",
+        priority = 10,
+    },
+    {
+        from = "komme nach (.+)",
+        to = "coming to %1",
+        priority = 10,
+    },
+    {
+        from = "kommst nach (.+)",
+        to = "coming to %1",
+        priority = 10,
+    },
+    {
+        from = "kommt nach (.+)",
+        to = "coming to %1",
+        priority = 10,
+    },
+    {
+        from = "kommen nach (.+)",
+        to = "coming to %1",
+        priority = 10,
+    },
+    {
+        from = "bin in (.+)",
+        to = "am in %1",
+        priority = 10,
+    },
+    {
+        from = "ist in (.+)",
+        to = "is in %1",
+        priority = 10,
+    },
+    {
+        from = "sind in (.+)",
+        to = "are in %1",
+        priority = 10,
+    },
+    {
+        from = "bin bei (.+)",
+        to = "am at %1",
+        priority = 10,
+    },
+    {
+        from = "ist bei (.+)",
+        to = "is at %1",
+        priority = 10,
+    },
+    {
+        from = "sind bei (.+)",
+        to = "are at %1",
+        priority = 10,
+    },
+    
+    -- Possession patterns
+    {
+        from = "habe (.+)",
+        to = "have %1",
+        priority = 10,
+    },
+    {
+        from = "hast (.+)",
+        to = "have %1",
+        priority = 10,
+    },
+    {
+        from = "hat (.+)",
+        to = "has %1",
+        priority = 10,
+    },
+    {
+        from = "haben (.+)",
+        to = "have %1",
+        priority = 10,
+    },
+    {
+        from = "habt (.+)",
+        to = "have %1",
+        priority = 10,
+    },
+    {
+        from = "habe kein (.+)",
+        to = "have no %1",
+        priority = 10,
+    },
+    {
+        from = "hast kein (.+)",
+        to = "have no %1",
+        priority = 10,
+    },
+    {
+        from = "hat kein (.+)",
+        to = "has no %1",
+        priority = 10,
+    },
+    {
+        from = "haben kein (.+)",
+        to = "have no %1",
+        priority = 10,
+    },
+    
+    -- Action + object patterns
+    {
+        from = "mache (.+)",
+        to = "doing %1/make %1",
+        priority = 10,
+    },
+    {
+        from = "machst (.+)",
+        to = "doing %1/make %1",
+        priority = 10,
+    },
+    {
+        from = "macht (.+)",
+        to = "doing %1/makes %1",
+        priority = 10,
+    },
+    {
+        from = "machen (.+)",
+        to = "doing %1/make %1",
+        priority = 10,
+    },
+    {
+        from = "tue (.+)",
+        to = "doing %1/do %1",
+        priority = 10,
+    },
+    {
+        from = "tust (.+)",
+        to = "doing %1/do %1",
+        priority = 10,
+    },
+    {
+        from = "tut (.+)",
+        to = "doing %1/does %1",
+        priority = 10,
+    },
+    {
+        from = "tun (.+)",
+        to = "doing %1/do %1",
+        priority = 10,
+    },
+    
+    -- Separable verb patterns (prefix separated)
+    {
+        from = "macht (.+) auf",
+        to = "opens %1",
+        priority = 12,
+    },
+    {
+        from = "machst (.+) auf",
+        to = "open %1",
+        priority = 12,
+    },
+    {
+        from = "macht (.+) zu",
+        to = "closes %1",
+        priority = 12,
+    },
+    {
+        from = "machst (.+) zu",
+        to = "close %1",
+        priority = 12,
+    },
+    {
+        from = "kommt (.+) zurück",
+        to = "comes back %1",
+        priority = 12,
+    },
+    {
+        from = "kommst (.+) zurück",
+        to = "come back %1",
+        priority = 12,
+    },
+    {
+        from = "geht (.+) weiter",
+        to = "continues %1",
+        priority = 12,
+    },
+    {
+        from = "gehst (.+) weiter",
+        to = "continue %1",
+        priority = 12,
+    },
+    
+    -- Time + action patterns
+    {
+        from = "heute (.+)",
+        to = "today %1",
+        priority = 8,
+    },
+    {
+        from = "morgen (.+)",
+        to = "tomorrow %1",
+        priority = 8,
+    },
+    {
+        from = "gestern (.+)",
+        to = "yesterday %1",
+        priority = 8,
+    },
+    {
+        from = "jetzt (.+)",
+        to = "now %1",
+        priority = 8,
+    },
+    {
+        from = "gleich (.+)",
+        to = "soon %1",
+        priority = 8,
+    },
+    {
+        from = "später (.+)",
+        to = "later %1",
+        priority = 8,
+    },
+    
+    -- More question patterns
+    {
+        from = "was machst du (.+)",
+        to = "what are you doing %1",
+        priority = 12,
+    },
+    {
+        from = "was macht ihr (.+)",
+        to = "what are you doing %1",
+        priority = 12,
+    },
+    {
+        from = "wo bist du (.+)",
+        to = "where are you %1",
+        priority = 12,
+    },
+    {
+        from = "wo seid ihr (.+)",
+        to = "where are you %1",
+        priority = 12,
+    },
+    {
+        from = "wie geht es (.+)",
+        to = "how is %1 going",
+        priority = 12,
+    },
+    {
+        from = "wie gehts (.+)",
+        to = "how's %1 going",
+        priority = 12,
+    },
+    {
+        from = "warum (.+)",
+        to = "why %1",
+        priority = 10,
+    },
+    {
+        from = "wieso (.+)",
+        to = "why %1",
+        priority = 10,
+    },
+    {
+        from = "wann (.+)",
+        to = "when %1",
+        priority = 10,
+    },
+    
+    -- Request patterns
+    {
+        from = "kannst du mir (.+) helfen",
+        to = "can you help me %1",
+        priority = 12,
+    },
+    {
+        from = "kannst mir (.+) helfen",
+        to = "can you help me %1",
+        priority = 12,
+    },
+    {
+        from = "könnt ihr mir (.+) helfen",
+        to = "can you help me %1",
+        priority = 12,
+    },
+    {
+        from = "könnt mir (.+) helfen",
+        to = "can you help me %1",
+        priority = 12,
+    },
+    {
+        from = "kannst du mir (.+) geben",
+        to = "can you give me %1",
+        priority = 12,
+    },
+    {
+        from = "kannst mir (.+) geben",
+        to = "can you give me %1",
+        priority = 12,
+    },
+    {
+        from = "kannst du mir (.+) zeigen",
+        to = "can you show me %1",
+        priority = 12,
+    },
+    {
+        from = "kannst mir (.+) zeigen",
+        to = "can you show me %1",
+        priority = 12,
+    },
+    
+    -- Trading patterns (expanded)
+    {
+        from = "verkaufe (.+) für (.+) gold",
+        to = "selling %1 for %2 gold",
+        priority = 10,
+    },
+    {
+        from = "kaufe (.+) für (.+) gold",
+        to = "buying %1 for %2 gold",
+        priority = 10,
+    },
+    {
+        from = "verkaufe (.+) für (.+) silber",
+        to = "selling %1 for %2 silver",
+        priority = 10,
+    },
+    {
+        from = "kaufe (.+) für (.+) silber",
+        to = "buying %1 for %2 silver",
+        priority = 10,
+    },
+    {
+        from = "was kostet (.+)",
+        to = "what does %1 cost",
+        priority = 10,
+    },
+    {
+        from = "wie viel kostet (.+)",
+        to = "how much does %1 cost",
+        priority = 10,
+    },
+    {
+        from = "wie viel für (.+)",
+        to = "how much for %1",
+        priority = 10,
+    },
+    
+    -- LFG patterns (expanded)
+    {
+        from = "suche (.+) für (.+)",
+        to = "looking for %1 for %2",
+        priority = 10,
+    },
+    {
+        from = "sucht (.+) für (.+)",
+        to = "looking for %1 for %2",
+        priority = 10,
+    },
+    {
+        from = "brauche (.+) für (.+)",
+        to = "need %1 for %2",
+        priority = 10,
+    },
+    {
+        from = "braucht (.+) für (.+)",
+        to = "need %1 for %2",
+        priority = 10,
+    },
+    {
+        from = "suche gruppe für (.+)",
+        to = "looking for group for %1",
+        priority = 10,
+    },
+    {
+        from = "sucht gruppe für (.+)",
+        to = "looking for group for %1",
+        priority = 10,
+    },
+    {
+        from = "brauche gruppe für (.+)",
+        to = "need group for %1",
+        priority = 10,
+    },
+    {
+        from = "braucht gruppe für (.+)",
+        to = "need group for %1",
+        priority = 10,
+    },
+    
+    -- Profession requests (expanded)
+    {
+        from = "suche (.+) für (.+)",
+        to = "looking for %1 for %2",
+        priority = 8,
+    },
+    {
+        from = "brauche (.+) für (.+)",
+        to = "need %1 for %2",
+        priority = 8,
+    },
+    {
+        from = "sucht (.+) der (.+) kann",
+        to = "looking for %1 who can %2",
+        priority = 10,
+    },
+    {
+        from = "braucht (.+) der (.+) kann",
+        to = "need %1 who can %2",
+        priority = 10,
+    },
+    
+    -- Relative clause patterns (expanded)
+    {
+        from = "jemand der (.+) kann",
+        to = "someone who can %1",
+        priority = 10,
+    },
+    {
+        from = "jemand die (.+) kann",
+        to = "someone who can %1",
+        priority = 10,
+    },
+    {
+        from = "jemand das (.+) kann",
+        to = "someone who can %1",
+        priority = 10,
+    },
+    {
+        from = "wer (.+) kann",
+        to = "who can %1",
+        priority = 10,
+    },
+    {
+        from = "wer (.+) will",
+        to = "who wants %1",
+        priority = 10,
+    },
+    {
+        from = "wer (.+) hat",
+        to = "who has %1",
+        priority = 10,
+    },
+    
+    -- Comparison patterns
+    {
+        from = "besser als (.+)",
+        to = "better than %1",
+        priority = 10,
+    },
+    {
+        from = "schlechter als (.+)",
+        to = "worse than %1",
+        priority = 10,
+    },
+    {
+        from = "mehr als (.+)",
+        to = "more than %1",
+        priority = 10,
+    },
+    {
+        from = "weniger als (.+)",
+        to = "less than %1",
+        priority = 10,
+    },
+    {
+        from = "genauso wie (.+)",
+        to = "just like %1",
+        priority = 10,
+    },
+    {
+        from = "so wie (.+)",
+        to = "like %1",
+        priority = 10,
+    },
+    
+    -- Conditional patterns
+    {
+        from = "falls (.+) dann (.+)",
+        to = "if %1 then %2",
+        priority = 10,
+    },
+    {
+        from = "wenn (.+) dann (.+)",
+        to = "if %1 then %2",
+        priority = 10,
+    },
+    {
+        from = "falls (.+) (.+)",
+        to = "if %1 %2",
+        priority = 8,
+    },
+    
+    -- Purpose patterns (um zu)
+    {
+        from = "um (.+) zu (.+)",
+        to = "in order to %2 %1",
+        priority = 10,
+    },
+    {
+        from = "damit (.+) (.+)",
+        to = "so that %1 %2",
+        priority = 10,
+    },
 }
