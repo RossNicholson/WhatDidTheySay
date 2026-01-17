@@ -1438,14 +1438,19 @@ WDTS_Lang_de_Grammar = {
         },
         -- Fix "what kind of a addon is that again" -> "what kind of addon is that again"
         {
-            from = "what kind of a addon is that again",
+            from = "^what kind of a addon is that again$",
             to = "what kind of addon is that again",
-            priority = 20,
+            priority = 25, -- Very high priority to prevent other rules from matching
+        },
+        {
+            from = "^what kind of a addon is (.+)$",
+            to = "what kind of addon is %1",
+            priority = 25,
         },
         {
             from = "what kind of a (.+) is (.+)",
             to = "what kind of %1 is %2",
-            priority = 20,
+            priority = 22, -- High priority
         },
         -- Fix "what for in addon is that/is this again" -> "what kind of addon is that again"
         {
