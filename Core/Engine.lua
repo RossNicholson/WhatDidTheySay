@@ -1434,27 +1434,59 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     
     -- Special case: Very short messages (1-2 words) that are likely English greetings
     -- These don't need translation - they're universal
+    -- BUT: Check if words exist in enabled language packs first (e.g., "r" = "ready" in German)
     if #tokens <= 2 then
         local allEnglishGreetings = true
-        local englishGreetings = {"hi", "hey", "yo", "ok", "okay", "r", "rdy", "ready"}
+        local englishGreetings = {"hi", "hey", "yo", "ok", "okay", "rdy", "ready"}
+        -- Note: "r" removed from English-only list - it can be German "ready" abbreviation
+        
+        -- First check if any word exists in enabled language packs
+        local hasLanguagePackMatch = false
         for _, token in ipairs(tokens) do
             if token.type == "word" then
-                local isGreeting = false
-                for _, greeting in ipairs(englishGreetings) do
-                    if token.value:lower() == greeting then
-                        isGreeting = true
-                        break
+                local word = token.value:lower()
+                -- Check all enabled language packs
+                local enabledPacks = LanguagePackManager.GetAvailablePacks()
+                for lang, packInfo in pairs(enabledPacks) do
+                    if lang ~= "en" and LanguagePackManager.IsEnabled(lang) then
+                        local langPack = Engine.LoadLanguagePack(lang)
+                        if langPack and langPack.tokens and langPack.tokens[word] then
+                            local translation = langPack.tokens[word]
+                            -- If it has a translation different from the word itself, it's a language pack word
+                            if translation ~= word and translation:lower() ~= word then
+                                hasLanguagePackMatch = true
+                                break
+                            end
+                        end
                     end
                 end
-                if not isGreeting then
-                    allEnglishGreetings = false
+                if hasLanguagePackMatch then
                     break
                 end
             end
         end
-        if allEnglishGreetings then
-            -- Skip translation for universal English greetings
-            return nil, 0.0, "english_greeting"
+        
+        -- Only skip as English greeting if no language pack match found
+        if not hasLanguagePackMatch then
+            for _, token in ipairs(tokens) do
+                if token.type == "word" then
+                    local isGreeting = false
+                    for _, greeting in ipairs(englishGreetings) do
+                        if token.value:lower() == greeting then
+                            isGreeting = true
+                            break
+                        end
+                    end
+                    if not isGreeting then
+                        allEnglishGreetings = false
+                        break
+                    end
+                end
+            end
+            if allEnglishGreetings then
+                -- Skip translation for universal English greetings (only if not in language pack)
+                return nil, 0.0, "english_greeting"
+            end
         end
     end
     
@@ -1612,6 +1644,7 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         unknownTokenRatio = unknownRatio,
         messageLength = #tokens,
         translationSimilarity = similarity, -- Pass similarity for penalty
+        messageText = message, -- Pass original message for bracket/item link detection
     })
     
     local intentId = nil

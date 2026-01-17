@@ -74,6 +74,22 @@ function Confidence.Calculate(params)
         score = score + 0.10 -- Additional boost for perfect 2-word phrases
     end
     
+    -- Boost for messages with item links (brackets) - these often have lower coverage
+    -- due to proper nouns/numbers, but the German words are still translated correctly
+    -- Check if message contains brackets (item links, quest names, etc.)
+    local hasBrackets = params.messageText and (params.messageText:find("%[") or params.messageText:find("%]"))
+    if hasBrackets and coverage >= 0.4 and coverage < 0.7 then
+        -- Item link message with moderate coverage - boost confidence
+        score = score + 0.15 -- Boost for item link messages
+    end
+    
+    -- Boost for abbreviations that are correctly translated
+    -- Short abbreviations (2-3 chars) that exist in vocabulary should have higher confidence
+    if length >= 3 and length <= 5 and coverage >= 0.8 then
+        -- Short message with good coverage - likely abbreviations/phrases
+        score = score + 0.10 -- Boost for abbreviation-heavy messages
+    end
+    
     -- Intent confidence bonus (if intent was detected)
     if intentConf > 0 then
         score = score + (intentConf * 0.15) -- Intent helps but not critical
