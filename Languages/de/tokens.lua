@@ -552,6 +552,7 @@ WDTS_Lang_de_Tokens = {
     ["habe"] = "have",
     ["hab"] = "have", -- Colloquial form: "ich hab" = "I have"
     ["habe"] = "I have/have", -- "habe" = "I have" or "have"
+    ["gehabt"] = "had", -- Past participle: "habe gehabt" = "I had/have had"
     ["nachricht"] = "message",
     ["nachrichten"] = "messages",
     ["brauchst"] = "need/you need", -- "brauchst" = "you need" (2nd person singular)
@@ -1517,6 +1518,65 @@ WDTS_Lang_de_Tokens = {
     ["np"] = "no problem",
     ["problem"] = "problem", -- Common loanword in German
     ["r"] = "ready", -- Gaming abbreviation for "ready" / "fertig"
+    ["gz"] = "grats/congrats", -- Gaming abbreviation for "grats" or "congrats"
+    ["grats"] = "grats/congrats", -- Common gaming abbreviation
+    ["ding"] = "ding/level up", -- "ding" = level up sound/notification
+    ["lebt"] = "lives/is alive", -- "lebt noch" = "still alive"
+    ["hs"] = "hearthstone", -- Abbreviation for hearthstone
+    ["hearth"] = "hearthstone", -- Short for hearthstone
+    ["hearthstone"] = "hearthstone",
+    ["respawn"] = "respawn", -- Common gaming term
+    ["worgen"] = "worgen", -- WoW creature name
+    ["murlocs"] = "murlocs", -- WoW creature name
+    ["murloc"] = "murloc",
+    ["gnoll"] = "gnoll", -- WoW creature name
+    ["gnolle"] = "gnolls", -- German plural form
+    ["hyperspawn"] = "hyperspawn", -- Gaming term for rapid respawn
+    ["autorun"] = "autorun", -- Gaming term
+    ["chatten"] = "chatting", -- "chatten" = "chatting"
+    ["duelliert"] = "dueling", -- "duelliert" = "dueling"
+    ["equippen"] = "equip", -- "equippen" = "to equip"
+    ["gelootet"] = "looted", -- Past participle: "gelootet" = "looted"
+    ["skippe"] = "skipping", -- "skippe" = "I'm skipping" (colloquial)
+    ["escort"] = "escort", -- Gaming term
+    ["hitten"] = "hitting", -- "hitten" = "hitting" (anglicism)
+    ["risky"] = "risky", -- Common loanword
+    ["schwimmen"] = "swimming", -- "schwimmen" = "swimming"
+    ["ertrinken"] = "drowning", -- "ertrinken" = "drowning"
+    ["blauen"] = "blue", -- "blauen" = "blue" (adjective, masculine accusative/dative) or "a blue" (item)
+    ["blauer"] = "blue", -- "blauer" = "blue" (masculine nominative)
+    ["blaue"] = "blue", -- "blaue" = "blue" (feminine/plural)
+    ["blau"] = "blue", -- "blau" = "blue" (base form)
+    ["gecraftet"] = "crafted", -- Past participle: "gecraftet" = "crafted"
+    ["rerolle"] = "reroll", -- "rerolle" = "I'm rerolling" (colloquial)
+    ["nervös"] = "nervous", -- "nervös" = "nervous"
+    ["paranoid"] = "paranoid", -- Common loanword
+    ["lag"] = "lag", -- Network lag/delay
+    ["cleaves"] = "cleaves", -- Gaming term (boss ability)
+    ["cleave"] = "cleave",
+    ["cleave"] = "cleaves", -- Verb form
+    ["yolo"] = "yolo", -- Gaming term
+    ["yolo pulls"] = "yolo pulls", -- Gaming phrase
+    ["target dummies"] = "target dummies", -- Gaming term
+    ["dummy"] = "target dummy", -- Gaming term
+    ["town"] = "town", -- Gaming term
+    ["inv"] = "inventory", -- Gaming abbreviation
+    ["dc"] = "disconnect", -- Gaming abbreviation
+    ["eig"] = "actually/really", -- "eigentlich" abbreviation
+    ["eigentlich"] = "actually/really",
+    ["endboss"] = "final boss", -- Gaming term
+    ["mobs"] = "mobs", -- Already exists but checking
+    ["mob"] = "mob",
+    ["klassiker"] = "classic/classic mistake", -- "Klassiker" = "classic" or "classic mistake"
+    ["überzeugend"] = "convincing", -- "überzeugend" = "convincing"
+    ["niemals"] = "never", -- "niemals" = "never"
+    ["nehme"] = "take/I'll take", -- "nehme" = "I'll take" or "take"
+    ["nehm"] = "take", -- Colloquial form of "nehme"
+    ["schultern"] = "shoulders", -- "grüne Schultern" = "green shoulders" (item)
+    ["schulter"] = "shoulder",
+    ["statt"] = "instead of", -- "2 pulls statt 1" = "2 pulls instead of 1"
+    ["pulls"] = "pulls", -- Gaming term
+    ["pull"] = "pull",
     ["idc"] = "i don't care",
     ["tbh"] = "to be honest",
     ["imo"] = "in my opinion",

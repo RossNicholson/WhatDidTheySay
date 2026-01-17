@@ -1444,13 +1444,14 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     -- BUT: Check if words exist in enabled language packs first (e.g., "r" = "ready" in German)
     if #tokens <= 2 then
         local allEnglishGreetings = true
-        local englishGreetings = {"hi", "hey", "yo", "ok", "okay", "rdy", "ready"}
+        local englishGreetings = {"hi", "hey", "yo", "ok", "okay", "rdy", "ready", "rip"}
         -- Note: "r" removed from English-only list - it can be German "ready" abbreviation
+        -- "rip" = rest in peace (universal gaming abbreviation, shouldn't translate)
         
         -- First check if any word exists in enabled language packs
         local hasLanguagePackMatch = false
         for _, token in ipairs(tokens) do
-            if token.type == "word" then
+            if token.type == "word" and token.value and type(token.value) == "string" then
                 local word = token.value:lower()
                 -- Check all enabled language packs
                 local enabledPacks = LanguagePackManager.GetAvailablePacks()
@@ -1460,7 +1461,11 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
                         if langPack and langPack.tokens and langPack.tokens[word] then
                             local translation = langPack.tokens[word]
                             -- If it has a translation different from the word itself, it's a language pack word
-                            if translation ~= word and translation:lower() ~= word then
+                            if type(translation) == "string" and translation ~= word and translation:lower() ~= word then
+                                hasLanguagePackMatch = true
+                                break
+                            elseif type(translation) == "table" and translation.default then
+                                -- Table-based translation (contextual)
                                 hasLanguagePackMatch = true
                                 break
                             end
