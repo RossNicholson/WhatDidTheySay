@@ -335,6 +335,14 @@ WDTS_Lang_de_Tokens = {
     
     -- Trading and economy
     ["handel"] = "trade",
+    ["trade"] = "trade", -- Often used as-is in German WoW
+    ["fenster"] = "window", -- "Trade Fenster" = "Trade Window"
+    ["unten"] = "below/at the bottom", -- "unten" = "below/at the bottom"
+    ["slot"] = "slot", -- Gaming term, often used as-is
+    ["traded"] = "traded", -- Anglicism: "nicht traded" = "not traded"
+    ["packt"] = "put/place", -- "packt man ... rein" = "put ... in"
+    ["packen"] = "put/place",
+    ["packe"] = "put/place",
     ["intern"] = "internal",
     ["entspannte"] = "relaxed",
     ["entspannt"] = "relaxed",
@@ -372,9 +380,12 @@ WDTS_Lang_de_Tokens = {
     ["verzauberer"] = "enchanter",
     ["verzauberung"] = "enchantment",
     ["verzauberungen"] = "enchantments",
+    ["feuerverzauberung"] = "fire enchantment", -- "Feuerverzauberung" = "fire enchantment"
     ["vz"] = "enchantment", -- Common abbreviation for Verzauberung
     ["entchanten"] = "enchant", -- Anglicism: "entchanten" = "enchant" (verb)
     ["enchanten"] = "enchant", -- Anglicism variant
+    ["verzaubernde"] = "to be enchanted/enchanting", -- "zu verzaubernde" = "to be enchanted"
+    ["enhcanter"] = "enchanter", -- Typo for "enchanter"
     ["ingenieur"] = "engineer",
     ["kräuterkundiger"] = "herbalist",
     ["kräuterkundige"] = "herbalist",
@@ -576,6 +587,8 @@ WDTS_Lang_de_Tokens = {
     ["hallo"] = "hello/hi",
     ["hi"] = "hi",
     ["hey"] = "hey",
+    ["moin"] = "hi/hello", -- Northern German greeting: "Moin" = "Hi/Hello"
+    ["moin moin"] = "hi/hello", -- Extended form
     ["willkommen"] = "welcome",
     ["glück"] = "luck",
     ["glücklich"] = "happy/lucky",
@@ -963,6 +976,8 @@ WDTS_Lang_de_Tokens = {
     -- Time/sequence connectors
     ["dann"] = "then",
     ["danach"] = "after that",
+    ["trd"] = "anyway/nevertheless", -- Abbreviation for "trotzdem" = "anyway/nevertheless"
+    ["trotzdem"] = "anyway/nevertheless",
     ["davor"] = "before that",
     
     -- Movement/departure (common in WoW)

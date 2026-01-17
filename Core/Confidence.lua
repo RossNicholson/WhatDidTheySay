@@ -107,7 +107,11 @@ function Confidence.Calculate(params)
     -- coverage >= 0.7 gets no penalty
     
     -- Length adjustment (very short messages - but if we have high coverage, boost confidence)
-    if length < 3 then
+    -- Special case: Single-word greetings should have high confidence
+    if length == 1 and coverage >= 1.0 then
+        -- Single-word messages with perfect coverage (like "moin" -> "hi/hello")
+        score = score + 0.5 -- Significant boost for single-word perfect translations
+    elseif length < 3 then
         if coverage >= 1.0 then
             -- Perfect coverage for short messages is actually good - boost it
             score = score * 1.1

@@ -492,5 +492,79 @@ WDTS_Lang_de_Grammar = {
             from = "mag level/leveling",
             to = "wants to level",
         },
+        
+        -- Fix "can who X make" -> "can someone make X"
+        {
+            from = "can who (.+) make",
+            to = "can someone make %1",
+        },
+        {
+            from = "can who (.+) make\\?",
+            to = "can someone make %1",
+        },
+        
+        -- Fix "in the trade fenster gives/is there it unten a slot" -> "in the trade window there is a slot at the bottom"
+        {
+            from = "in the trade fenster gives/is there it unten a slot",
+            to = "in the trade window there is a slot at the bottom",
+        },
+        
+        -- Fix "the one/you not traded-there packt one/you" -> "that you don't trade - there you put"
+        {
+            from = "the one/you not traded-there packt one/you",
+            to = "that you don't trade - there you put",
+        },
+        
+        -- Fix "the to verzaubernde weapon in" -> "the weapon to be enchanted in"
+        {
+            from = "the to verzaubernde weapon in",
+            to = "the weapon to be enchanted in",
+        },
+        
+        -- Fix "an enhcanter does the then" -> "an enchanter does it then"
+        {
+            from = "an enhcanter does the then",
+            to = "an enchanter does it then",
+        },
+        
+        -- Fix "the goes then trd" -> "that works anyway"
+        {
+            from = "the goes then trd",
+            to = "that works anyway",
+        },
+        {
+            from = "ah lol the goes then trd",
+            to = "ah lol that works anyway",
+        },
+        {
+            from = "the goes then anyway/nevertheless",
+            to = "that works anyway",
+        },
+        {
+            from = "ah lol the goes then anyway/nevertheless",
+            to = "ah lol that works anyway",
+        },
+        {
+            from = "das goes then anyway/nevertheless",
+            to = "that works anyway",
+        },
+        {
+            from = "ah lol das goes then anyway/nevertheless",
+            to = "ah lol that works anyway",
+        },
+        
+        -- Fix Message 2: complex sentence structure improvements
+        {
+            from = "a slot the one/you not traded-there put/place one/you the to to be enchanted/enchanting weapon in",
+            to = "a slot that you don't trade - there you put the weapon to be enchanted in",
+        },
+        {
+            from = "and an enchanter does the then",
+            to = "and an enchanter does it then",
+        },
+        {
+            from = "in the trade window there is below/there is at the bottom a slot the one/you not traded-there put/place one/you the to to be enchanted/enchanting weapon in and an enchanter does the then",
+            to = "in the trade window there is a slot at the bottom that you don't trade - there you put the weapon to be enchanted in and an enchanter does it then",
+        },
     },
 }

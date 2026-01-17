@@ -550,4 +550,14 @@ WDTS_Lang_de_Patterns = {
         from = "kannst (.+) lassen\\?",
         to = "can you have %1",
     },
+    
+    -- "kann wer X machen?" -> "can someone make X?"
+    {
+        from = "kann wer (.+) machen%?",
+        to = "can someone make %1",
+    },
+    {
+        from = "kann wer (.+) machen",
+        to = "can someone make %1",
+    },
 }

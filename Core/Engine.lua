@@ -503,7 +503,7 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
                     "ich", "du", "er", "sie", "es", "wir", "ihr",
                     "mir", "dich", "ihn", "uns", "euch", "mein", "dein", "sein", "ihr",
                     "zu", "zum", "zur", "nach", "bei", "aus", "an", "auf", "in",
-                    "wie", "wo", "was", "wer", "wann", "warum", "schade",
+                    "wie", "wo", "was", "wer", "wann", "warum", "schade", "moin",
                 }
                 
                 for _, token in ipairs(tokens) do
@@ -748,7 +748,11 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     end
     
     -- If translation is more than 70% similar to original, it's not really a translation
-    if similarity > 0.70 and coverage < 0.5 then
+    -- Exception: Very short single-word messages (like greetings) are expected to be similar
+    local isShortGreeting = (#tokens == 1 and tokens[1].type == "word" and 
+                             (tokens[1].value == "moin" or tokens[1].value == "hallo" or 
+                              tokens[1].value == "hi" or tokens[1].value == "hey"))
+    if similarity > 0.70 and coverage < 0.5 and not isShortGreeting then
         -- Too similar and low coverage - this is basically untranslated
         return nil, 0.0, "translation_too_similar"
     end

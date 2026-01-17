@@ -8,6 +8,9 @@ WDTS_Lang_de_Phrases = {
     ["könnt ihr"] = "can you",
     ["kann ich"] = "can i",
     ["kann man"] = "can you/can one",
+    ["kann wer"] = "can someone", -- "kann wer" = "can someone"
+    ["gibt es"] = "there is/there are", -- "gibt es" = "there is/there are"
+    ["gibt es unten"] = "there is below/there is at the bottom",
     ["willst du"] = "do you want",
     ["brauche ich"] = "do i need",
     ["brauchst du"] = "do you need",
