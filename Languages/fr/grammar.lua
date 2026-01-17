@@ -51,10 +51,21 @@ WDTS_Lang_fr_Grammar = {
         
         -- Negation: "ne...pas" → "don't/doesn't" (HIGH PRIORITY)
         -- "je ne sais pas" → "I not know" → "I don't know"
+        -- Also handle "I ne...pas" patterns
+        {
+            from = "^I ne (.+) pas",
+            to = "I don't %1",
+            priority = 26,
+        },
         {
             from = "^I not ",
             to = "I don't ",
             priority = 25,
+        },
+        {
+            from = "^he ne (.+) pas",
+            to = "he doesn't %1",
+            priority = 26,
         },
         {
             from = "^he not ",
@@ -62,9 +73,19 @@ WDTS_Lang_fr_Grammar = {
             priority = 25,
         },
         {
+            from = "^she ne (.+) pas",
+            to = "she doesn't %1",
+            priority = 26,
+        },
+        {
             from = "^she not ",
             to = "she doesn't ",
             priority = 25,
+        },
+        {
+            from = "^it ne (.+) pas",
+            to = "it doesn't %1",
+            priority = 26,
         },
         {
             from = "^it not ",
@@ -72,9 +93,19 @@ WDTS_Lang_fr_Grammar = {
             priority = 25,
         },
         {
+            from = "^we ne (.+) pas",
+            to = "we don't %1",
+            priority = 26,
+        },
+        {
             from = "^we not ",
             to = "we don't ",
             priority = 25,
+        },
+        {
+            from = "^you ne (.+) pas",
+            to = "you don't %1",
+            priority = 26,
         },
         {
             from = "^you not ",
@@ -395,12 +426,7 @@ WDTS_Lang_fr_Grammar = {
             priority = 18,
         },
         
-        -- "they not" → "they don't"
-        {
-            from = "^they not ",
-            to = "they don't ",
-            priority = 25,
-        },
+        -- "they not" → "they don't" (duplicate removed)
         
         -- Double space cleanup
         {
@@ -459,6 +485,37 @@ WDTS_Lang_fr_Grammar = {
             from = "go to to ",
             to = "go to ",
             priority = 15,
+        },
+        -- Fix modal verbs with infinitives: "can to do" → "can do"
+        {
+            from = " can to (.+)",
+            to = " can %1",
+            priority = 20,
+        },
+        {
+            from = "^can to (.+)",
+            to = "can %1",
+            priority = 20,
+        },
+        {
+            from = " want to to (.+)",
+            to = " want to %1",
+            priority = 20,
+        },
+        {
+            from = "^want to to (.+)",
+            to = "want to %1",
+            priority = 20,
+        },
+        {
+            from = " must (.+) to (.+)",
+            to = " must %1 %2",
+            priority = 20,
+        },
+        {
+            from = "^must (.+) to (.+)",
+            to = "must %1 %2",
+            priority = 20,
         },
         
         -- "at the X" → "to the X" (when "à" → "at" but should be "to" for locations)
@@ -641,6 +698,268 @@ WDTS_Lang_fr_Grammar = {
             from = "^it costs how much$",
             to = "how much does it cost",
             priority = 18,
+        },
+        
+        -- ============================================
+        -- HYPHEN FIXES (French uses hyphens in questions)
+        -- ============================================
+        -- Remove hyphens that appear in English output
+        {
+            from = "-",
+            to = " ",
+            priority = 5,
+        },
+        
+        -- Fix "where are-you" → "where are you"
+        {
+            from = "are-you",
+            to = "are you",
+            priority = 15,
+        },
+        {
+            from = "are-you ",
+            to = "are you ",
+            priority = 15,
+        },
+        {
+            from = "is-you",
+            to = "are you",
+            priority = 15,
+        },
+        {
+            from = "is-you ",
+            to = "are you ",
+            priority = 15,
+        },
+        {
+            from = "going-you",
+            to = "are you going",
+            priority = 15,
+        },
+        {
+            from = "going-you ",
+            to = "are you going ",
+            priority = 15,
+        },
+        
+        -- Fix imperative hyphens: "help-me" → "help me"
+        {
+            from = "help-me",
+            to = "help me",
+            priority = 15,
+        },
+        {
+            from = "give-me",
+            to = "give me",
+            priority = 15,
+        },
+        {
+            from = "show-me",
+            to = "show me",
+            priority = 15,
+        },
+        {
+            from = "follow-me",
+            to = "follow me",
+            priority = 15,
+        },
+        
+        -- Fix "qu'est-ce" remnants: "qu'do" → "what do"
+        {
+            from = "qu'do",
+            to = "what do",
+            priority = 20,
+        },
+        {
+            from = "qu'do ",
+            to = "what do ",
+            priority = 20,
+        },
+        {
+            from = "qu'est%-ce what",
+            to = "what is",
+            priority = 20,
+        },
+        {
+            from = "qu'est%-ce what ",
+            to = "what is ",
+            priority = 20,
+        },
+        
+        -- Fix "I'm ready" vs "i am ready"
+        {
+            from = "^i am ready",
+            to = "I'm ready",
+            priority = 10,
+        },
+        {
+            from = "^i am ready ",
+            to = "I'm ready ",
+            priority = 10,
+        },
+        {
+            from = "^i am ",
+            to = "I'm ",
+            priority = 8,
+        },
+        
+        -- Fix "will do" → "I will do" (when "je" is dropped)
+        {
+            from = "^will do",
+            to = "I will do",
+            priority = 12,
+        },
+        {
+            from = "^will do ",
+            to = "I will do ",
+            priority = 12,
+        },
+        
+        -- Fix "am gone" → "went" (past tense)
+        {
+            from = "^i am gone",
+            to = "I went",
+            priority = 12,
+        },
+        {
+            from = "^i am gone ",
+            to = "I went ",
+            priority = 12,
+        },
+        {
+            from = " am gone$",
+            to = " went",
+            priority = 12,
+        },
+        
+        -- Fix "I looking for" → "I'm looking for" (missing verb)
+        {
+            from = "^I looking for",
+            to = "I'm looking for",
+            priority = 12,
+        },
+        {
+            from = "^I looking for ",
+            to = "I'm looking for ",
+            priority = 12,
+        },
+        
+        -- Fix "is done" → "is ready" when context suggests it
+        -- This is tricky, but let's add a rule for "c'est prêt" context
+        -- Actually, let's fix "is done" when it should be "is ready" in status context
+        -- But this might be too context-dependent, so let's leave it for now
+        
+        -- Fix "can't" → "you can't" when it's at the start
+        {
+            from = "^can't",
+            to = "you can't",
+            priority = 10,
+        },
+        {
+            from = "^can't ",
+            to = "you can't ",
+            priority = 10,
+        },
+        
+        -- Fix "am-me" → "follow me" (mis-translation of "suis-moi")
+        {
+            from = "am-me",
+            to = "follow me",
+            priority = 15,
+        },
+        {
+            from = "am-me ",
+            to = "follow me ",
+            priority = 15,
+        },
+        
+        -- Fix "vas-y" → "go" (imperative)
+        -- This should be handled by phrases, but let's add a grammar rule too
+        -- Actually, let's handle this in phrases
+        
+        -- Fix "montre-me" → "show me"
+        {
+            from = "montre%-me",
+            to = "show me",
+            priority = 15,
+        },
+        {
+            from = "montre%-me ",
+            to = "show me ",
+            priority = 15,
+        },
+        {
+            from = "^montre me",
+            to = "show me",
+            priority = 15,
+        },
+        {
+            from = "^montre me ",
+            to = "show me ",
+            priority = 15,
+        },
+        {
+            from = " montre me",
+            to = " show me",
+            priority = 15,
+        },
+        {
+            from = " montre me ",
+            to = " show me ",
+            priority = 15,
+        },
+        
+        -- Fix "i can" → "I can" (capitalization)
+        {
+            from = "^i can",
+            to = "I can",
+            priority = 5,
+        },
+        {
+            from = "^i can ",
+            to = "I can ",
+            priority = 5,
+        },
+        
+        -- Fix "may I" → "I can" when it's a statement (not a question)
+        -- This is tricky because "je peux" can mean both "I can" and "may I"
+        -- But in gaming context, "I can" is more common, so let's leave it
+        
+        -- Fix "must I/do I have to" → "I must" when it's a statement
+        -- This is also tricky, so let's leave it for now
+        
+        -- Fix "I said what" → "I said that"
+        {
+            from = "said what",
+            to = "said that",
+            priority = 15,
+        },
+        {
+            from = "said what ",
+            to = "said that ",
+            priority = 15,
+        },
+        
+        -- Fix "do it" → "do that" when context suggests "fais ça"
+        -- This is context-dependent, so let's leave it
+        
+        -- Fix "whatever" → "doesn't matter" when it's "peu importe"
+        -- This is context-dependent, but "doesn't matter" is more accurate for "peu importe"
+        -- Let's add a rule for this
+        
+        -- Fix "ok/agreed" → "okay" for "d'accord"
+        -- Actually, "ok/agreed" is fine for "d'accord", but let's add a rule for "okay"
+        
+        -- Fix "thank you very much" → "thanks a lot"
+        {
+            from = "thank you very much",
+            to = "thanks a lot",
+            priority = 10,
+        },
+        {
+            from = "thank you very much ",
+            to = "thanks a lot ",
+            priority = 10,
         },
         
         -- "I have not" → "I don't have" / "I have not"
