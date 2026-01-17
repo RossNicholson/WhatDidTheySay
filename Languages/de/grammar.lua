@@ -408,5 +408,31 @@ WDTS_Lang_de_Grammar = {
             from = "for common activities like/as leveling",
             to = "for common activities like leveling",
         },
+        
+        -- Fix "like leveling dungeons" -> "like leveling, dungeons" (add comma)
+        {
+            from = "like leveling dungeons",
+            to = "like leveling, dungeons",
+        },
+        
+        -- Fix "future raiding/raiding in the future" -> "future raiding" (clean up phrase)
+        {
+            from = "future raiding/raiding in the future",
+            to = "future raiding",
+        },
+        
+        -- Fix "like/as" when used as "like" -> "like"
+        {
+            from = " like/as ",
+            to = " like ",
+        },
+        {
+            from = "like/as leveling",
+            to = "like leveling",
+        },
+        {
+            from = "like/as dungeons",
+            to = "like dungeons",
+        },
     },
 }

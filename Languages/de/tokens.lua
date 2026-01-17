@@ -236,7 +236,9 @@ WDTS_Lang_de_Tokens = {
     ["beitreten"] = "join",
     ["beitritt"] = "joining",
     ["rekrutierung"] = "recruitment",
-    ["rekrutiert"] = "recruiting",
+    ["rekrutiert"] = "recruits", -- 3rd person singular: "gilde rekrutiert" = "guild recruits"
+    ["rekrutieren"] = "recruit/recruiting",
+    ["rekrutiere"] = "recruit",
     
     -- Game mechanics
     ["quest"] = "quest",
@@ -255,6 +257,8 @@ WDTS_Lang_de_Tokens = {
     ["debuff"] = "debuff",
     ["raid"] = "raid",
     ["raids"] = "raids",
+    ["raiden"] = "raiding", -- Gerund form: "zukünftig raiden" = "future raiding"
+    ["raidet"] = "raids", -- 3rd person: "er raidet" = "he raids"
     ["dungeon"] = "dungeon",
     ["dungeons"] = "dungeons",
     ["instanz"] = "instance",
@@ -265,6 +269,8 @@ WDTS_Lang_de_Tokens = {
     ["level"] = "level",
     ["leveln"] = "leveling", -- "zum leveln" = "for leveling"
     ["lvl"] = "level",
+    ["mindest"] = "minimum", -- "ab Mindest Lvl" = "from minimum level"
+    ["minimum"] = "minimum",
     ["erfahrung"] = "experience",
     ["exp"] = "experience",
     
@@ -434,10 +440,11 @@ WDTS_Lang_de_Tokens = {
     ["alexanders"] = "Alexander's", -- Possessive
     ["alexander"] = "Alexander", -- Proper name
     ["lord"] = "lord", -- Common in item names
-    ["zukünftige"] = "future",
-    ["zukünftigen"] = "future",
-    ["zukünftiges"] = "future",
-    ["zukünftiger"] = "future",
+    ["zukünftig"] = "in the future/future", -- Adverb form
+    ["zukünftige"] = "future", -- Adjective form (feminine)
+    ["zukünftigen"] = "future", -- Adjective form (plural/genitive)
+    ["zukünftiges"] = "future", -- Adjective form (neuter)
+    ["zukünftiger"] = "future", -- Adjective form (masculine)
     
     -- Quality and attributes
     ["einfach"] = "simply",
