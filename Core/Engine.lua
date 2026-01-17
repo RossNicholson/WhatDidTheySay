@@ -1456,18 +1456,33 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         ["%"] = true, -- Percent sign
     }
     local wordCount = 0
+    local universalWordCount = 0
     for _, token in ipairs(tokens) do
         if token.type == "word" then
             wordCount = wordCount + 1
             local word = token.value:lower()
-            if not universalAbbrevsForCheck[word] then
-                allUniversalAbbrevs = false
-                break
+            if universalAbbrevsForCheck[word] then
+                universalWordCount = universalWordCount + 1
+            else
+                -- Check if it's a proper noun (starts with capital letter) or number
+                -- These are often English even if they exist in other language vocabularies
+                local firstChar = token.value:sub(1, 1)
+                if firstChar:match("%u") or token.value:match("^%d+") then
+                    -- Proper noun or number - count as universal
+                    universalWordCount = universalWordCount + 1
+                else
+                    allUniversalAbbrevs = false
+                end
             end
         end
     end
     -- If all words are universal abbreviations, it's English and doesn't need translation
     if allUniversalAbbrevs and wordCount > 0 then
+        return nil, 0.0, "already_english"
+    end
+    -- If MOST words (>= 70%) are universal English gaming terms, it's probably English
+    -- This catches messages like "LF2M for Uldaman" where "Uldaman" is a proper noun
+    if wordCount > 3 and (universalWordCount / wordCount) >= 0.70 then
         return nil, 0.0, "already_english"
     end
     
