@@ -302,6 +302,320 @@ local VERB_CONJUGATION_LOOKUP = {
     -- "schnorren" (to borrow/beg)
     ["schnorre"] = "schnorren", ["schnorr"] = "schnorren", ["schnorrst"] = "schnorren", ["schnorrt"] = "schnorren",
     ["schnorrte"] = "schnorren", ["schnorrtest"] = "schnorren", ["schnorrten"] = "schnorren", ["geschnorrt"] = "schnorren",
+    
+    -- Additional common verbs (60+ more verbs)
+    
+    -- "verstehen" (to understand)
+    ["verstehe"] = "verstehen", ["versteh"] = "verstehen", ["verstehst"] = "verstehen", ["versteht"] = "verstehen",
+    ["verstand"] = "verstehen", ["verstandest"] = "verstehen", ["verstanden"] = "verstehen", ["verstanden"] = "verstehen",
+    
+    -- "helfen" (to help)
+    ["helfe"] = "helfen", ["hilf"] = "helfen", ["hilfst"] = "helfen", ["hilft"] = "helfen",
+    ["half"] = "helfen", ["halfst"] = "helfen", ["halfen"] = "helfen", ["geholfen"] = "helfen",
+    
+    -- "halten" (to hold/keep)
+    ["halte"] = "halten", ["hält"] = "halten", ["hältst"] = "halten", ["haltet"] = "halten",
+    ["hielt"] = "halten", ["hieltest"] = "halten", ["hielten"] = "halten", ["gehalten"] = "halten",
+    
+    -- "anbieten" (to offer)
+    ["biete"] = "anbieten", ["bietest"] = "anbieten", ["bietet"] = "anbieten",
+    ["bot"] = "anbieten", ["botest"] = "anbieten", ["boten"] = "anbieten", ["angeboten"] = "anbieten",
+    
+    -- "bitten" (to ask/request)
+    ["bitte"] = "bitten", ["bittest"] = "bitten", ["bittet"] = "bitten",
+    ["bat"] = "bitten", ["batest"] = "bitten", ["baten"] = "bitten", ["gebeten"] = "bitten",
+    
+    -- "rufen" (to call/summon)
+    ["rufe"] = "rufen", ["ruf"] = "rufen", ["rufst"] = "rufen", ["ruft"] = "rufen",
+    ["rief"] = "rufen", ["riefst"] = "rufen", ["riefen"] = "rufen", ["gerufen"] = "rufen",
+    
+    -- "beschwören" (to summon)
+    ["beschwöre"] = "beschwören", ["beschwörst"] = "beschwören", ["beschwört"] = "beschwören",
+    ["beschwor"] = "beschwören", ["beschworst"] = "beschwören", ["beschworen"] = "beschwören", ["beschworen"] = "beschwören",
+    
+    -- "angreifen" (to attack)
+    ["greife"] = "angreifen", ["greifst"] = "angreifen", ["greift"] = "angreifen",
+    ["griff"] = "angreifen", ["griffst"] = "angreifen", ["griffen"] = "angreifen", ["angegriffen"] = "angreifen",
+    
+    -- "verteidigen" (to defend)
+    ["verteidige"] = "verteidigen", ["verteidigst"] = "verteidigen", ["verteidigt"] = "verteidigen",
+    ["verteidigte"] = "verteidigen", ["verteidigtest"] = "verteidigen", ["verteidigten"] = "verteidigen", ["verteidigt"] = "verteidigen",
+    
+    -- "kämpfen" (to fight)
+    ["kämpfe"] = "kämpfen", ["kämpfst"] = "kämpfen", ["kämpft"] = "kämpfen",
+    ["kämpfte"] = "kämpfen", ["kämpftest"] = "kämpfen", ["kämpften"] = "kämpfen", ["gekämpft"] = "kämpfen",
+    
+    -- "gewinnen" (to win)
+    ["gewinne"] = "gewinnen", ["gewinnst"] = "gewinnen", ["gewinnt"] = "gewinnen",
+    ["gewann"] = "gewinnen", ["gewannst"] = "gewinnen", ["gewannen"] = "gewinnen", ["gewonnen"] = "gewinnen",
+    
+    -- "verlieren" (to lose)
+    ["verliere"] = "verlieren", ["verlierst"] = "verlieren", ["verliert"] = "verlieren",
+    ["verlor"] = "verlieren", ["verlorst"] = "verlieren", ["verloren"] = "verlieren", ["verloren"] = "verlieren",
+    
+    -- "töten" (to kill)
+    ["töte"] = "töten", ["tötest"] = "töten", ["tötet"] = "töten",
+    ["tötete"] = "töten", ["tötetest"] = "töten", ["töteten"] = "töten", ["getötet"] = "töten",
+    
+    -- "schlafen" (to sleep)
+    ["schläfe"] = "schlafen", ["schläfst"] = "schlafen", ["schläft"] = "schlafen",
+    ["schlief"] = "schlafen", ["schliefst"] = "schlafen", ["schliefen"] = "schlafen", ["geschlafen"] = "schlafen",
+    
+    -- "essen" (to eat)
+    ["esse"] = "essen", ["isst"] = "essen", ["esst"] = "essen",
+    ["aß"] = "essen", ["aßest"] = "essen", ["aßen"] = "essen", ["gegessen"] = "essen",
+    
+    -- "trinken" (to drink)
+    ["trinke"] = "trinken", ["trinkst"] = "trinken", ["trinkt"] = "trinken",
+    ["trank"] = "trinken", ["trankst"] = "trinken", ["tranken"] = "trinken", ["getrunken"] = "trinken",
+    
+    -- "lesen" (to read)
+    ["lese"] = "lesen", ["liest"] = "lesen",
+    ["las"] = "lesen", ["lasest"] = "lesen", ["lasen"] = "lesen", ["gelesen"] = "lesen",
+    
+    -- "schreiben" (to write)
+    ["schreibe"] = "schreiben", ["schreibst"] = "schreiben", ["schreibt"] = "schreiben",
+    ["schrieb"] = "schreiben", ["schriebst"] = "schreiben", ["schrieben"] = "schreiben", ["geschrieben"] = "schreiben",
+    
+    -- "sprechen" (to speak)
+    ["spreche"] = "sprechen", ["sprichst"] = "sprechen", ["spricht"] = "sprechen",
+    ["sprach"] = "sprechen", ["sprachst"] = "sprechen", ["sprachen"] = "sprechen", ["gesprochen"] = "sprechen",
+    
+    -- "hören" (to hear)
+    ["höre"] = "hören", ["hörst"] = "hören", ["hört"] = "hören",
+    ["hörte"] = "hören", ["hörtest"] = "hören", ["hörten"] = "hören", ["gehört"] = "hören",
+    
+    -- "hören" already in vocabulary
+    
+    -- "schauen" (to look/watch)
+    ["schaue"] = "schauen", ["schaust"] = "schauen", ["schaut"] = "schauen",
+    ["schaute"] = "schauen", ["schautest"] = "schauen", ["schauten"] = "schauen", ["geschaut"] = "schauen",
+    
+    -- "zeigen" (to show)
+    ["zeige"] = "zeigen", ["zeigst"] = "zeigen", ["zeigt"] = "zeigen",
+    ["zeigte"] = "zeigen", ["zeigtest"] = "zeigen", ["zeigten"] = "zeigen", ["gezeigt"] = "zeigen",
+    
+    -- "verstecken" (to hide)
+    ["verstecke"] = "verstecken", ["versteckst"] = "verstecken", ["versteckt"] = "verstecken",
+    ["versteckte"] = "verstecken", ["verstecktest"] = "verstecken", ["versteckten"] = "verstecken", ["versteckt"] = "verstecken",
+    
+    -- "sitzen" (to sit)
+    ["sitze"] = "sitzen", ["sitzt"] = "sitzen",
+    ["saß"] = "sitzen", ["saßest"] = "sitzen", ["saßen"] = "sitzen", ["gesessen"] = "sitzen",
+    
+    -- "stehen" (to stand)
+    ["stehe"] = "stehen", ["stehst"] = "stehen", ["steht"] = "stehen",
+    ["stand"] = "stehen", ["standest"] = "stehen", ["standen"] = "stehen", ["gestanden"] = "stehen",
+    
+    -- "liegen" (to lie/lay)
+    ["liege"] = "liegen", ["liegst"] = "liegen", ["liegt"] = "liegen",
+    ["lag"] = "liegen", ["lagst"] = "liegen", ["lagen"] = "liegen", ["gelegen"] = "liegen",
+    
+    -- "springen" (to jump)
+    ["springe"] = "springen", ["springst"] = "springen", ["springt"] = "springen",
+    ["sprang"] = "springen", ["sprangst"] = "springen", ["sprangen"] = "springen", ["gesprungen"] = "springen",
+    
+    -- "rennen" (to run)
+    ["renne"] = "rennen", ["rennst"] = "rennen", ["rennt"] = "rennen",
+    ["rannte"] = "rennen", ["ranntest"] = "rennen", ["rannten"] = "rennen", ["gerannt"] = "rennen",
+    
+    -- "fahren" (to drive/travel)
+    ["fahre"] = "fahren", ["fährst"] = "fahren", ["fährt"] = "fahren",
+    ["fuhr"] = "fahren", ["fuhrst"] = "fahren", ["fuhren"] = "fahren", ["gefahren"] = "fahren",
+    
+    -- "fliegen" (to fly)
+    ["fliege"] = "fliegen", ["fliegst"] = "fliegen", ["fliegt"] = "fliegen",
+    ["flog"] = "fliegen", ["flogst"] = "fliegen", ["flogen"] = "fliegen", ["geflogen"] = "fliegen",
+    
+    -- "schwimmen" (to swim)
+    ["schwimme"] = "schwimmen", ["schwimmst"] = "schwimmen", ["schwimmt"] = "schwimmen",
+    ["schwamm"] = "schwimmen", ["schwammst"] = "schwimmen", ["schwammen"] = "schwimmen", ["geschwommen"] = "schwimmen",
+    
+    -- "bauen" (to build)
+    ["baue"] = "bauen", ["baust"] = "bauen", ["baut"] = "bauen",
+    ["baute"] = "bauen", ["bautest"] = "bauen", ["bauten"] = "bauen", ["gebaut"] = "bauen",
+    
+    -- "zerstören" (to destroy)
+    ["zerstöre"] = "zerstören", ["zerstörst"] = "zerstören", ["zerstört"] = "zerstören",
+    ["zerstörte"] = "zerstören", ["zerstörtest"] = "zerstören", ["zerstörten"] = "zerstören", ["zerstört"] = "zerstören",
+    
+    -- "reparieren" (to repair)
+    ["repariere"] = "reparieren", ["reparierst"] = "reparieren", ["repariert"] = "reparieren",
+    ["reparierte"] = "reparieren", ["repariertest"] = "reparieren", ["reparierten"] = "reparieren", ["repariert"] = "reparieren",
+    
+    -- "versuchen" (to try/attempt)
+    ["versuche"] = "versuchen", ["versuchst"] = "versuchen", ["versucht"] = "versuchen",
+    ["versuchte"] = "versuchen", ["versuchtest"] = "versuchen", ["versuchten"] = "versuchen", ["versucht"] = "versuchen",
+    
+    -- "schaffen" already above
+    
+    -- "aufhören" (to stop)
+    ["höre"] = "aufhören", ["hörst"] = "aufhören", ["hört"] = "aufhören",
+    ["hörte"] = "aufhören", ["hörtest"] = "aufhören", ["hörten"] = "aufhören", ["aufgehört"] = "aufhören",
+    
+    -- "anfangen" (to begin/start)
+    ["fange"] = "anfangen", ["fängst"] = "anfangen", ["fängt"] = "anfangen",
+    ["fing"] = "anfangen", ["fingst"] = "anfangen", ["fingen"] = "anfangen", ["angefangen"] = "anfangen",
+    
+    -- "aufhören" and "anfangen" are separable verbs - forms above are simplified
+    
+    -- "beenden" (to finish/end)
+    ["beende"] = "beenden", ["beendest"] = "beenden", ["beendet"] = "beenden",
+    ["beendete"] = "beenden", ["beendetest"] = "beenden", ["beendeten"] = "beenden", ["beendet"] = "beenden",
+    
+    -- "stoppen" (to stop)
+    ["stoppe"] = "stoppen", ["stoppst"] = "stoppen", ["stoppt"] = "stoppen",
+    ["stoppte"] = "stoppen", ["stopptest"] = "stoppen", ["stoppten"] = "stoppen", ["gestoppt"] = "stoppen",
+    
+    -- "mitmachen" (to join/participate)
+    ["mache"] = "mitmachen", ["machst"] = "mitmachen", ["macht"] = "mitmachen",
+    ["machte"] = "mitmachen", ["machtest"] = "mitmachen", ["machten"] = "mitmachen", ["mitgemacht"] = "mitmachen",
+    
+    -- "beitreten" (to join)
+    ["trete"] = "beitreten", ["trittst"] = "beitreten", ["tritt"] = "beitreten",
+    ["trat"] = "beitreten", ["tratest"] = "beitreten", ["traten"] = "beitreten", ["beigetreten"] = "beitreten",
+    
+    -- "verlassen" (to leave)
+    ["verlasse"] = "verlassen", ["verlässt"] = "verlassen", ["verlasst"] = "verlassen",
+    ["verließ"] = "verlassen", ["verließt"] = "verlassen", ["verließen"] = "verlassen", ["verlassen"] = "verlassen",
+    
+    -- "zurückkommen" (to come back)
+    ["komme"] = "zurückkommen", ["kommst"] = "zurückkommen", ["kommt"] = "zurückkommen",
+    ["kam"] = "zurückkommen", ["kamst"] = "zurückkommen", ["kamen"] = "zurückkommen", ["zurückgekommen"] = "zurückkommen",
+    
+    -- "zurückkehren" (to return)
+    ["kehre"] = "zurückkehren", ["kehrst"] = "zurückkehren", ["kehrt"] = "zurückkehren",
+    ["kehrte"] = "zurückkehren", ["kehrtest"] = "zurückkehren", ["kehrten"] = "zurückkehren", ["zurückgekehrt"] = "zurückkehren",
+    
+    -- "erwarten" (to expect)
+    ["erwarte"] = "erwarten", ["erwartest"] = "erwarten", ["erwartet"] = "erwarten",
+    ["erwartete"] = "erwarten", ["erwartetest"] = "erwarten", ["erwarteten"] = "erwarten", ["erwartet"] = "erwarten",
+    
+    -- "brauchen" already above
+    
+    -- "benötigen" (to need - formal)
+    ["benötige"] = "benötigen", ["benötigst"] = "benötigen", ["benötigt"] = "benötigen",
+    ["benötigte"] = "benötigen", ["benötigtest"] = "benötigen", ["benötigten"] = "benötigen", ["benötigt"] = "benötigen",
+    
+    -- "tragen" (to wear/carry)
+    ["trage"] = "tragen", ["trägst"] = "tragen", ["trägt"] = "tragen",
+    ["trug"] = "tragen", ["trugst"] = "tragen", ["trugen"] = "tragen", ["getragen"] = "tragen",
+    
+    -- "anziehen" (to put on/wear)
+    ["ziehe"] = "anziehen", ["ziehst"] = "anziehen", ["zieht"] = "anziehen",
+    ["zog"] = "anziehen", ["zogst"] = "anziehen", ["zogen"] = "anziehen", ["angezogen"] = "anziehen",
+    
+    -- "ausziehen" (to take off)
+    ["ziehe"] = "ausziehen", ["ziehst"] = "ausziehen", ["zieht"] = "ausziehen",
+    ["zog"] = "ausziehen", ["zogst"] = "ausziehen", ["zogen"] = "ausziehen", ["ausgezogen"] = "ausziehen",
+    
+    -- "legen" (to lay/put)
+    ["lege"] = "legen", ["legst"] = "legen", ["legt"] = "legen",
+    ["legte"] = "legen", ["legtest"] = "legen", ["legten"] = "legen", ["gelegt"] = "legen",
+    
+    -- "stellen" (to place/put)
+    ["stelle"] = "stellen", ["stellst"] = "stellen", ["stellt"] = "stellen",
+    ["stellte"] = "stellen", ["stelltest"] = "stellen", ["stellten"] = "stellen", ["gestellt"] = "stellen",
+    
+    -- "setzen" (to set/put)
+    ["setze"] = "setzen", ["setzt"] = "setzen",
+    ["setzte"] = "setzen", ["setztest"] = "setzen", ["setzten"] = "setzen", ["gesetzt"] = "setzen",
+    
+    -- "packen" (to pack/put)
+    ["packe"] = "packen", ["packst"] = "packen", ["packt"] = "packen",
+    ["packte"] = "packen", ["packtest"] = "packen", ["packten"] = "packen", ["gepackt"] = "packen",
+    
+    -- "verschieben" (to move/shift)
+    ["verschiebe"] = "verschieben", ["verschiebst"] = "verschieben", ["verschiebt"] = "verschieben",
+    ["verschob"] = "verschieben", ["verschobst"] = "verschieben", ["verschoben"] = "verschieben", ["verschoben"] = "verschieben",
+    
+    -- "bewegen" (to move)
+    ["bewege"] = "bewegen", ["bewegst"] = "bewegen", ["bewegt"] = "bewegen",
+    ["bewegte"] = "bewegen", ["bewegtest"] = "bewegen", ["bewegten"] = "bewegen", ["bewegt"] = "bewegen",
+    
+    -- "drehen" (to turn)
+    ["drehe"] = "drehen", ["drehst"] = "drehen", ["dreht"] = "drehen",
+    ["drehte"] = "drehen", ["drehtest"] = "drehen", ["drehten"] = "drehen", ["gedreht"] = "drehen",
+    
+    -- "wenden" (to turn)
+    ["wende"] = "wenden", ["wendest"] = "wenden", ["wendet"] = "wenden",
+    ["wendete"] = "wenden", ["wendetest"] = "wenden", ["wendeten"] = "wenden", ["gewandt"] = "wenden",
+    
+    -- "drehen" and "wenden" above
+    
+    -- "treffen" (to meet/hit)
+    ["treffe"] = "treffen", ["triffst"] = "treffen", ["trifft"] = "treffen",
+    ["traf"] = "treffen", ["trafst"] = "treffen", ["trafen"] = "treffen", ["getroffen"] = "treffen",
+    
+    -- "begegnen" (to meet/encounter)
+    ["begegne"] = "begegnen", ["begegnest"] = "begegnen", ["begegnet"] = "begegnen",
+    ["begegnete"] = "begegnen", ["begegnetest"] = "begegnen", ["begegneten"] = "begegnen", ["begegnet"] = "begegnen",
+    
+    -- "sammeln" (to collect/gather)
+    ["sammle"] = "sammeln", ["sammelst"] = "sammeln", ["sammelt"] = "sammeln",
+    ["sammelte"] = "sammeln", ["sammeltest"] = "sammeln", ["sammelten"] = "sammeln", ["gesammelt"] = "sammeln",
+    
+    -- "holen" already above
+    
+    -- "bekommen" (to get/receive)
+    ["bekomme"] = "bekommen", ["bekommst"] = "bekommen", ["bekommt"] = "bekommen",
+    ["bekam"] = "bekommen", ["bekamst"] = "bekommen", ["bekamen"] = "bekommen", ["bekommen"] = "bekommen",
+    
+    -- "erhalten" (to receive/get)
+    ["erhalte"] = "erhalten", ["erhältst"] = "erhalten", ["erhält"] = "erhalten",
+    ["erhielt"] = "erhalten", ["erhieltest"] = "erhalten", ["erhielten"] = "erhalten", ["erhalten"] = "erhalten",
+    
+    -- "senden" (to send)
+    ["sende"] = "senden", ["sendest"] = "senden", ["sendet"] = "senden",
+    ["sandte"] = "senden", ["sandtest"] = "senden", ["sandten"] = "senden", ["gesandt"] = "senden",
+    
+    -- "schicken" (to send)
+    ["schicke"] = "schicken", ["schickst"] = "schicken", ["schickt"] = "schicken",
+    ["schickte"] = "schicken", ["schicktest"] = "schicken", ["schickten"] = "schicken", ["geschickt"] = "schicken",
+    
+    -- "schicken" also means "skilled" but verb form takes precedence
+    
+    -- "erhalten" already above
+    
+    -- "bezahlen" (to pay)
+    ["bezahle"] = "bezahlen", ["bezahlst"] = "bezahlen", ["bezahlt"] = "bezahlen",
+    ["bezahlte"] = "bezahlen", ["bezahltest"] = "bezahlen", ["bezahlten"] = "bezahlen", ["bezahlt"] = "bezahlen",
+    
+    -- "zahlen" (to pay)
+    ["zahle"] = "zahlen", ["zahlst"] = "zahlen", ["zahlt"] = "zahlen",
+    ["zahlte"] = "zahlen", ["zahltest"] = "zahlen", ["zahlten"] = "zahlen", ["gezahlt"] = "zahlen",
+    
+    -- "verdienen" (to earn/deserve)
+    ["verdiene"] = "verdienen", ["verdienst"] = "verdienen", ["verdient"] = "verdienen",
+    ["verdiente"] = "verdienen", ["verdientest"] = "verdienen", ["verdienten"] = "verdienen", ["verdient"] = "verdienen",
+    
+    -- "ausgeben" (to spend)
+    ["gebe"] = "ausgeben", ["gibst"] = "ausgeben", ["gibt"] = "ausgeben",
+    ["gab"] = "ausgeben", ["gabst"] = "ausgeben", ["gaben"] = "ausgeben", ["ausgegeben"] = "ausgeben",
+    
+    -- "handeln" (to trade/deal)
+    ["handle"] = "handeln", ["handelst"] = "handeln", ["handelt"] = "handeln",
+    ["handelte"] = "handeln", ["handeltest"] = "handeln", ["handelten"] = "handeln", ["gehandelt"] = "handeln",
+    
+    -- "tauschen" (to trade/exchange)
+    ["tausche"] = "tauschen", ["tauschst"] = "tauschen", ["tauscht"] = "tauschen",
+    ["tauschte"] = "tauschen", ["tauschtest"] = "tauschen", ["tauschten"] = "tauschen", ["getauscht"] = "tauschen",
+    
+    -- "wechseln" (to change/exchange)
+    ["wechsle"] = "wechseln", ["wechselst"] = "wechseln", ["wechselt"] = "wechseln",
+    ["wechselte"] = "wechseln", ["wechseltest"] = "wechseln", ["wechselten"] = "wechseln", ["gewechselt"] = "wechseln",
+    
+    -- "ändern" (to change)
+    ["ändere"] = "ändern", ["änderst"] = "ändern", ["ändert"] = "ändern",
+    ["änderte"] = "ändern", ["ändertest"] = "ändern", ["änderten"] = "ändern", ["geändert"] = "ändern",
+    
+    -- "verändern" (to change/alter)
+    ["verändere"] = "verändern", ["veränderst"] = "verändern", ["verändert"] = "verändern",
+    ["veränderte"] = "verändern", ["verändertest"] = "verändern", ["veränderten"] = "verändern", ["verändert"] = "verändern",
+    
+    -- "wechseln" already above
+    
+    -- "wechseln" and "ändern" above
 }
 
 -- Try to normalize a verb to infinitive form
