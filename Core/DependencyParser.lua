@@ -586,9 +586,7 @@ function DependencyParser.Parse(tokens)
     return nodes
 end
 
--- Guess part-of-speech (enhanced with German grammar)
-    -- Definite articles
-    ["der"] = "def_masc_nom",
+-- Helper functions (defined after Parse function)
     ["die"] = "def_fem_nom_acc",
     ["das"] = "def_neut_nom_acc",
     ["den"] = "def_masc_acc",
