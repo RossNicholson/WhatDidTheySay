@@ -760,5 +760,85 @@ WDTS_Lang_de_Grammar = {
             from = "invite her/they",
             to = "invite her", -- Prefer "her" in this context
         },
+        
+        -- Fix "loch modan warst you already" -> "were you already in Loch Modan?"
+        {
+            from = "loch modan warst you already",
+            to = "were you already in Loch Modan",
+        },
+        {
+            from = "(.+) warst you already",
+            to = "were you already in %1",
+        },
+        
+        -- Fix "oh ich attempt/try it even/once in westfall" -> "oh I'll try it in Westfall"
+        {
+            from = "oh ich attempt/try it even/once in westfall",
+            to = "oh I'll try it in Westfall",
+        },
+        
+        -- Fix "am now almost there" -> "am almost there now"
+        {
+            from = "am now almost there",
+            to = "am almost there now",
+        },
+        
+        -- Fix "if/when what passiert seht her/their it yes" -> "if something happens you'll see it"
+        {
+            from = "if/when what happens/happened seht her/their it yes",
+            to = "if something happens you'll see it",
+        },
+        
+        -- Fix "simply safe play" -> "simply play safe"
+        {
+            from = "simply safe play",
+            to = "simply play safe",
+        },
+        
+        -- Fix "not zuuuu much/many wollen" -> "don't want too much"
+        {
+            from = "not zuuuu much/many want",
+            to = "don't want too much",
+        },
+        {
+            from = "not zuuuu much/many wollen",
+            to = "don't want too much",
+        },
+        
+        -- Fix "lochmodan have ich only 2-3 quests make can" -> "in Loch Modan I could only do 2-3 quests"
+        {
+            from = "lochmodan have ich only (.+) quests make can",
+            to = "in Loch Modan I could only do %1 quests",
+        },
+        {
+            from = "(.+) have ich only (.+) quests make can",
+            to = "in %1 I could only do %2 quests",
+        },
+        
+        -- Fix "simply not südlich the base in westfall go" -> "simply don't go south of the base in Westfall"
+        {
+            from = "simply not südlich the base in westfall go",
+            to = "simply don't go south of the base in Westfall",
+        },
+        
+        -- Fix "and vorsicht am wasser" -> "and be careful at the water"
+        {
+            from = "and careful at the water",
+            to = "and be careful at the water",
+        },
+        {
+            from = "and vorsicht am wasser",
+            to = "and be careful at the water",
+        },
+        
+        -- Fix "a/an the besonders" -> "no especially those"
+        {
+            from = "a/an the especially",
+            to = "no especially those",
+        },
+        {
+            from = "a/an the besonders",
+            to = "no especially those",
+        },
     },
 }

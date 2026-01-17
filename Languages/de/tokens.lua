@@ -1216,4 +1216,32 @@ WDTS_Lang_de_Tokens = {
     ["ein"] = "in", -- "Lad sie ein" = "Invite her" (einladen = invite, but "ein" = in)
     ["erst"] = "first/only", -- "erst mit lvl 20" = "first/only at level 20"
     ["im"] = "in the", -- "im exile" = "in the exile"
+    
+    -- Additional missing words from guild chat review 3
+    ["warst"] = "were", -- Past tense of "sein": "warst du" = "were you"
+    ["war"] = "was",
+    ["waren"] = "were",
+    ["flugplatz"] = "airport", -- "am flugplatz" = "at the airport"
+    ["westfall"] = "Westfall", -- Location name
+    ["passiert"] = "happens/happened", -- "was passiert" = "what happens"
+    ["passieren"] = "happen",
+    ["seht"] = "see", -- Plural: "seht ihr" = "do you see"
+    ["langsamer"] = "slower", -- "lieber langsamer" = "prefer slower"
+    ["langsam"] = "slow",
+    ["dafür"] = "instead/for that", -- "dafür safe" = "instead safe"
+    ["südlich"] = "south of", -- "südlich der Base" = "south of the base"
+    ["base"] = "base", -- Location term
+    ["Base"] = "base", -- Capitalized location term
+    ["wasser"] = "water", -- "am wasser" = "at the water"
+    ["trappern"] = "trappers", -- "vorsicht vor trappern" = "careful of trappers"
+    ["trapper"] = "trapper",
+    ["pillagern"] = "pillagers", -- "vorsicht vor pillagern" = "careful of pillagers"
+    ["pillager"] = "pillager",
+    ["besonders"] = "especially", -- "die besonders" = "especially those"
+    ["allem"] = "everything/all", -- "vor allem" = "above all/especially"
+    ["alle"] = "all",
+    ["wollen"] = "want", -- "nicht zuuuu viel wollen" = "don't want too much"
+    ["will"] = "want",
+    ["willst"] = "want",
+    ["also"] = "so/also", -- "also vorsicht" = "so careful"
 }

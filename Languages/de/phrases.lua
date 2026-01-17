@@ -29,6 +29,23 @@ WDTS_Lang_de_Phrases = {
     ["wo mit dir"] = "who with you", -- "jemand wo mit dir" = "someone who with you"
     ["so lernst du"] = "that's how you learn", -- "so lernst du" = "that's how you learn"
     ["der eine"] = "the one", -- "der eine will" = "the one wants"
+    ["warst du"] = "were you", -- "warst du schon" = "were you already"
+    ["warst du schon"] = "were you already", -- "Loch Modan warst du schon?" = "Were you already in Loch Modan?"
+    ["am flugplatz"] = "at the airport", -- "am flugplatz von if" = "at the airport of IF"
+    ["von if"] = "of IF", -- "am flugplatz von if" = "at the airport of IF"
+    ["versuche es mal"] = "try it", -- "versuche es mal in westfall" = "try it in Westfall"
+    ["jetzt fast da"] = "almost there now", -- "bin jetzt fast da" = "am almost there now"
+    ["was passiert"] = "what happens", -- "wenn was passiert" = "if what happens"
+    ["seht ihr es"] = "you see it", -- "seht ihr es ja" = "you see it yes"
+    ["safe spielen"] = "play safe", -- "einfach safe spielen" = "simply play safe"
+    ["nicht zuuuu viel wollen"] = "don't want too much", -- "nicht zuuuu viel wollen" = "don't want too much"
+    ["lieber langsamer"] = "prefer slower", -- "lieber langsamer aber dafür safe" = "prefer slower but instead safe"
+    ["aber dafür"] = "but instead/for that", -- "aber dafür safe" = "but instead safe"
+    ["südlich der"] = "south of the", -- "südlich der Base" = "south of the base"
+    ["vorsicht am wasser"] = "careful at the water", -- "vorsicht am wasser" = "careful at the water"
+    ["vorsicht vor"] = "careful of/beware of", -- "vorsicht vor trappern" = "careful of trappers"
+    ["vorsicht vor allem"] = "careful of everything/especially", -- "vorsicht vor allem" = "careful of everything"
+    ["die besonders"] = "especially those", -- "ne die besonders" = "no especially those"
     
     -- Common phrases
     ["keine sorge"] = "no worry/don't worry",

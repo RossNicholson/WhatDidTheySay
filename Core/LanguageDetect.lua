@@ -29,7 +29,7 @@ LanguageDetect.FUNCTION_WORDS = {
         "mich", "dich", "ihn", "uns", "euch", "mein", "dein", "sein", "ihr",
         "unser", "euer", "dies", "diese", "dieser", "welche", "wer", "was",
         "wo", "wann", "warum", "wie", "schade", "moin", "vielleicht", "veileicht", "anderes",
-        "sehr", "mega", "nett", "halt", "grad", "gerade",
+        "sehr", "mega", "nett", "halt", "grad", "gerade", "also", "warst", "war",
     },
 }
 
