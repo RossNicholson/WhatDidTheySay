@@ -16,6 +16,11 @@ WDTS_Lang_de_Phrases = {
     ["brauchst du"] = "do you need",
     ["braucht ihr"] = "do you need", -- Plural: "braucht ihr" = "do you need"
     ["braucht"] = "needs", -- 3rd person: "braucht ihr" = "do you need"
+    ["bist du"] = "are you", -- "bist du in IF" = "are you in IF"
+    ["ist jemand"] = "is someone", -- "ist jemand grad" = "is someone currently"
+    ["kann ihm"] = "can him", -- "kann ihm einen kaufen" = "can buy him one"
+    ["musst halt"] = "just have to", -- "musst halt warten" = "just have to wait"
+    ["gehe gleich dahin"] = "going there soon", -- "ja gehe gleich dahin" = "yes going there soon"
     
     -- Common phrases
     ["keine sorge"] = "no worry/don't worry",

@@ -614,5 +614,63 @@ WDTS_Lang_de_Grammar = {
             from = "ich could two (.+) bags good use/need",
             to = "i could use two %1 bags well",
         },
+        
+        -- Fix "running/going to SW" -> "going to SW"
+        {
+            from = "running/going to (.+)",
+            to = "going to %1",
+        },
+        
+        -- Fix "yes in if" -> "yes in IF"
+        {
+            from = "yes in if",
+            to = "yes in IF",
+        },
+        
+        -- Fix "and can him a buy?" -> "and can buy him one?"
+        {
+            from = "and can him a buy%?",
+            to = "and can buy him one",
+        },
+        {
+            from = "and can him a buy",
+            to = "and can buy him one",
+        },
+        
+        -- Fix "or are you in if dea" -> "or are you in IF Dea?"
+        {
+            from = "or are you in if (.+)",
+            to = "or are you in IF %1",
+        },
+        
+        -- Fix "is someone grad in if" -> "is someone currently in IF"
+        {
+            from = "is someone grad in if",
+            to = "is someone currently in IF",
+        },
+        {
+            from = "is someone currently/right now in if",
+            to = "is someone currently in IF",
+        },
+        
+        -- Fix "become money from me back" -> "will get money back from me"
+        {
+            from = "become money from me back",
+            to = "will get money back from me",
+        },
+        {
+            from = "gets/receives money from me back",
+            to = "will get money back from me",
+        },
+        
+        -- Fix "dea just have to short/brief warten" -> "Dea just have to wait briefly"
+        {
+            from = "(.+) just have to short/brief warten",
+            to = "%1 just have to wait briefly",
+        },
+        {
+            from = "(.+) just have to short/brief wait",
+            to = "%1 just have to wait briefly",
+        },
     },
 }

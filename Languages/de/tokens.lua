@@ -58,6 +58,9 @@ WDTS_Lang_de_Tokens = {
     ["reinkommst"] = "come in/enter", -- "wenn du reinkommst" = "when you come in"
     ["reinkommen"] = "come in/enter",
     ["gehe"] = "going",
+    ["laufe"] = "running/going", -- "ich laufe" = "I'm running/going"
+    ["laufen"] = "running/going",
+    ["läuft"] = "runs/goes",
     ["nannte"] = "called/named", -- Past tense: "nannte man es" = "one called it"
     ["nennen"] = "call/name", -- Infinitive
     ["nennt"] = "calls/names", -- 3rd person
@@ -635,6 +638,10 @@ WDTS_Lang_de_Tokens = {
     ["super"] = "great",
     ["gut"] = "good",
     ["schlecht"] = "bad",
+    ["sehr"] = "very", -- "sehr mega nett" = "very very nice"
+    ["sea"] = "very", -- Typo for "sehr"
+    ["mega"] = "very/mega", -- "mega nett" = "very nice"
+    ["nett"] = "nice", -- "sehr nett" = "very nice"
     ["vielleicht"] = "maybe",
     ["bestimmt"] = "definitely",
     ["werden"] = "will",
@@ -1162,4 +1169,16 @@ WDTS_Lang_de_Tokens = {
     ["turnier"] = "tournament",
     ["joinen"] = "join", -- Anglicism, commonly used in German WoW
     ["join"] = "join",
+    
+    -- Additional missing words from guild chat review
+    ["dahin"] = "there", -- "gehe gleich dahin" = "going there soon"
+    ["halt"] = "just/simply", -- Particle: "musst halt" = "just have to"
+    ["warten"] = "wait", -- "kurz warten" = "wait briefly"
+    ["warte"] = "wait",
+    ["wartet"] = "waits",
+    ["grad"] = "currently/right now", -- Colloquial for "gerade" = "currently"
+    ["gerade"] = "currently/right now",
+    ["bekommt"] = "gets/receives", -- "bekommt geld zurück" = "gets money back"
+    ["bekommen"] = "get/receive",
+    ["bekomme"] = "get/receive",
 }
