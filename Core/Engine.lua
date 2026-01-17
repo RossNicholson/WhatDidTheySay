@@ -202,6 +202,85 @@ function Engine.ApplyPatterns(text, langPack)
     return result
 end
 
+-- Try to match separable verb (prefix + verb separated)
+-- German separable verbs: "macht auf" = "opens", "aufmachen" = "open"
+local function MatchSeparableVerb(tokens, startIdx, langPack)
+    if not langPack or not langPack.phrases then
+        return nil
+    end
+    
+    -- Common German separable verb prefixes
+    local separablePrefixes = {
+        ["auf"] = true, ["an"] = true, ["zu"] = true, ["ab"] = true,
+        ["ein"] = true, ["aus"] = true, ["mit"] = true, ["nach"] = true,
+        ["vor"] = true, ["weg"] = true, ["um"] = true, ["durch"] = true,
+        ["über"] = true, ["unter"] = true, ["wieder"] = true, ["her"] = true,
+        ["hin"] = true, ["fort"] = true, ["los"] = true, ["fest"] = true,
+    }
+    
+    -- Look ahead up to 5 words for separated prefix + verb pattern
+    local maxLookahead = math.min(5, #tokens - startIdx)
+    
+    for lookahead = 1, maxLookahead do
+        local prefixToken = tokens[startIdx]
+        local verbToken = tokens[startIdx + lookahead]
+        
+        -- Check if we have a prefix followed by a verb
+        if prefixToken and verbToken and 
+           prefixToken.type == "word" and verbToken.type == "word" then
+            local prefix = prefixToken.value:lower()
+            
+            -- Check if prefix is a separable prefix
+            if separablePrefixes[prefix] then
+                -- Try combinations: prefix + verb, verb + prefix
+                local verb = verbToken.value:lower()
+                local combined1 = prefix .. " " .. verb
+                local combined2 = verb .. " " .. prefix
+                
+                -- Check phrases for matches
+                if langPack.phrases[combined1] then
+                    return {
+                        length = lookahead + 1,
+                        translation = langPack.phrases[combined1]
+                    }
+                elseif langPack.phrases[combined2] then
+                    return {
+                        length = lookahead + 1,
+                        translation = langPack.phrases[combined2]
+                    }
+                end
+                
+                -- Also try with common verb forms (add -en, -t, -e endings)
+                local verbBase = verb
+                if #verbBase >= 3 then
+                    -- Try removing common endings
+                    local endings = {"en", "t", "e", "st", "n"}
+                    for _, ending in ipairs(endings) do
+                        if verbBase:sub(-#ending) == ending then
+                            local base = verbBase:sub(1, -#ending - 1)
+                            local combined = prefix .. base
+                            if langPack.tokens[combined] then
+                                local trans = langPack.tokens[combined]
+                                if type(trans) == "table" then
+                                    trans = trans[1] or trans.default or trans
+                                end
+                                if type(trans) == "string" then
+                                    return {
+                                        length = lookahead + 1,
+                                        translation = trans
+                                    }
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+    
+    return nil
+end
+
 -- Match multi-word phrases starting at a given token index
 -- Enhanced with fuzzy matching for variations (case, articles, word order)
 local function MatchPhraseAt(tokens, startIdx, langPack)
@@ -347,6 +426,170 @@ local function MatchPhraseAt(tokens, startIdx, langPack)
                                 translation = phraseData.translation
                             }
                         end
+                    end
+                end
+            end
+        end
+    end
+    
+    return nil
+end
+
+-- Try to normalize German verb to base form (infinitive)
+-- This helps match verb conjugations that aren't in the dictionary
+local function NormalizeVerbForm(word)
+    local wordLower = word:lower()
+    
+    -- If already short, probably not a verb or already base form
+    if #wordLower < 4 then
+        return nil
+    end
+    
+    -- Common German verb endings and their base form conversions
+    -- Try removing endings to get infinitive
+    
+    -- Past participle: ge- prefix + -t or -en ending
+    if wordLower:sub(1, 3) == "ge" and #wordLower >= 6 then
+        local stem = wordLower:sub(4)
+        if stem:sub(-2) == "en" then
+            -- Remove -en, might be infinitive
+            local base = stem:sub(1, -3)
+            if #base >= 3 then
+                return base .. "en"
+            end
+        elseif stem:sub(-1) == "t" then
+            -- Remove -t, add -en for infinitive
+            local base = stem:sub(1, -2)
+            if #base >= 3 then
+                return base .. "en"
+            end
+        end
+    end
+    
+    -- Present tense 3rd person singular: -t ending
+    if wordLower:sub(-1) == "t" and #wordLower >= 4 then
+        local stem = wordLower:sub(1, -2)
+        -- Check if removing -t and adding -en makes sense
+        if #stem >= 3 then
+            return stem .. "en"
+        end
+    end
+    
+    -- Present tense 2nd person: -st ending
+    if wordLower:sub(-2) == "st" and #wordLower >= 5 then
+        local stem = wordLower:sub(1, -3)
+        if #stem >= 3 then
+            return stem .. "en"
+        end
+    end
+    
+    -- Present tense 1st person: -e ending (often)
+    if wordLower:sub(-1) == "e" and #wordLower >= 4 then
+        local stem = wordLower:sub(1, -2)
+        -- Check if it's likely a verb (common verb stems)
+        if #stem >= 3 then
+            return stem .. "en"
+        end
+    end
+    
+    return nil
+end
+
+-- Try to decompose and translate German compound words
+-- German often combines words (e.g., "Levelgilde" = "Level" + "Gilde")
+local function TryCompoundDecomposition(word, langPack)
+    if not langPack or not langPack.tokens then
+        return nil
+    end
+    
+    -- Only try decomposition for words that:
+    -- 1. Are not already translated
+    -- 2. Are reasonably long (4+ characters, compounds are usually longer)
+    -- 3. Are lowercase (capitalized might be proper nouns)
+    local wordLower = word:lower()
+    if #wordLower < 4 or wordLower:match("^[A-Z]") then
+        return nil
+    end
+    
+    -- Common German compound word boundaries and patterns
+    -- Try splitting at various positions, prioritizing common word boundaries
+    local minSplitLen = 3 -- Minimum length for a valid word part
+    local maxSplitPos = #wordLower - minSplitLen
+    
+    -- Try splits from right to left (many compounds end with common nouns)
+    for splitPos = maxSplitPos, minSplitLen, -1 do
+        local firstPart = wordLower:sub(1, splitPos)
+        local secondPart = wordLower:sub(splitPos + 1)
+        
+        -- Try to translate both parts
+        local firstTrans = langPack.tokens[firstPart]
+        local secondTrans = langPack.tokens[secondPart]
+        
+        -- If both parts translate, combine them
+        if firstTrans and secondTrans then
+            -- Extract string translation if it's a table
+            if type(firstTrans) == "table" then
+                firstTrans = firstTrans[1] or firstTrans.default or firstTrans
+            end
+            if type(secondTrans) == "table" then
+                secondTrans = secondTrans[1] or secondTrans.default or secondTrans
+            end
+            
+            -- Combine translations (usually space-separated)
+            if type(firstTrans) == "string" and type(secondTrans) == "string" then
+                return firstTrans .. " " .. secondTrans
+            end
+        end
+        
+        -- Also try with common linking elements removed
+        -- Some compounds have linking elements like "s", "es", "en", "n"
+        if splitPos >= 4 then
+            local linkingElements = {"s", "es", "en", "n", "er"}
+            for _, elem in ipairs(linkingElements) do
+                local elemLen = #elem
+                if splitPos >= elemLen + minSplitLen then
+                    local firstPartWithElem = wordLower:sub(1, splitPos - elemLen)
+                    local secondPartCheck = wordLower:sub(splitPos - elemLen + 1)
+                    
+                    -- Check if removing linking element helps
+                    local firstTrans = langPack.tokens[firstPartWithElem]
+                    local secondTrans = langPack.tokens[secondPart]
+                    
+                    if firstTrans and secondTrans then
+                        if type(firstTrans) == "table" then
+                            firstTrans = firstTrans[1] or firstTrans.default or firstTrans
+                        end
+                        if type(secondTrans) == "table" then
+                            secondTrans = secondTrans[1] or secondTrans.default or secondTrans
+                        end
+                        
+                        if type(firstTrans) == "string" and type(secondTrans) == "string" then
+                            return firstTrans .. " " .. secondTrans
+                        end
+                    end
+                end
+            end
+        end
+        
+        -- Try three-part compounds (less common but possible)
+        if splitPos >= minSplitLen + 3 then
+            local midSplitPos = math.floor(splitPos / 2)
+            if midSplitPos >= minSplitLen and splitPos - midSplitPos >= minSplitLen then
+                local firstPart = wordLower:sub(1, midSplitPos)
+                local secondPart = wordLower:sub(midSplitPos + 1, splitPos)
+                local thirdPart = wordLower:sub(splitPos + 1)
+                
+                local firstTrans = langPack.tokens[firstPart]
+                local secondTrans = langPack.tokens[secondPart]
+                local thirdTrans = langPack.tokens[thirdPart]
+                
+                if firstTrans and secondTrans and thirdTrans then
+                    if type(firstTrans) == "table" then firstTrans = firstTrans[1] or firstTrans.default or firstTrans end
+                    if type(secondTrans) == "table" then secondTrans = secondTrans[1] or secondTrans.default or secondTrans end
+                    if type(thirdTrans) == "table" then thirdTrans = thirdTrans[1] or thirdTrans.default or thirdTrans end
+                    
+                    if type(firstTrans) == "string" and type(secondTrans) == "string" and type(thirdTrans) == "string" then
+                        return firstTrans .. " " .. secondTrans .. " " .. thirdTrans
                     end
                 end
             end
@@ -507,6 +750,11 @@ function Engine.TranslateTokens(tokens, langPack)
             -- First, try to match multi-word phrases starting at this position
             local phraseMatch = MatchPhraseAt(tokens, i, langPack)
             
+            -- If no phrase match, try separable verb matching
+            if not phraseMatch then
+                phraseMatch = MatchSeparableVerb(tokens, i, langPack)
+            end
+            
             if phraseMatch then
                 -- Translate the entire phrase
                 local newToken = {
@@ -531,6 +779,47 @@ function Engine.TranslateTokens(tokens, langPack)
             else
                 -- Single word translation with enhanced context awareness (3-5 word window)
                 local trans = GetContextualTranslation(token, i, tokens, langPack)
+                
+                -- If no direct translation found, try compound word decomposition
+                if not trans then
+                    trans = TryCompoundDecomposition(token.value, langPack)
+                end
+                
+                -- If still no translation, try verb conjugation normalization
+                if not trans and langPack.tokens then
+                    local normalized = NormalizeVerbForm(token.value)
+                    if normalized then
+                        trans = langPack.tokens[normalized]
+                        if trans then
+                            -- Extract string translation if it's a table
+                            if type(trans) == "table" then
+                                trans = trans[1] or trans.default or trans
+                            end
+                        end
+                    end
+                end
+                
+                -- If still no translation, try context inference for unknown words
+                -- Only do this if we have good context (surrounding words are translated)
+                if not trans and langPack.tokens then
+                    -- Check if surrounding words give us hints
+                    local contextBefore = {}
+                    local contextAfter = {}
+                    for j = math.max(1, i - 2), i - 1 do
+                        if tokens[j] and tokens[j].type == "word" then
+                            table.insert(contextBefore, tokens[j].value:lower())
+                        end
+                    end
+                    for j = i + 1, math.min(#tokens, i + 2) do
+                        if tokens[j] and tokens[j].type == "word" then
+                            table.insert(contextAfter, tokens[j].value:lower())
+                        end
+                    end
+                    
+                    -- If we have translated context words, we can infer the unknown word
+                    -- For now, we'll keep unknown words as-is (context inference is complex)
+                    -- But we mark them as lower confidence in coverage calculation
+                end
                 
                 if trans then
                     local newToken = {
@@ -623,6 +912,97 @@ function Engine.ApplyGrammar(text, langPack)
     return result
 end
 
+-- Detect sentence type (question, command, statement)
+-- This helps with word order adjustments later
+local function DetectSentenceType(tokens, message)
+    if #tokens == 0 then
+        return "statement"
+    end
+    
+    local firstToken = tokens[1]
+    local lastToken = tokens[#tokens]
+    
+    -- Check for question mark
+    if lastToken and lastToken.type == "punctuation" and lastToken.value == "?" then
+        return "question"
+    end
+    
+    -- Check if starts with question word
+    if firstToken and firstToken.type == "word" then
+        local firstWord = firstToken.value:lower()
+        local questionWords = {
+            ["wie"] = true, ["wo"] = true, ["was"] = true, ["wer"] = true,
+            ["wann"] = true, ["warum"] = true, ["wohin"] = true, ["woher"] = true,
+            ["weshalb"] = true, ["weswegen"] = true
+        }
+        if questionWords[firstWord] then
+            return "question"
+        end
+    end
+    
+    -- Check for question structure: verb + question word (inverted question)
+    -- German questions often have verb before subject
+    if #tokens >= 3 then
+        local firstWord = tokens[1].type == "word" and tokens[1].value:lower() or nil
+        local secondWord = tokens[2].type == "word" and tokens[2].value:lower() or nil
+        
+        -- Common German question verbs
+        local questionVerbs = {
+            ["ist"] = true, ["sind"] = true, ["war"] = true, ["waren"] = true,
+            ["kann"] = true, ["kannst"] = true, ["können"] = true,
+            ["hat"] = true, ["hast"] = true, ["haben"] = true,
+            ["gibt"] = true, ["gibt es"] = true
+        }
+        
+        -- Check if first word is a verb and second is a pronoun/subject (question structure)
+        if questionVerbs[firstWord] and secondWord then
+            local pronouns = {
+                ["du"] = true, ["ihr"] = true, ["wir"] = true, ["sie"] = true,
+                ["er"] = true, ["es"] = true, ["das"] = true, ["der"] = true, ["die"] = true
+            }
+            if pronouns[secondWord] then
+                return "question"
+            end
+        end
+    end
+    
+    -- Check for command/imperative
+    -- Commands often start with verbs in imperative form, or are short phrases
+    if firstToken and firstToken.type == "word" then
+        local firstWord = firstToken.value:lower()
+        
+        -- Common German imperative verbs (often end in -e, -en, or are base form)
+        -- These are common command verbs in WoW context
+        local imperativeVerbs = {
+            ["komm"] = true, ["kommt"] = true, ["komme"] = true,
+            ["geh"] = true, ["geht"] = true, ["gehe"] = true,
+            ["warte"] = true, ["wartet"] = true,
+            ["hilf"] = true, ["helft"] = true, ["helfe"] = true,
+            ["folg"] = true, ["folgt"] = true, ["folge"] = true,
+            ["stop"] = true, ["halt"] = true, ["warte"] = true
+        }
+        
+        if imperativeVerbs[firstWord] then
+            return "command"
+        end
+    end
+    
+    -- Check if message is very short (likely command or exclamation)
+    local wordCount = 0
+    for _, token in ipairs(tokens) do
+        if token.type == "word" then
+            wordCount = wordCount + 1
+        end
+    end
+    
+    if wordCount <= 2 and lastToken and lastToken.type == "punctuation" and lastToken.value == "!" then
+        return "command"
+    end
+    
+    -- Default to statement
+    return "statement"
+end
+
 -- Create cache key from message and languages
 local function CreateCacheKey(message, sourceLang, targetLang)
     return string.format("%s:%s:%s", message or "", sourceLang or "", targetLang or "en")
@@ -649,7 +1029,10 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         return nil, 0.0, "empty_message"
     end
     
-    -- Step 2: Language detection (if sourceLang not provided)
+    -- Step 2: Detect sentence type (question, command, statement)
+    local sentenceType = DetectSentenceType(tokens, message)
+    
+    -- Step 3: Language detection (if sourceLang not provided)
     local detectedLang, langConfidence = LanguageDetect.Detect(tokens)
     if not sourceLang then
         sourceLang = detectedLang

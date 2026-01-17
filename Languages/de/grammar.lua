@@ -1091,14 +1091,38 @@ WDTS_Lang_de_Grammar = {
         {
             from = "can you me (.+)",
             to = "can you %1 me",
+            priority = 15,
         },
         {
             from = "can you me$",
             to = "can you help me",
+            priority = 15,
         },
         {
             from = "can you me ",
             to = "can you help me ",
+            priority = 15,
+        },
+        -- Enhanced question word order fixes
+        {
+            from = "^how (.+) costs (.+)$",
+            to = "how much does %1 cost",
+            priority = 10,
+        },
+        {
+            from = "^how (.+) cost (.+)$",
+            to = "how much does %1 cost",
+            priority = 10,
+        },
+        {
+            from = "^where (.+) (.+)$",
+            to = "where is %1",
+            priority = 5,
+        },
+        {
+            from = "^what (.+) (.+)$",
+            to = "what is %1",
+            priority = 5,
         },
         -- Fix "can you help me help" -> "can you help me" (duplicate help)
         {

@@ -125,6 +125,23 @@ function Confidence.Calculate(params)
         score = score * 0.95 -- Slightly harder for very long messages
     end
     
+    -- Boost confidence for incomplete sentences/fragments if we have decent coverage
+    -- Chat fragments are common and should be translated if we understand them
+    if length >= 1 and length <= 3 and coverage >= 0.6 then
+        -- Short fragments with good coverage - likely complete thoughts
+        score = score + 0.15
+    elseif length >= 1 and length <= 2 and coverage >= 0.8 then
+        -- Very short fragments with high coverage - boost significantly
+        score = score + 0.20
+    end
+    
+    -- Reduce penalty for incomplete sentences (fragments are normal in chat)
+    -- If we have good coverage but sentence seems incomplete, don't penalize as much
+    if length >= 1 and length <= 4 and coverage >= 0.5 and score < 0.50 then
+        -- Fragment with decent coverage - might be intentional short message
+        score = score + 0.10
+    end
+    
     -- Clamp to 0.0-1.0
     score = Utils.Clamp(score, 0.0, 1.0)
     
