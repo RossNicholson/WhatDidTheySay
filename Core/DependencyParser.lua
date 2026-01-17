@@ -226,7 +226,7 @@ function DependencyParser.Parse(tokens)
                 end
             end
             for _, relcl in ipairs(relativeClauses) do
-                if i >= relcl.start and i <= relcl.end then
+                if i >= relcl.start and i <= relcl["end"] then
                     inSubordinate = true
                     break
                 end
@@ -328,7 +328,7 @@ function DependencyParser.Parse(tokens)
                     end
                 end
                 for _, relcl in ipairs(relativeClauses) do
-                    if i >= relcl.start and i <= relcl.end then
+                    if i >= relcl.start and i <= relcl["end"] then
                         inSubordinate = true
                         break
                     end
