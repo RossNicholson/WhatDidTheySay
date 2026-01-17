@@ -32,6 +32,9 @@ LanguageDetect.FUNCTION_WORDS = {
         "sehr", "mega", "nett", "halt", "grad", "gerade", "also", "warst", "war",
         -- Common greetings and basic words
         "hallo", "danke", "bitte", "ja", "nein", "ok", "okay",
+        -- Common verbs for LFG/trading
+        "suche", "sucht", "suchst", "suchen", -- "suche" = "looking for"
+        "brauche", "brauchst", "braucht", "brauchen", -- "brauche" = "need"
     },
 }
 
