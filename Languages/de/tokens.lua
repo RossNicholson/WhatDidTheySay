@@ -5374,6 +5374,18 @@ WDTS_Lang_de_Tokens = {
     -- Common phrases and remaining words
     ["übrig"] = "left over/remaining",
     
+    -- Colloquial/contracted forms
+    ["wär"] = "would be", -- Contraction of "wäre"
+    ["wäre"] = "would be",
+    
+    -- Common typos/variants (handle common misspellings)
+    ["gearde"] = "just/just now", -- Typo for "gerade"
+    ["gefärhlich"] = "dangerous", -- Typo for "gefährlich"
+    
+    -- Additional vocabulary
+    ["söldner"] = "mercenary",
+    ["söldnerquest"] = "mercenary quest",
+    
     -- ============================================
     -- END OF VOCABULARY EXPANSION
     -- ============================================
