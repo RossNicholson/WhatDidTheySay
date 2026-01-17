@@ -672,5 +672,69 @@ WDTS_Lang_de_Grammar = {
             from = "(.+) just have to short/brief wait",
             to = "%1 just have to wait briefly",
         },
+        
+        -- Fix "but ich habs gestern already erwähnt am noob newbie" -> "but I mentioned it yesterday, I'm a noob newbie"
+        {
+            from = "but ich habs gestern already erwähnt am noob newbie",
+            to = "but I mentioned it yesterday, I'm a noob newbie",
+        },
+        {
+            from = "but ich have it gestern already mentioned am noob newbie",
+            to = "but I mentioned it yesterday, I'm a noob newbie",
+        },
+        
+        -- Fix "such you someone where with you questet" -> "look for someone who quests with you"
+        {
+            from = "such you someone where with you questet",
+            to = "look for someone who quests with you",
+        },
+        {
+            from = "look for/search you someone where with you quests",
+            to = "look for someone who quests with you",
+        },
+        
+        -- Fix "so lernst you" -> "that's how you learn"
+        {
+            from = "so lernst you",
+            to = "that's how you learn",
+        },
+        {
+            from = "so learn you",
+            to = "that's how you learn",
+        },
+        
+        -- Fix "and is am sichersten" -> "and is the safest"
+        {
+            from = "and is am sichersten",
+            to = "and is the safest",
+        },
+        {
+            from = "and is the safest",
+            to = "and is the safest",
+        },
+        
+        -- Fix "yes play still with 2 work colleagues" -> "yes still play with 2 work colleagues"
+        {
+            from = "yes play still with (.+) work colleagues",
+            to = "yes still play with %1 work colleagues",
+        },
+        {
+            from = "yes play still with (.+) colleagues",
+            to = "yes still play with %1 colleagues",
+        },
+        
+        -- Fix "the a want erst" -> "the one wants first"
+        {
+            from = "the a want erst",
+            to = "the one wants first",
+        },
+        {
+            from = "the a want first/only",
+            to = "the one wants first",
+        },
+        {
+            from = "the one want first/only with level (.+)",
+            to = "the one wants first at level %1",
+        },
     },
 }

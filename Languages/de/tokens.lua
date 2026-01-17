@@ -1181,4 +1181,39 @@ WDTS_Lang_de_Tokens = {
     ["bekommt"] = "gets/receives", -- "bekommt geld zurück" = "gets money back"
     ["bekommen"] = "get/receive",
     ["bekomme"] = "get/receive",
+    
+    -- Additional missing words from guild chat review 2
+    ["gestern"] = "yesterday", -- "gestern schon" = "already yesterday"
+    ["erwähnt"] = "mentioned", -- "habe erwähnt" = "have mentioned"
+    ["erwähnen"] = "mention",
+    ["habs"] = "have it", -- Colloquial for "hab es" = "have it"
+    ["exile"] = "exile", -- Gaming term, often used as-is
+    ["such"] = "look for/search", -- "such dir" = "look for yourself"
+    ["suchen"] = "look for/search",
+    ["sucht"] = "looks for/searches",
+    ["questet"] = "quests", -- "mit dir questet" = "quests with you"
+    ["questen"] = "quest",
+    ["lernst"] = "learn", -- "so lernst du" = "so you learn"
+    ["lernen"] = "learn",
+    ["lernt"] = "learns",
+    ["gelernt"] = "learned",
+    ["sichersten"] = "safest", -- "am sichersten" = "the safest"
+    ["sicher"] = "safe",
+    ["immerhin"] = "at least/anyway", -- "immerhin" = "at least/anyway"
+    ["durchhaltevermögen"] = "perseverance", -- "durchhaltevermögen" = "perseverance"
+    ["arbeits"] = "work", -- "arbeits kolegen" = "work colleagues"
+    ["arbeit"] = "work",
+    ["kolegen"] = "colleagues", -- Typo for "kollegen" = "colleagues"
+    ["kollegen"] = "colleagues",
+    ["kollege"] = "colleague",
+    ["bleib"] = "stay", -- "bleib am leben" = "stay alive"
+    ["bleiben"] = "stay",
+    ["bleibt"] = "stays",
+    ["Lad"] = "invite", -- "Lad sie ein" = "Invite her"
+    ["lad"] = "invite",
+    ["einladen"] = "invite",
+    ["lädt"] = "invites",
+    ["ein"] = "in", -- "Lad sie ein" = "Invite her" (einladen = invite, but "ein" = in)
+    ["erst"] = "first/only", -- "erst mit lvl 20" = "first/only at level 20"
+    ["im"] = "in the", -- "im exile" = "in the exile"
 }

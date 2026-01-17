@@ -21,6 +21,14 @@ WDTS_Lang_de_Phrases = {
     ["kann ihm"] = "can him", -- "kann ihm einen kaufen" = "can buy him one"
     ["musst halt"] = "just have to", -- "musst halt warten" = "just have to wait"
     ["gehe gleich dahin"] = "going there soon", -- "ja gehe gleich dahin" = "yes going there soon"
+    ["habe schon"] = "have already", -- "habe schon erwähnt" = "have already mentioned"
+    ["habs schon"] = "have it already", -- Colloquial
+    ["am sichersten"] = "the safest", -- "ist am sichersten" = "is the safest"
+    ["am leben"] = "alive", -- "bleib am leben" = "stay alive"
+    ["mit dir"] = "with you", -- "mit dir questet" = "quests with you"
+    ["wo mit dir"] = "who with you", -- "jemand wo mit dir" = "someone who with you"
+    ["so lernst du"] = "that's how you learn", -- "so lernst du" = "that's how you learn"
+    ["der eine"] = "the one", -- "der eine will" = "the one wants"
     
     -- Common phrases
     ["keine sorge"] = "no worry/don't worry",
