@@ -220,7 +220,7 @@ function DependencyParser.Parse(tokens)
             -- Check if this verb is in a subordinate/relative clause
             local inSubordinate = false
             for _, subcl in ipairs(subordinateClauses) do
-                if i >= subcl.start and i <= subcl.end then
+                if i >= subcl.start and i <= subcl["end"] then
                     inSubordinate = true
                     break
                 end
@@ -269,7 +269,7 @@ function DependencyParser.Parse(tokens)
                 -- Skip if in subordinate/relative clause
                 local inSubordinate = false
                 for _, subcl in ipairs(subordinateClauses) do
-                    if i >= subcl.start and i <= subcl.end then
+                    if i >= subcl.start and i <= subcl["end"] then
                         inSubordinate = true
                         break
                     end
@@ -322,7 +322,7 @@ function DependencyParser.Parse(tokens)
                 -- Skip if in subordinate/relative clause
                 local inSubordinate = false
                 for _, subcl in ipairs(subordinateClauses) do
-                    if i >= subcl.start and i <= subcl.end then
+                    if i >= subcl.start and i <= subcl["end"] then
                         inSubordinate = true
                         break
                     end
@@ -380,7 +380,7 @@ function DependencyParser.Parse(tokens)
         -- Find the verb in the relative clause
         local relVerb = nil
         local relVerbIdx = nil
-        for j = relcl.start, relcl.end do
+        for j = relcl.start, relcl["end"] do
             if nodes[j] and nodes[j].pos == "VERB" then
                 relVerb = nodes[j]
                 relVerbIdx = j
@@ -407,7 +407,7 @@ function DependencyParser.Parse(tokens)
             end
             
             -- Find objects in relative clause
-            for j = relVerbIdx + 1, relcl.end do
+            for j = relVerbIdx + 1, relcl["end"] do
                 local relNode = nodes[j]
                 if relNode then
                     if relNode.pos == "PRONOUN" then
@@ -434,7 +434,7 @@ function DependencyParser.Parse(tokens)
         -- Find the verb in the subordinate clause
         local subVerb = nil
         local subVerbIdx = nil
-        for j = subcl.start, subcl.end do
+        for j = subcl.start, subcl["end"] do
             if nodes[j] and nodes[j].pos == "VERB" then
                 subVerb = nodes[j]
                 subVerbIdx = j
@@ -470,7 +470,7 @@ function DependencyParser.Parse(tokens)
                 end
             end
             
-            for j = subVerbIdx + 1, subcl.end do
+            for j = subVerbIdx + 1, subcl["end"] do
                 local subNode = nodes[j]
                 if subNode then
                     if subNode.pos == "PRONOUN" then
@@ -500,13 +500,13 @@ function DependencyParser.Parse(tokens)
         -- Skip if in subordinate/relative clause
         local inSubordinate = false
         for _, subcl in ipairs(subordinateClauses) do
-            if i >= subcl.start and i <= subcl.end then
+            if i >= subcl.start and i <= subcl["end"] then
                 inSubordinate = true
                 break
             end
         end
         for _, relcl in ipairs(relativeClauses) do
-            if i >= relcl.start and i <= relcl.end then
+            if i >= relcl.start and i <= relcl["end"] then
                 inSubordinate = true
                 break
             end
