@@ -408,5 +408,358 @@ WDTS_Lang_fr_Grammar = {
             to = " ",
             priority = 1,
         },
+        
+        -- ============================================
+        -- MORE FRENCH WORD ORDER FIXES
+        -- ============================================
+        
+        -- "can me someone" → "can someone help me"
+        {
+            from = "can me someone ",
+            to = "can someone help me ",
+            priority = 18,
+        },
+        {
+            from = "can me someone$",
+            to = "can someone help me",
+            priority = 18,
+        },
+        
+        -- "can someone to me port" → "can someone port me"
+        {
+            from = "can someone to me port",
+            to = "can someone port me",
+            priority = 18,
+        },
+        {
+            from = "can someone to me port to (.+)",
+            to = "can someone port me to %1",
+            priority = 18,
+        },
+        
+        -- "I need of X" → "I need X" (when "de" is incorrectly preserved)
+        {
+            from = "I need of (.+)",
+            to = "I need %1",
+            priority = 20,
+        },
+        {
+            from = "we need of (.+)",
+            to = "we need %1",
+            priority = 20,
+        },
+        
+        -- "going to to X" → "going to X" (double "à")
+        {
+            from = "going to to ",
+            to = "going to ",
+            priority = 15,
+        },
+        {
+            from = "go to to ",
+            to = "go to ",
+            priority = 15,
+        },
+        
+        -- "at the X" → "to the X" (when "à" → "at" but should be "to" for locations)
+        {
+            from = "going at the (.+)",
+            to = "going to the %1",
+            priority = 18,
+        },
+        {
+            from = "go at the (.+)",
+            to = "go to the %1",
+            priority = 18,
+        },
+        
+        -- "I am going at X" → "I am going to X"
+        {
+            from = "I am going at (.+)",
+            to = "I am going to %1",
+            priority = 18,
+        },
+        {
+            from = "we are going at (.+)",
+            to = "we are going to %1",
+            priority = 18,
+        },
+        
+        -- "looking for a a X" → "looking for a X" (double article from "une" + "a")
+        {
+            from = "looking for a a ",
+            to = "looking for a ",
+            priority = 20,
+        },
+        {
+            from = "looking for the a ",
+            to = "looking for a ",
+            priority = 20,
+        },
+        
+        -- "I want of X" → "I want X" (when "de" is incorrectly preserved)
+        {
+            from = "I want of (.+)",
+            to = "I want %1",
+            priority = 18,
+        },
+        {
+            from = "you want of (.+)",
+            to = "you want %1",
+            priority = 18,
+        },
+        
+        -- "I have need of X" → "I need X" (when "j'ai besoin de" is partially translated)
+        {
+            from = "I have need of (.+)",
+            to = "I need %1",
+            priority = 22,
+        },
+        {
+            from = "I have need of a (.+)",
+            to = "I need a %1",
+            priority = 22,
+        },
+        {
+            from = "we have need of (.+)",
+            to = "we need %1",
+            priority = 22,
+        },
+        
+        -- "you can to me help" → "can you help me"
+        {
+            from = "you can to me help",
+            to = "can you help me",
+            priority = 18,
+        },
+        {
+            from = "you can to me help (.+)",
+            to = "can you help me %1",
+            priority = 18,
+        },
+        
+        -- "can you to me port" → "can you port me"
+        {
+            from = "can you to me port",
+            to = "can you port me",
+            priority = 18,
+        },
+        {
+            from = "can you to me port to (.+)",
+            to = "can you port me to %1",
+            priority = 18,
+        },
+        
+        -- "I am looking for for X" → "I am looking for X" (double "pour")
+        {
+            from = "I am looking for for ",
+            to = "I am looking for ",
+            priority = 18,
+        },
+        {
+            from = "looking for for ",
+            to = "looking for ",
+            priority = 18,
+        },
+        
+        -- "it is necessary of X" → "need X" (when "il faut" is partially translated)
+        {
+            from = "it is necessary of (.+)",
+            to = "need %1",
+            priority = 20,
+        },
+        {
+            from = "it is necessary of a (.+)",
+            to = "need a %1",
+            priority = 20,
+        },
+        
+        -- "I would like of X" → "I would like X" (when "de" is incorrectly preserved)
+        {
+            from = "I would like of (.+)",
+            to = "I would like %1",
+            priority = 18,
+        },
+        {
+            from = "I would like of a (.+)",
+            to = "I would like a %1",
+            priority = 18,
+        },
+        
+        -- "what is there" → "what is there" / "what do you have" (qu'est-ce qu'il y a)
+        {
+            from = "what is it that there has ",
+            to = "what is there ",
+            priority = 18,
+        },
+        {
+            from = "what is it that there has$",
+            to = "what is there",
+            priority = 18,
+        },
+        
+        -- "who wants of X" → "who wants X"
+        {
+            from = "who wants of (.+)",
+            to = "who wants %1",
+            priority = 18,
+        },
+        
+        -- "can someone for me X" → "can someone X for me"
+        {
+            from = "can someone for me (.+)",
+            to = "can someone %1 for me",
+            priority = 18,
+        },
+        
+        -- "I sell of X" → "I sell X" (when "de" is incorrectly preserved)
+        {
+            from = "I sell of (.+)",
+            to = "I sell %1",
+            priority = 18,
+        },
+        {
+            from = "I buy of (.+)",
+            to = "I buy %1",
+            priority = 18,
+        },
+        
+        -- "how much does cost X" → "how much does X cost"
+        {
+            from = "how much does cost (.+)",
+            to = "how much does %1 cost",
+            priority = 18,
+        },
+        
+        -- "it costs how much" → "how much does it cost"
+        {
+            from = "^it costs how much",
+            to = "how much does it cost",
+            priority = 18,
+        },
+        {
+            from = "^it costs how much$",
+            to = "how much does it cost",
+            priority = 18,
+        },
+        
+        -- "I have not" → "I don't have" / "I have not"
+        {
+            from = "^I have not ",
+            to = "I don't have ",
+            priority = 22,
+        },
+        {
+            from = "^I have not$",
+            to = "I don't have",
+            priority = 22,
+        },
+        
+        -- "I have not X" → "I don't have X"
+        {
+            from = "^I have not (.+)$",
+            to = "I don't have %1",
+            priority = 22,
+        },
+        
+        -- "I want not" → "I don't want"
+        {
+            from = "^I want not ",
+            to = "I don't want ",
+            priority = 22,
+        },
+        {
+            from = "^I want not$",
+            to = "I don't want",
+            priority = 22,
+        },
+        
+        -- "I can not" → "I can't" (spacing issue)
+        {
+            from = "^I can not ",
+            to = "I can't ",
+            priority = 22,
+        },
+        {
+            from = "^I can not$",
+            to = "I can't",
+            priority = 22,
+        },
+        
+        -- "there is not" → "there isn't" / "there is no"
+        {
+            from = "there is not ",
+            to = "there is no ",
+            priority = 18,
+        },
+        {
+            from = "there is not$",
+            to = "there isn't",
+            priority = 18,
+        },
+        
+        -- "it is not" → "it isn't" / "it's not"
+        {
+            from = "^it is not ",
+            to = "it's not ",
+            priority = 18,
+        },
+        {
+            from = "^it is not$",
+            to = "it's not",
+            priority = 18,
+        },
+        
+        -- "I am not" → "I'm not"
+        {
+            from = "^I am not ",
+            to = "I'm not ",
+            priority = 15,
+        },
+        {
+            from = "^I am not$",
+            to = "I'm not",
+            priority = 15,
+        },
+        
+        -- "he is not" → "he's not" / "he isn't"
+        {
+            from = "^he is not ",
+            to = "he's not ",
+            priority = 15,
+        },
+        {
+            from = "^he is not$",
+            to = "he's not",
+            priority = 15,
+        },
+        
+        -- "she is not" → "she's not"
+        {
+            from = "^she is not ",
+            to = "she's not ",
+            priority = 15,
+        },
+        
+        -- "we are not" → "we're not"
+        {
+            from = "^we are not ",
+            to = "we're not ",
+            priority = 15,
+        },
+        
+        -- "they are not" → "they're not"
+        {
+            from = "^they are not ",
+            to = "they're not ",
+            priority = 15,
+        },
+        
+        -- "you are not" → "you're not"
+        {
+            from = "^you are not ",
+            to = "you're not ",
+            priority = 15,
+        },
     },
 }
