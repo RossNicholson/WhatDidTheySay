@@ -1459,6 +1459,9 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     -- Default target language
     targetLang = targetLang or "en"
     
+    -- Save original sourceLang parameter (before it gets changed)
+    local originalSourceLang = sourceLang
+    
     -- Check cache first (unless bypassed for testing)
     if not bypassCache then
         local cacheKey = CreateCacheKey(message, sourceLang, targetLang)
@@ -1625,9 +1628,15 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     end
     
     -- Check if message is purely English abbreviations/gaming terms
-    -- BUT: Skip this check if mixed-language detection already found a match above
+    -- BUT: Skip this check if sourceLang is explicitly provided (user knows the language)
+    -- Skip this check if mixed-language detection already found a match above
     -- Do this check AFTER mixed-language detection if sourceLang is still "en"
     -- If all words are universal gaming abbreviations, it's English and doesn't need translation
+    
+    -- Don't skip translation if sourceLang was explicitly provided (user knows the language)
+    -- originalSourceLang is the parameter passed to the function (before any detection)
+    local sourceLangWasExplicit = (originalSourceLang and originalSourceLang ~= "en")
+    
     local allUniversalAbbrevs = true
     local universalAbbrevsForCheck = {
         ["bb"] = true, ["pls"] = true, ["summon"] = true, ["summons"] = true,
@@ -1709,20 +1718,23 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         end
     end
     -- If all words are universal abbreviations, it's English and doesn't need translation
-    if allUniversalAbbrevs and wordCount > 0 then
+    -- BUT: Don't skip if sourceLang was explicitly provided (user knows the language)
+    if allUniversalAbbrevs and wordCount > 0 and not sourceLangWasExplicit then
         return nil, 0.0, "already_english"
     end
     -- If MOST words (>= 70%) are universal English gaming terms, it's probably English
     -- BUT: Don't skip if we already detected a mixed-language match (sourceLang changed from "en")
+    -- BUT: Don't skip if sourceLang was explicitly provided (user knows the language)
     -- This catches messages like "LF2M for Uldaman" where "Uldaman" is a proper noun
     -- Also catch 2-word messages where both words are universal (e.g., "layer pls")
     -- However, if sourceLang was already changed by mixed-language detection, don't override it
     local wasSourceLangChanged = (sourceLang and sourceLang ~= "en" and sourceLang ~= detectedLang)
-    if wordCount >= 2 and (universalWordCount / wordCount) >= 0.70 and not wasSourceLangChanged then
+    if wordCount >= 2 and (universalWordCount / wordCount) >= 0.70 and not wasSourceLangChanged and not sourceLangWasExplicit then
         return nil, 0.0, "already_english"
     end
     -- For 2-word messages, if at least one word is universal and the other is a common English word, skip
-    if wordCount == 2 and universalWordCount >= 1 then
+    -- BUT: Don't skip if sourceLang was explicitly provided (user knows the language)
+    if wordCount == 2 and universalWordCount >= 1 and not sourceLangWasExplicit then
         -- Check if the non-universal word is a common English gaming term or word
         for _, token in ipairs(tokens) do
             if token.type == "word" then
@@ -1947,17 +1959,22 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     
     -- If translation is more than 70% similar to original, it's not really a translation
     -- Exception: Very short single-word messages (like greetings) are expected to be similar
+    -- Exception: When sourceLang is explicitly provided, allow identical translations (e.g., gaming terms)
     local isShortGreeting = (#tokens == 1 and tokens[1].type == "word" and 
                              (tokens[1].value == "moin" or tokens[1].value == "hallo" or 
                               tokens[1].value == "hi" or tokens[1].value == "hey"))
-    if similarity > 0.70 and coverage < 0.5 and not isShortGreeting then
+    -- Allow identical translations when sourceLang was explicitly provided (user knows the language)
+    -- This handles gaming terms like "tank", "lfg", "wtb", "wts" that are loanwords in French
+    local isExplicitSourceLang = (originalSourceLang and originalSourceLang ~= "en")
+    if similarity > 0.70 and coverage < 0.5 and not isShortGreeting and not isExplicitSourceLang then
         -- Too similar and low coverage - this is basically untranslated
         return nil, 0.0, "translation_too_similar"
     end
     -- Reject very low similarity translations that are essentially unchanged
     -- This catches cases like "heal spam" -> "heal spam" (100% similar, not a real translation)
-    if similarity > 0.95 then
-        -- Almost identical - this is not a useful translation
+    -- BUT: Allow when sourceLang is explicitly provided (gaming terms are often identical)
+    if similarity > 0.95 and not isExplicitSourceLang then
+        -- Almost identical - this is not a useful translation (unless explicitly provided sourceLang)
         return nil, 0.0, "translation_too_similar"
     end
     
@@ -1974,12 +1991,14 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     
     -- Final check: Reject very low confidence translations that are too similar to original
     -- This catches cases like "heal spam" where it translates but is essentially unchanged
-    if finalConfidence < 0.30 and similarity > 0.80 then
+    -- BUT: Allow when sourceLang is explicitly provided (gaming terms are often identical)
+    if finalConfidence < 0.30 and similarity > 0.80 and not isExplicitSourceLang then
         return nil, 0.0, "translation_too_similar"
     end
     -- Also reject if similarity is extremely high (>95%) regardless of confidence
     -- These are essentially unchanged messages
-    if similarity > 0.95 then
+    -- BUT: Allow when sourceLang is explicitly provided (gaming terms are often identical)
+    if similarity > 0.95 and not isExplicitSourceLang then
         return nil, 0.0, "translation_too_similar"
     end
     

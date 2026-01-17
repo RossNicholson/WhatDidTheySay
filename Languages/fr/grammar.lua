@@ -962,6 +962,452 @@ WDTS_Lang_fr_Grammar = {
             priority = 10,
         },
         
+        -- ============================================
+        -- HYPHENATED WORD FIXES (after tokenization)
+        -- ============================================
+        -- Fix hyphenated words that were tokenized separately
+        -- "am me" → "follow me" (from "suis-moi")
+        {
+            from = "^am me$",
+            to = "follow me",
+            priority = 16,
+        },
+        {
+            from = "^am me ",
+            to = "follow me ",
+            priority = 16,
+        },
+        {
+            from = " am me$",
+            to = " follow me",
+            priority = 16,
+        },
+        {
+            from = " am me ",
+            to = " follow me ",
+            priority = 16,
+        },
+        
+        -- Fix "vas y" → "go" (from "vas-y")
+        {
+            from = "^vas y$",
+            to = "go",
+            priority = 16,
+        },
+        {
+            from = "^vas y ",
+            to = "go ",
+            priority = 16,
+        },
+        {
+            from = " vas y$",
+            to = " go",
+            priority = 16,
+        },
+        {
+            from = " vas y ",
+            to = " go ",
+            priority = 16,
+        },
+        
+        -- ============================================
+        -- STATUS AND READINESS FIXES
+        -- ============================================
+        -- Fix "is done" → "is ready" when context suggests "c'est prêt"
+        -- This is context-dependent, but let's add rules for common cases
+        {
+            from = "^is done$",
+            to = "is ready",
+            priority = 12,
+        },
+        {
+            from = " is done$",
+            to = " is ready",
+            priority = 12,
+        },
+        {
+            from = "^is done ",
+            to = "is ready ",
+            priority = 12,
+        },
+        {
+            from = " is done ",
+            to = " is ready ",
+            priority = 12,
+        },
+        
+        -- Fix "almost done" → "almost ready" when context suggests "presque prêt"
+        {
+            from = "^almost done$",
+            to = "almost ready",
+            priority = 12,
+        },
+        {
+            from = " almost done$",
+            to = " almost ready",
+            priority = 12,
+        },
+        {
+            from = "^almost done ",
+            to = "almost ready ",
+            priority = 12,
+        },
+        {
+            from = " almost done ",
+            to = " almost ready ",
+            priority = 12,
+        },
+        
+        -- Fix "coming" → "I'm coming" / "coming"
+        -- "j'arrive" should translate to "I'm coming" or just "coming"
+        {
+            from = "^coming$",
+            to = "I'm coming",
+            priority = 12,
+        },
+        {
+            from = "^coming ",
+            to = "I'm coming ",
+            priority = 12,
+        },
+        
+        -- Fix "I'll be back" → "coming back" (from "je reviens")
+        {
+            from = "^I'll be back$",
+            to = "coming back",
+            priority = 12,
+        },
+        {
+            from = "^I'll be back ",
+            to = "coming back ",
+            priority = 12,
+        },
+        
+        -- Fix "i am there" → "I'm here" (from "je suis là")
+        {
+            from = "^i am there$",
+            to = "I'm here",
+            priority = 12,
+        },
+        {
+            from = "^i am there ",
+            to = "I'm here ",
+            priority = 12,
+        },
+        
+        -- Fix "i am busy" → "I'm busy"
+        {
+            from = "^i am busy$",
+            to = "I'm busy",
+            priority = 10,
+        },
+        {
+            from = "^i am busy ",
+            to = "I'm busy ",
+            priority = 10,
+        },
+        
+        -- ============================================
+        -- MODAL VERB FIXES
+        -- ============================================
+        -- Fix "may I" → "I can" when it's a statement (from "je peux")
+        -- This is context-dependent, but in gaming context "I can" is more common
+        {
+            from = "^may I$",
+            to = "I can",
+            priority = 15,
+        },
+        {
+            from = "^may I ",
+            to = "I can ",
+            priority = 15,
+        },
+        
+        -- Fix "can you" → "you can" when it's a statement (from "tu peux")
+        -- This is context-dependent, but let's fix common cases
+        {
+            from = "^can you$",
+            to = "you can",
+            priority = 15,
+        },
+        {
+            from = "^can you ",
+            to = "you can ",
+            priority = 15,
+        },
+        
+        -- Fix "must I/do I have to" → "I must" when it's a statement (from "je dois")
+        {
+            from = "^must I/do I have to$",
+            to = "I must",
+            priority = 15,
+        },
+        {
+            from = "^must I/do I have to ",
+            to = "I must ",
+            priority = 15,
+        },
+        
+        -- Fix "must you/do you have to" → "you must" when it's a statement (from "tu dois")
+        {
+            from = "^must you/do you have to$",
+            to = "you must",
+            priority = 15,
+        },
+        {
+            from = "^must you/do you have to ",
+            to = "you must ",
+            priority = 15,
+        },
+        
+        -- Fix "i must aller/have to to go" → "I must go" (from "je dois aller")
+        {
+            from = "^i must aller/have to to go$",
+            to = "I must go",
+            priority = 18,
+        },
+        {
+            from = "^i must aller/have to to go ",
+            to = "I must go ",
+            priority = 18,
+        },
+        {
+            from = "i must aller/have to to go",
+            to = "I must go",
+            priority = 18,
+        },
+        
+        -- Fix "want-you to do" → "do you want to do" (from "veux-tu faire")
+        {
+            from = "^want-you to (.+)$",
+            to = "do you want to %1",
+            priority = 16,
+        },
+        {
+            from = "^want-you to (.+) ",
+            to = "do you want to %1 ",
+            priority = 16,
+        },
+        
+        -- Fix "want you to do" → "do you want to do" (from "veux-tu faire")
+        {
+            from = "^want you to (.+)$",
+            to = "do you want to %1",
+            priority = 16,
+        },
+        {
+            from = "^want you to (.+) ",
+            to = "do you want to %1 ",
+            priority = 16,
+        },
+        
+        -- ============================================
+        -- TEMPORAL PHRASE FIXES
+        -- ============================================
+        -- Fix "right away/immediately" → "right now" (from "tout de suite")
+        {
+            from = "^right away/immediately$",
+            to = "right now",
+            priority = 15,
+        },
+        {
+            from = "^right away/immediately ",
+            to = "right now ",
+            priority = 15,
+        },
+        {
+            from = " right away/immediately$",
+            to = " right now",
+            priority = 15,
+        },
+        {
+            from = " right away/immediately ",
+            to = " right now ",
+            priority = 15,
+        },
+        
+        -- ============================================
+        -- COMBAT/GROUP PHRASE FIXES
+        -- ============================================
+        -- Fix "retreat" (from "reculons")
+        -- This should be in phrases, but if it's not matching, add a grammar rule
+        {
+            from = "^retreat$",
+            to = "retreat",
+            priority = 1,
+        },
+        
+        -- ============================================
+        -- TRADING PHRASE FIXES
+        -- ============================================
+        -- Fix "purchase" → "buying" (from "achat")
+        {
+            from = "^purchase$",
+            to = "buying",
+            priority = 15,
+        },
+        {
+            from = "^purchase ",
+            to = "buying ",
+            priority = 15,
+        },
+        {
+            from = " purchase$",
+            to = " buying",
+            priority = 15,
+        },
+        {
+            from = " purchase ",
+            to = " buying ",
+            priority = 15,
+        },
+        
+        -- ============================================
+        -- QUESTION FIXES
+        -- ============================================
+        -- Fix "how are going-you" → "how are you" (from "comment allez-vous")
+        {
+            from = "^how are going-you$",
+            to = "how are you",
+            priority = 16,
+        },
+        {
+            from = "^how are going-you ",
+            to = "how are you ",
+            priority = 16,
+        },
+        {
+            from = "how are going-you",
+            to = "how are you",
+            priority = 16,
+        },
+        
+        -- Fix "qu'est-ce what c'est" → "what is it" (from "qu'est-ce que c'est")
+        {
+            from = "^qu'est%-ce what c'est$",
+            to = "what is it",
+            priority = 18,
+        },
+        {
+            from = "^qu'est%-ce what c'est ",
+            to = "what is it ",
+            priority = 18,
+        },
+        
+        -- Fix "qu'do you do" → "what do you do" (from "qu'est-ce que tu fais")
+        {
+            from = "^qu'do you do$",
+            to = "what do you do",
+            priority = 18,
+        },
+        {
+            from = "^qu'do you do ",
+            to = "what do you do ",
+            priority = 18,
+        },
+        {
+            from = "qu'do you do",
+            to = "what do you do",
+            priority = 18,
+        },
+        
+        -- Fix "where are-you" → "where are you"
+        {
+            from = "^where are-you$",
+            to = "where are you",
+            priority = 16,
+        },
+        {
+            from = "^where are-you ",
+            to = "where are you ",
+            priority = 16,
+        },
+        {
+            from = "where are-you",
+            to = "where are you",
+            priority = 16,
+        },
+        
+        -- ============================================
+        -- PATTERN FIXES
+        -- ============================================
+        -- Fix "I looking for a group" → "I'm looking for a group" (from "je cherche un groupe")
+        {
+            from = "^I looking for a group$",
+            to = "I'm looking for a group",
+            priority = 14,
+        },
+        {
+            from = "^I looking for a group ",
+            to = "I'm looking for a group ",
+            priority = 14,
+        },
+        {
+            from = "^I looking for",
+            to = "I'm looking for",
+            priority = 14,
+        },
+        
+        -- Fix "do it" → "do that" when context suggests "fais ça"
+        -- This is context-dependent, but "do that" is more common for "fais ça"
+        {
+            from = "^do it$",
+            to = "do that",
+            priority = 12,
+        },
+        {
+            from = "^do it ",
+            to = "do that ",
+            priority = 12,
+        },
+        
+        -- ============================================
+        -- COMMON EXPRESSION FIXES
+        -- ============================================
+        -- Fix "whatever" → "doesn't matter" when it's from "peu importe"
+        {
+            from = "^whatever$",
+            to = "doesn't matter",
+            priority = 15,
+        },
+        {
+            from = "^whatever ",
+            to = "doesn't matter ",
+            priority = 15,
+        },
+        {
+            from = " whatever$",
+            to = " doesn't matter",
+            priority = 15,
+        },
+        {
+            from = " whatever ",
+            to = " doesn't matter ",
+            priority = 15,
+        },
+        
+        -- Fix "ok/agreed" → "okay" (from "d'accord")
+        {
+            from = "^ok/agreed$",
+            to = "okay",
+            priority = 15,
+        },
+        {
+            from = "^ok/agreed ",
+            to = "okay ",
+            priority = 15,
+        },
+        {
+            from = " ok/agreed$",
+            to = " okay",
+            priority = 15,
+        },
+        {
+            from = " ok/agreed ",
+            to = " okay ",
+            priority = 15,
+        },
+        
         -- "I have not" → "I don't have" / "I have not"
         {
             from = "^I have not ",
