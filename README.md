@@ -439,14 +439,6 @@ Every contribution helps support continued development, improvements, and the ad
 - ✅ A best-effort interpreter, not a linguistic authority
 - ✅ A WoW-aware system that understands how players actually talk in-game
 
-### What This Addon Is NOT
-
-- ❌ A universal translator
-- ❌ A machine-learning system
-- ❌ A replacement for voice chat
-- ❌ A phrasebook for real-world conversation
-- ❌ A spam translator for Trade or General chat
-
 **Remember:** This addon prioritizes silence over wrong translations. If it's not confident, it won't translate. This is by design.
 
 ---
