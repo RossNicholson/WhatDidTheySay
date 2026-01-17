@@ -1714,5 +1714,50 @@ WDTS_Lang_de_Grammar = {
             from = "I'm disc/I'm discipline priest ",
             to = "I'm disc ",
         },
+        -- Fix "thanks I send you/I'm sending you" -> "thanks I'm sending you"
+        {
+            from = "thanks I send you/I'm sending you",
+            to = "thanks I'm sending you",
+            priority = 15,
+        },
+        {
+            from = "I send you/I'm sending you",
+            to = "I'm sending you",
+            priority = 15,
+        },
+        -- Fix "am also just in X arrived" -> "I also just arrived in X"
+        {
+            from = "am also just in (.+) arrived",
+            to = "I also just arrived in %1",
+            priority = 15,
+        },
+        {
+            from = "am also just (.+) arrived",
+            to = "I also just arrived %1",
+            priority = 12,
+        },
+        -- Fix "I see just now/I just see" -> "I just see"
+        {
+            from = "I see just now/I just see",
+            to = "I just see",
+            priority = 15,
+        },
+        {
+            from = "I see just now",
+            to = "I just see",
+            priority = 12,
+        },
+        -- Fix "are needed/needed" -> "are needed"
+        {
+            from = "are needed/needed",
+            to = "are needed",
+            priority = 15,
+        },
+        -- Fix "I'm flying already to/I'll fly to" -> "I'm flying to" (cleaner)
+        {
+            from = "I'm flying already to/I'll fly to",
+            to = "I'm flying to",
+            priority = 15,
+        },
     },
 }
