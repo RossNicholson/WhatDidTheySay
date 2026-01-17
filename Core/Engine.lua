@@ -1414,14 +1414,46 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         ["ubrs"] = true, ["lbrs"] = true, ["gnomer"] = true, ["gnomeregan"] = true,
         ["port"] = true, ["portal"] = true, ["buff"] = true, ["quest"] = true, ["quests"] = true,
         ["tp"] = true, ["tpn"] = true, ["darna"] = true, ["darnassus"] = true,
-        ["for"] = true, ["to"] = true, ["with"] = true, ["or"] = true, -- Common English prepositions
+        ["for"] = true, ["to"] = true, ["with"] = true, ["or"] = true, ["and"] = true, ["the"] = true, ["a"] = true, ["an"] = true, -- Common English words
         ["if"] = true, -- Ironforge abbreviation (uppercase IF in context means Ironforge, not "looking for")
+        ["need"] = true, ["needs"] = true, ["want"] = true, ["wants"] = true, -- Common English verbs
+        ["fast"] = true, ["slow"] = true, ["run"] = true, ["runs"] = true, ["high"] = true, ["low"] = true, -- Common English adjectives
+        ["outside"] = true, ["inside"] = true, ["then"] = true, ["now"] = true, -- Common English words
+        ["clear"] = true, ["ready"] = true, ["up"] = true, ["down"] = true, ["in"] = true, ["out"] = true, -- Common English words
+        ["no"] = true, ["yes"] = true, ["nice"] = true, ["good"] = true, ["great"] = true, -- Common English words
+        ["go"] = true, ["going"] = true, ["get"] = true, ["got"] = true, ["have"] = true, ["has"] = true, -- Common English verbs
         ["mage"] = true, ["warrior"] = true, ["rogue"] = true, ["hunter"] = true,
         ["priest"] = true, ["warlock"] = true, ["druid"] = true, ["shaman"] = true, ["paladin"] = true,
         ["dd"] = true, ["dps"] = true, -- Damage dealer abbreviations
         ["afk"] = true, ["brb"] = true, ["gg"] = true, ["wp"] = true, ["gl"] = true, ["hf"] = true,
         ["raid"] = true, ["dungeon"] = true, ["group"] = true, ["guild"] = true,
         ["item"] = true, ["items"] = true, ["gold"] = true, ["silver"] = true, ["copper"] = true,
+        ["stockades"] = true, ["uldaman"] = true, -- Common dungeon names in English
+        ["lvl"] = true, ["level"] = true, ["levels"] = true, -- Level abbreviations
+        ["cc"] = true, -- Crowd control abbreviation
+        ["add"] = true, ["adds"] = true, -- Additional enemies
+        ["boss"] = true, ["mob"] = true, ["mobs"] = true, -- Enemy terms
+        ["sheep"] = true, ["sap"] = true, ["blind"] = true, ["trap"] = true, -- CC abilities
+        ["skull"] = true, ["moon"] = true, ["star"] = true, ["square"] = true, ["diamond"] = true, ["triangle"] = true, ["cross"] = true, ["x"] = true, -- Marking symbols
+        ["pull"] = true, ["pulls"] = true, ["pulling"] = true, -- Pulling enemies
+        ["taunt"] = true, ["kick"] = true, ["interrupt"] = true, -- Tank/interrupt abilities
+        ["heal"] = true, ["heals"] = true, ["healing"] = true, -- Healing terms
+        ["mana"] = true, ["oom"] = true, ["full"] = true, -- Mana terms
+        ["drink"] = true, ["eating"] = true, ["food"] = true, -- Consumables
+        ["ammo"] = true, ["arrows"] = true, ["bullets"] = true, -- Hunter ammo
+        ["pet"] = true, ["passive"] = true, ["defensive"] = true, ["aggressive"] = true, -- Pet stances
+        ["def"] = true, ["evasion"] = true, ["vanish"] = true, ["evocate"] = true, -- Abilities
+        ["pot"] = true, ["potion"] = true, ["pots"] = true, -- Potions
+        ["drop"] = true, ["drops"] = true, ["loot"] = true, ["looted"] = true, -- Loot terms
+        ["blue"] = true, ["green"] = true, ["white"] = true, ["grey"] = true, -- Item quality
+        ["staff"] = true, ["weapon"] = true, ["armor"] = true, -- Item types
+        ["screenshot"] = true, -- Screenshot
+        ["skip"] = true, ["skipping"] = true, ["skipped"] = true, -- Skip terms
+        ["patrol"] = true, ["pat"] = true, ["patrols"] = true, -- Patrol terms
+        ["links"] = true, ["link"] = true, -- Directions
+        ["wait"] = true, ["back"] = true, -- Movement commands
+        ["sec"] = true, ["seconds"] = true, ["min"] = true, ["mins"] = true, -- Time abbreviations
+        ["%"] = true, -- Percent sign
     }
     local wordCount = 0
     for _, token in ipairs(tokens) do
