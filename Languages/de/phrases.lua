@@ -228,6 +228,22 @@ WDTS_Lang_de_Phrases = {
     ["niemand gestorben"] = "nobody died",
     ["pet auf"] = "pet on",
     ["auf passiv"] = "on passive",
+    ["suche"] = "looking for", -- "suche" = "looking for" (lowercase)
+    ["SUCHE"] = "looking for", -- "SUCHE" = "looking for" (uppercase)
+    ["suche port"] = "looking for port",
+    ["suche sw-port"] = "looking for SW port",
+    ["suche bb-port"] = "looking for BB port",
+    ["suche bb summon"] = "looking for BB summon",
+    ["suche bb port"] = "looking for BB port",
+    ["suche sw-port"] = "looking for SW port",
+    ["suche port nach"] = "looking for port to",
+    ["suche gruppe"] = "looking for group",
+    ["suche heiler"] = "looking for healer",
+    ["suche tank"] = "looking for tank",
+    ["suche hexer"] = "looking for warlock",
+    ["suche verzauberer"] = "looking for enchanter",
+    ["suche schmied"] = "looking for blacksmith",
+    ["suche schneider"] = "looking for tailor",
     
     -- Status phrases
     ["bin tot"] = "am dead",
