@@ -566,5 +566,53 @@ WDTS_Lang_de_Grammar = {
             from = "in the trade window there is below/there is at the bottom a slot the one/you not traded-there put/place one/you the to to be enchanted/enchanting weapon in and an enchanter does the then",
             to = "in the trade window there is a slot at the bottom that you don't trade - there you put the weapon to be enchanted in and an enchanter does it then",
         },
+        
+        -- Fix "if/when you in SW reinkommst" -> "when you come into SW"
+        {
+            from = "if/when you in (.+) reinkommst",
+            to = "when you come into %1",
+        },
+        
+        -- Fix "am here but seh you not" -> "am here but don't see you"
+        {
+            from = "am here but seh you not",
+            to = "am here but don't see you",
+        },
+        {
+            from = "but seh you not",
+            to = "but don't see you",
+        },
+        
+        -- Fix "need her/their the" -> "do you need the" (context for "ihr")
+        {
+            from = "need her/their the",
+            to = "do you need the",
+        },
+        
+        -- Fix "thanks ich hab X and Y" -> "thanks I have X and Y"
+        {
+            from = "thanks ich hab (.+) and (.+)",
+            to = "thanks I have %1 and %2",
+        },
+        
+        -- Fix "geb you soon what to/for verteilen" -> "will give you something to distribute soon"
+        {
+            from = "geb you soon what to/for verteilen",
+            to = "will give you something to distribute soon",
+        },
+        {
+            from = "geb you soon what to/for distribute",
+            to = "will give you something to distribute soon",
+        },
+        
+        -- Fix "ich could two X bags good gebrauchen" -> "I could use two X bags well"
+        {
+            from = "ich could two (.+) bags good gebrauchen",
+            to = "i could use two %1 bags well",
+        },
+        {
+            from = "ich could two (.+) bags good use/need",
+            to = "i could use two %1 bags well",
+        },
     },
 }

@@ -14,6 +14,8 @@ WDTS_Lang_de_Phrases = {
     ["willst du"] = "do you want",
     ["brauche ich"] = "do i need",
     ["brauchst du"] = "do you need",
+    ["braucht ihr"] = "do you need", -- Plural: "braucht ihr" = "do you need"
+    ["braucht"] = "needs", -- 3rd person: "braucht ihr" = "do you need"
     
     -- Common phrases
     ["keine sorge"] = "no worry/don't worry",

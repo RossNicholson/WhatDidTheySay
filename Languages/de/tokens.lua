@@ -54,7 +54,9 @@ WDTS_Lang_de_Tokens = {
     ["komme"] = "come",
     ["kommst"] = "come",
     ["geh"] = "go",
-    ["geht"] = "go",
+    ["geht"] = "goes/works", -- "das geht" = "that works/that goes"
+    ["reinkommst"] = "come in/enter", -- "wenn du reinkommst" = "when you come in"
+    ["reinkommen"] = "come in/enter",
     ["gehe"] = "going",
     ["nannte"] = "called/named", -- Past tense: "nannte man es" = "one called it"
     ["nennen"] = "call/name", -- Infinitive
@@ -141,6 +143,8 @@ WDTS_Lang_de_Tokens = {
     ["handbuch"] = "manual/handbook",
     ["buch"] = "book",
     ["erste"] = "first",
+    ["erstes"] = "first", -- Neuter form: "erstes Haus" = "first house"
+    ["erster"] = "first", -- Masculine form
     ["experten"] = "experts",
     ["expert"] = "expert",
     ["unterstützen"] = "support",
@@ -226,7 +230,9 @@ WDTS_Lang_de_Tokens = {
     ["discord"] = "discord",
     ["dc"] = "dc", -- Discord abbreviation (kept as-is)
     ["link"] = "link",
-    ["links"] = "links",
+    ["links"] = "left", -- "links" = "left" (direction), "links" can also mean "links" but in context usually "left"
+    ["haus"] = "house", -- "erstes Haus links" = "first house left"
+    ["häuser"] = "houses",
     ["satzung"] = "charter/statute",
     ["satzungs"] = "charter/statute", -- Genitive form: "Gildensatzung" = "guild charter"
     ["gildensatzung"] = "guild charter",
@@ -513,6 +519,7 @@ WDTS_Lang_de_Tokens = {
     ["war"] = "was",
     ["waren"] = "were",
     ["habe"] = "have",
+    ["hab"] = "have", -- Colloquial form: "ich hab" = "I have"
     ["hast"] = "have",
     ["hat"] = "has",
     ["haben"] = "have",
