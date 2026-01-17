@@ -509,6 +509,10 @@ WDTS_Lang_de_Phrases = {
     ["hat wer bock"] = "does anyone want to",
     ["hat wer bock?"] = "does anyone want to",
     
+    -- Quest/item names: "GESUCHT:" = "WANTED:"
+    ["GESUCHT:"] = "WANTED:",
+    ["gesucht:"] = "WANTED:",
+    
     -- Enchanting with object
     ["enchanten lassen"] = "have it enchanted",
     ["verzaubern lassen"] = "have it enchanted",

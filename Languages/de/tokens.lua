@@ -34,6 +34,7 @@ WDTS_Lang_de_Tokens = {
     ["sucht"] = "looking for",
     ["suchst"] = "are looking for", -- 2nd person: "Du suchst" = "You are looking for"
     ["gesucht"] = "wanted", -- Past participle: "schmied gesucht" = "blacksmith wanted"
+    ["GESUCHT"] = "WANTED", -- Uppercase version for quest/item names: "GESUCHT:" = "WANTED:"
     ["brauche"] = "need",
     ["braucht"] = "need",
     ["brauch"] = "need", -- Colloquial form

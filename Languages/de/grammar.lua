@@ -903,6 +903,55 @@ WDTS_Lang_de_Grammar = {
             to = "no especially those",
         },
         
+        -- Fix "lfm" from "ifm" -> "LFM" (capitalize)
+        {
+            from = "^ifm ",
+            to = "LFM ",
+        },
+        {
+            from = "^ifm$",
+            to = "LFM",
+        },
+        {
+            from = "^lfm ",
+            to = "LFM ",
+        },
+        {
+            from = "^lfm$",
+            to = "LFM",
+        },
+        
+        -- Fix "wanted:" in quest context -> "WANTED:"
+        {
+            from = "wanted:",
+            to = "WANTED:",
+        },
+        -- Fix "wanted " after bracket -> "WANTED: "
+        {
+            from = "%] wanted ",
+            to = "] WANTED: ",
+        },
+        -- Fix "wanted" after bracket without colon -> "WANTED:"
+        {
+            from = "%] wanted",
+            to = "] WANTED:",
+        },
+        -- Fix "wanted " anywhere in bracket context -> "WANTED: "
+        {
+            from = " wanted ",
+            to = " WANTED: ",
+        },
+        -- Fix missing exclamation and closing bracket in quest context: "gurgelbacke (4740" -> "Gurgelbacke! (4740)]"
+        {
+            from = "WANTED: ([a-z]+) %((%d+)$",
+            to = "WANTED: %1! (%2)]",
+        },
+        -- Capitalize creature/quest names after WANTED: (simple capitalization)
+        {
+            from = "WANTED: g",
+            to = "WANTED: G",
+        },
+        
         -- Fix "oh need to do X has who want to/interest" -> "oh I need to do X, does anyone want to?"
         {
             from = "oh need to do (.+) has who want to/interest",
