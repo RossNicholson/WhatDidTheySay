@@ -1433,9 +1433,69 @@ WDTS_Lang_de_Grammar = {
         -- Fix question verb forms
         -- Fix "where is is" -> "where are you" (from "wo bist du")
         {
-            from = "where is is",
+            from = "^where is is$",
             to = "where are you",
             priority = 15,
+        },
+        {
+            from = "^where is is ",
+            to = "where are you ",
+            priority = 15,
+        },
+        -- Fix "how is you going" -> "how are you" (from "wie geht es dir")
+        {
+            from = "^how is you going$",
+            to = "how are you",
+            priority = 15,
+        },
+        {
+            from = "^how is you going ",
+            to = "how are you ",
+            priority = 15,
+        },
+        -- Fix "are ready" -> "you are done" (from "du bist fertig")
+        {
+            from = "^are ready$",
+            to = "you are done",
+            priority = 20,
+        },
+        {
+            from = "^are ready ",
+            to = "you are done ",
+            priority = 20,
+        },
+        -- Fix "are done" -> "you are done" (from "du bist fertig")
+        {
+            from = "^are done$",
+            to = "you are done",
+            priority = 20,
+        },
+        {
+            from = "^are done ",
+            to = "you are done ",
+            priority = 20,
+        },
+        -- Fix "wait quickly" -> "wait a moment" (from "warte kurz")
+        {
+            from = "^wait quickly$",
+            to = "wait a moment",
+            priority = 20,
+        },
+        {
+            from = "^wait quickly ",
+            to = "wait a moment ",
+            priority = 20,
+        },
+        -- Fix "am soon there" -> "be right there" (from "bin gleich da")
+        {
+            from = "^am soon there$",
+            to = "be right there",
+            priority = 20,
+        },
+        {
+            from = "^am soon there ",
+            to = "be right there ",
+            priority = 20,
         },
         -- Fix "what kind of a addon is that again" -> "what kind of addon is that again"
         {

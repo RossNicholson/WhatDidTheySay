@@ -1,99 +1,121 @@
-# Translation Test Analysis Report
+# Comprehensive Test Analysis Report
 
 ## Test Results Summary
-- **Total Tests**: 94
-- **Passed**: 86 (91.5%)
-- **Failed/Skipped**: 4 (4.3%)
-- **Low Confidence**: 4 (4.3%)
+- **Total Tests**: 116
+- **Passed**: 91 (78.4%)
+- **Failed**: 25 (21.6%)
 
 ## Issues Identified
 
-### 1. Skipped Translations (4)
+### 1. English Abbreviations Being Translated (6 failures)
+**Problem**: English abbreviations like "ty", "thx", "np", "sry" are in German vocabulary and being translated.
 
-#### "WTS 6 slot bags"
-- **Reason**: `language_unknown`
-- **Issue**: Should be detected as English and skipped (this is correct behavior)
-- **Action**: None needed - this is working as intended
+**Affected Tests**:
+- `ty` → Should skip, but translates to "thank you"
+- `thx` → Should skip, but translates to "thanks"
+- `np` → Should skip, but translates to "no problem"
+- `sry` → Should skip, but translates to "sorry"
 
-#### "lf heal für DM"
-- **Reason**: `already_english`
-- **Issue**: This is mixed language (English + German), should translate
-- **Action**: Fix mixed-language detection to handle "lf" + German
+**Root Cause**: These abbreviations exist in `Languages/de/tokens.lua` but should be in the universal abbreviations list to prevent translation.
 
-#### "need port to SW"
-- **Reason**: `already_english`
-- **Issue**: This is mixed language (English + German), should translate
-- **Action**: Fix mixed-language detection to handle English phrases + German
+**Fix**: Add these to `universalAbbreviations` in `Core/Engine.lua` OR remove from German tokens (they're English anyway).
 
-#### "ok"
-- **Reason**: `english_greeting`
-- **Issue**: Universal greeting, correctly skipped
-- **Action**: None needed - this is working as intended
+---
 
-### 2. Low Confidence Translations (4)
+### 2. Similarity Check Catching English Messages (2 failures)
+**Problem**: "WTS bags" and "WTB mount" are being detected as needing translation but then rejected as "translation_too_similar".
 
-#### "verkaufe [Small Silk Pack] für 5g"
-- **Translation**: "selling [small silk Pack]for 5g"
-- **Confidence**: 0.42
-- **Issues**:
-  - Missing space before "for"
-  - Item link capitalization issue
-- **Action**: Add grammar rule to fix spacing after item links
+**Affected Tests**:
+- `WTS bags` → Expected "already_english", got "translation_too_similar"
+- `WTB mount` → Expected "already_english", got "translation_too_similar"
 
-#### "suche verzauberer für +55 heilung"
-- **Translation**: "looking for enchanter for +55 healing"
-- **Confidence**: 0.49
-- **Issues**: Low confidence due to numbers/symbols
-- **Action**: Improve confidence calculation for numeric/symbol content
+**Root Cause**: "bags" and "mount" might be in German vocabulary, causing detection, but then similarity check rejects them.
 
-#### "brauche schneider für 6 slot taschen"
-- **Translation**: "need tailor for 6 slot bags"
-- **Confidence**: 0.50
-- **Issues**: Low confidence due to numbers
-- **Action**: Improve confidence calculation for numeric content
+**Fix**: Add "bags" and "mount" to universal abbreviations, OR improve English detection to catch these earlier.
 
-#### "komm zu unserer gilde"
-- **Translation**: "come to unserer guild"
-- **Confidence**: 0.49
-- **Issues**: "unserer" not translated (possessive pronoun)
-- **Action**: Add "unserer" = "our" to vocabulary
+---
 
-### 3. Translation Quality Issues
+### 3. Grammar/Word Order Issues (7 failures)
+**Problem**: Some German questions and statements have incorrect word order or duplicate words.
 
-#### Typos in Output
-- "whas" instead of "what" (from "was")
-- "thas" instead of "that" (from "dass")
-- **Action**: Add grammar rules to fix these typos
+**Affected Tests**:
+- `wo bist du?` → Got "where is is" (duplicate "is", should be "where are you")
+- `wie geht es dir?` → Got "how is you going" (should be "how are you")
+- `du bist fertig` → Got "are ready" (missing "you", should be "you are done")
+- `was ist das?` → Confidence too low (0.67 < 0.70) but translation is correct
+- `komm hier` → Confidence too low (0.59 < 0.70) but translation is correct
+- `warte bitte` → Confidence too low (0.60 < 0.70) but translation is correct
 
-#### Word Order Issues
-- "Ironforge you time have" instead of "if you have time" (from "wenn du zeit hast")
-- "I white thas you right have" instead of "I know that you are right" (from "ich weiß, dass du recht hast")
-- **Action**: Improve dependency parser or add grammar rules for subordinate clauses
+**Root Cause**: 
+- Grammar rules not handling question word order correctly
+- "bist" (are) being translated as "is" instead of "are"
+- "fertig" being translated as "ready" instead of "done"
+- Confidence thresholds might be too strict for correct translations
 
-#### Missing Translations
-- "du" sometimes not translated to "you"
-- "unserer" not translated to "our"
-- **Action**: Add missing vocabulary entries
+**Fix**: 
+- Fix grammar rules for questions
+- Add better handling for "bist" → "are"
+- Add "fertig" → "done" translation
+- Consider lowering confidence threshold or improving confidence calculation
 
-#### Separable Verb Issues
-- "mach auf die tür" → "do on the door" (should be "open the door")
-- "macht zu das fenster" → "do to the window" (should be "close the window")
-- **Action**: Improve separable verb handling in patterns/phrases
+---
+
+### 4. Mixed Language Detection Issues (2 failures)
+**Problem**: Some mixed messages aren't being detected as needing translation.
+
+**Affected Tests**:
+- `lf tank für stockades` → Should translate but got "already_english"
+- `oom nach pull` → Should translate but got "language_unknown"
+
+**Root Cause**: 
+- "für" might not be detected as German function word
+- "nach" might not be detected as German function word
+- Mixed-language detection threshold might be too high
+
+**Fix**: 
+- Verify "für" and "nach" are in function words list
+- Lower threshold for mixed-language detection
+- Improve detection logic
+
+---
+
+### 5. Edge Cases (2 failures)
+**Problem**: Some edge cases aren't handled correctly.
+
+**Affected Tests**:
+- `out of mana` → Should translate but got "language_unknown" (this is English, test might be wrong)
+- `wer will mit?` → Got "who wants to join" but expected "who wants to come" (close enough, test might be too strict)
+
+**Fix**: Review test expectations - some might be too strict.
+
+---
+
+### 6. Confidence Threshold Issues (6 failures)
+**Problem**: Some translations are correct but confidence is slightly below test threshold.
+
+**Affected Tests**:
+- `was ist das?` → Correct translation but conf 0.67 < 0.70
+- `komm hier` → Correct translation but conf 0.59 < 0.70
+- `warte bitte` → Correct translation but conf 0.60 < 0.70
+
+**Fix**: Either improve confidence calculation OR adjust test thresholds to be more realistic.
+
+---
 
 ## Priority Fixes
 
 ### High Priority
-1. Fix "whas" → "what" typo
-2. Fix "thas" → "that" typo
-3. Add "unserer" = "our" to vocabulary
-4. Fix spacing after item links
-5. Improve mixed-language detection for "lf" + German
+1. **Remove English abbreviations from German tokens** (ty, thx, np, sry)
+2. **Add common English words to universal list** (bags, mount)
+3. **Fix grammar for questions** (wo bist du, wie geht es dir)
+4. **Fix "bist" → "are" translation**
+5. **Fix "fertig" → "done" translation**
 
 ### Medium Priority
-1. Improve separable verb translations ("mach auf" → "open")
-2. Fix word order in subordinate clauses
-3. Improve confidence calculation for numeric/symbol content
+6. **Improve mixed-language detection** (für, nach)
+7. **Adjust confidence thresholds** for correct but low-confidence translations
+8. **Fix duplicate word issues** (where is is → where are you)
 
 ### Low Priority
-1. Better handling of "du" in all contexts
-2. Improve complex sentence word order
+9. **Review test expectations** (some might be too strict)
+10. **Improve confidence calculation** for edge cases

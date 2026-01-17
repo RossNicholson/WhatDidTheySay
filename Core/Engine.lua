@@ -1478,6 +1478,7 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
             ["lf"] = true, ["lfb"] = true, ["lfm"] = true, ["lfg"] = true, ["lf1m"] = true,
             ["wts"] = true, ["wtb"] = true, ["wtt"] = true,
             ["tank"] = true, ["heal"] = true, ["healer"] = true, ["dps"] = true,
+            ["ty"] = true, ["thx"] = true, ["np"] = true, ["sry"] = true, -- English abbreviations
             ["dm"] = true, ["st"] = true, ["sfk"] = true, ["rfk"] = true, ["rfd"] = true,
             ["uld"] = true, ["zf"] = true, ["mara"] = true, ["scholo"] = true, ["strat"] = true,
             ["port"] = true, ["buff"] = true, ["buff"] = true, ["quest"] = true, ["quests"] = true,
@@ -1617,6 +1618,8 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         ["bb"] = true, ["pls"] = true, ["summon"] = true, ["summons"] = true,
         ["sw"] = true, ["lf"] = true, ["lfg"] = true, ["lfm"] = true, ["lfw"] = true, ["lfb"] = true, ["lf1m"] = true, ["lf2m"] = true, ["lf3m"] = true, ["lf4m"] = true,
         ["wts"] = true, ["wtb"] = true, ["wtt"] = true, ["tank"] = true, ["heal"] = true, ["healer"] = true,
+        ["ty"] = true, ["thx"] = true, ["np"] = true, ["sry"] = true, -- English abbreviations
+        ["bags"] = true, ["mount"] = true, ["mounts"] = true, -- Common English words
         -- Dungeon abbreviations (these are universal, even if they exist in language packs)
         ["dm"] = true, ["bfd"] = true, ["st"] = true, ["sfk"] = true, ["rfk"] = true, ["rfd"] = true,
         ["uld"] = true, ["zf"] = true, ["mara"] = true, ["scholo"] = true, ["strat"] = true, ["brd"] = true,

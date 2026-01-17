@@ -116,7 +116,7 @@ WDTS_Lang_de_Tokens = {
     ["rufen"] = "summon",
     ["beschwören"] = "summon",
     ["bereit"] = "ready",
-    ["fertig"] = "ready",
+    ["fertig"] = "ready/done",
     ["aufmachen"] = "open",
     ["aufmacht"] = "opens",
     ["auf"] = "open/up", -- Separable prefix: "macht auf" = "opens"
@@ -1375,9 +1375,7 @@ WDTS_Lang_de_Tokens = {
     
     -- Common gaming abbreviations (additional)
     ["omw"] = "on my way",
-    ["ty"] = "thank you",
-    ["thx"] = "thanks",
-    ["np"] = "no problem",
+    -- Note: "ty", "thx", "np" are English abbreviations - handled by universal abbreviations check
     ["problem"] = "problem", -- Common loanword in German
     ["r"] = "ready", -- Gaming abbreviation for "ready" / "fertig"
     ["gz"] = "grats/congrats", -- Gaming abbreviation for "grats" or "congrats"
@@ -5100,7 +5098,7 @@ WDTS_Lang_de_Tokens = {
     -- Congratulations and thanks
     ["gratz"] = "grats/congratulations",
     ["glückwünsche"] = "congratulations",
-    ["sry"] = "sorry",
+    -- Note: "sry" is English abbreviation - handled by universal abbreviations check
     ["sorry"] = "sorry",
     ["tschuldigung"] = "sorry",
     ["entschuldigung"] = "sorry/excuse me",

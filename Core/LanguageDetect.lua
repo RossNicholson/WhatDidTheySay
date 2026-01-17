@@ -21,7 +21,7 @@ LanguageDetect.FUNCTION_WORDS = {
     de = {
         "der", "die", "das", "den", "dem", "des", "ein", "eine", "einen",
         "einem", "eines", "und", "oder", "aber", "in", "auf", "an", "zu",
-        "für", "von", "mit", "durch", "über", "unter", "ist", "sind", "war",
+        "für", "von", "mit", "durch", "über", "unter", "nach", "vor", "ist", "sind", "war",
         "waren", "bin", "bist", "seid", "habe", "has", "hat", "haben",
         "wird", "werden", "wurde", "wurden", "kann", "kannst", "können",
         "muss", "musst", "müssen", "soll", "sollst", "sollen", "darf",
