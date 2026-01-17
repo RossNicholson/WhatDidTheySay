@@ -752,5 +752,13 @@ WDTS_Lang_de_Grammar = {
             from = "invite (.+) in (.+)",
             to = "invite %1", -- Remove "in xd" part
         },
+        {
+            from = "invite sie",
+            to = "invite her", -- "sie" in this context means "her"
+        },
+        {
+            from = "invite her/they",
+            to = "invite her", -- Prefer "her" in this context
+        },
     },
 }
