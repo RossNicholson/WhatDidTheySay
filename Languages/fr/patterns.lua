@@ -395,6 +395,12 @@ WDTS_Lang_fr_Patterns = {
         from = "j'ai besoin d'une (.+)",
         to = "I need a %1",
     },
+    -- "j'ai besoin de" -> "I need" (without object)
+    {
+        from = "j'ai besoin de$",
+        to = "I need",
+        priority = 20,
+    },
     
     -- "il me faut X" -> "I need X"
     {
@@ -1118,6 +1124,27 @@ WDTS_Lang_fr_Patterns = {
     -- ============================================
     -- MORE QUESTION PATTERNS
     -- ============================================
+    -- "qu'est-ce que c'est" -> "what is it"
+    {
+        from = "qu'est%-ce que c'est$",
+        to = "what is it",
+        priority = 25,
+    },
+    {
+        from = "qu'est%-ce que c'est ",
+        to = "what is it ",
+        priority = 25,
+    },
+    {
+        from = "qu'est ce que c'est$",
+        to = "what is it",
+        priority = 25,
+    },
+    {
+        from = "qu'est ce que c'est ",
+        to = "what is it ",
+        priority = 25,
+    },
     -- "qu'est-ce que tu fais X" -> "what are you doing X"
     {
         from = "qu'est%-ce que tu fais (.+)",
@@ -1128,6 +1155,17 @@ WDTS_Lang_fr_Patterns = {
         from = "qu'est ce que tu fais (.+)",
         to = "what are you doing %1",
         priority = 12,
+    },
+    -- "qu'est-ce que tu fais" -> "what are you doing" (without object)
+    {
+        from = "qu'est%-ce que tu fais$",
+        to = "what are you doing",
+        priority = 20,
+    },
+    {
+        from = "qu'est ce que tu fais$",
+        to = "what are you doing",
+        priority = 20,
     },
     
     -- "où es-tu X" -> "where are you X"

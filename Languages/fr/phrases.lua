@@ -193,7 +193,7 @@ WDTS_Lang_fr_Phrases = {
     ["je dois partir"] = "I have to leave",
     ["je dois y aller"] = "I have to go",
     ["je vais y aller"] = "I'm going to go",
-    ["j'arrive"] = "I'm coming",
+    ["j'arrive"] = "coming",
     ["j'arrive dans 5 minutes"] = "coming in 5 minutes",
     ["je viens de mourir"] = "just died",
     ["je vais afk"] = "going AFK",
@@ -264,6 +264,7 @@ WDTS_Lang_fr_Phrases = {
     ["je peux t'aider"] = "I can help you",
     ["je peux vous aider"] = "I can help you",
     ["j'ai besoin d'aide"] = "I need help",
+    ["j'ai besoin de"] = "I need",
     ["besoin d'aide"] = "need help",
     ["aide-moi"] = "help me",
     ["aidez-moi"] = "help me",
@@ -1612,6 +1613,5 @@ WDTS_Lang_fr_Phrases = {
     -- Trading and economy
     ["tu peux acheter"] = "can you buy",
     ["tu peux vendre"] = "can you sell",
-    ["wts"] = "want to sell",
-    ["wtb"] = "want to buy",
+    -- wtb and wts are handled in tokens.lua as abbreviations (WTB, WTS)
 }
