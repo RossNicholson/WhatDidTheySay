@@ -71,8 +71,15 @@ function Engine.LoadLanguagePack(lang)
     -- Load patterns
     if _G[packName .. "_Patterns"] then
         pack.patterns = _G[packName .. "_Patterns"]
-        -- Sort patterns by specificity (longer patterns first)
+        -- Sort patterns by priority (higher priority first), then by specificity (longer patterns first)
+        -- Priority defaults to 0 if not specified (higher number = higher priority)
         table.sort(pack.patterns, function(a, b)
+            local priorityA = a.priority or 0
+            local priorityB = b.priority or 0
+            if priorityA ~= priorityB then
+                return priorityA > priorityB
+            end
+            -- Same priority: sort by length (longer = more specific = higher priority)
             local lenA = a.from and #a.from or 0
             local lenB = b.from and #b.from or 0
             return lenA > lenB
@@ -196,15 +203,24 @@ function Engine.ApplyPatterns(text, langPack)
 end
 
 -- Match multi-word phrases starting at a given token index
+-- Enhanced with fuzzy matching for variations (case, articles, word order)
 local function MatchPhraseAt(tokens, startIdx, langPack)
     if not langPack.phrases or not next(langPack.phrases) then
         return nil
     end
     
+    -- Common German articles that can appear before phrases
+    local articles = {
+        ["der"] = true, ["die"] = true, ["das"] = true,
+        ["ein"] = true, ["eine"] = true, ["einen"] = true,
+        ["dem"] = true, ["den"] = true, ["des"] = true,
+    }
+    
     -- Build lookup table of phrase words (cache on first call per pack)
     if not langPack._phraseLookupCache then
         langPack._phraseLookupCache = {}
         langPack._maxPhraseLength = 0
+        langPack._phraseVariations = {} -- Cache for variations
         
         for phraseKey, phraseValue in pairs(langPack.phrases) do
             local words = {}
@@ -219,6 +235,24 @@ local function MatchPhraseAt(tokens, startIdx, langPack)
                 words = words,
                 translation = phraseValue
             }
+            
+            -- Pre-generate common variations for this phrase
+            local variations = {}
+            -- Exact match
+            table.insert(variations, words)
+            
+            -- Variation: with article prefix (for phrases that can have articles)
+            if phraseLen >= 2 then
+                for article, _ in pairs(articles) do
+                    local withArticle = {article}
+                    for _, w in ipairs(words) do
+                        table.insert(withArticle, w)
+                    end
+                    table.insert(variations, withArticle)
+                end
+            end
+            
+            langPack._phraseVariations[phraseKey:lower()] = variations
         end
     end
     
@@ -227,31 +261,93 @@ local function MatchPhraseAt(tokens, startIdx, langPack)
         return nil
     end
     
+    if tokens[startIdx].type ~= "word" then
+        return nil
+    end
+    
     -- Try to match phrases of decreasing length (longest first)
-    -- For same-length phrases, we match against the actual token text to find the exact match
-    if tokens[startIdx].type == "word" then
-        for phraseLen = math.min(maxPhraseLength, #tokens - startIdx + 1), 2, -1 do
-            local phraseWords = {}
-            local allWords = true
-            for j = 0, phraseLen - 1 do
-                if tokens[startIdx + j] and tokens[startIdx + j].type == "word" then
-                    table.insert(phraseWords, tokens[startIdx + j].value:lower())
-                else
-                    allWords = false
-                    break
-                end
+    for phraseLen = math.min(maxPhraseLength + 1, #tokens - startIdx + 1), 2, -1 do
+        -- Extract token words from current position
+        local tokenWords = {}
+        local allWords = true
+        for j = 0, phraseLen - 1 do
+            local token = tokens[startIdx + j]
+            if token and token.type == "word" then
+                table.insert(tokenWords, token.value:lower())
+            else
+                allWords = false
+                break
+            end
+        end
+        
+        if allWords and #tokenWords > 0 then
+            -- Try exact match first (fastest)
+            local phraseKey = table.concat(tokenWords, " ")
+            local phraseData = langPack._phraseLookupCache[phraseKey]
+            if phraseData then
+                return {
+                    length = phraseLen,
+                    translation = phraseData.translation
+                }
             end
             
-            if allWords then
-                -- Build the actual phrase key from tokens
-                local phraseKey = table.concat(phraseWords, " ")
-                local phraseData = langPack._phraseLookupCache[phraseKey]
-                if phraseData then
-                    -- Found a matching phrase - this is the exact match for this length
-                    return {
-                        length = phraseLen,
-                        translation = phraseData.translation
-                    }
+            -- Try matching against all phrase variations (fuzzy matching)
+            for cachedPhraseKey, phraseData in pairs(langPack._phraseLookupCache) do
+                local variations = langPack._phraseVariations[cachedPhraseKey]
+                
+                for _, variationWords in ipairs(variations) do
+                    -- Check if this variation matches our token words
+                    if #variationWords == #tokenWords then
+                        local match = true
+                        for i = 1, #variationWords do
+                            if variationWords[i] ~= tokenWords[i] then
+                                match = false
+                                break
+                            end
+                        end
+                        if match then
+                            return {
+                                length = phraseLen,
+                                translation = phraseData.translation
+                            }
+                        end
+                    end
+                    
+                    -- Try matching without first article (skip article in tokenWords)
+                    if #variationWords >= 2 and articles[tokenWords[1]] and
+                       #variationWords == #tokenWords - 1 then
+                        local match = true
+                        for i = 1, #variationWords do
+                            if variationWords[i] ~= tokenWords[i + 1] then
+                                match = false
+                                break
+                            end
+                        end
+                        if match then
+                            return {
+                                length = phraseLen,
+                                translation = phraseData.translation
+                            }
+                        end
+                    end
+                    
+                    -- Try matching when phrase has article but tokens don't
+                    if #variationWords >= 2 and articles[variationWords[1]] and
+                       #variationWords - 1 == #tokenWords then
+                        local match = true
+                        for i = 2, #variationWords do
+                            if variationWords[i] ~= tokenWords[i - 1] then
+                                match = false
+                                break
+                            end
+                        end
+                        if match then
+                            return {
+                                length = #tokenWords,
+                                translation = phraseData.translation
+                            }
+                        end
+                    end
                 end
             end
         end
@@ -261,7 +357,8 @@ local function MatchPhraseAt(tokens, startIdx, langPack)
 end
 
 -- Get context-aware translation for a token
-local function GetContextualTranslation(token, prevToken, nextToken, langPack)
+-- Enhanced with expanded context window (3-5 words instead of just prev/next)
+local function GetContextualTranslation(token, tokenIdx, tokens, langPack)
     if not langPack.tokens then
         return nil
     end
@@ -270,11 +367,28 @@ local function GetContextualTranslation(token, prevToken, nextToken, langPack)
     local tokenKey = token.value
     local translation = langPack.tokens[tokenKey]
     
+    -- Build expanded context window (look at up to 3 words before and after)
+    local contextBefore = {}
+    local contextAfter = {}
+    for i = math.max(1, tokenIdx - 3), tokenIdx - 1 do
+        if tokens[i] and tokens[i].type == "word" then
+            table.insert(contextBefore, tokens[i].value:lower())
+        end
+    end
+    for i = tokenIdx + 1, math.min(#tokens, tokenIdx + 3) do
+        if tokens[i] and tokens[i].type == "word" then
+            table.insert(contextAfter, tokens[i].value:lower())
+        end
+    end
+    
+    local prevToken = tokenIdx > 1 and tokens[tokenIdx - 1] or nil
+    local nextToken = tokenIdx < #tokens and tokens[tokenIdx + 1] or nil
+    
     -- Simple context rules (can be extended)
     -- Check if token has context-dependent translations
     if translation and type(translation) == "table" then
         -- Token has multiple possible translations based on context
-        -- Simple context checking (can be expanded)
+        -- Check immediate context first (fastest)
         if prevToken and prevToken.type == "word" then
             local prevLower = prevToken.value:lower()
             if translation.after and translation.after[prevLower] then
@@ -286,28 +400,48 @@ local function GetContextualTranslation(token, prevToken, nextToken, langPack)
             if translation.before and translation.before[nextLower] then
                 return translation.before[nextLower]
             end
-            -- Special case: "von" before a proper noun (capitalized) or location name means "of"
-            -- "Wald von Elwynn" = "Forest of Elwynn"
-            if tokenKey == "von" then
-                -- Check if next token is capitalized (proper noun) or is a location name
-                if nextToken.original:match("^[A-Z]") then
-                    return "of"
+        end
+        
+        -- Check expanded context for better disambiguation
+        -- Look for context patterns in the surrounding words
+        if #contextBefore > 0 or #contextAfter > 0 then
+            -- Special case: "wie" = "how" vs "like"
+            if tokenKey == "wie" then
+                -- "wie" = "how" when followed by question words or at start
+                if #contextAfter > 0 then
+                    local nextWord = contextAfter[1]
+                    if nextWord == "viel" or nextWord == "viele" or nextWord == "lange" or 
+                       nextWord == "oft" or nextWord == "gut" then
+                        return "how"
+                    end
                 end
-                -- Also check common location names (even if lowercase)
-                local nextLower = nextToken.value:lower()
-                if nextLower == "elwynn" or nextLower == "stormwind" or nextLower == "ironforge" or 
-                   nextLower == "darnassus" or nextLower == "orgrimmar" or nextLower == "thunder" then
-                    return "of"
+                -- "wie" = "like" when followed by noun/adjective (comparison)
+                if nextToken and nextToken.type == "word" then
+                    -- Default to "like" for comparisons
+                    return "like"
                 end
             end
-            -- Special case: "den" before a noun (especially in quest/item names) means "the"
-            -- "den" can mean "whom/that" as a relative pronoun, but when followed by a noun it's an article
-            if tokenKey == "den" and nextToken.type == "word" then
-                -- Check if it's likely an article (followed by a noun/object, not a verb)
-                -- Common patterns: "den Hauptstein", "den Buff", etc.
+            
+            -- Special case: "von" before a proper noun (capitalized) or location name means "of"
+            if tokenKey == "von" then
+                if nextToken then
+                    if nextToken.original:match("^[A-Z]") then
+                        return "of"
+                    end
+                    local nextLower = nextToken.value:lower()
+                    if nextLower == "elwynn" or nextLower == "stormwind" or nextLower == "ironforge" or 
+                       nextLower == "darnassus" or nextLower == "orgrimmar" or nextLower == "thunder" then
+                        return "of"
+                    end
+                end
+            end
+            
+            -- Special case: "den" before a noun means "the"
+            if tokenKey == "den" and nextToken and nextToken.type == "word" then
                 return "the"
             end
         end
+        
         -- Default translation
         if translation.default then
             return translation.default
@@ -320,9 +454,37 @@ local function GetContextualTranslation(token, prevToken, nextToken, langPack)
                     return v
                 end
             end
-            -- If all else fails, return nil (no translation)
             return nil
         end
+    end
+    
+    -- Apply context-aware rules even for simple translations
+    if tokenKey == "wie" then
+        if #contextAfter > 0 then
+            local nextWord = contextAfter[1]
+            if nextWord == "viel" or nextWord == "viele" or nextWord == "lange" or 
+               nextWord == "oft" or nextWord == "gut" then
+                return "how"
+            end
+        end
+        if nextToken then
+            return "like"
+        end
+    end
+    
+    if tokenKey == "von" and nextToken then
+        if nextToken.original:match("^[A-Z]") then
+            return "of"
+        end
+        local nextLower = nextToken.value:lower()
+        if nextLower == "elwynn" or nextLower == "stormwind" or nextLower == "ironforge" or 
+           nextLower == "darnassus" or nextLower == "orgrimmar" or nextLower == "thunder" then
+            return "of"
+        end
+    end
+    
+    if tokenKey == "den" and nextToken and nextToken.type == "word" then
+        return "the"
     end
     
     -- If translation is not a table, return it as-is (should be a string or nil)
@@ -367,10 +529,8 @@ function Engine.TranslateTokens(tokens, langPack)
                 -- Skip the remaining words in the phrase
                 i = i + phraseMatch.length
             else
-                -- Single word translation with context awareness
-                local prevToken = i > 1 and tokens[i - 1] or nil
-                local nextToken = i < #tokens and tokens[i + 1] or nil
-                local trans = GetContextualTranslation(token, prevToken, nextToken, langPack)
+                -- Single word translation with enhanced context awareness (3-5 word window)
+                local trans = GetContextualTranslation(token, i, tokens, langPack)
                 
                 if trans then
                     local newToken = {
@@ -406,22 +566,57 @@ function Engine.TranslateTokens(tokens, langPack)
     return translated, coverage, unknownRatio
 end
 
--- Apply grammar rules
+-- Apply grammar rules (optimized with early exit and grouping)
 function Engine.ApplyGrammar(text, langPack)
     if not langPack.grammar or not langPack.grammar.rules then
         return text
     end
     
     local result = text
+    local changed = false
     
-    for _, rule in ipairs(langPack.grammar.rules) do
-        if rule.from and rule.to then
-            local success, replaced = pcall(function()
+    -- Cache compiled patterns on first use (performance optimization)
+    if not langPack.grammar._compiledRules then
+        langPack.grammar._compiledRules = {}
+        for i, rule in ipairs(langPack.grammar.rules) do
+            if rule.from and rule.to then
+                langPack.grammar._compiledRules[i] = {
+                    from = rule.from,
+                    to = rule.to,
+                    priority = rule.priority or 0
+                }
+            end
+        end
+        -- Sort by priority if specified (higher priority first)
+        table.sort(langPack.grammar._compiledRules, function(a, b)
+            return (a.priority or 0) > (b.priority or 0)
+        end)
+    end
+    
+    -- Apply rules with early exit optimization
+    -- Apply rules in iterations, stopping early if no changes
+    local maxIterations = 10 -- Prevent infinite loops
+    local iteration = 0
+    
+    while iteration < maxIterations do
+        iteration = iteration + 1
+        changed = false
+        
+        for _, rule in ipairs(langPack.grammar._compiledRules) do
+            local success, replaced, count = pcall(function()
                 return result:gsub(rule.from, rule.to)
             end)
-            if success then
+            
+            if success and replaced and count and count > 0 then
                 result = replaced
+                changed = true
+                -- Continue applying other rules in this iteration
             end
+        end
+        
+        -- If no changes this iteration, we're done
+        if not changed then
+            break
         end
     end
     

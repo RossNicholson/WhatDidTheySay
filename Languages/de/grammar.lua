@@ -1087,6 +1087,38 @@ WDTS_Lang_de_Grammar = {
             to = "oh I need to do %1, does anyone want to ",
         },
         
+        -- Fix "can you me help" -> "can you help me" (word order)
+        {
+            from = "can you me (.+)",
+            to = "can you %1 me",
+        },
+        {
+            from = "can you me$",
+            to = "can you help me",
+        },
+        {
+            from = "can you me ",
+            to = "can you help me ",
+        },
+        -- Fix "can you help me help" -> "can you help me" (duplicate help)
+        {
+            from = "can you help me help",
+            to = "can you help me",
+        },
+        {
+            from = "can you help me help ",
+            to = "can you help me ",
+        },
+        -- Fix "can you you" -> "can you" (duplicate you from case variation)
+        {
+            from = "can you you ",
+            to = "can you ",
+        },
+        {
+            from = "can you you$",
+            to = "can you",
+        },
+        
         -- Fix "weiß not" -> "don't know"
         {
             from = "weiß not ",
