@@ -127,7 +127,7 @@ function WDTS_TitanPanel.Register()
         tooltipTextFunction = "TitanPanelWDTSButton_GetTooltipText",
         onClick = "TitanPanelWDTSButton_OnClick", -- Register click handler in registry
         cat = "Information", -- Use string literal, not variable
-        version = "0.5.0",
+        version = "0.6.0",
         icon = "Interface\\Icons\\INV_Letter_01",
         iconWidth = 16,
         savedVariables = {
