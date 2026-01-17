@@ -262,22 +262,36 @@ WDTS_Lang_fr_Patterns = {
         to = "buying %1 %2 gold",
     },
     
-    -- Question patterns with "est-ce que"
+    -- Question patterns with "est-ce que" (HIGH PRIORITY - must match before other patterns)
+    {
+        from = "est%-ce que tu veux (.+)%?",
+        to = "do you want %1",
+        priority = 15,
+    },
+    {
+        from = "est%-ce que tu veux (.+)",
+        to = "do you want %1",
+        priority = 15,
+    },
     {
         from = "est%-ce que tu (.+)",
         to = "do you %1",
+        priority = 14,
     },
     {
         from = "est%-ce que vous (.+)",
         to = "do you %1",
+        priority = 14,
     },
     {
         from = "est%-ce qu'il (.+)",
         to = "does he %1",
+        priority = 14,
     },
     {
         from = "est%-ce qu'elle (.+)",
         to = "does she %1",
+        priority = 14,
     },
     
     -- "quelqu'un peut me donner X" -> "can someone give me X"
@@ -604,5 +618,725 @@ WDTS_Lang_fr_Patterns = {
     {
         from = "c'est une (.+)",
         to = "it's a %1",
+    },
+    
+    -- ============================================
+    -- PAST TENSE PATTERNS (Passé Composé)
+    -- ============================================
+    -- "j'ai fait X" -> "I did X"
+    {
+        from = "j'ai fait (.+)",
+        to = "I did %1",
+        priority = 10,
+    },
+    {
+        from = "tu as fait (.+)",
+        to = "you did %1",
+        priority = 10,
+    },
+    {
+        from = "il a fait (.+)",
+        to = "he did %1",
+        priority = 10,
+    },
+    {
+        from = "elle a fait (.+)",
+        to = "she did %1",
+        priority = 10,
+    },
+    {
+        from = "nous avons fait (.+)",
+        to = "we did %1",
+        priority = 10,
+    },
+    {
+        from = "vous avez fait (.+)",
+        to = "you did %1",
+        priority = 10,
+    },
+    {
+        from = "ils ont fait (.+)",
+        to = "they did %1",
+        priority = 10,
+    },
+    
+    -- "j'ai dit X" -> "I said X"
+    {
+        from = "j'ai dit (.+)",
+        to = "I said %1",
+        priority = 10,
+    },
+    {
+        from = "tu as dit (.+)",
+        to = "you said %1",
+        priority = 10,
+    },
+    {
+        from = "il a dit (.+)",
+        to = "he said %1",
+        priority = 10,
+    },
+    
+    -- "j'ai été X" -> "I was X"
+    {
+        from = "j'ai été (.+)",
+        to = "I was %1",
+        priority = 10,
+    },
+    {
+        from = "tu as été (.+)",
+        to = "you were %1",
+        priority = 10,
+    },
+    
+    -- "je suis allé à X" -> "I went to X"
+    {
+        from = "je suis allé à (.+)",
+        to = "I went to %1",
+        priority = 10,
+    },
+    {
+        from = "je suis allée à (.+)",
+        to = "I went to %1",
+        priority = 10,
+    },
+    {
+        from = "tu es allé à (.+)",
+        to = "you went to %1",
+        priority = 10,
+    },
+    {
+        from = "il est allé à (.+)",
+        to = "he went to %1",
+        priority = 10,
+    },
+    {
+        from = "nous sommes allés à (.+)",
+        to = "we went to %1",
+        priority = 10,
+    },
+    
+    -- "j'ai eu X" -> "I had X"
+    {
+        from = "j'ai eu (.+)",
+        to = "I had %1",
+        priority = 10,
+    },
+    {
+        from = "tu as eu (.+)",
+        to = "you had %1",
+        priority = 10,
+    },
+    
+    -- ============================================
+    -- FUTURE TENSE PATTERNS (Futur Simple)
+    -- ============================================
+    -- "je ferai X" -> "I will do X"
+    {
+        from = "je ferai (.+)",
+        to = "I will do %1",
+        priority = 10,
+    },
+    {
+        from = "tu feras (.+)",
+        to = "you will do %1",
+        priority = 10,
+    },
+    {
+        from = "il fera (.+)",
+        to = "he will do %1",
+        priority = 10,
+    },
+    {
+        from = "nous ferons (.+)",
+        to = "we will do %1",
+        priority = 10,
+    },
+    
+    -- "j'irai à X" -> "I will go to X"
+    {
+        from = "j'irai à (.+)",
+        to = "I will go to %1",
+        priority = 10,
+    },
+    {
+        from = "tu iras à (.+)",
+        to = "you will go to %1",
+        priority = 10,
+    },
+    
+    -- "je vais faire X" -> "I'm going to do X" (futur proche)
+    {
+        from = "je vais faire (.+)",
+        to = "I'm going to do %1",
+        priority = 10,
+    },
+    {
+        from = "tu vas faire (.+)",
+        to = "you're going to do %1",
+        priority = 10,
+    },
+    {
+        from = "il va faire (.+)",
+        to = "he's going to do %1",
+        priority = 10,
+    },
+    {
+        from = "nous allons faire (.+)",
+        to = "we're going to do %1",
+        priority = 10,
+    },
+    
+    -- ============================================
+    -- MODAL VERB PATTERNS
+    -- ============================================
+    -- "je dois faire X" -> "I must do X"
+    {
+        from = "je dois (.+)",
+        to = "I must %1/have to %1",
+        priority = 10,
+    },
+    {
+        from = "tu dois (.+)",
+        to = "you must %1/have to %1",
+        priority = 10,
+    },
+    {
+        from = "il doit (.+)",
+        to = "he must %1/has to %1",
+        priority = 10,
+    },
+    
+    -- "je veux faire X" -> "I want to do X"
+    {
+        from = "je veux (.+)",
+        to = "I want to %1",
+        priority = 10,
+    },
+    {
+        from = "tu veux (.+)",
+        to = "you want to %1",
+        priority = 10,
+    },
+    
+    -- ============================================
+    -- SUBORDINATE CLAUSE PATTERNS
+    -- ============================================
+    -- "quand X alors Y" -> "when X then Y"
+    {
+        from = "quand (.+) alors (.+)",
+        to = "when %1 then %2",
+        priority = 12,
+    },
+    {
+        from = "quand (.+) (.+)",
+        to = "when %1 %2",
+        priority = 10,
+    },
+    
+    -- "parce que X Y" -> "because X Y"
+    {
+        from = "parce que (.+) (.+)",
+        to = "because %1 %2",
+        priority = 10,
+    },
+    
+    -- "que X Y" -> "that X Y"
+    {
+        from = "que (.+) (.+)",
+        to = "that %1 %2",
+        priority = 10,
+    },
+    
+    -- "bien que X Y" -> "although X Y"
+    {
+        from = "bien que (.+) (.+)",
+        to = "although %1 %2",
+        priority = 10,
+    },
+    
+    -- "avant que X Y" -> "before X Y"
+    {
+        from = "avant que (.+) (.+)",
+        to = "before %1 %2",
+        priority = 10,
+    },
+    
+    -- "après que X Y" -> "after X Y"
+    {
+        from = "après que (.+) (.+)",
+        to = "after %1 %2",
+        priority = 10,
+    },
+    
+    -- "pendant que X Y" -> "while X Y"
+    {
+        from = "pendant que (.+) (.+)",
+        to = "while %1 %2",
+        priority = 10,
+    },
+    
+    -- ============================================
+    -- QUESTION PATTERNS WITH MODAL VERBS
+    -- ============================================
+    -- "peux-tu faire X?" -> "can you do X?"
+    {
+        from = "peux%-tu faire (.+)%?",
+        to = "can you do %1",
+        priority = 12,
+    },
+    {
+        from = "peux tu faire (.+)%?",
+        to = "can you do %1",
+        priority = 12,
+    },
+    {
+        from = "pouvez%-vous faire (.+)%?",
+        to = "can you do %1",
+        priority = 12,
+    },
+    
+    -- "veux-tu faire X?" -> "do you want to do X?"
+    {
+        from = "veux%-tu faire (.+)%?",
+        to = "do you want to do %1",
+        priority = 12,
+    },
+    {
+        from = "veux tu faire (.+)%?",
+        to = "do you want to do %1",
+        priority = 12,
+    },
+    
+    -- "dois-tu faire X?" -> "do you have to do X?"
+    {
+        from = "dois%-tu faire (.+)%?",
+        to = "do you have to do %1",
+        priority = 12,
+    },
+    
+    -- ============================================
+    -- IMPERATIVE PATTERNS
+    -- ============================================
+    -- "viens X" -> "come X"
+    {
+        from = "viens (.+)",
+        to = "come %1",
+        priority = 10,
+    },
+    {
+        from = "venez (.+)",
+        to = "come %1",
+        priority = 10,
+    },
+    
+    -- "fais X" -> "do X"
+    {
+        from = "fais (.+)",
+        to = "do %1",
+        priority = 10,
+    },
+    {
+        from = "faites (.+)",
+        to = "do %1",
+        priority = 10,
+    },
+    
+    -- "attends X" -> "wait X"
+    {
+        from = "attends (.+)",
+        to = "wait %1",
+        priority = 10,
+    },
+    {
+        from = "attendez (.+)",
+        to = "wait %1",
+        priority = 10,
+    },
+    
+    -- "aide-moi X" -> "help me X"
+    {
+        from = "aide%-moi (.+)",
+        to = "help me %1",
+        priority = 10,
+    },
+    {
+        from = "aidez%-moi (.+)",
+        to = "help me %1",
+        priority = 10,
+    },
+    
+    -- ============================================
+    -- LOCATION + ACTION PATTERNS
+    -- ============================================
+    -- "je suis à X" -> "I am at X"
+    {
+        from = "je suis à (.+)",
+        to = "I am at %1",
+        priority = 10,
+    },
+    {
+        from = "tu es à (.+)",
+        to = "you are at %1",
+        priority = 10,
+    },
+    {
+        from = "il est à (.+)",
+        to = "he is at %1",
+        priority = 10,
+    },
+    {
+        from = "nous sommes à (.+)",
+        to = "we are at %1",
+        priority = 10,
+    },
+    
+    -- "je suis dans X" -> "I am in X"
+    {
+        from = "je suis dans (.+)",
+        to = "I am in %1",
+        priority = 10,
+    },
+    {
+        from = "tu es dans (.+)",
+        to = "you are in %1",
+        priority = 10,
+    },
+    {
+        from = "il est dans (.+)",
+        to = "he is in %1",
+        priority = 10,
+    },
+    
+    -- ============================================
+    -- POSSESSION PATTERNS
+    -- ============================================
+    -- "j'ai X" -> "I have X"
+    {
+        from = "j'ai (.+)",
+        to = "I have %1",
+        priority = 10,
+    },
+    {
+        from = "tu as (.+)",
+        to = "you have %1",
+        priority = 10,
+    },
+    {
+        from = "il a (.+)",
+        to = "he has %1",
+        priority = 10,
+    },
+    {
+        from = "nous avons (.+)",
+        to = "we have %1",
+        priority = 10,
+    },
+    {
+        from = "vous avez (.+)",
+        to = "you have %1",
+        priority = 10,
+    },
+    {
+        from = "ils ont (.+)",
+        to = "they have %1",
+        priority = 10,
+    },
+    
+    -- "j'ai pas de X" -> "I have no X"
+    {
+        from = "j'ai pas de (.+)",
+        to = "I have no %1",
+        priority = 10,
+    },
+    {
+        from = "tu as pas de (.+)",
+        to = "you have no %1",
+        priority = 10,
+    },
+    
+    -- ============================================
+    -- ACTION + OBJECT PATTERNS
+    -- ============================================
+    -- "je fais X" -> "I'm doing X"
+    {
+        from = "je fais (.+)",
+        to = "I'm doing %1",
+        priority = 10,
+    },
+    {
+        from = "tu fais (.+)",
+        to = "you're doing %1",
+        priority = 10,
+    },
+    {
+        from = "il fait (.+)",
+        to = "he's doing %1",
+        priority = 10,
+    },
+    {
+        from = "nous faisons (.+)",
+        to = "we're doing %1",
+        priority = 10,
+    },
+    
+    -- ============================================
+    -- TIME + ACTION PATTERNS
+    -- ============================================
+    -- "aujourd'hui X" -> "today X"
+    {
+        from = "aujourd'hui (.+)",
+        to = "today %1",
+        priority = 8,
+    },
+    {
+        from = "demain (.+)",
+        to = "tomorrow %1",
+        priority = 8,
+    },
+    {
+        from = "hier (.+)",
+        to = "yesterday %1",
+        priority = 8,
+    },
+    {
+        from = "maintenant (.+)",
+        to = "now %1",
+        priority = 8,
+    },
+    {
+        from = "bientôt (.+)",
+        to = "soon %1",
+        priority = 8,
+    },
+    {
+        from = "plus tard (.+)",
+        to = "later %1",
+        priority = 8,
+    },
+    
+    -- ============================================
+    -- MORE QUESTION PATTERNS
+    -- ============================================
+    -- "qu'est-ce que tu fais X" -> "what are you doing X"
+    {
+        from = "qu'est%-ce que tu fais (.+)",
+        to = "what are you doing %1",
+        priority = 12,
+    },
+    {
+        from = "qu'est ce que tu fais (.+)",
+        to = "what are you doing %1",
+        priority = 12,
+    },
+    
+    -- "où es-tu X" -> "where are you X"
+    {
+        from = "où es%-tu (.+)",
+        to = "where are you %1",
+        priority = 12,
+    },
+    {
+        from = "où êtes%-vous (.+)",
+        to = "where are you %1",
+        priority = 12,
+    },
+    
+    -- ============================================
+    -- REQUEST PATTERNS
+    -- ============================================
+    -- "peux-tu m'aider avec X" -> "can you help me with X"
+    {
+        from = "peux%-tu m'aider avec (.+)",
+        to = "can you help me with %1",
+        priority = 12,
+    },
+    {
+        from = "pouvez%-vous m'aider avec (.+)",
+        to = "can you help me with %1",
+        priority = 12,
+    },
+    
+    -- "peux-tu me donner X" -> "can you give me X"
+    {
+        from = "peux%-tu me donner (.+)",
+        to = "can you give me %1",
+        priority = 12,
+    },
+    {
+        from = "pouvez%-vous me donner (.+)",
+        to = "can you give me %1",
+        priority = 12,
+    },
+    
+    -- "peux-tu me montrer X" -> "can you show me X"
+    {
+        from = "peux%-tu me montrer (.+)",
+        to = "can you show me %1",
+        priority = 12,
+    },
+    {
+        from = "pouvez%-vous me montrer (.+)",
+        to = "can you show me %1",
+        priority = 12,
+    },
+    
+    -- ============================================
+    -- TRADING PATTERNS (EXPANDED)
+    -- ============================================
+    -- "je vends X pour Y or" -> "selling X for Y gold"
+    {
+        from = "je vends (.+) pour (.+) or",
+        to = "selling %1 for %2 gold",
+        priority = 10,
+    },
+    {
+        from = "j'achète (.+) pour (.+) or",
+        to = "buying %1 for %2 gold",
+        priority = 10,
+    },
+    {
+        from = "je vends (.+) pour (.+) argent",
+        to = "selling %1 for %2 silver",
+        priority = 10,
+    },
+    {
+        from = "j'achète (.+) pour (.+) argent",
+        to = "buying %1 for %2 silver",
+        priority = 10,
+    },
+    
+    -- "combien coûte X" -> "how much does X cost"
+    {
+        from = "combien coûte (.+)",
+        to = "how much does %1 cost",
+        priority = 10,
+    },
+    {
+        from = "quel est le prix de (.+)",
+        to = "what is the price of %1",
+        priority = 10,
+    },
+    
+    -- ============================================
+    -- LFG PATTERNS (EXPANDED)
+    -- ============================================
+    -- "je cherche X pour Y" -> "looking for X for Y"
+    {
+        from = "je cherche (.+) pour (.+)",
+        to = "looking for %1 for %2",
+        priority = 10,
+    },
+    {
+        from = "on cherche (.+) pour (.+)",
+        to = "looking for %1 for %2",
+        priority = 10,
+    },
+    {
+        from = "j'ai besoin de (.+) pour (.+)",
+        to = "need %1 for %2",
+        priority = 10,
+    },
+    {
+        from = "on a besoin de (.+) pour (.+)",
+        to = "need %1 for %2",
+        priority = 10,
+    },
+    
+    -- ============================================
+    -- RELATIVE CLAUSE PATTERNS
+    -- ============================================
+    -- "quelqu'un qui peut X" -> "someone who can X"
+    {
+        from = "quelqu'un qui peut (.+)",
+        to = "someone who can %1",
+        priority = 10,
+    },
+    {
+        from = "quelqu'un qui veut (.+)",
+        to = "someone who wants %1",
+        priority = 10,
+    },
+    {
+        from = "quelqu'un qui a (.+)",
+        to = "someone who has %1",
+        priority = 10,
+    },
+    
+    -- "qui peut X" -> "who can X"
+    {
+        from = "qui peut (.+)",
+        to = "who can %1",
+        priority = 10,
+    },
+    {
+        from = "qui veut (.+)",
+        to = "who wants %1",
+        priority = 10,
+    },
+    {
+        from = "qui a (.+)",
+        to = "who has %1",
+        priority = 10,
+    },
+    
+    -- ============================================
+    -- COMPARISON PATTERNS
+    -- ============================================
+    -- "mieux que X" -> "better than X"
+    {
+        from = "mieux que (.+)",
+        to = "better than %1",
+        priority = 10,
+    },
+    {
+        from = "pire que (.+)",
+        to = "worse than %1",
+        priority = 10,
+    },
+    {
+        from = "plus que (.+)",
+        to = "more than %1",
+        priority = 10,
+    },
+    {
+        from = "moins que (.+)",
+        to = "less than %1",
+        priority = 10,
+    },
+    {
+        from = "comme (.+)",
+        to = "like %1",
+        priority = 10,
+    },
+    
+    -- ============================================
+    -- CONDITIONAL PATTERNS
+    -- ============================================
+    -- "si X alors Y" -> "if X then Y"
+    {
+        from = "si (.+) alors (.+)",
+        to = "if %1 then %2",
+        priority = 10,
+    },
+    {
+        from = "si (.+) (.+)",
+        to = "if %1 %2",
+        priority = 8,
+    },
+    
+    -- ============================================
+    -- PURPOSE PATTERNS (pour)
+    -- ============================================
+    -- "pour X Y" -> "in order to Y X"
+    {
+        from = "pour (.+) (.+)",
+        to = "in order to %2 %1",
+        priority = 10,
+    },
+    {
+        from = "afin de (.+) (.+)",
+        to = "so that %1 %2",
+        priority = 10,
     },
 }
