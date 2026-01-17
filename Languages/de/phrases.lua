@@ -1182,4 +1182,130 @@ WDTS_Lang_de_Phrases = {
     ["natürlich"] = "naturally/of course",
     ["klar"] = "sure/clear",
     ["genau"] = "exactly",
+    
+    -- ============================================
+    -- NAMING AND IDENTIFICATION PHRASES
+    -- ============================================
+    ["wie heißt"] = "what is called/what is the name of",
+    ["wie heißt das"] = "what is that called/what is the name of that",
+    ["wie heißt die"] = "what is the name of the",
+    ["wie heißt der"] = "what is the name of the",
+    ["wie heißt es"] = "what is it called/what is the name of it",
+    ["wie heißen"] = "what are called/what are the names of",
+    ["heißt das"] = "is that called/is that named",
+    ["das heißt"] = "that means/that is called",
+    ["wie nennt man"] = "what do you call/what is called",
+    ["wie nennt man das"] = "what do you call that",
+    
+    -- ============================================
+    -- LOCATION/POSITION PHRASES
+    -- ============================================
+    ["in der nähe"] = "nearby/in the vicinity",
+    ["in der nähe von"] = "near/in the vicinity of",
+    ["in nähe"] = "near/in vicinity",
+    ["nahe bei"] = "near/close to",
+    ["nahe bei mir"] = "near me/close to me",
+    ["nahe bei dir"] = "near you/close to you",
+    ["in der umgebung"] = "in the surroundings/in the area",
+    ["in der umgebung von"] = "in the area of",
+    ["in diesem bereich"] = "in this area/in this zone",
+    ["an diesem ort"] = "at this place/at this location",
+    ["an dieser stelle"] = "at this spot/at this place",
+    ["in der position"] = "at the position",
+    ["an der position"] = "at the position",
+    ["gegenüber von"] = "opposite of/across from",
+    ["daneben von"] = "next to/beside",
+    ["dazwischen von"] = "in between",
+    ["darüber von"] = "above/over",
+    ["darunter von"] = "below/under",
+    ["davor von"] = "in front of",
+    ["dahinter von"] = "behind",
+    
+    -- ============================================
+    -- NOTIFICATION/ALERT PHRASES
+    -- ============================================
+    ["eine meldung geben"] = "give a message/give a notification",
+    ["eine meldung bekommen"] = "get a message/get a notification",
+    ["eine benachrichtigung geben"] = "give a notification",
+    ["eine benachrichtigung bekommen"] = "get a notification",
+    ["eine warnung geben"] = "give a warning",
+    ["eine warnung bekommen"] = "get a warning",
+    ["benachrichtigen wenn"] = "notify when",
+    ["benachrichtigen falls"] = "notify if",
+    ["benachrichtigung wenn"] = "notification when",
+    ["benachrichtigung falls"] = "notification if",
+    ["meldung wenn"] = "message when/notification when",
+    ["meldung falls"] = "message if/notification if",
+    
+    -- ============================================
+    -- ELITE/MONSTER RELATED PHRASES
+    -- ============================================
+    ["ein elite in der nähe"] = "an elite nearby/an elite in the vicinity",
+    ["elite in der nähe"] = "elite nearby/elite in the vicinity",
+    ["wenn ein elite in der nähe ist"] = "when an elite is nearby/when an elite is in the vicinity",
+    ["falls ein elite in der nähe ist"] = "if an elite is nearby/if an elite is in the vicinity",
+    ["elite in der umgebung"] = "elite in the area/elite in the surroundings",
+    ["elite nahe bei"] = "elite near/elite close to",
+    ["elite in der nähe von"] = "elite near/elite in the vicinity of",
+    ["mob in der nähe"] = "mob nearby/mob in the vicinity",
+    ["mob nahe bei"] = "mob near/mob close to",
+    ["gegner in der nähe"] = "enemy nearby/enemy in the vicinity",
+    ["gegner nahe bei"] = "enemy near/enemy close to",
+    ["feind in der nähe"] = "enemy nearby/enemy in the vicinity",
+    ["feind nahe bei"] = "enemy near/enemy close to",
+    
+    -- ============================================
+    -- ADDON RELATED PHRASES
+    -- ============================================
+    ["das addon das"] = "the addon that",
+    ["ein addon das"] = "an addon that",
+    ["addon das mir"] = "addon that gives me",
+    ["addon das eine meldung gibt"] = "addon that gives a message/addon that gives a notification",
+    ["addon das benachrichtigt"] = "addon that notifies",
+    ["addon das eine warnung gibt"] = "addon that gives a warning",
+    ["addon für"] = "addon for",
+    ["addon zum"] = "addon for",
+    ["welches addon"] = "which addon",
+    ["welches addon ist das"] = "which addon is that",
+    ["welches addon macht"] = "which addon does",
+    ["welches addon gibt"] = "which addon gives",
+    
+    -- ============================================
+    -- MORE QUESTION PHRASES
+    -- ============================================
+    ["was ist das für ein"] = "what kind of a is that",
+    ["was ist das für eine"] = "what kind of a is that",
+    ["was ist das für"] = "what kind of is that",
+    ["wer ist das"] = "who is that",
+    ["wer ist der"] = "who is the",
+    ["wer ist die"] = "who is the",
+    ["wo ist das"] = "where is that",
+    ["wo ist der"] = "where is the",
+    ["wo ist die"] = "where is the",
+    ["wann ist das"] = "when is that",
+    ["warum ist das"] = "why is that",
+    ["wieso ist das"] = "why is that",
+    ["wie ist das"] = "how is that",
+    ["wie kann ich"] = "how can I",
+    ["wie kann man"] = "how can you/how can one",
+    ["wie kann ich das"] = "how can I that",
+    ["wie kann man das"] = "how can you that/how can one that",
+    
+    -- ============================================
+    -- MORE RELATIVE CLAUSE PHRASES
+    -- ============================================
+    ["das mir"] = "that gives me",
+    ["das dir"] = "that gives you",
+    ["das ihm"] = "that gives him",
+    ["das ihr"] = "that gives her",
+    ["das uns"] = "that gives us",
+    ["das euch"] = "that gives you (plural)",
+    ["das ihnen"] = "that gives them",
+    ["mir gibt"] = "gives me",
+    ["dir gibt"] = "gives you",
+    ["ihm gibt"] = "gives him",
+    ["ihr gibt"] = "gives her",
+    ["uns gibt"] = "gives us",
+    ["euch gibt"] = "gives you (plural)",
+    ["ihnen gibt"] = "gives them",
 }

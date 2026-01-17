@@ -6261,6 +6261,76 @@ WDTS_Lang_de_Tokens = {
     ["gebiete"] = "areas/regions",
     
     -- ============================================
+    -- NAMING AND IDENTIFICATION
+    -- ============================================
+    ["heißt"] = "is called/is named",
+    ["heißt"] = "is called/is named",
+    ["heißen"] = "are called/are named",
+    ["heisse"] = "is called/is named", -- Alternative spelling
+    ["heissen"] = "are called/are named", -- Alternative spelling
+    ["nähe"] = "vicinity/nearby",
+    ["in der nähe"] = "nearby/in the vicinity",
+    ["nahe"] = "near/close",
+    ["nahe bei"] = "near/close to",
+    ["in nähe"] = "near/in vicinity",
+    
+    -- ============================================
+    -- MORE LOCATION/POSITION WORDS
+    -- ============================================
+    ["umgebung"] = "surroundings/area",
+    ["umgebungen"] = "surroundings",
+    ["bereich"] = "area/zone",
+    ["bereiche"] = "areas/zones",
+    ["ort"] = "place/location",
+    ["orte"] = "places/locations",
+    ["position"] = "position",
+    ["positionen"] = "positions",
+    ["standort"] = "location/position",
+    ["standorte"] = "locations/positions",
+    ["plätz"] = "spot/place",
+    ["plätze"] = "spots/places",
+    ["stellen"] = "spot/place",
+    ["stelle"] = "spot/place",
+    ["gegenüber"] = "opposite/across",
+    ["daneben"] = "next to/beside",
+    ["dazwischen"] = "in between",
+    ["darüber"] = "above/over",
+    ["darunter"] = "below/under",
+    ["davor"] = "in front of/before",
+    ["dahinter"] = "behind",
+    ["darin"] = "inside/in it",
+    ["darauf"] = "on it/on top",
+    ["dabei"] = "with it/at it",
+    ["dafür"] = "for it",
+    ["dagegen"] = "against it/on the other hand",
+    ["dadurch"] = "through it/by that",
+    ["darum"] = "around it/that's why",
+    ["daran"] = "on it/at it",
+    ["daraufhin"] = "after that/thereupon",
+    ["deshalb"] = "therefore/that's why",
+    ["deswegen"] = "therefore/because of that",
+    ["demnach"] = "accordingly/therefore",
+    ["folglich"] = "consequently/therefore",
+    
+    -- ============================================
+    -- NOTIFICATION/ALERT WORDS
+    -- ============================================
+    ["benachrichtigung"] = "notification",
+    ["benachrichtigungen"] = "notifications",
+    ["alert"] = "alert",
+    ["alerts"] = "alerts",
+    ["warnung"] = "warning",
+    ["warnungen"] = "warnings",
+    ["hinweis"] = "hint/notice",
+    ["hinweise"] = "hints/notices",
+    ["anzeige"] = "display/indication",
+    ["anzeigen"] = "displays",
+    ["benachrichtigen"] = "notify",
+    ["benachrichtigst"] = "notify",
+    ["benachrichtigt"] = "notifies",
+    ["benachrichtigt"] = "notified",
+    
+    -- ============================================
     -- END OF VOCABULARY EXPANSION
     -- ============================================
 }
