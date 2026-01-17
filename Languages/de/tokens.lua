@@ -2258,6 +2258,7 @@ WDTS_Lang_de_Tokens = {
     -- TRANSPORTATION
     -- ============================================
     ["auto"] = "car",
+    ["autoinvite"] = "autoinvite", -- Gaming command (keep as English)
     ["fahrrad"] = "bicycle",
     ["zug"] = "train",
     ["bus"] = "bus",
@@ -5385,6 +5386,9 @@ WDTS_Lang_de_Tokens = {
     -- Additional vocabulary
     ["söldner"] = "mercenary",
     ["söldnerquest"] = "mercenary quest",
+    
+    -- Gaming slang
+    ["zocken"] = "playing/gaming", -- German gaming slang for "playing games"
     
     -- ============================================
     -- END OF VOCABULARY EXPANSION

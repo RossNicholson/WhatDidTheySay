@@ -2004,6 +2004,7 @@ WDTS_Lang_de_Phrases = {
     ["seid ihr dabei"] = "are you in (plural)",
     ["wär dabei"] = "would be in/would join",
     ["wäre dabei"] = "would be in/would join",
+    ["für autoinvite"] = "for autoinvite", -- Gaming command phrase
     ["wer kommt"] = "who's coming",
     ["wer hat bock"] = "who wants to/who's interested",
     ["wer ist dabei"] = "who's in",
