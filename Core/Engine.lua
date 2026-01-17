@@ -1380,10 +1380,32 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
                     end
                     
                     -- Calculate match score
+                    -- Lower threshold for single strong German words (like "Eisengegengewicht")
+                    -- If we have a vocabulary word that's clearly German (not a loanword), count it
+                    local hasStrongGermanWord = false
+                    if languageVocabularyWords >= 1 then
+                        -- Check if any vocabulary word is clearly German (long compound words, specific German terms)
+                        for _, token in ipairs(tokens) do
+                            if token.type == "word" then
+                                local word = token.value:lower()
+                                if langPack.tokens[word] then
+                                    local translation = langPack.tokens[word]
+                                    -- If it's a compound word (long) or clearly German term, it's a strong indicator
+                                    if #word >= 10 or word:find("gegengewicht") or word:find("schließkassette") or 
+                                       word:find("magierstab") or word:find("kriegsaxt") then
+                                        hasStrongGermanWord = true
+                                        break
+                                    end
+                                end
+                            end
+                        end
+                    end
+                    
                     if hasLanguageCharacters or 
                        languageFunctionWords >= 2 or 
                        (languageFunctionWords >= 1 and languageVocabularyWords >= 1) or
-                       languageVocabularyWords >= 2 then
+                       languageVocabularyWords >= 2 or
+                       hasStrongGermanWord then
                         if matchScore > bestMatchScore then
                             bestMatchScore = matchScore
                             bestMatchLang = lang
