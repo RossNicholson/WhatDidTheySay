@@ -522,7 +522,10 @@ WDTS_Lang_de_Tokens = {
     ["nen"] = "a", -- Colloquial form of "einen"
     ["der"] = "the", -- Can mean "who/that" in context, but also "the"
     ["die"] = "the", -- Can mean "who/that" in context, but also "the"
-    ["das"] = "the", -- Can mean "that" in context, but also "the"
+    ["das"] = {
+        default = "the",
+        pronoun = "that", -- "das geht" = "that works"
+    },
     -- Note: "den" is context-aware - handled below
     ["dem"] = "the", -- Also "whom/that"
     ["des"] = "the",
@@ -547,6 +550,8 @@ WDTS_Lang_de_Tokens = {
     -- Pronouns and people
     ["man"] = "one/you", -- Impersonal pronoun: "Kann man" = "Can one/Can you"
     ["es"] = "it", -- Neuter pronoun: "nannte man es" = "one called it"
+    ["er"] = "he", -- "er geht" = "he goes"
+    ["sie"] = "she/they", -- Can mean "she" or "they" depending on context
     ["jemand"] = "someone",
     ["jmd"] = "someone", -- Abbreviation for jemand
     ["irgendjemand"] = "anyone",
@@ -2084,4 +2089,12 @@ WDTS_Lang_de_Tokens = {
     ["levelbereich"] = "level range",
     ["mindestlevel"] = "minimum level",
     ["erforderliches level"] = "required level",
+    
+    -- Buildings and Structures
+    ["turm"] = "tower", -- "auf den Turm" = "on the tower"
+    ["türme"] = "towers",
+    ["tower"] = "tower", -- Also accept English
+    ["berg"] = "mountain", -- "auf den Berg" = "on the mountain"
+    ["berge"] = "mountains",
+    ["burg"] = "castle/keep",
 }

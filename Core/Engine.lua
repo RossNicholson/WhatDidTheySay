@@ -599,6 +599,110 @@ local function TryCompoundDecomposition(word, langPack)
     return nil
 end
 
+-- Select the best translation option from multiple choices based on context
+local function SelectBestTranslationOption(word, options, contextBefore, contextAfter, prevToken, nextToken)
+    -- "auf" = "on/up/at" -> choose based on context
+    if word == "auf" then
+        -- "auf den Turm" = "on the tower" (spatial location)
+        if nextToken and nextToken.type == "word" then
+            local nextLower = nextToken.value:lower()
+            -- Before articles (den, die, das) -> usually "on" or "at"
+            if nextLower == "den" or nextLower == "die" or nextLower == "das" then
+                return "on" -- "on the tower", "on the hill", etc.
+            end
+            -- Before location nouns -> "on" or "at"
+            if nextLower == "turm" or nextLower == "berg" or nextLower == "hügel" or
+               nextLower == "tisch" or nextLower == "dach" or nextLower == "tower" then
+                return "on"
+            end
+        end
+        -- Default to "on" for most cases (most common)
+        return "on"
+    end
+    
+    -- "geht" = "goes/works" -> choose based on context
+    if word == "geht" then
+        -- "das geht" = "that works"
+        -- Check original value to catch "das" before it's translated
+        if prevToken then
+            local prevOriginal = (prevToken.original or prevToken.value):lower()
+            if prevOriginal == "das" then
+                return "works"
+            end
+        end
+        -- Also check contextBefore array (original values)
+        if #contextBefore > 0 then
+            local lastContext = contextBefore[#contextBefore]
+            if lastContext == "das" then
+                return "works"
+            end
+        end
+        -- "er/sie/es geht" = "he/she/it goes"
+        return "goes"
+    end
+    
+    -- "das" = "the/that" -> choose based on context (when translation has options)
+    if word == "das" then
+        -- If followed by verb, usually "that" (pronoun)
+        if nextToken and nextToken.type == "word" then
+            local nextLower = nextToken.value:lower()
+            -- Before verbs, "das" is usually "that"
+            if nextLower == "geht" or nextLower == "ist" or nextLower == "war" or 
+               nextLower == "wird" or nextLower == "hat" or nextLower == "kann" then
+                return "that"
+            end
+        end
+        -- Default to "the" (article)
+        return "the"
+    end
+    
+    -- "süß" = "sweet/cute/nice" -> default to "sweet" (most literal)
+    if word == "süß" then
+        return "sweet"
+    end
+    
+    -- "zauberstab" = "wand/staff" -> "wand" is more specific
+    if word == "zauberstab" then
+        return "wand"
+    end
+    
+    -- "diszi" = "disc/disciple priest" -> "disc" is more common abbreviation
+    if word == "diszi" then
+        return "disc"
+    end
+    
+    -- "bock" = "want to/interest" -> "want to" in most contexts
+    if word == "bock" then
+        return "want to"
+    end
+    
+    -- "schaffen" = "manage/accomplish/can do" -> "manage" is most common
+    if word == "schaffen" then
+        return "manage"
+    end
+    
+    -- "zweit" = "two/second" -> "two" in most contexts
+    if word == "zweit" then
+        -- Check if "zu zweit" phrase (handled separately)
+        if prevToken and prevToken.value:lower() == "zu" then
+            return "two" -- "zu zweit" = "with two"
+        end
+        return "second"
+    end
+    
+    -- "laufen" = "running/going" -> check context
+    if word == "laufen" or word == "laufe" or word == "läuft" then
+        -- "ich laufe" = "I'm running/going" -> "going" is more natural
+        if #contextBefore > 0 and (contextBefore[#contextBefore] == "ich" or contextBefore[#contextBefore] == "i") then
+            return "going"
+        end
+        return "running"
+    end
+    
+    -- Default: return first option (most common/literal translation)
+    return options[1]
+end
+
 -- Get context-aware translation for a token
 -- Enhanced with expanded context window (3-5 words instead of just prev/next)
 local function GetContextualTranslation(token, tokenIdx, tokens, langPack)
@@ -730,7 +834,42 @@ local function GetContextualTranslation(token, tokenIdx, tokens, langPack)
         return "the"
     end
     
-    -- If translation is not a table, return it as-is (should be a string or nil)
+    -- Special case: "das" before verbs = "that", before nouns = "the"
+    if tokenKey == "das" then
+        if nextToken and nextToken.type == "word" then
+            local nextLower = nextToken.value:lower()
+            -- Before verbs, "das" is usually "that" (pronoun)
+            if nextLower == "geht" or nextLower == "ist" or nextLower == "war" or 
+               nextLower == "wird" or nextLower == "hat" or nextLower == "kann" or
+               nextLower == "macht" or nextLower == "geht" then
+                return "that"
+            end
+        end
+        -- Default to "the" (article)
+    end
+    
+    -- If translation is not a table, check if it's a string with multiple options
+    if type(translation) == "string" then
+        -- Check if translation contains multiple options separated by "/"
+        if translation:find("/") then
+            -- Split options and choose the best one based on context
+            local options = {}
+            for option in translation:gmatch("([^/]+)") do
+                table.insert(options, option:match("^%s*(.-)%s*$")) -- Trim whitespace
+            end
+            
+            if #options > 1 then
+                -- Try to choose best option based on context
+                local bestOption = SelectBestTranslationOption(tokenKey, options, contextBefore, contextAfter, prevToken, nextToken)
+                return bestOption or options[1] -- Fallback to first option
+            else
+                return translation
+            end
+        else
+            return translation
+        end
+    end
+    
     return translation
 end
 
