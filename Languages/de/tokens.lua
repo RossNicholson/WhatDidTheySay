@@ -41,6 +41,7 @@ WDTS_Lang_de_Tokens = {
     ["benötigt"] = "needs", -- Formal form
     ["will"] = "want",
     ["willst"] = "want",
+    ["bock"] = "want to/interest", -- Gaming slang: "hat wer bock?" = "does anyone want to?"
     ["kannst"] = "can you",
     ["kannste"] = "can you", -- Colloquial form of "kannst du" = "can you"
     ["kann"] = "can",
