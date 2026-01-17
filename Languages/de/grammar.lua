@@ -1343,6 +1343,32 @@ WDTS_Lang_de_Grammar = {
             from = "haven't (.+)° anything",
             to = "haven't %1 anything",
         },
+        -- Fix duplicate "geändert" at end
+        {
+            from = "haven't changed anything geändert°",
+            to = "haven't changed anything",
+        },
+        {
+            from = "haven't changed anything geändert",
+            to = "haven't changed anything",
+        },
+        {
+            from = "(.+) geändert°$",
+            to = "%1",
+        },
+        {
+            from = "(.+) geändert$",
+            to = "%1",
+        },
+        -- Fix "and then no more haven't" -> "and then no more, but I haven't"
+        {
+            from = "and then no more haven't",
+            to = "and then no more, but I haven't",
+        },
+        {
+            from = "then no more haven't",
+            to = "then no more, but I haven't",
+        },
         {
             from = "^weiß not ",
             to = "don't know ",
