@@ -559,6 +559,10 @@ WDTS_Lang_de_Tokens = {
     ["ich"] = "I", -- "ich glaub" = "I think"
     ["man"] = "one/you", -- Impersonal pronoun: "Kann man" = "Can one/Can you"
     ["es"] = "it", -- Neuter pronoun: "nannte man es" = "one called it"
+    ["dass"] = "that", -- Conjunction: "ich sagte dass" = "I said that"
+    ["gestern"] = "yesterday", -- Already exists, checking
+    ["konnte"] = "could", -- Past tense: "ich konnte" = "I could"
+    ["konntest"] = "could", -- "du konntest" = "you could"
     ["er"] = "he", -- "er geht" = "he goes"
     ["sie"] = "she/they", -- Can mean "she" or "they" depending on context
     ["jemand"] = "someone",
