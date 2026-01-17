@@ -892,5 +892,15 @@ WDTS_Lang_de_Grammar = {
             from = "so/also careful of everything/especially actually",
             to = "so be careful of everything actually",
         },
+        
+        -- Fix "a/an especially those" -> "no especially those" (ne = no)
+        {
+            from = "a/an especially those (.+)",
+            to = "no especially those %1",
+        },
+        {
+            from = "^a/an especially those$",
+            to = "no especially those",
+        },
     },
 }
