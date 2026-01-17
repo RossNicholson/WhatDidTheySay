@@ -1874,6 +1874,222 @@ WDTS_Lang_de_Grammar = {
             to = "selling %1 - Great %2",
             priority = 12,
         },
+        -- ============================================
+        -- LANGUAGETOOL-INSPIRED GRAMMAR RULES
+        -- Based on common German grammar patterns from LanguageTool
+        -- These address systematic word order and structure issues
+        -- ============================================
+        
+        -- Subordinate clause verb-final position
+        -- German: "wenn ich komme, dann..." -> "when I come, then..."
+        -- But German has verb at end in subordinate clauses: "wenn ich dann komme"
+        -- This rule handles cases where verb placement in subordinate clause is wrong
+        {
+            from = "when (.+) then (.+ verb)",
+            to = "when %1 %2 then",
+            priority = 12,
+            note = "Subordinate clause verb-final position (LanguageTool pattern)",
+        },
+        
+        -- Perfect tense with separable verbs
+        -- German: "ich habe aufgemacht" -> "I have opened" (not "I have up made")
+        -- This fixes cases where separable prefix isn't properly recombined
+        {
+            from = "have (up|down|in|out|away|back|over|under) (.+)",
+            to = "have %2",
+            priority = 12,
+            note = "Separable verb prefix in perfect tense",
+        },
+        {
+            from = "has (up|down|in|out|away|back|over|under) (.+)",
+            to = "has %2",
+            priority = 12,
+        },
+        
+        -- Modal verb + infinitive constructions
+        -- German: "ich muss gehen" -> "I must go" (not "I must to go")
+        -- Handle modal verbs that take bare infinitive
+        {
+            from = "must to (.+)",
+            to = "must %1",
+            priority = 15,
+            note = "Modal verb + bare infinitive",
+        },
+        {
+            from = "should to (.+)",
+            to = "should %1",
+            priority = 15,
+        },
+        {
+            from = "can to (.+)",
+            to = "can %1",
+            priority = 15,
+        },
+        {
+            from = "will to (.+)",
+            to = "will %1",
+            priority = 15,
+        },
+        {
+            from = "would to (.+)",
+            to = "would %1",
+            priority = 15,
+        },
+        
+        -- Relative clause verb placement
+        -- German: "der Mann, der die Quest gemacht hat" -> "the man who did the quest"
+        -- Ensure relative clause verbs are properly ordered
+        {
+            from = "who (.+) (has|have) (.+)",
+            to = "who %2 %3",
+            priority = 10,
+            note = "Relative clause verb order",
+        },
+        {
+            from = "who the (.+) (.+)",
+            to = "who %2 the %1",
+            priority = 8,
+            note = "Relative clause: fix object-verb order",
+        },
+        
+        -- Question inversion (V2 word order in German questions)
+        -- German: "Wo bist du?" -> "Where are you?" (subject-verb inversion)
+        -- Handle cases where inversion didn't happen
+        {
+            from = "^where you ",
+            to = "where are you ",
+            priority = 15,
+            note = "Question inversion (where)",
+        },
+        {
+            from = "^when you ",
+            to = "when do you ",
+            priority = 15,
+            note = "Question inversion (when)",
+        },
+        {
+            from = "^how you ",
+            to = "how do you ",
+            priority = 15,
+            note = "Question inversion (how)",
+        },
+        {
+            from = "^why you ",
+            to = "why do you ",
+            priority = 15,
+            note = "Question inversion (why)",
+        },
+        {
+            from = "^what you ",
+            to = "what do you ",
+            priority = 15,
+            note = "Question inversion (what)",
+        },
+        
+        -- Preposition + article contractions
+        -- German: "zum" = "zu dem", "zur" = "zu der"
+        -- These are often already handled, but ensure proper translation
+        {
+            from = "to the (.+) to",
+            to = "to %1",
+            priority = 12,
+            note = "Remove duplicate preposition",
+        },
+        
+        -- Past participle position in perfect tense
+        -- German: "Ich habe gesagt" -> "I have said" (participle after auxiliary)
+        -- Fix cases where participle is in wrong position
+        {
+            from = "have (.+) (said|done|made|seen|gone|come|taken|given)",
+            to = "have %2 %1",
+            priority = 10,
+            note = "Perfect tense participle position",
+        },
+        {
+            from = "has (.+) (said|done|made|seen|gone|come|taken|given)",
+            to = "has %2 %1",
+            priority = 10,
+        },
+        
+        -- Separable verb prefix at sentence end (verb-second rule)
+        -- German: "Ich mache die Tür auf" -> "I open the door"
+        -- When separable prefix is separated, it goes to end in German
+        -- But in English, it should be combined: "aufmachen" -> "open"
+        {
+            from = "(.+) (.+) (up|down|in|out|away|back|on|off)$",
+            to = "%1 %2%3",
+            priority = 8,
+            note = "Separable verb prefix recombination",
+        },
+        
+        -- Imperative verb forms
+        -- German: "Mach das!" -> "Do that!" (no subject in imperative)
+        -- Ensure imperatives don't have extra subjects
+        {
+            from = "^you (.+)$",
+            to = "%1",
+            priority = 5,
+            note = "Remove 'you' from imperative (context-dependent, low priority)",
+        },
+        
+        -- Genitive constructions
+        -- German: "des Mannes" -> "of the man"
+        -- Handle genitive properly when translated word-by-word
+        {
+            from = "of the (.+) the ",
+            to = "of the %1 ",
+            priority = 12,
+            note = "Genitive: remove duplicate article",
+        },
+        
+        -- Coordinating conjunctions word order
+        -- German: "und ich gehe" -> "and I go" (conjunction doesn't affect word order)
+        -- Ensure conjunctions don't cause incorrect word order
+        {
+            from = "^and (.+) (am|is|are) (.+)",
+            to = "and %1 %2 %3",
+            priority = 8,
+            note = "Conjunction word order preservation",
+        },
+        
+        -- Reflexive pronoun position
+        -- German: "Ich wasche mich" -> "I wash myself"
+        -- Reflexive pronouns in German come before/after verb depending on structure
+        {
+            from = "(.+) (myself|yourself|himself|herself|itself|ourselves|themselves) (.+)",
+            to = "%1 %3 %2",
+            priority = 10,
+            note = "Reflexive pronoun position in English",
+        },
+        
+        -- Adjective endings/noun phrases
+        -- German: "der große Mann" -> "the big man" (not "the big the man")
+        {
+            from = "the (.+) the (.+)",
+            to = "the %1 %2",
+            priority = 12,
+            note = "Noun phrase: remove duplicate article",
+        },
+        
+        -- Time expressions word order
+        -- German: "heute gehe ich" -> "today I go"
+        -- Time expressions often come first in German (V2 rule)
+        {
+            from = "today (.+) (am|is|are) (.+)",
+            to = "today %1 %2 %3",
+            priority = 8,
+            note = "Time expression word order",
+        },
+        {
+            from = "now (.+) (am|is|are) (.+)",
+            to = "now %1 %2 %3",
+            priority = 8,
+        },
+        
+        -- ============================================
+        -- END LANGUAGETOOL-INSPIRED RULES
+        -- ============================================
+        
         -- Fix "wts mur of the morts" -> "WTS Wall of the Dead"
         {
             from = "wts mur of the morts",
