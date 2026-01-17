@@ -77,12 +77,31 @@ function LanguagePackManager.DisablePack(lang)
 end
 
 -- Initialize default enabled languages
+-- Only enable language packs that are actually loaded (discovered)
 function LanguagePackManager.InitializeDefaults()
     if not WhatDidTheySayDB.enabledLanguages then
-        WhatDidTheySayDB.enabledLanguages = {
-            ["de"] = true, -- German enabled by default
-            ["en"] = false, -- English is target, not source
-        }
+        WhatDidTheySayDB.enabledLanguages = {}
+        
+        -- Discover available packs first
+        LanguagePackManager.DiscoverPacks()
+        local packs = LanguagePackManager.GetAvailablePacks()
+        
+        -- Enable all discovered language packs by default (except English, which is target)
+        -- Users can disable any language pack they don't want
+        for lang, packInfo in pairs(packs) do
+            if lang ~= "en" then
+                WhatDidTheySayDB.enabledLanguages[lang] = true -- Enable by default
+            else
+                WhatDidTheySayDB.enabledLanguages[lang] = false -- English is target, not source
+            end
+        end
+        
+        -- If no packs were discovered, fall back to old behavior (German enabled by default)
+        -- This handles cases where discovery happens before packs are loaded
+        if not next(WhatDidTheySayDB.enabledLanguages) then
+            WhatDidTheySayDB.enabledLanguages["de"] = true
+            WhatDidTheySayDB.enabledLanguages["en"] = false
+        end
     end
 end
 

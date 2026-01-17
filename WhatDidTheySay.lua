@@ -70,7 +70,9 @@ if not WhatDidTheySayDB then
         firstRun = true,
         showTranslationIndicator = "color", -- "none" = no indicator, "color" = subtle color tint only
         enabledLanguagePacks = {
-            de = true, -- German enabled by default
+            -- Language packs are discovered and enabled by default
+            -- Users can disable any language pack they don't want
+            -- This will be populated by LanguagePackManager.InitializeDefaults()
         },
     }
 else

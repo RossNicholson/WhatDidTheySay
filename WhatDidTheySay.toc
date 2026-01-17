@@ -21,6 +21,7 @@ Languages/en/tokens.lua
 Languages/en/intents.lua
 Languages/en/patterns.lua
 Languages/en/grammar.lua
+Languages/de/metadata.lua
 Languages/de/tokens.lua
 Languages/de/phrases.lua
 Languages/de/intents.lua

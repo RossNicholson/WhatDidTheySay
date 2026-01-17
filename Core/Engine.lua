@@ -37,6 +37,8 @@ function Engine.LoadLanguagePack(lang)
         intents = {},
         patterns = {},
         grammar = {},
+        articles = {}, -- Language-specific articles for phrase matching (e.g., ["der"] = true for German)
+        charHints = {}, -- Language-specific characters (e.g., ["ä"] = true for German)
         _phraseLookupCache = nil, -- Will be built on first use
     }
     
@@ -90,6 +92,34 @@ function Engine.LoadLanguagePack(lang)
     -- Load grammar
     if _G[packName .. "_Grammar"] then
         pack.grammar = _G[packName .. "_Grammar"]
+    end
+    
+    -- Load language-specific metadata (articles, character hints)
+    -- Articles are used for fuzzy phrase matching
+    local langMetadata = _G[packName .. "_Metadata"]
+    if langMetadata then
+        if langMetadata.articles then
+            pack.articles = langMetadata.articles
+        end
+        if langMetadata.charHints then
+            pack.charHints = langMetadata.charHints
+        end
+    else
+        -- Fallback: try to infer from language detection data
+        if LanguageDetect.CHAR_HINTS[lang] then
+            local charHintsTable = {}
+            for _, char in ipairs(LanguageDetect.CHAR_HINTS[lang]) do
+                charHintsTable[char] = true
+            end
+            pack.charHints = charHintsTable
+        end
+        -- Articles default to empty - each language pack should define them
+        -- Articles default to empty if not specified
+        -- Each language pack should define its articles in metadata.lua
+        -- For backward compatibility, German articles are loaded from metadata.lua if available
+        if not pack.articles or not next(pack.articles) then
+            pack.articles = {} -- Empty for languages without articles defined
+        end
     end
     
     Engine.languagePacks[lang] = pack
@@ -204,25 +234,40 @@ function Engine.ApplyPatterns(text, langPack)
 end
 
 -- Try to match separable verb (prefix + verb separated)
--- German separable verbs: "macht auf" = "opens", "aufmachen" = "open"
+-- Some languages (like German) have separable verbs: "macht auf" = "opens", "aufmachen" = "open"
+-- Uses language-specific morphology helper if available
 local function MatchSeparableVerb(tokens, startIdx, langPack)
     if not langPack or not langPack.phrases then
         return nil
     end
     
-    -- Use morphology helper if available, otherwise fallback to basic list
+    -- Determine which language pack this is to load appropriate morphology helper
+    local lang = nil
+    for l, pack in pairs(Engine.languagePacks) do
+        if pack == langPack then
+            lang = l
+            break
+        end
+    end
+    
+    -- Try to load language-specific morphology helper
+    -- Naming convention: WDTS_[Language]Morphology (e.g., WDTS_GermanMorphology, WDTS_FrenchMorphology)
     local separablePrefixes = {}
-    if GermanMorphology and GermanMorphology.SEPARABLE_PREFIXES then
-        separablePrefixes = GermanMorphology.SEPARABLE_PREFIXES
-    else
-        -- Fallback to basic list
-        separablePrefixes = {
-            ["auf"] = true, ["an"] = true, ["zu"] = true, ["ab"] = true,
-            ["ein"] = true, ["aus"] = true, ["mit"] = true, ["nach"] = true,
-            ["vor"] = true, ["weg"] = true, ["um"] = true, ["durch"] = true,
-            ["über"] = true, ["unter"] = true, ["wieder"] = true, ["her"] = true,
-            ["hin"] = true, ["fort"] = true, ["los"] = true, ["fest"] = true,
-        }
+    if lang then
+        local langName = lang:sub(1,1):upper() .. lang:sub(2) -- "de" -> "De", "fr" -> "Fr"
+        local morphologyHelper = _G["WDTS_" .. langName .. "Morphology"]
+        if morphologyHelper and morphologyHelper.SEPARABLE_PREFIXES then
+            separablePrefixes = morphologyHelper.SEPARABLE_PREFIXES
+        elseif lang == "de" and GermanMorphology and GermanMorphology.SEPARABLE_PREFIXES then
+            -- Backward compatibility: GermanMorphology global for German
+            separablePrefixes = GermanMorphology.SEPARABLE_PREFIXES
+        end
+    end
+    
+    -- If no morphology helper found, don't attempt separable verb matching
+    -- Language packs can define separable verb phrases directly in phrases.lua instead
+    if not separablePrefixes or not next(separablePrefixes) then
+        return nil
     end
     
     -- Look ahead up to 5 words for separated prefix + verb pattern
@@ -295,12 +340,9 @@ local function MatchPhraseAt(tokens, startIdx, langPack)
         return nil
     end
     
-    -- Common German articles that can appear before phrases
-    local articles = {
-        ["der"] = true, ["die"] = true, ["das"] = true,
-        ["ein"] = true, ["eine"] = true, ["einen"] = true,
-        ["dem"] = true, ["den"] = true, ["des"] = true,
-    }
+    -- Use language-specific articles from language pack
+    -- If not defined, use empty table (no article matching)
+    local articles = langPack.articles or {}
     
     -- Build lookup table of phrase words (cache on first call per pack)
     if not langPack._phraseLookupCache then
@@ -1252,10 +1294,10 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     end
     
     -- Special handling for mixed-language messages (e.g., "If tank heal dm dann abfahrt")
-    -- If detected as English but contains known German words, try German translation
+    -- If detected as English but contains known words from enabled languages, try that language
     -- BUT: Don't trigger on universal gaming abbreviations that exist in both languages
-    if (not sourceLang or sourceLang == "en" or langConfidence < LanguageDetect.MIN_CONFIDENCE) and LanguagePackManager.IsEnabled("de") then
-        -- Common gaming abbreviations that are universal (English and German) - exclude from German detection
+    if not sourceLang or sourceLang == "en" or langConfidence < LanguageDetect.MIN_CONFIDENCE then
+        -- Common gaming abbreviations that are universal (English and other languages) - exclude from detection
         local universalAbbreviations = {
             ["lf"] = true, ["lfb"] = true, ["lfm"] = true, ["lfg"] = true, ["lf1m"] = true,
             ["wts"] = true, ["wtb"] = true, ["wtt"] = true,
@@ -1272,76 +1314,92 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
             ["bb"] = true, ["pls"] = true, ["summon"] = true, ["summons"] = true, ["sw"] = true,
         }
         
-            -- Check if message contains actual German words (not just gaming abbreviations)
-            local langPack = Engine.LoadLanguagePack("de")
-            if langPack and langPack.tokens then
-                local hasGermanCharacters = false
-                local germanFunctionWords = 0
-                local germanVocabularyWords = 0
-                
-                -- Check for German-specific characters first (strongest indicator)
-                local messageText = message:lower()
-                if messageText:find("ä") or messageText:find("ö") or messageText:find("ü") or messageText:find("ß") then
-                    hasGermanCharacters = true
-                end
-                
-                -- Check for German function words (also strong indicators)
-                local germanFunctionWordsList = {
-                    "der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem", "eines",
-                    "und", "oder", "aber", "für", "von", "mit", "durch", "über", "unter",
-                    "ist", "sind", "war", "waren", "bin", "bist", "seid", "hat", "haben",
-                    "kann", "kannst", "können", "muss", "musst", "müssen",
-                    "ich", "du", "er", "sie", "es", "wir", "ihr",
-                    "mir", "dich", "ihn", "uns", "euch", "mein", "dein", "sein", "ihr",
-                    "zu", "zum", "zur", "nach", "bei", "aus", "an", "auf", "in",
-                    "wie", "wo", "was", "wer", "wann", "warum", "schade", "moin",
-                }
-                
-                for _, token in ipairs(tokens) do
-                    if token.type == "word" then
-                        local word = token.value:lower()
-                        
-                        -- Skip universal gaming abbreviations
-                        if not universalAbbreviations[word] then
-                            -- Check if it's a German function word
-                            local isFunctionWord = false
-                            for _, fw in ipairs(germanFunctionWordsList) do
-                                if word == fw then
-                                    germanFunctionWords = germanFunctionWords + 1
-                                    isFunctionWord = true
-                                    break
-                                end
+        -- Try each enabled language pack to see if message contains words from that language
+        local enabledPacks = LanguagePackManager.GetAvailablePacks()
+        local bestMatchLang = nil
+        local bestMatchScore = 0
+        
+        for lang, packInfo in pairs(enabledPacks) do
+            if lang ~= "en" and LanguagePackManager.IsEnabled(lang) then
+                local langPack = Engine.LoadLanguagePack(lang)
+                if langPack and langPack.tokens then
+                    local hasLanguageCharacters = false
+                    local languageFunctionWords = 0
+                    local languageVocabularyWords = 0
+                    local matchScore = 0
+                    
+                    -- Check for language-specific characters first (strongest indicator)
+                    local messageText = message:lower()
+                    if langPack.charHints then
+                        for char, _ in pairs(langPack.charHints) do
+                            if messageText:find(char, 1, true) then
+                                hasLanguageCharacters = true
+                                matchScore = matchScore + 3
+                                break
                             end
-                            
-                            -- If not a function word, check if it's in German vocabulary
-                            -- and has a translation that's different from the word itself (not a passthrough)
-                            if not isFunctionWord and langPack.tokens[word] then
-                                local translation = langPack.tokens[word]
-                                if translation ~= word and translation:lower() ~= word then
-                                    -- This is a genuine German word with a translation
-                                    germanVocabularyWords = germanVocabularyWords + 1
+                        end
+                    elseif LanguageDetect.CHAR_HINTS[lang] then
+                        -- Fallback to LanguageDetect char hints
+                        for _, char in ipairs(LanguageDetect.CHAR_HINTS[lang]) do
+                            if messageText:find(char, 1, true) then
+                                hasLanguageCharacters = true
+                                matchScore = matchScore + 3
+                                break
+                            end
+                        end
+                    end
+                    
+                    -- Check for language function words
+                    if LanguageDetect.FUNCTION_WORDS[lang] then
+                        local functionWordsList = LanguageDetect.FUNCTION_WORDS[lang]
+                        for _, token in ipairs(tokens) do
+                            if token.type == "word" then
+                                local word = token.value:lower()
+                                
+                                -- Skip universal gaming abbreviations
+                                if not universalAbbreviations[word] then
+                                    -- Check if it's a function word for this language
+                                    for _, fw in ipairs(functionWordsList) do
+                                        if word == fw:lower() then
+                                            languageFunctionWords = languageFunctionWords + 1
+                                            matchScore = matchScore + 1
+                                            break
+                                        end
+                                    end
+                                    
+                                    -- If not a function word, check if it's in language vocabulary
+                                    if langPack.tokens[word] then
+                                        local translation = langPack.tokens[word]
+                                        if translation ~= word and translation:lower() ~= word then
+                                            -- This is a genuine word with a translation
+                                            languageVocabularyWords = languageVocabularyWords + 1
+                                            matchScore = matchScore + 1
+                                        end
+                                    end
                                 end
                             end
                         end
                     end
-                end
-                
-                -- Only override to German if we have strong indicators:
-                -- 1. German-specific characters, OR
-                -- 2. 2+ German function words, OR
-                -- 3. 1 German function word + 1+ German vocabulary words, OR
-                -- 4. 2+ German vocabulary words (genuine German, not abbreviations), OR
-                -- 5. 1+ German vocabulary word AND message is entirely in brackets (quest/item names)
-                local isBracketOnlyMessage = message:match("^%[.+%]$") or (message:match("^%[") and message:match("%]$"))
-                if hasGermanCharacters or 
-                   germanFunctionWords >= 2 or 
-                   (germanFunctionWords >= 1 and germanVocabularyWords >= 1) or
-                   germanVocabularyWords >= 2 or
-                   (germanVocabularyWords >= 1 and isBracketOnlyMessage) then
-                    sourceLang = "de"
-                    langConfidence = 0.5 -- Give it moderate confidence for mixed messages
+                    
+                    -- Calculate match score
+                    if hasLanguageCharacters or 
+                       languageFunctionWords >= 2 or 
+                       (languageFunctionWords >= 1 and languageVocabularyWords >= 1) or
+                       languageVocabularyWords >= 2 then
+                        if matchScore > bestMatchScore then
+                            bestMatchScore = matchScore
+                            bestMatchLang = lang
+                        end
+                    end
                 end
             end
+        end
+        
+        -- If we found a strong match, use it
+        if bestMatchLang and bestMatchScore >= 2 then
+            sourceLang = bestMatchLang
+            langConfidence = 0.5 -- Give it moderate confidence for mixed messages
+        end
     end
     
     -- Check if message is purely English abbreviations/gaming terms
