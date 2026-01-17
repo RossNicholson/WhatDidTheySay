@@ -840,5 +840,57 @@ WDTS_Lang_de_Grammar = {
             from = "a/an the besonders",
             to = "no especially those",
         },
+        
+        -- Fix "loch modan were you already" -> "were you already in Loch Modan?"
+        {
+            from = "loch modan were you already",
+            to = "were you already in Loch Modan",
+        },
+        
+        -- Fix "in 4 min am ich at the airport of IF" -> "in 4 min I'll be at the airport of IF"
+        {
+            from = "in (.+) min am ich at the airport of IF",
+            to = "in %1 min I'll be at the airport of IF",
+        },
+        
+        -- Fix "oh ich try it in Westfall" -> "oh I'll try it in Westfall"
+        {
+            from = "oh ich try it in Westfall",
+            to = "oh I'll try it in Westfall",
+        },
+        {
+            from = "oh ich attempt/try it even/once in Westfall",
+            to = "oh I'll try it in Westfall",
+        },
+        
+        -- Fix "if/when what happens/happened you see it yes" -> "if something happens you'll see it"
+        {
+            from = "if/when what happens/happened you see it yes",
+            to = "if something happens you'll see it",
+        },
+        
+        -- Fix "simply not south of the base in Westfall go" -> "simply don't go south of the base in Westfall"
+        {
+            from = "simply not south of the base in Westfall go",
+            to = "simply don't go south of the base in Westfall",
+        },
+        
+        -- Fix "prefer slower but instead/for that safe" -> "prefer slower but safe instead"
+        {
+            from = "prefer slower but instead/for that safe",
+            to = "prefer slower but safe instead",
+        },
+        
+        -- Fix "and careful of/beware of trappers and pillagers" -> "and be careful of trappers and pillagers"
+        {
+            from = "and careful of/beware of trappers and pillagers",
+            to = "and be careful of trappers and pillagers",
+        },
+        
+        -- Fix "so/also careful of everything/especially actually" -> "so be careful of everything actually"
+        {
+            from = "so/also careful of everything/especially actually",
+            to = "so be careful of everything actually",
+        },
     },
 }
