@@ -9,6 +9,10 @@ WDTS_Lang_de_Phrases = {
     ["kann ich"] = "can i",
     ["kann man"] = "can you/can one",
     ["kann wer"] = "can someone", -- "kann wer" = "can someone"
+    ["ich kann"] = "I can", -- "ich kann heilen" = "I can heal"
+    ["weiß nicht"] = "don't know", -- "weiß nicht ob" = "don't know if"
+    ["zu zweit"] = "with two/just the two of us", -- "wir zu zweit" = "we with two/just the two of us"
+    ["bin diszi"] = "I'm disc/I'm discipline priest", -- Gaming abbreviation
     ["gibt es"] = "there is/there are", -- "gibt es" = "there is/there are"
     ["gibt es unten"] = "there is below/there is at the bottom",
     ["willst du"] = "do you want",

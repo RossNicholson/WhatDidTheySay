@@ -48,6 +48,12 @@ WDTS_Lang_de_Tokens = {
     ["kann"] = "can",
     ["könnt"] = "can you",
     ["können"] = "can",
+    ["weiß"] = "know", -- "weiß nicht" = "don't know"
+    ["ob"] = "if", -- "ob wir" = "if we"
+    ["schaffen"] = "manage/accomplish/can do", -- "wir schaffen das" = "we can manage that"
+    ["zweit"] = "two/second", -- "zu zweit" = "with two/just the two of us"
+    ["heilen"] = "heal", -- "ich kann heilen" = "I can heal"
+    ["diszi"] = "disc/disciple priest", -- Gaming abbreviation for "Disziplinpriester" (Discipline Priest)
     ["bist"] = "are you",
     ["bin"] = "am",
     ["warte"] = "wait",

@@ -1086,5 +1086,99 @@ WDTS_Lang_de_Grammar = {
             from = "oh i need to do (.+) does anyone want to ",
             to = "oh I need to do %1, does anyone want to ",
         },
+        
+        -- Fix "weiß not" -> "don't know"
+        {
+            from = "weiß not ",
+            to = "don't know ",
+        },
+        {
+            from = "^weiß not ",
+            to = "don't know ",
+        },
+        
+        -- Fix "ob we" -> "if we" (ensure proper translation)
+        {
+            from = "ob we ",
+            to = "if we ",
+        },
+        
+        -- Fix "we the with two/just the two of us manage/accomplish/can do" -> "we can manage that with just the two of us"
+        {
+            from = "we the with two/just the two of us manage/accomplish/can do",
+            to = "we can manage that with just the two of us",
+        },
+        {
+            from = "we that with two/just the two of us manage/accomplish/can do",
+            to = "we can manage that with just the two of us",
+        },
+        {
+            from = "we the to zweit manage/accomplish/can do",
+            to = "we can manage that with just the two of us",
+        },
+        {
+            from = "we that to zweit manage/accomplish/can do",
+            to = "we can manage that with just the two of us",
+        },
+        {
+            from = "the to zweit schaffen",
+            to = "manage that with just the two of us",
+        },
+        {
+            from = "that to zweit schaffen",
+            to = "manage that with just the two of us",
+        },
+        {
+            from = "the to zweit manage/accomplish/can do",
+            to = "manage that with just the two of us",
+        },
+        {
+            from = "that to zweit manage/accomplish/can do",
+            to = "manage that with just the two of us",
+        },
+        {
+            from = "the with two/second manage/accomplish/can do",
+            to = "manage that with just the two of us",
+        },
+        {
+            from = "that with two/second manage/accomplish/can do",
+            to = "manage that with just the two of us",
+        },
+        
+        -- Fix "but ich can heilen" -> "but I can heal"
+        {
+            from = "but ich can heilen",
+            to = "but I can heal",
+        },
+        {
+            from = " but ich can heal",
+            to = " but I can heal",
+        },
+        
+        -- Fix "am diszi" -> "I'm disc"
+        {
+            from = " am diszi$",
+            to = " I'm disc",
+        },
+        {
+            from = " am diszi ",
+            to = " I'm disc ",
+        },
+        {
+            from = "am disc/disciple priest$",
+            to = "I'm disc",
+        },
+        {
+            from = "am disc/disciple priest ",
+            to = "I'm disc ",
+        },
+        {
+            from = "I'm disc/I'm discipline priest$",
+            to = "I'm disc",
+        },
+        {
+            from = "I'm disc/I'm discipline priest ",
+            to = "I'm disc ",
+        },
     },
 }
