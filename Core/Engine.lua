@@ -1693,9 +1693,12 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         return nil, 0.0, "already_english"
     end
     -- If MOST words (>= 70%) are universal English gaming terms, it's probably English
+    -- BUT: Don't skip if we already detected a mixed-language match (sourceLang changed from "en")
     -- This catches messages like "LF2M for Uldaman" where "Uldaman" is a proper noun
     -- Also catch 2-word messages where both words are universal (e.g., "layer pls")
-    if wordCount >= 2 and (universalWordCount / wordCount) >= 0.70 then
+    -- However, if sourceLang was already changed by mixed-language detection, don't override it
+    local wasSourceLangChanged = (sourceLang and sourceLang ~= "en" and sourceLang ~= detectedLang)
+    if wordCount >= 2 and (universalWordCount / wordCount) >= 0.70 and not wasSourceLangChanged then
         return nil, 0.0, "already_english"
     end
     -- For 2-word messages, if at least one word is universal and the other is a common English word, skip
