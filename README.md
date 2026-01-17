@@ -22,7 +22,7 @@ If this addon has helped you, please consider [buying me a coffee](https://buyme
 
 **⚠️ BETA VERSION ⚠️**
 
-Currently supports **German (de → en) translation**. Additional language packs coming soon.
+Currently supports **German (de → en)** and **French (fr → en)** translations. Additional language packs coming soon.
 
 [![WoW Classic](https://img.shields.io/badge/WoW-Classic%20Era-orange)](https://worldofwarcraft.blizzard.com/en-us/game/wow-classic)
 [![Interface Version](https://img.shields.io/badge/Interface-11508-blue)](https://www.wowhead.com/)
@@ -49,6 +49,7 @@ An addon that translates chat messages in-game using local Lua logic—no extern
 
 - ✅ **100% Offline** - All translation happens locally in-game
 - ✅ **Dependency Parsing** - Structure-based translation for accurate word order (v0.5.0)
+- ✅ **French Support** - French → English translation (v0.6.0)
 - ✅ **Auto-Translation** - Automatically translates when confidence is sufficient
 - ✅ **Intent Detection** - Understands LFG, invites, ready status, etc.
 - ✅ **Safe & Conservative** - Stays silent when uncertain
@@ -81,9 +82,10 @@ Translations appear automatically in chat when confidence ≥ 0.50 (green for hi
 
 **Currently Available:**
 - ✅ German (de → en) - **Beta**
+- ✅ French (fr → en) - **Beta** (v0.6.0)
 
 **Coming Soon:**
-- ⏳ Russian, French, Spanish, Portuguese, Italian, Polish, Dutch, Swedish
+- ⏳ Russian, Spanish, Portuguese, Italian, Polish, Dutch, Swedish
 
 **📖 See [Language Packs](https://github.com/RossNicholson/WhatDidTheySay/wiki/Language-Packs) for details**
 
@@ -116,7 +118,7 @@ Translations appear automatically in chat when confidence ≥ 0.50 (green for hi
 
 ## 📦 Current Version
 
-**v0.5.0** - Dependency parsing, 4,400+ vocabulary entries, complex sentence support
+**v0.6.0** - French language pack added! Initial implementation with ~150 vocabulary words and ~40 phrases (Beta)
 
 **📖 See [Releases](https://github.com/RossNicholson/WhatDidTheySay/wiki/Releases) for downloads and [Version History](https://github.com/RossNicholson/WhatDidTheySay/wiki/Version-History) for changelog**
 

@@ -35,7 +35,7 @@ end
 function TitanPanelWDTSButton_GetTooltipText()
     local lines = {}
     table.insert(lines, "|cffffffffWhat Did They Say?|r")
-    table.insert(lines, "|cffffd700Version:|r 0.5.0")
+    table.insert(lines, "|cffffd700Version:|r 0.6.0")
     table.insert(lines, "")
     
     if WhatDidTheySayDB and WhatDidTheySayDB.autoTranslate then
