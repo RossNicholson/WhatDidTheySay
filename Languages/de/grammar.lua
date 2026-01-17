@@ -1119,11 +1119,12 @@ WDTS_Lang_de_Grammar = {
             to = "where is %1",
             priority = 5,
         },
-        {
-            from = "^what (.+) (.+)$",
-            to = "what is %1",
-            priority = 5,
-        },
+        -- Skip generic "what" rule for "what kind of" questions - handled by specific rules above
+        -- {
+        --     from = "^what (.+) (.+)$",
+        --     to = "what is %1",
+        --     priority = 5,
+        -- },
         -- Fix "can you help me help" -> "can you help me" (duplicate help)
         {
             from = "can you help me help",
