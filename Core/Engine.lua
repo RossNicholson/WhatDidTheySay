@@ -1694,9 +1694,10 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         -- Too similar and low coverage - this is basically untranslated
         return nil, 0.0, "translation_too_similar"
     end
-    -- Reject very low confidence translations (<0.30) that are too similar (>80%)
-    -- These are likely just English messages that got partially matched
-    if similarity > 0.80 and confidence < 0.30 then
+    -- Reject very low similarity translations that are essentially unchanged
+    -- This catches cases like "heal spam" -> "heal spam" (100% similar, not a real translation)
+    if similarity > 0.95 then
+        -- Almost identical - this is not a useful translation
         return nil, 0.0, "translation_too_similar"
     end
     
@@ -1714,6 +1715,11 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     -- Final check: Reject very low confidence translations that are too similar to original
     -- This catches cases like "heal spam" where it translates but is essentially unchanged
     if finalConfidence < 0.30 and similarity > 0.80 then
+        return nil, 0.0, "translation_too_similar"
+    end
+    -- Also reject if similarity is extremely high (>95%) regardless of confidence
+    -- These are essentially unchanged messages
+    if similarity > 0.95 then
         return nil, 0.0, "translation_too_similar"
     end
     
