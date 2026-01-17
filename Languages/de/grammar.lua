@@ -415,6 +415,26 @@ WDTS_Lang_de_Grammar = {
             to = "like leveling, dungeons",
         },
         
+        -- Fix "would like who X go" -> "does anyone want to go to X"
+        {
+            from = "would like who (.+) go",
+            to = "does anyone want to go to %1",
+        },
+        {
+            from = "would like who (.+) go%?",
+            to = "does anyone want to go to %1",
+        },
+        
+        -- Fix "still not mal started" -> "haven't even started yet"
+        {
+            from = "still not mal started",
+            to = "haven't even started yet",
+        },
+        {
+            from = "still not even started",
+            to = "haven't even started yet",
+        },
+        
         -- Fix "future raiding/raiding in the future" -> "future raiding" (clean up phrase)
         {
             from = "future raiding/raiding in the future",

@@ -591,6 +591,11 @@ WDTS_Lang_de_Tokens = {
     ["sollst"] = "should",
     ["möchte"] = "would like",
     ["möchtest"] = "would you like",
+    ["mal"] = "even/once", -- Particle: "noch nicht mal" = "haven't even", "mal" = "once"
+    ["anfangen"] = "start",
+    ["angefangen"] = "started",
+    ["fängt an"] = "starts",
+    ["fangen an"] = "start",
     
     -- Common conversational responses
     ["super"] = "great",

@@ -409,6 +409,16 @@ WDTS_Lang_de_Patterns = {
         to = "can you %1 as %2",
     },
     
+    -- "Möchte wer X gehen?" -> "Does anyone want to go to X?"
+    {
+        from = "möchte wer (.+) gehen%?",
+        to = "does anyone want to go to %1",
+    },
+    {
+        from = "möchte wer (.+) gehen",
+        to = "does anyone want to go to %1",
+    },
+    
     -- Crafting/profession requests: "X gesucht für Y" -> "X wanted for Y"
     -- Handle typos: "X gesucht cht für Y" or similar (allow extra words between gesucht and für)
     {

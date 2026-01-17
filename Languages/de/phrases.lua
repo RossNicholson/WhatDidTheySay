@@ -357,6 +357,12 @@ WDTS_Lang_de_Phrases = {
     ["ist eben gestorben"] = "just died",
     ["eben gestorben"] = "just died",
     
+    -- Not started/started
+    ["noch nicht mal angefangen"] = "haven't even started yet",
+    ["noch nicht angefangen"] = "haven't started yet",
+    ["noch nicht mal"] = "haven't even",
+    ["nicht mal"] = "not even",
+    
     -- Help requests
     ["mir helfen könnten"] = "could help me",
     ["mir helfen können"] = "can help me",
