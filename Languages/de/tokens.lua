@@ -24,6 +24,7 @@ WDTS_Lang_de_Tokens = {
     ["sfk"] = "Shadowfang Keep",
     ["blackfathom"] = "Blackfathom Deeps",
     ["bsf"] = "Blackfathom Deeps", -- Common abbreviation
+    ["bfd"] = "BFD", -- Common abbreviation for Blackfathom Deeps
     ["gnomer"] = "Gnomeregan",
     ["rfk"] = "Razorfen Kraul",
     ["rfd"] = "Razorfen Downs",

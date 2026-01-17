@@ -902,5 +902,50 @@ WDTS_Lang_de_Grammar = {
             from = "^a/an especially those$",
             to = "no especially those",
         },
+        
+        -- Fix "oh need to do X has who want to/interest" -> "oh I need to do X, does anyone want to?"
+        {
+            from = "oh need to do (.+) has who want to/interest",
+            to = "oh I need to do %1, does anyone want to",
+        },
+        {
+            from = "oh need to do (.+) has who bock",
+            to = "oh I need to do %1, does anyone want to",
+        },
+        {
+            from = "oh must (.+) make has who want to/interest",
+            to = "oh I need to do %1, does anyone want to",
+        },
+        {
+            from = "oh must (.+) make has who bock",
+            to = "oh I need to do %1, does anyone want to",
+        },
+        -- Fix "has who bock" -> "does anyone want to"
+        {
+            from = "has who bock",
+            to = "does anyone want to",
+        },
+        {
+            from = "has who want to/interest",
+            to = "does anyone want to",
+        },
+        -- Fix "oh i need to do X has who bock" -> "oh I need to do X, does anyone want to"
+        {
+            from = "oh i need to do (.+) has who bock",
+            to = "oh I need to do %1, does anyone want to",
+        },
+        {
+            from = "oh I need to do (.+) has who bock",
+            to = "oh I need to do %1, does anyone want to",
+        },
+        -- Fix "oh i need to do X does anyone want to" -> "oh I need to do X, does anyone want to?"
+        {
+            from = "oh i need to do (.+) does anyone want to$",
+            to = "oh I need to do %1, does anyone want to?",
+        },
+        {
+            from = "oh i need to do (.+) does anyone want to ",
+            to = "oh I need to do %1, does anyone want to ",
+        },
     },
 }

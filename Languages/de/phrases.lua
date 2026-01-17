@@ -505,6 +505,10 @@ WDTS_Lang_de_Phrases = {
     -- Expressions
     ["schade"] = "too bad/what a pity",
     
+    -- Gaming slang: "hat wer bock?" = "does anyone want to?"
+    ["hat wer bock"] = "does anyone want to",
+    ["hat wer bock?"] = "does anyone want to",
+    
     -- Enchanting with object
     ["enchanten lassen"] = "have it enchanted",
     ["verzaubern lassen"] = "have it enchanted",

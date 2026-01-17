@@ -560,4 +560,14 @@ WDTS_Lang_de_Patterns = {
         from = "kann wer (.+) machen",
         to = "can someone make %1",
     },
+    
+    -- "muss X machen" -> "need to do X" or "I need to do X"
+    {
+        from = "muss (.+) machen",
+        to = "need to do %1",
+    },
+    {
+        from = "oh muss (.+) machen",
+        to = "oh I need to do %1",
+    },
 }
