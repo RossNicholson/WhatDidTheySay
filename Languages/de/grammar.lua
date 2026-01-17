@@ -2179,6 +2179,69 @@ WDTS_Lang_de_Grammar = {
             priority = 12,
         },
         
+        -- Fix common typos from translation
+        {
+            from = " whas ",
+            to = " what ",
+            priority = 15,
+        },
+        {
+            from = "^whas ",
+            to = "what ",
+            priority = 15,
+        },
+        {
+            from = " thas ",
+            to = " that ",
+            priority = 15,
+        },
+        {
+            from = "^thas ",
+            to = "that ",
+            priority = 15,
+        },
+        {
+            from = " whas$",
+            to = " what",
+            priority = 15,
+        },
+        {
+            from = " thas$",
+            to = " that",
+            priority = 15,
+        },
+        
+        -- Fix spacing after item links
+        {
+            from = "(%])([a-z])",
+            to = "%1 %2",
+            priority = 12,
+        },
+        
+        -- Fix "Ironforge" when it should be "if" (from "wenn")
+        {
+            from = "^Ironforge (.+)",
+            to = "if %1",
+            priority = 15,
+        },
+        {
+            from = " Ironforge (.+)",
+            to = " if %1",
+            priority = 15,
+        },
+        
+        -- Fix "I white" -> "I know" (from "ich weiß")
+        {
+            from = " I white ",
+            to = " I know ",
+            priority = 15,
+        },
+        {
+            from = "^I white ",
+            to = "I know ",
+            priority = 15,
+        },
+        
         -- ============================================
         -- ADDITIONAL SYSTEMATIC GRAMMAR FIXES
         -- Common German-to-English translation issues

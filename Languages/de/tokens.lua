@@ -1084,6 +1084,9 @@ WDTS_Lang_de_Tokens = {
     ["ihren"] = "her/their",
     ["unser"] = "our",
     ["unsere"] = "our",
+    ["unserer"] = "our", -- Dative/genitive feminine form: "zu unserer gilde" = "to our guild"
+    ["unserem"] = "our", -- Dative masculine/neuter form
+    ["unseres"] = "our", -- Genitive masculine/neuter form
     ["wir"] = "we",
     ["unseren"] = "our",
     ["euer"] = "your",
