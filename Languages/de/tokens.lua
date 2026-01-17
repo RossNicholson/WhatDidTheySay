@@ -520,8 +520,7 @@ WDTS_Lang_de_Tokens = {
     ["einen"] = "a",
     ["eines"] = "a",
     ["nen"] = "a", -- Colloquial form of "einen"
-    ["der"] = "the", -- Can mean "who/that" in context, but also "the"
-    ["die"] = "the", -- Can mean "who/that" in context, but also "the"
+    -- Note: "der", "die", "das" handled below as articles and relative pronouns
     ["das"] = {
         default = "the",
         pronoun = "that", -- "das geht" = "that works"
@@ -1481,7 +1480,7 @@ WDTS_Lang_de_Tokens = {
     ["würds"] = "would take it", -- "ich würds nehmen" = "I would take it"
     ["brauchbar"] = "usable/useful", -- "ist brauchbar" = "is usable"
     ["händler"] = "vendor/merchant", -- "beim händler" = "at the vendor"
-    ["denn"] = "", -- Particle, often omitted in English
+    -- Note: "denn" already defined above as "because/then"
     ["vor"] = "ahead/planned", -- "was hast denn vor?" = "what do you have planned?"
     ["thorium"] = "thorium", -- Material name
     ["schließkassette"] = "lockbox", -- "Thoriumschließkassette" = "Thorium lockbox"
