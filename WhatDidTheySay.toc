@@ -9,6 +9,7 @@
 # Core modules
 Core/Utils.lua
 Core/GermanMorphology.lua
+Core/FrenchMorphology.lua
 Core/Tokenizer.lua
 Core/LanguageDetect.lua
 Core/Confidence.lua

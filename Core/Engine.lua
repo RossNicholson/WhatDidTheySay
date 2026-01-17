@@ -7,6 +7,7 @@ local LanguageDetect = WDTS_LanguageDetect
 local Confidence = WDTS_Confidence
 local LanguagePackManager = WDTS_LanguagePackManager
 local GermanMorphology = WDTS_GermanMorphology -- Optional morphology helper
+local FrenchMorphology = WDTS_FrenchMorphology -- Optional morphology helper
 local DependencyParser = WDTS_DependencyParser -- Optional dependency parser
 
 local Engine = {}
@@ -485,12 +486,22 @@ end
     return nil
 end
 
--- Try to normalize German verb to base form (infinitive)
+-- Try to normalize verb to base form (infinitive)
 -- This helps match verb conjugations that aren't in the dictionary
--- Uses GermanMorphology helper if available
-local function NormalizeVerbForm(word)
-    -- Use morphology helper if available (better accuracy)
-    if GermanMorphology and GermanMorphology.NormalizeToInfinitive then
+-- Uses morphology helpers if available (GermanMorphology, FrenchMorphology, etc.)
+local function NormalizeVerbForm(word, sourceLang)
+    sourceLang = sourceLang or "de" -- Default to German for backward compatibility
+    
+    -- Use French morphology helper for French
+    if sourceLang == "fr" and FrenchMorphology and FrenchMorphology.NormalizeToInfinitive then
+        local normalized = FrenchMorphology.NormalizeToInfinitive(word)
+        if normalized then
+            return normalized
+        end
+    end
+    
+    -- Use German morphology helper for German
+    if sourceLang == "de" and GermanMorphology and GermanMorphology.NormalizeToInfinitive then
         local normalized = GermanMorphology.NormalizeToInfinitive(word)
         if normalized then
             return normalized
@@ -1040,7 +1051,8 @@ local function TranslateTokensDependency(tokens, langPack)
             trans = TryCompoundDecomposition(node.word, langPack)
         end
         if not trans and langPack.tokens then
-            local normalized = NormalizeVerbForm(node.word)
+            local sourceLang = langPack.metadata and langPack.metadata.code or "de"
+            local normalized = NormalizeVerbForm(node.word, sourceLang)
             if normalized then
                 trans = langPack.tokens[normalized]
                 if trans and type(trans) == "table" then
@@ -1220,7 +1232,8 @@ function Engine.TranslateTokens(tokens, langPack)
                 
                 -- If still no translation, try verb conjugation normalization
                 if not trans and langPack.tokens then
-                    local normalized = NormalizeVerbForm(token.value)
+                    local sourceLang = langPack.metadata and langPack.metadata.code or "de"
+                    local normalized = NormalizeVerbForm(token.value, sourceLang)
                     if normalized then
                         trans = langPack.tokens[normalized]
                         if trans then
