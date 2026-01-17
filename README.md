@@ -22,7 +22,7 @@ If this addon has helped you, please consider [buying me a coffee](https://buyme
 
 **⚠️ BETA VERSION ⚠️**
 
-Currently supports **German (de → en)** and **French (fr → en)** translations. Additional language packs coming soon.
+Now supports **German (de → en)** and **French (fr → en)** translations! Additional languages to follow.
 
 [![WoW Classic](https://img.shields.io/badge/WoW-Classic%20Era-orange)](https://worldofwarcraft.blizzard.com/en-us/game/wow-classic)
 [![Interface Version](https://img.shields.io/badge/Interface-11508-blue)](https://www.wowhead.com/)
@@ -81,11 +81,11 @@ Translations appear automatically in chat when confidence ≥ 0.50 (green for hi
 ## 🌐 Supported Languages
 
 **Currently Available:**
-- ✅ German (de → en) - **Beta**
-- ✅ French (fr → en) - **Beta** (v0.6.0)
+- ✅ **German (de → en)** - **Beta**
+- ✅ **French (fr → en)** - **Beta**
 
-**Coming Soon:**
-- ⏳ Russian, Spanish, Portuguese, Italian, Polish, Dutch, Swedish
+**More languages to follow:**
+- ⏳ Russian, Spanish, Portuguese, Italian, Polish, Dutch, Swedish, and more
 
 **📖 See [Language Packs](https://github.com/RossNicholson/WhatDidTheySay/wiki/Language-Packs) for details**
 
@@ -118,7 +118,7 @@ Translations appear automatically in chat when confidence ≥ 0.50 (green for hi
 
 ## 📦 Current Version
 
-**v0.6.0** - French language pack added! Initial implementation with ~150 vocabulary words and ~40 phrases (Beta)
+**v0.6.0** - French language pack expansion! Now supports both German and French translations with comprehensive vocabulary, phrases, and patterns.
 
 **📖 See [Releases](https://github.com/RossNicholson/WhatDidTheySay/wiki/Releases) for downloads and [Version History](https://github.com/RossNicholson/WhatDidTheySay/wiki/Version-History) for changelog**
 

@@ -7,7 +7,7 @@
 #### 🇩🇪 German (de → en)
 
 **Status:** ✅ Active Development (Beta)  
-**Coverage:** 2,200+ words, 600+ phrases  
+**Coverage:** 5,396 lines of vocabulary, 2,241 lines of phrases  
 **Accuracy:** 94.1% test pass rate  
 **Features:**
 - Comprehensive vocabulary
@@ -17,19 +17,30 @@
 - Verb conjugation recognition
 - Compound word decomposition
 
-### Planned Languages
-
 #### 🇫🇷 French (fr → en)
 
-**Status:** 📅 Planned  
-**Priority:** High  
-**Target:** v0.5.0
+**Status:** ✅ Active Development (Beta) - v0.6.0  
+**Coverage:** 1,164 lines of vocabulary, 343 lines of phrases, 360 patterns  
+**Accuracy:** 81.1% test pass rate (growing)  
+**Features:**
+- Growing vocabulary (Directions, Combat, Faction, Races)
+- Common phrases and expressions
+- Sentence patterns (LFG, trading, questions)
+- Grammar rules for French-specific structures
+
+### More Languages to Follow
 
 #### 🇪🇸 Spanish (es → en)
 
 **Status:** 📅 Planned  
 **Priority:** High  
-**Target:** v0.6.0
+**Target:** Future release
+
+#### 🇷🇺 Russian (ru → en)
+
+**Status:** 📅 Planned  
+**Priority:** Medium  
+**Target:** Future release
 
 #### 🇷🇺 Russian (ru → en)
 

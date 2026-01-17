@@ -16,7 +16,7 @@ If this addon has helped you, please consider [buying me a coffee](https://buyme
 
 **Just getting started?** Follow these steps:
 
-1. **[📦 Releases](Releases)** - Download the latest version (v0.5.0)
+1. **[📦 Releases](Releases)** - Download the latest version (v0.6.0)
 2. **[📥 Installation Guide](Installation)** - Install and set up the addon
 3. **[📖 User Guide](User-Guide)** - Learn how to use it in-game
 4. **[⚙️ Configuration](Configuration)** - Customize settings to your needs
@@ -90,13 +90,14 @@ This addon is focused on providing **the best translation possible**. It priorit
 
 ## 🌐 Current Status
 
-**Version:** 0.5.0 (Beta)
+**Version:** 0.6.0 (Beta)
 
 **Supported Languages:**
-- 🇩🇪 German (de → en) - **Active Development**
-- 📅 French (fr → en) - Planned
-- 📅 Spanish (es → en) - Planned
-- 📅 More languages coming soon
+- ✅ **German (de → en)** - **Active Development**
+- ✅ **French (fr → en)** - **Active Development**
+
+**More languages to follow:**
+- ⏳ Spanish, Russian, Portuguese, Italian, Polish, Dutch, Swedish, and more
 
 ## 📊 Translation Accuracy
 
