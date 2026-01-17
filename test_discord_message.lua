@@ -35,16 +35,13 @@ end
 
 loadAll()
 
--- Initialize engine
-Engine.Initialize()
-
 -- Test message
 local testMessage = "ist das der volle link fürs Gildendiscord?"
 print("=" .. string.rep("=", 70))
 print("Test: " .. testMessage)
 print("=" .. string.rep("=", 70))
 
-local translated, confidence, reason = Engine.Translate(testMessage, "GUILD", "TestPlayer")
+local translated, confidence, reason = WDTS_Engine.Translate(testMessage, nil, "en", true)
 if translated then
     print("✓ Translation: " .. translated)
     print("  Confidence: " .. string.format("%.2f", confidence))
