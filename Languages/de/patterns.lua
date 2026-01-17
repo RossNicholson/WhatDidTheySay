@@ -522,4 +522,32 @@ WDTS_Lang_de_Patterns = {
         from = "werde viele events planen wie (.+)",
         to = "will plan many events like %1",
     },
+    
+    -- "wie?" -> "how?" (standalone question)
+    {
+        from = "^wie%?$",
+        to = "how",
+    },
+    {
+        from = "^wie %?$",
+        to = "how",
+    },
+    
+    -- "kannste X lassen" -> "can you have X" (colloquial)
+    {
+        from = "kannste (.+) lassen",
+        to = "can you have %1",
+    },
+    {
+        from = "kannst (.+) lassen",
+        to = "can you have %1",
+    },
+    {
+        from = "kannste (.+) lassen\\?",
+        to = "can you have %1",
+    },
+    {
+        from = "kannst (.+) lassen\\?",
+        to = "can you have %1",
+    },
 }

@@ -493,6 +493,7 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
                     "ich", "du", "er", "sie", "es", "wir", "ihr",
                     "mir", "dich", "ihn", "uns", "euch", "mein", "dein", "sein", "ihr",
                     "zu", "zum", "zur", "nach", "bei", "aus", "an", "auf", "in",
+                    "wie", "wo", "was", "wer", "wann", "warum", "schade",
                 }
                 
                 for _, token in ipairs(tokens) do

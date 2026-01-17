@@ -41,6 +41,7 @@ WDTS_Lang_de_Tokens = {
     ["will"] = "want",
     ["willst"] = "want",
     ["kannst"] = "can you",
+    ["kannste"] = "can you", -- Colloquial form of "kannst du" = "can you"
     ["kann"] = "can",
     ["könnt"] = "can you",
     ["können"] = "can",
@@ -117,6 +118,9 @@ WDTS_Lang_de_Tokens = {
     ["mit"] = "with",
     ["und"] = "and",
     ["oder"] = "or",
+    ["wenn"] = "if/when", -- "wenn man" = "if one/you"
+    ["nem"] = "a/an", -- Colloquial form of "einem" = "a/an"
+    ["ne"] = "a/an", -- Colloquial form of "eine/einen" = "a/an"
     ["als"] = "as",
     ["an"] = "at/on", -- Preposition: "an wie" = "like/as"
     ["im"] = "in the", -- Contraction of "in dem"
@@ -174,7 +178,10 @@ WDTS_Lang_de_Tokens = {
     ["wann"] = "when",
     ["wer"] = "who",
     ["warum"] = "why",
-    ["wie"] = "like/as", -- "wie" can mean "how" or "like/as" depending on context
+    ["wie"] = {
+        default = "like/as", -- "wie" can mean "how" or "like/as" depending on context
+        question = "how", -- "wie?" = "how?"
+    },
     
     -- Status words
     ["tot"] = "dead",
@@ -365,6 +372,8 @@ WDTS_Lang_de_Tokens = {
     ["verzauberung"] = "enchantment",
     ["verzauberungen"] = "enchantments",
     ["vz"] = "enchantment", -- Common abbreviation for Verzauberung
+    ["entchanten"] = "enchant", -- Anglicism: "entchanten" = "enchant" (verb)
+    ["enchanten"] = "enchant", -- Anglicism variant
     ["ingenieur"] = "engineer",
     ["kräuterkundiger"] = "herbalist",
     ["kräuterkundige"] = "herbalist",
@@ -592,6 +601,7 @@ WDTS_Lang_de_Tokens = {
     ["möchte"] = "would like",
     ["möchtest"] = "would you like",
     ["mal"] = "even/once", -- Particle: "noch nicht mal" = "haven't even", "mal" = "once"
+    ["schade"] = "too bad/what a pity", -- "schade" = "too bad/what a pity"
     ["anfangen"] = "start",
     ["angefangen"] = "started",
     ["fängt an"] = "starts",
@@ -1018,6 +1028,12 @@ WDTS_Lang_de_Tokens = {
     -- Weapon and item terms
     ["waffe"] = "weapon",
     ["waffen"] = "weapons",
+    ["atombombe"] = "atomic bomb", -- Colloquial: "hits like an atomic bomb"
+    ["einschlägt"] = "hits/strikes", -- "einschlagen" = "to hit/strike"
+    ["einschlagen"] = "hit/strike",
+    ["einschläge"] = "hits/strikes",
+    ["hilevel"] = "high level", -- Colloquial abbreviation
+    ["ilvl"] = "item level",
     ["feurige"] = "fiery", -- Adjective form
     ["feurig"] = "fiery", -- Base form
     ["feuriger"] = "fiery", -- Inflected forms

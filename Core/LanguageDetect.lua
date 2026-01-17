@@ -28,7 +28,7 @@ LanguageDetect.FUNCTION_WORDS = {
         "darfst", "dürfen", "ich", "du", "er", "sie", "es", "wir", "ihr",
         "mich", "dich", "ihn", "uns", "euch", "mein", "dein", "sein", "ihr",
         "unser", "euer", "dies", "diese", "dieser", "welche", "wer", "was",
-        "wo", "wann", "warum", "wie",
+        "wo", "wann", "warum", "wie", "schade",
     },
 }
 

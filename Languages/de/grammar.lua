@@ -454,5 +454,29 @@ WDTS_Lang_de_Grammar = {
             from = "like/as dungeons",
             to = "like dungeons",
         },
+        
+        -- Fix "but can you have enchant" -> "but can you have it enchanted"
+        {
+            from = "can you have enchant",
+            to = "can you have it enchanted",
+        },
+        {
+            from = "can you have enchant\\?",
+            to = "can you have it enchanted",
+        },
+        {
+            from = "aber can you have enchant",
+            to = "but can you have it enchanted",
+        },
+        
+        -- Fix "have a/an weapon the like a/an atomic bomb hits/strikes" -> "have a weapon that hits like an atomic bomb"
+        {
+            from = "have you a/an weapon the like a/an atomic bomb hits/strikes",
+            to = "have you a weapon that hits like an atomic bomb",
+        },
+        {
+            from = "have you a/an weapon the like a/an atomic bomb hits/strikes",
+            to = "you have a weapon that hits like an atomic bomb",
+        },
     },
 }

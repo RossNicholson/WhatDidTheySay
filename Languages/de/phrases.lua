@@ -454,4 +454,25 @@ WDTS_Lang_de_Phrases = {
     ["gerne auch neuanfänger"] = "gladly also newcomers",
     ["herzlich wilkommen"] = "warmly welcome",
     ["herzlich willkommen"] = "warmly welcome",
+    
+    -- Enchanting
+    ["enchanten lassen"] = "have it enchanted",
+    ["verzaubern lassen"] = "have it enchanted",
+    ["kannste enchanten lassen"] = "can you have it enchanted",
+    ["kannst enchanten lassen"] = "can you have it enchanted",
+    ["kannste verzaubern lassen"] = "can you have it enchanted",
+    ["kannst verzaubern lassen"] = "can you have it enchanted",
+    
+    -- Question words (standalone)
+    ["wie"] = "how", -- When used as standalone question
+    ["wie?"] = "how?",
+    
+    -- Expressions
+    ["schade"] = "too bad/what a pity",
+    
+    -- Enchanting with object
+    ["enchanten lassen"] = "have it enchanted",
+    ["verzaubern lassen"] = "have it enchanted",
+    ["es enchanten lassen"] = "have it enchanted",
+    ["es verzaubern lassen"] = "have it enchanted",
 }
