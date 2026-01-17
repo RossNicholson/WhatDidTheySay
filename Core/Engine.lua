@@ -1574,9 +1574,10 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
                                 if langPack.tokens[word] then
                                     local translation = langPack.tokens[word]
                                     -- If it's a compound word (long) or clearly German term, it's a strong indicator
+                                    -- Also boost score for German nouns that are clearly not English (like "verbannung")
                                     if #word >= 10 or word:find("gegengewicht") or word:find("schließkassette") or 
                                        word:find("magierstab") or word:find("kriegsaxt") or word:find("traumsänger") or
-                                       word:find("beinschützer") then
+                                       word:find("beinschützer") or word:find("verbannung") or word:find("verbannungen") then
                                         hasStrongGermanWord = true
                                         matchScore = matchScore + 2 -- Boost score for strong German words
                                         break
@@ -1608,7 +1609,8 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     end
     
     -- Check if message is purely English abbreviations/gaming terms
-    -- Do this EARLY before mixed-language detection to prevent false positives
+    -- BUT: Skip this check if mixed-language detection already found a match above
+    -- Do this check AFTER mixed-language detection if sourceLang is still "en"
     -- If all words are universal gaming abbreviations, it's English and doesn't need translation
     local allUniversalAbbrevs = true
     local universalAbbrevsForCheck = {
