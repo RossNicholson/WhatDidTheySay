@@ -275,6 +275,7 @@ WDTS_Lang_de_Tokens = {
     ["stufe"] = "level",
     ["level"] = "level",
     ["leveln"] = "leveling", -- "zum leveln" = "for leveling"
+    ["lvln"] = "level/leveling", -- German abbreviation for "leveln"
     ["lvl"] = "level",
     ["mindest"] = "minimum", -- "ab Mindest Lvl" = "from minimum level"
     ["minimum"] = "minimum",
@@ -600,6 +601,9 @@ WDTS_Lang_de_Tokens = {
     ["sollst"] = "should",
     ["möchte"] = "would like",
     ["möchtest"] = "would you like",
+    ["mag"] = "wants/wants to/likes", -- "mag lvln" = "wants to level"
+    ["mögen"] = "like/want",
+    ["magst"] = "want/wants/like",
     ["mal"] = "even/once", -- Particle: "noch nicht mal" = "haven't even", "mal" = "once"
     ["schade"] = "too bad/what a pity", -- "schade" = "too bad/what a pity"
     ["anfangen"] = "start",
@@ -1086,6 +1090,9 @@ WDTS_Lang_de_Tokens = {
     ["qest"] = "quest", -- Common typo
     ["füre"] = "for", -- Typo for "für"
     ["waldmannsaxt"] = "forester axe",
+    ["wald"] = "forest", -- "Wald von Elwynn" = "Forest of Elwynn"
+    ["wälder"] = "forests",
+    ["elwynn"] = "Elwynn", -- Proper noun: Elwynn Forest
     ["bären"] = "bears",
     ["bär"] = "bear",
     ["halben"] = "half",

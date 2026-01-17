@@ -478,5 +478,19 @@ WDTS_Lang_de_Grammar = {
             from = "have you a/an weapon the like a/an atomic bomb hits/strikes",
             to = "you have a weapon that hits like an atomic bomb",
         },
+        
+        -- Fix "wants/wants to/likes level/leveling" -> "wants to level"
+        {
+            from = "wants/wants to/likes level/leveling",
+            to = "wants to level",
+        },
+        {
+            from = "und wants/wants to/likes level/leveling",
+            to = "and wants to level",
+        },
+        {
+            from = "mag level/leveling",
+            to = "wants to level",
+        },
     },
 }

@@ -286,9 +286,19 @@ local function GetContextualTranslation(token, prevToken, nextToken, langPack)
             if translation.before and translation.before[nextLower] then
                 return translation.before[nextLower]
             end
-            -- Special case: "von" before a proper noun (capitalized) in item names means "of"
-            if tokenKey == "von" and nextToken.original:match("^[A-Z]") then
-                return "of"
+            -- Special case: "von" before a proper noun (capitalized) or location name means "of"
+            -- "Wald von Elwynn" = "Forest of Elwynn"
+            if tokenKey == "von" then
+                -- Check if next token is capitalized (proper noun) or is a location name
+                if nextToken.original:match("^[A-Z]") then
+                    return "of"
+                end
+                -- Also check common location names (even if lowercase)
+                local nextLower = nextToken.value:lower()
+                if nextLower == "elwynn" or nextLower == "stormwind" or nextLower == "ironforge" or 
+                   nextLower == "darnassus" or nextLower == "orgrimmar" or nextLower == "thunder" then
+                    return "of"
+                end
             end
             -- Special case: "den" before a noun (especially in quest/item names) means "the"
             -- "den" can mean "whom/that" as a relative pronoun, but when followed by a noun it's an article
