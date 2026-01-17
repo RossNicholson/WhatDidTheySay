@@ -5055,6 +5055,193 @@ WDTS_Lang_de_Tokens = {
     ["lässt"] = "let",
     
     -- ============================================
+    -- WOW GAMING SLANG & CHAT TERMS
+    -- ============================================
+    -- Chat emoticons and reactions
+    ["xd"] = "lol/haha",
+    ["lol"] = "lol",
+    ["rofl"] = "rofl",
+    ["lmao"] = "lmao",
+    ["haha"] = "haha",
+    ["hihi"] = "hehe",
+    ["hehe"] = "hehe",
+    ["^^"] = "smile/happy",
+    [":)"] = "smile",
+    [":("] = "sad",
+    
+    -- Exclamations and reactions
+    ["omg"] = "omg",
+    ["wtf"] = "wtf",
+    ["wtf?"] = "wtf",
+    ["wth"] = "what the hell",
+    ["ufff"] = "oof",
+    ["oops"] = "oops",
+    ["ups"] = "oops",
+    ["wow"] = "wow",
+    ["boah"] = "wow/damn",
+    ["oha"] = "wow/oh",
+    
+    -- Status and actions
+    ["re"] = "re",
+    ["res"] = "resurrect/res",
+    ["rez"] = "resurrect/res",
+    ["rezz"] = "resurrect",
+    ["rezze"] = "resurrect",
+    ["rezzt"] = "resurrects",
+    -- Note: "res" already defined above
+    ["invite"] = "invite",
+    ["pw"] = "password",
+    ["pw?"] = "password?",
+    ["pw bitte"] = "password please",
+    ["code"] = "code/password",
+    
+    -- Congratulations and thanks
+    ["gratz"] = "grats/congratulations",
+    ["glückwünsche"] = "congratulations",
+    ["sry"] = "sorry",
+    ["sorry"] = "sorry",
+    ["tschuldigung"] = "sorry",
+    ["entschuldigung"] = "sorry/excuse me",
+    
+    -- Trading and economy slang
+    ["kauf"] = "buy/purchase",
+    ["verkauf"] = "sell",
+    ["traden"] = "trading",
+    ["getradet"] = "traded",
+    ["vkp"] = "selling price",
+    ["kaufpreis"] = "purchase price",
+    ["verkaufspreis"] = "selling price",
+    ["nachfrage"] = "demand",
+    ["wtt"] = "want to trade",
+    ["verkaufe ich"] = "I'm selling",
+    ["kaufe ich"] = "I'm buying",
+    ["händeln"] = "trade",
+    ["rumhändeln"] = "trade around",
+    
+    -- Raid and dungeon slang
+    ["pullen"] = "pulling",
+    ["gepullt"] = "pulled",
+    -- Note: "tank", "dps", "heal", "heilen" already defined above
+    ["dpsen"] = "dpsing",
+    ["burst"] = "burst",
+    ["burstet"] = "bursts",
+    ["nuke"] = "nuke/burst",
+    ["nuken"] = "nuking",
+    ["kite"] = "kite",
+    ["kiten"] = "kiting",
+    ["gekitet"] = "kited",
+    ["farm"] = "farm",
+    ["gefarmt"] = "farmed",
+    ["grind"] = "grind",
+    ["gegrindet"] = "grinded",
+    ["rolled"] = "rolled",
+    
+    -- Character and progression terms
+    ["gelevelt"] = "leveled",
+    ["skill"] = "skill",
+    ["skillen"] = "skilling",
+    ["spec"] = "spec/specification",
+    ["build"] = "build",
+    ["gear"] = "gear/equipment",
+    ["equip"] = "equip",
+    ["equipment"] = "equipment",
+    ["item"] = "item",
+    ["q"] = "quest",
+    ["daily"] = "daily",
+    ["dailies"] = "dailies",
+    
+    -- Social gaming terms
+    ["guild"] = "guild",
+    ["geraidet"] = "raided",
+    ["raidlead"] = "raid leader",
+    ["raidleiter"] = "raid leader",
+    ["raidleitung"] = "raid leadership",
+    ["member"] = "member",
+    ["newbie"] = "newbie",
+    ["noob"] = "noob",
+    ["noobie"] = "noobie",
+    ["pro"] = "pro",
+    ["profi"] = "pro/professional",
+    ["reroll"] = "reroll",
+    ["rerollen"] = "rerolling",
+    ["main"] = "main character",
+    ["twink"] = "twink/alt",
+    
+    -- Combat and PvP terms
+    ["pvpen"] = "pvping",
+    ["gepvpt"] = "pvped",
+    ["duellen"] = "dueling",
+    ["geduellt"] = "dueled",
+    ["bg"] = "battleground",
+    ["schlachtfeld"] = "battleground",
+    ["wsg"] = "warsong gulch",
+    ["av"] = "alterac valley",
+    ["gank"] = "gank",
+    ["ganken"] = "ganking",
+    ["gegankt"] = "ganked",
+    ["camp"] = "camp",
+    ["campen"] = "camping",
+    ["gecampt"] = "camped",
+    ["pk"] = "player kill",
+    ["pker"] = "player killer",
+    
+    -- Status and communication
+    ["omw!"] = "on my way!",
+    ["w8"] = "wait",
+    ["warte kurz"] = "wait a moment",
+    ["sec"] = "second/moment",
+    ["min"] = "minute/moment",
+    ["gleich da"] = "be right there",
+    ["bin da"] = "I'm here",
+    ["bin weg"] = "I'm gone/leaving",
+    ["bin kurz weg"] = "brb",
+    
+    -- Note: "kannst", "kann", "können" already defined above
+    
+    -- German gaming slang variations
+    ["jop"] = "yep/yes",
+    ["jap"] = "yep/yes",
+    ["jupp"] = "yep/yes",
+    ["nö"] = "no/nope",
+    ["nope"] = "nope",
+    ["naja"] = "well/meh",
+    ["mh"] = "hmm/well",
+    ["hmm"] = "hmm",
+    ["okey"] = "okay",
+    ["k"] = "k/okay",
+    ["kay"] = "kay/okay",
+    ["mhm"] = "mhm/yes",
+    ["aha"] = "aha/I see",
+    ["achso"] = "ah I see",
+    ["oh"] = "oh",
+    ["ah"] = "ah",
+    ["ui"] = "wow/oh",
+    ["uiui"] = "wow/oh oh",
+    
+    -- Common gaming phrases (as single tokens)
+    ["haste"] = "have you/have",
+    ["ham"] = "have",
+    -- Note: "bist" already defined above
+    ["biste"] = "are you",
+    ["machste"] = "do you/do",
+    ["gehste"] = "go you/go",
+    ["kommste"] = "come you/come",
+    -- Note: "kannste", "kannst", "willst" already defined above
+    ["willste"] = "want you/want",
+    ["musste"] = "must you/must",
+    
+    -- Numbers as slang
+    ["1"] = "one",
+    ["2"] = "two",
+    ["3"] = "three",
+    ["4"] = "four",
+    ["5"] = "five",
+    ["10"] = "ten",
+    ["20"] = "twenty",
+    ["50"] = "fifty",
+    ["100"] = "hundred",
+    
+    -- ============================================
     -- END OF VOCABULARY EXPANSION
     -- ============================================
 }

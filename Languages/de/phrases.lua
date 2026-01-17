@@ -1990,6 +1990,138 @@ WDTS_Lang_de_Phrases = {
     ["undeutlich"] = "unclear",
     
     -- ============================================
+    -- WOW GAMING CHAT PHRASES & SLANG
+    -- ============================================
+    -- Invitations and grouping
+    ["willst du mit"] = "do you want to come",
+    ["bist du dabei"] = "are you in",
+    ["seid ihr dabei"] = "are you in (plural)",
+    ["wer kommt"] = "who's coming",
+    ["wer hat bock"] = "who wants to/who's interested",
+    ["wer ist dabei"] = "who's in",
+    ["bin dabei"] = "I'm in",
+    ["bin nicht dabei"] = "I'm not in",
+    ["meldet euch"] = "sign up/let me know",
+    ["meld dich"] = "sign up/let me know",
+    ["melde dich"] = "sign up/let me know",
+    
+    -- Quick responses
+    ["ja bitte"] = "yes please",
+    ["ne sorry"] = "no sorry",
+    ["sorry ne"] = "sorry no",
+    ["geht klar"] = "sure/works for me",
+    ["alles gut"] = "all good",
+    ["ist okay"] = "it's okay",
+    ["egal"] = "doesn't matter",
+    ["schon ok"] = "it's ok/already ok",
+    
+    -- Status updates
+    ["bin gleich wieder da"] = "be right back",
+    ["komme"] = "coming",
+    ["warte mal"] = "wait a moment",
+    ["einen moment"] = "one moment",
+    ["gleich fertig"] = "almost done",
+    ["fast fertig"] = "almost done",
+    ["noch kurz"] = "just a moment",
+    ["noch eine minute"] = "one more minute",
+    
+    -- Trading and requests
+    ["was willst du"] = "what do you want",
+    ["was suchst du"] = "what are you looking for",
+    ["was ist der preis"] = "what's the price",
+    ["kannst du mir"] = "can you give me",
+    ["brauche"] = "need",
+    ["brauchst du noch"] = "do you still need",
+    ["hast du"] = "do you have",
+    ["hast du noch"] = "do you still have",
+    ["verkaufe"] = "selling",
+    ["kaufe"] = "buying",
+    ["biete"] = "offering",
+    
+    -- Group coordination
+    ["wo sind wir"] = "where are we",
+    ["wo gehts hin"] = "where are we going",
+    ["wohin"] = "where to",
+    ["hier"] = "here",
+    ["da"] = "there",
+    ["dort"] = "there",
+    ["geht rein"] = "go in (plural)",
+    ["geh rein"] = "go in",
+    ["raus hier"] = "out of here",
+    ["raus da"] = "get out of there",
+    ["zusammen"] = "together",
+    ["nicht zu weit"] = "not too far",
+    
+    -- Combat and tactics
+    ["los"] = "go",
+    ["los jetzt"] = "go now",
+    ["weiter"] = "continue/onwards",
+    ["stopp"] = "stop",
+    ["halt"] = "stop",
+    ["pull"] = "pull",
+    ["warte auf tank"] = "wait for tank",
+    ["tank zuerst"] = "tank first",
+    ["heal bitte"] = "heal please",
+    ["brauche heal"] = "need heal",
+    ["nimm aggro"] = "take aggro",
+    ["drop aggro"] = "drop aggro",
+    ["run"] = "run",
+    ["lauf"] = "run",
+    ["lauft"] = "run (plural)",
+    
+    -- Loot and items
+    ["wer braucht"] = "who needs",
+    ["ich brauche"] = "I need",
+    ["ich will"] = "I want",
+    ["ich nehme"] = "I'll take",
+    ["ich passe"] = "I pass",
+    ["passe"] = "pass",
+    ["need"] = "need",
+    ["greed"] = "greed",
+    ["pass"] = "pass",
+    ["was ist das"] = "what is that",
+    ["zeig mal"] = "show me",
+    ["kann ich sehen"] = "can I see",
+    
+    -- Congratulatory and social
+    ["glückwunsch"] = "congratulations",
+    ["gratuliere"] = "congratulations",
+    ["haut rein"] = "good luck/go for it",
+    ["machts gut"] = "take care/bye",
+    ["tschau"] = "bye",
+    ["ciao"] = "bye",
+    ["servus"] = "hi/bye (southern German/Austrian)",
+    
+    -- Questions and confirmations
+    ["was denn"] = "what then/what",
+    ["was soll das"] = "what's that supposed to mean",
+    ["was meinst du"] = "what do you mean",
+    ["was willst du damit"] = "what do you mean by that",
+    ["meinst du"] = "do you mean",
+    ["glaubst du"] = "do you think",
+    ["denkst du"] = "do you think",
+    ["weißt du"] = "do you know",
+    ["weiß ich nicht"] = "I don't know",
+    ["bist du sicher"] = "are you sure",
+    ["echt"] = "really",
+    ["echt?"] = "really?",
+    ["wirklich"] = "really",
+    ["wirklich?"] = "really?",
+    ["ernsthaft"] = "seriously",
+    ["ernsthaft?"] = "seriously?",
+    
+    -- Complaints and frustration (gaming context)
+    ["oh man"] = "oh man",
+    ["ach man"] = "oh man",
+    ["mensch"] = "man/darn",
+    ["mist"] = "darn/shoot",
+    ["scheiße"] = "damn/shoot",
+    ["verdammt"] = "damn",
+    ["ach verdammt"] = "oh damn",
+    ["nicht schon wieder"] = "not again",
+    ["typisch"] = "typical",
+    
+    -- ============================================
     -- END OF PHRASE PATTERNS
     -- ============================================
 }
