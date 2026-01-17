@@ -872,6 +872,72 @@ WDTS_Lang_fr_Grammar = {
             priority = 16,
         },
         
+        -- Fix "montre me" → "show me" (from "montre-moi" when tokenized)
+        {
+            from = "^montre me$",
+            to = "show me",
+            priority = 16,
+        },
+        {
+            from = "^montre me ",
+            to = "show me ",
+            priority = 16,
+        },
+        {
+            from = "montre me$",
+            to = "show me",
+            priority = 16,
+        },
+        {
+            from = "montre me ",
+            to = "show me ",
+            priority = 16,
+        },
+        
+        -- Fix "shows me" → "show me" (imperative form)
+        {
+            from = "^shows me$",
+            to = "show me",
+            priority = 17,
+        },
+        {
+            from = "^shows me ",
+            to = "show me ",
+            priority = 17,
+        },
+        {
+            from = "shows me$",
+            to = "show me",
+            priority = 17,
+        },
+        {
+            from = "shows me ",
+            to = "show me ",
+            priority = 17,
+        },
+        
+        -- Fix "watch me" → "show me" (fallback if "montre" was translated as "watch")
+        {
+            from = "^watch me$",
+            to = "show me",
+            priority = 17,
+        },
+        {
+            from = "^watch me ",
+            to = "show me ",
+            priority = 17,
+        },
+        {
+            from = "watch me$",
+            to = "show me",
+            priority = 17,
+        },
+        {
+            from = "watch me ",
+            to = "show me ",
+            priority = 17,
+        },
+        
         -- Fix "qu'est-ce" remnants: "qu'do" → "what do"
         {
             from = "qu'do",

@@ -555,6 +555,7 @@ WDTS_Lang_fr_Phrases = {
     ["je passe"] = "I pass",
     ["passe"] = "pass",
     ["montre-moi"] = "show me",
+    ["montre moi"] = "show me", -- Without hyphen (when tokenized)
     ["montrez-moi"] = "show me",
     ["je peux voir"] = "can I see",
     ["je peux avoir le lien"] = "can I have the link",
