@@ -586,8 +586,8 @@ function DependencyParser.Parse(tokens)
     return nodes
 end
 
--- Helper functions (defined after Parse function)
-    ["die"] = "def_fem_nom_acc",
+-- Guess part-of-speech (enhanced with German grammar)
+function DependencyParser._GuessPOS(word)
     ["das"] = "def_neut_nom_acc",
     ["den"] = "def_masc_acc",
     ["dem"] = "def_dat",
