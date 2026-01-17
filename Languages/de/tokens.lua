@@ -203,6 +203,10 @@ WDTS_Lang_de_Tokens = {
     ["volle"] = "full",
     ["vollen"] = "full",
     ["volles"] = "full",
+    ["ganze"] = "whole", -- "die ganze ini" = "the whole instance"
+    ["ganzen"] = "whole", -- "die ganzen" = "the whole"
+    ["ganzer"] = "whole",
+    ["ganzes"] = "whole",
     ["leer"] = "empty",
     ["schnell"] = "fast",
     ["langsam"] = "slow",
@@ -282,6 +286,7 @@ WDTS_Lang_de_Tokens = {
     ["dungeons"] = "dungeons",
     ["instanz"] = "instance",
     ["instanzen"] = "instances",
+    ["ini"] = "instance", -- Common abbreviation for "Instanz" = "instance"
     ["inn"] = "inn",
     ["taverne"] = "tavern",
     ["stufe"] = "level",
@@ -449,6 +454,7 @@ WDTS_Lang_de_Tokens = {
     ["morgen"] = "tomorrow",
     ["jetzt"] = "now",
     ["gleich"] = "soon",
+    ["endlich"] = "finally", -- "endlich kein" = "finally no"
     ["gerade"] = "just/right now",
     ["später"] = "later",
     ["immer"] = "always",
@@ -587,7 +593,7 @@ WDTS_Lang_de_Tokens = {
     ["kein"] = "no",
     ["keine"] = "no",
     ["keiner"] = "none",
-    ["mehr"] = "more",
+    ["mehr"] = "more/anymore", -- Context-dependent: "nicht mehr" = "not anymore", "mehr" = "more"
     ["mehrere"] = "several",
     ["weniger"] = "less",
     ["etwas"] = "something",
@@ -611,6 +617,10 @@ WDTS_Lang_de_Tokens = {
     ["genießt"] = "enjoys",
     ["freuen"] = "be happy",
     ["freut"] = "is happy",
+    ["freue"] = "am happy/I'm happy", -- 1st person: "ich freue mich" = "I'm happy/I'm excited"
+    ["freue mich"] = "I'm excited/I'm looking forward", -- "freue mich auf" = "I'm excited about"
+    ["rund"] = "around", -- "rund um" = "around"
+    ["um"] = "around/about", -- "rund um" = "around"
     ["suchen"] = "looking for",
     ["finden"] = "find",
     ["findet"] = "finds",
@@ -642,6 +652,7 @@ WDTS_Lang_de_Tokens = {
     ["gut"] = "good",
     ["schlecht"] = "bad",
     ["sehr"] = "very", -- "sehr mega nett" = "very very nice"
+    ["so"] = "so", -- "so sehr" = "so very/so much"
     ["sea"] = "very", -- Typo for "sehr"
     ["mega"] = "very/mega", -- "mega nett" = "very nice"
     ["nett"] = "nice", -- "sehr nett" = "very nice"

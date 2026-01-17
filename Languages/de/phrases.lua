@@ -513,6 +513,18 @@ WDTS_Lang_de_Phrases = {
     ["GESUCHT:"] = "WANTED:",
     ["gesucht:"] = "WANTED:",
     
+    -- "freue mich so sehr auf" = "I'm so excited about"
+    ["freue mich so sehr auf"] = "I'm so excited about",
+    ["freue mich auf"] = "I'm excited about",
+    ["rund um"] = "around", -- "rund um sturmwind" = "around Stormwind"
+    ["noch jmd"] = "does anyone still", -- "noch jmd hilfe" = "does anyone still need help"
+    ["noch jmd hilfe"] = "does anyone still need help",
+    
+    -- Expressions: "freue mich" = "I'm excited/I'm happy"
+    ["freue mich"] = "I'm excited",
+    ["freue mich auf"] = "I'm excited for/I'm looking forward to",
+    ["so sehr"] = "so much/so very",
+    
     -- Enchanting with object
     ["enchanten lassen"] = "have it enchanted",
     ["verzaubern lassen"] = "have it enchanted",

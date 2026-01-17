@@ -952,6 +952,96 @@ WDTS_Lang_de_Grammar = {
             to = "WANTED: G",
         },
         
+        -- Fix "I'm excited so much/so very on/up/at dungeon" -> "I'm so excited about dungeon"
+        {
+            from = "I'm excited so much/so very on/up/at (.+)",
+            to = "I'm so excited about %1",
+        },
+        {
+            from = "I'm excited so much/so very on/up/at",
+            to = "I'm so excited about",
+        },
+        {
+            from = "I'm excited so much/so very (.+)",
+            to = "I'm so excited about %1",
+        },
+        
+        -- Fix "ich pull" -> "I'll pull" or "I pull"
+        {
+            from = "ich pull",
+            to = "I'll pull",
+        },
+        
+        -- Fix "more/anymore" at end -> "anymore" (context: "nicht mehr" = "not anymore")
+        {
+            from = "(.+) more/anymore$",
+            to = "%1 anymore",
+        },
+        {
+            from = "(.+) more/anymore ",
+            to = "%1 anymore ",
+        },
+        
+        -- Fix "still someone help" -> "does anyone still need help"
+        {
+            from = "^still someone help",
+            to = "does anyone still need help",
+        },
+        {
+            from = "still someone help with",
+            to = "does anyone still need help with",
+        },
+        
+        -- Fix "rund um" -> "around" (if not already translated)
+        {
+            from = "rund um ",
+            to = "around ",
+        },
+        
+        -- Capitalize location names: "sturmwind" -> "Stormwind", "ironforge" -> "Ironforge"
+        {
+            from = "sturmwind",
+            to = "Stormwind",
+        },
+        {
+            from = "ironforge",
+            to = "Ironforge",
+        },
+        {
+            from = "around sturmwind",
+            to = "around Stormwind",
+        },
+        {
+            from = "around ironforge",
+            to = "around Ironforge",
+        },
+        {
+            from = "around sturmwind/ironforge",
+            to = "around Stormwind/Ironforge",
+        },
+        
+        -- Add question mark at end if missing for questions
+        {
+            from = "(.+) help with (.+) around (.+)$",
+            to = "%1 help with %2 around %3?",
+        },
+        
+        -- Fix "elite-quest" -> "elite quest" (remove hyphen)
+        {
+            from = "elite%-quest",
+            to = "elite quest",
+        },
+        
+        -- Add comma after "dungeon" in excitement context
+        {
+            from = "excited about dungeon finally",
+            to = "excited about dungeon, finally",
+        },
+        {
+            from = "excited about dungeon endlich",
+            to = "excited about dungeon, finally",
+        },
+        
         -- Fix "oh need to do X has who want to/interest" -> "oh I need to do X, does anyone want to?"
         {
             from = "oh need to do (.+) has who want to/interest",
