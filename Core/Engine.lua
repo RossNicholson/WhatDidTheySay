@@ -987,6 +987,183 @@ local function GetContextualTranslation(token, tokenIdx, tokens, langPack)
     return translation
 end
 
+-- Translate tokens using dependency parsing (structure-based translation)
+-- This is an alternative to word-by-word translation that uses dependency trees
+local function TranslateTokensDependency(tokens, langPack)
+    if not DependencyParser then
+        -- Dependency parser not available, return nil to fall back to word-by-word
+        return nil, nil, nil
+    end
+    
+    -- Parse tokens into dependency tree
+    local nodes = DependencyParser.Parse(tokens)
+    if not nodes or #nodes == 0 then
+        -- Parse failed, fall back to word-by-word
+        return nil, nil, nil
+    end
+    
+    local root = DependencyParser.GetRoot(nodes)
+    if not root or root.pos ~= "VERB" then
+        -- No verb found, can't build structure-based translation
+        return nil, nil, nil
+    end
+    
+    -- Translate nodes and build English word order
+    -- English word order: SUBJ VERB OBJ (OBJ2) PREP
+    local translatedParts = {}
+    local nodeTranslations = {}  -- Cache translations for each node
+    local translatedCount = 0
+    local totalWords = 0
+    
+    -- Helper: Translate a single node
+    local function TranslateNode(node)
+        if not node then return nil end
+        
+        -- Check cache
+        if nodeTranslations[node.nodeIndex] then
+            return nodeTranslations[node.nodeIndex]
+        end
+        
+        totalWords = totalWords + 1
+        local trans = GetContextualTranslation(
+            {type = "word", value = node.word, original = node.original},
+            node.tokenIndex or node.nodeIndex,
+            tokens,
+            langPack
+        )
+        
+        -- Fallback to normal translation methods
+        if not trans then
+            trans = TryCompoundDecomposition(node.word, langPack)
+        end
+        if not trans and langPack.tokens then
+            local normalized = NormalizeVerbForm(node.word)
+            if normalized then
+                trans = langPack.tokens[normalized]
+                if trans and type(trans) == "table" then
+                    trans = trans[1] or trans.default or trans
+                end
+            end
+        end
+        
+        if trans then
+            translatedCount = translatedCount + 1
+        end
+        
+        nodeTranslations[node.nodeIndex] = trans or node.word
+        return trans or node.word
+    end
+    
+    -- Translate and order by dependency structure
+    -- English order: SUBJ → VERB → OBJ → OBJ2 → PREP
+    
+    -- 1. Translate SUBJ
+    for _, dep in ipairs(root.dependencies) do
+        if dep.relation == DependencyParser.RELATIONS.SUBJ then
+            local subjNode = nodes[dep.target]
+            if subjNode then
+                local trans = TranslateNode(subjNode)
+                -- Handle noun phrases: ARTICLE + NOUN
+                if dep.phraseEnd and nodes[dep.phraseEnd] then
+                    local nounTrans = TranslateNode(nodes[dep.phraseEnd])
+                    if trans and nounTrans then
+                        table.insert(translatedParts, {type = "subj", words = {trans, nounTrans}})
+                    elseif trans then
+                        table.insert(translatedParts, {type = "subj", words = {trans}})
+                    end
+                else
+                    if trans then
+                        table.insert(translatedParts, {type = "subj", words = {trans}})
+                    end
+                end
+            end
+            break  -- Only one subject
+        end
+    end
+    
+    -- 2. Translate VERB (root)
+    local verbTrans = TranslateNode(root)
+    if verbTrans then
+        table.insert(translatedParts, {type = "verb", words = {verbTrans}})
+    end
+    
+    -- 3. Translate OBJ (direct object)
+    for _, dep in ipairs(root.dependencies) do
+        if dep.relation == DependencyParser.RELATIONS.OBJ then
+            local objNode = nodes[dep.target]
+            if objNode then
+                local trans = TranslateNode(objNode)
+                if trans then
+                    table.insert(translatedParts, {type = "obj", words = {trans}})
+                end
+            end
+            break  -- Only one direct object
+        end
+    end
+    
+    -- 4. Translate OBJ2 (indirect object)
+    for _, dep in ipairs(root.dependencies) do
+        if dep.relation == DependencyParser.RELATIONS.OBJ2 then
+            local obj2Node = nodes[dep.target]
+            if obj2Node then
+                local trans = TranslateNode(obj2Node)
+                if trans then
+                    table.insert(translatedParts, {type = "obj2", words = {trans}})
+                end
+            end
+            break
+        end
+    end
+    
+    -- 5. Translate PREP (prepositional phrases)
+    for _, dep in ipairs(root.dependencies) do
+        if dep.relation == DependencyParser.RELATIONS.PREP then
+            local prepNode = nodes[dep.target]
+            if prepNode then
+                local prepTrans = TranslateNode(prepNode)
+                -- Translate prepositional phrase: PREP + (ARTICLE) + NOUN
+                if dep.phraseEnd then
+                    local prepWords = {prepTrans}
+                    for i = dep.target + 1, dep.phraseEnd do
+                        local phraseNode = nodes[i]
+                        if phraseNode then
+                            local phraseTrans = TranslateNode(phraseNode)
+                            if phraseTrans then
+                                table.insert(prepWords, phraseTrans)
+                            end
+                        end
+                    end
+                    table.insert(translatedParts, {type = "prep", words = prepWords})
+                else
+                    if prepTrans then
+                        table.insert(translatedParts, {type = "prep", words = {prepTrans}})
+                    end
+                end
+            end
+        end
+    end
+    
+    -- Build translated tokens from ordered parts
+    local translated = {}
+    for _, part in ipairs(translatedParts) do
+        for _, word in ipairs(part.words) do
+            table.insert(translated, {
+                type = "word",
+                value = word,
+                original = word,  -- Will be filled in properly later if needed
+            })
+        end
+    end
+    
+    -- Copy non-word tokens from original (punctuation, etc.)
+    -- For now, just add spaces - we'll handle punctuation better in reconstruction
+    
+    local coverage = totalWords > 0 and (translatedCount / totalWords) or 0.0
+    local unknownRatio = totalWords > 0 and ((totalWords - translatedCount) / totalWords) or 1.0
+    
+    return translated, coverage, unknownRatio
+end
+
 -- Translate tokens using language pack (with phrase matching and context awareness)
 function Engine.TranslateTokens(tokens, langPack)
     local translated = {}
@@ -1680,8 +1857,12 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         coverage = math.max(originalTokensCoverage, patternCoverage) -- Use better coverage
         unknownRatio = math.min(originalTokensUnknownRatio, patternUnknownRatio) -- Use lower unknown ratio
     else
-        -- No pattern match - translate tokens normally
-        local translatedTokens, tokenCoverage, tokenUnknownRatio = Engine.TranslateTokens(tokens, langPack)
+        -- No pattern match - try dependency-based translation first, fall back to word-by-word
+        local translatedTokens, tokenCoverage, tokenUnknownRatio = TranslateTokensDependency(tokens, langPack)
+        if not translatedTokens then
+            -- Dependency parsing failed or not available, use word-by-word translation
+            translatedTokens, tokenCoverage, tokenUnknownRatio = Engine.TranslateTokens(tokens, langPack)
+        end
         translatedText = Tokenizer.Reconstruct(translatedTokens)
         coverage = tokenCoverage
         unknownRatio = tokenUnknownRatio
