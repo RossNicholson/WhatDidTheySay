@@ -1392,8 +1392,10 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
                                     local translation = langPack.tokens[word]
                                     -- If it's a compound word (long) or clearly German term, it's a strong indicator
                                     if #word >= 10 or word:find("gegengewicht") or word:find("schließkassette") or 
-                                       word:find("magierstab") or word:find("kriegsaxt") then
+                                       word:find("magierstab") or word:find("kriegsaxt") or word:find("traumsänger") or
+                                       word:find("beinschützer") then
                                         hasStrongGermanWord = true
+                                        matchScore = matchScore + 2 -- Boost score for strong German words
                                         break
                                     end
                                 end
