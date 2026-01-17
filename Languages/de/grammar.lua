@@ -1276,6 +1276,73 @@ WDTS_Lang_de_Grammar = {
             from = "and then write all deserved so that you died are",
             to = "and then everyone writes you deserved to die",
         },
+        
+        -- Fix "am beginning the instance has made the pet only the what I say"
+        {
+            from = "am beginning the instance has made the pet only the what I say",
+            to = "at the beginning of the instance, the pet only did what I said",
+        },
+        {
+            from = "am beginning the instance has made the pet only the what I sage",
+            to = "at the beginning of the instance, the pet only did what I said",
+        },
+        {
+            from = "am beginning the instance has the pet only the made what I say",
+            to = "at the beginning of the instance, the pet only did what I said",
+        },
+        -- More general: "has made the pet only the" -> "the pet only did"
+        {
+            from = "has made the pet only the (.+)",
+            to = "the pet only did %1",
+        },
+        {
+            from = "has the pet only the made (.+)",
+            to = "the pet only did %1",
+        },
+        -- Fix "and then not more have yet nothing changed"
+        {
+            from = "and then not more have yet nothing changed",
+            to = "and then no more, but I haven't changed anything",
+        },
+        {
+            from = "and then not more have yet nothing geändert",
+            to = "and then no more, but I haven't changed anything",
+        },
+        {
+            from = "then not more have yet nothing (.+)",
+            to = "then no more, but I haven't %1 anything",
+        },
+        -- Fix "have yet nothing" -> "haven't ... anything"
+        {
+            from = "have yet nothing (.+)",
+            to = "haven't %1 anything",
+        },
+        {
+            from = "have yet nothing",
+            to = "haven't changed anything",
+        },
+        -- Fix "what I say" -> "what I said" (past tense context)
+        {
+            from = "the pet only did what I say",
+            to = "the pet only did what I said",
+        },
+        {
+            from = "did what I say",
+            to = "did what I said",
+        },
+        -- Fix "haven't geändert anything" -> "haven't changed anything"
+        {
+            from = "haven't geändert anything",
+            to = "haven't changed anything",
+        },
+        {
+            from = "haven't geändert° anything",
+            to = "haven't changed anything",
+        },
+        {
+            from = "haven't (.+)° anything",
+            to = "haven't %1 anything",
+        },
         {
             from = "^weiß not ",
             to = "don't know ",

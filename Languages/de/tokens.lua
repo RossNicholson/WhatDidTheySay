@@ -1123,6 +1123,14 @@ WDTS_Lang_de_Tokens = {
     ["ruhe"] = "rest/peace",
     ["zeit"] = "time",
     ["anfang"] = "beginning/start",
+    ["am"] = "at the", -- "am Anfang" = "at the beginning"
+    ["sage"] = "say", -- "ich sage" = "I say"
+    ["sagst"] = "say", -- "du sagst" = "you say"
+    ["sagt"] = "says", -- "er sagt" = "he says"
+    ["sagen"] = "say", -- "wir sagen" = "we say"
+    ["geändert"] = "changed", -- "habe geändert" = "have changed"
+    ["ändern"] = "change",
+    ["ändert"] = "changes",
     ["dabei"] = "there/involved/along",
     ["langfristig"] = "long-term",
     ["langfristiges"] = "long-term",

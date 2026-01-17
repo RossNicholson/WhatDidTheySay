@@ -583,6 +583,19 @@ WDTS_Lang_de_Phrases = {
     ["schreiben alle verdient"] = "everyone writes deserved",
     ["so das du gestorben bist"] = "that you died",
     
+    -- Phrases from broken translation
+    ["am anfang"] = "at the beginning", -- "am Anfang" = "at the beginning"
+    ["am anfang der"] = "at the beginning of the", -- "am Anfang der Ini" = "at the beginning of the instance"
+    ["was ich sage"] = "what I say", -- "was ich sage" = "what I say"
+    ["was ich sagte"] = "what I said",
+    ["was ich sage"] = "what I said", -- In past context, "was ich sage" = "what I said"
+    ["hat das pet gemacht"] = "the pet did", -- "hat das Pet gemacht" = "the pet did"
+    ["hat gemacht"] = "did", -- "hat gemacht" = "did"
+    ["habe doch nix geändert"] = "but I haven't changed anything", -- "habe doch nix geändert" = "but I haven't changed anything"
+    ["habe nix geändert"] = "haven't changed anything",
+    ["dann nicht mehr"] = "then no more/not anymore", -- "dann nicht mehr" = "then no more"
+    ["und dann nicht mehr"] = "and then no more",
+    
     -- Additional common gaming phrases
     ["was ist los"] = "what's up",
     ["wie geht es"] = "how is it going",
