@@ -34,7 +34,7 @@ This addon is focused on providing **the best translation possible**. It priorit
 
 ## 🌐 Current Status
 
-**Version:** 0.4.0 (Beta)
+**Version:** 0.5.0 (Beta)
 
 **Supported Languages:**
 - 🇩🇪 German (de → en) - **Active Development**
@@ -44,11 +44,11 @@ This addon is focused on providing **the best translation possible**. It priorit
 
 ## 📊 Translation Accuracy
 
-- **94.1% test pass rate** (32/34 comprehensive tests)
-- Extensive vocabulary (2,200+ German words)
-- 600+ WoW-specific terms
-- 100+ gaming phrases and expressions
-- Advanced morphology and grammar rules
+- **Dependency Parsing** - Structure-based translation for complex sentences (v0.5.0)
+- **4,400+ German vocabulary entries** - Comprehensive word coverage
+- **1,007 phrase patterns** - Multi-word expressions and idioms
+- **275 sentence patterns** - Structure-based translation templates
+- **544 grammar rules** - Post-processing corrections and word order fixes
 
 ## 🚀 Getting Started
 
