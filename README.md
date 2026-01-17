@@ -413,6 +413,17 @@ Every contribution helps support continued development, improvements, and the ad
 
 ---
 
+## 📚 Documentation
+
+- **[Wiki Home](https://github.com/RossNicholson/WhatDidTheySay/wiki)** - Complete documentation and guides
+- **[Installation Guide](https://github.com/RossNicholson/WhatDidTheySay/wiki/Installation)** - How to install and set up
+- **[User Guide](https://github.com/RossNicholson/WhatDidTheySay/wiki/User-Guide)** - How to use the addon in-game
+- **[Configuration Guide](https://github.com/RossNicholson/WhatDidTheySay/wiki/Configuration)** - Detailed configuration options
+- **[Troubleshooting](https://github.com/RossNicholson/WhatDidTheySay/wiki/Troubleshooting)** - Common issues and solutions
+- **[FAQ](https://github.com/RossNicholson/WhatDidTheySay/wiki/FAQ)** - Frequently asked questions
+
+---
+
 ## 📞 Support & Issues
 
 - **GitHub Issues**: [Report bugs or request features](../../issues)

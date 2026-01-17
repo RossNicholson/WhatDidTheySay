@@ -96,7 +96,8 @@ function Config.CreateFrame()
 
 |cffffd700Developer:|r Ross Nicholson
 |cffffd700Supported:|r German (de) → English (en)
-|cffffd700Confidence:|r ≥70% auto-display, <45% silent (by design)
+|cffffd700Confidence:|r ≥50% auto-display, <30% silent (by design)
+|cffffd700Wiki:|r https://github.com/RossNicholson/WhatDidTheySay/wiki
 |cffffd700Note:|r Translations appear in main chat window only (WoW UI limitation)
 |cffffd700Command:|r |cffffff00/wdts|r]])
     infoText:SetTextColor(0.9, 0.9, 0.9, 1)
@@ -455,6 +456,15 @@ function Config.Initialize()
             else
                 DEFAULT_CHAT_FRAME:AddMessage("|cffff0000Translation engine not available.|r")
             end
+        elseif cmd == "help" or cmd == "wiki" then
+            DEFAULT_CHAT_FRAME:AddMessage("|cffffd700What Did They Say? - Wiki:|r")
+            DEFAULT_CHAT_FRAME:AddMessage("|cffffff00https://github.com/RossNicholson/WhatDidTheySay/wiki|r")
+            DEFAULT_CHAT_FRAME:AddMessage("|cffffd700Commands:|r")
+            DEFAULT_CHAT_FRAME:AddMessage("  |cffffff00/wdts|r - Open configuration")
+            DEFAULT_CHAT_FRAME:AddMessage("  |cffffff00/wdts help|r or |cffffff00/wdts wiki|r - Show wiki link")
+            DEFAULT_CHAT_FRAME:AddMessage("  |cffffff00/wdts test|r - Test translation")
+            DEFAULT_CHAT_FRAME:AddMessage("  |cffffff00/wdts debug|r - Show translation history")
+            DEFAULT_CHAT_FRAME:AddMessage("  |cffffff00/wdts clearcache|r - Clear translation cache")
         else
             Config.Toggle()
         end
