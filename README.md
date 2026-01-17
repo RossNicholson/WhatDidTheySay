@@ -1,18 +1,46 @@
-# What Did They Say?
+# What Did They Say? (Beta)
 
 > **In-game chat translation for World of Warcraft Classic**
+
+<div align="center">
+
+**⚠️ BETA VERSION ⚠️**
+
+This addon is currently in **beta** and actively under development.
+
+**German (de → en) translation is the primary focus** and is being continuously improved with real-world feedback.
+
+**Additional language packs are planned for future releases** after German translation is polished.
+
+</div>
 
 An addon that helps players understand chat messages written in other languages using only in-game Lua logic. All translation processing happens locally in the game—no external APIs, translation services, or web requests required.
 
 [![WoW Classic](https://img.shields.io/badge/WoW-Classic%20Era-orange)](https://worldofwarcraft.blizzard.com/en-us/game/wow-classic)
 [![Interface Version](https://img.shields.io/badge/Interface-11508-blue)](https://www.wowhead.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Beta](https://img.shields.io/badge/Status-BETA-yellow)](README.md#-beta-status)
+
+---
+
+## ⚠️ Beta Status
+
+**This addon is currently in BETA and actively under development.**
+
+- **Current Focus:** German (de → en) translation is being actively developed and refined
+- **What Works:** Core translation pipeline, German vocabulary, intent detection, and phrase matching
+- **What's Coming:** Continued improvements to German translation accuracy, expanded vocabulary, and additional language packs (French, Spanish, etc.) in future releases
+- **Feedback Welcome:** Bug reports and translation suggestions are appreciated during this beta period
+
+Please note that translation quality may vary and some messages may not translate if confidence is too low (by design to avoid incorrect translations).
 
 ---
 
 ## 📖 Overview
 
 **What Did They Say?** is a gameplay-focused communication aid for World of Warcraft Classic. Unlike general-purpose translators, this addon is specifically designed to help players coordinate in groups, whisper, and communicate across language barriers during gameplay.
+
+**Currently in beta** - German translation is actively being developed, with more languages planned for the future.
 
 ### Key Features
 
@@ -36,10 +64,21 @@ This addon prioritizes:
 
 ## 🌐 Supported Languages
 
+**⚠️ BETA:** Currently focusing on German translation. Other languages are planned for future releases after German is polished.
+
 | Language | Status | Direction |
 |----------|--------|-----------|
-| German (de) | ✅ Full Support | de → en |
-| More languages | 🔜 Coming Soon | - |
+| German (de) | 🚧 **Beta - Active Development** | de → en |
+| French (fr) | 📅 Planned | fr → en |
+| Spanish (es) | 📅 Planned | es → en |
+| More languages | 📅 Planned | - |
+
+**Current German Translation Status:**
+- ✅ Core vocabulary and common phrases
+- ✅ Intent detection (LFG, invites, ready status)
+- ✅ Pattern matching for common structures
+- 🚧 Ongoing vocabulary expansion based on real-world usage
+- 🚧 Grammar refinements and edge case handling
 
 ### Current Capabilities
 
