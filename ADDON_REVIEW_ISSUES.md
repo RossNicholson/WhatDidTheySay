@@ -8,33 +8,32 @@
 
 ## 🔴 Critical Issues (Must Fix)
 
-### 1. **Version Inconsistency in Installation Wiki**
+### 1. **Version Inconsistency in Installation Wiki** ✅ FIXED
 **Location:** `WIKI/Installation.md:8`
 **Issue:** References v0.4.0 instead of v0.5.0
-**Fix:** Update to "currently **v0.5.0**"
+**Fix:** Updated to "currently **v0.5.0**"
+**Status:** ✅ Fixed
 
 ---
 
 ## 🟡 Medium Priority Issues
 
-### 2. **Potential Duplicate Key in English Tokens**
+### 2. **Potential Duplicate Key in English Tokens** ✅ FIXED
 **Location:** `Languages/en/tokens.lua:14,28`
 **Issue:** `["dm"]` appears twice (line 14: "Deadmines", line 28: "Dire Maul")
 **Impact:** Lua tables - last value overwrites, so only "Dire Maul" is stored
-**Fix:** Either:
-   - Use context-aware translation
-   - Choose one default (probably "Deadmines" for Classic Era)
-   - Add a comment explaining the limitation
+**Fix:** Removed duplicate, kept "Deadmines" as default for Classic Era, added "diremaul" as full name option
+**Status:** ✅ Fixed
 
-### 3. **Runtime Error Handling - Translation Type Check**
-**Location:** `Core/Engine.lua:1548` (previously fixed, but verify)
+### 3. **Runtime Error Handling - Translation Type Check** ✅ VERIFIED
+**Location:** `Core/Engine.lua:1553`
 **Issue:** Previous fix for `translation:lower()` called on table/nil
-**Status:** Should be fixed, but worth verifying the fix is complete
+**Status:** ✅ Verified - Proper type checking in place (`type(translation) == "string"` before calling `:lower()`)
 
-### 4. **Dependency Parser Fallback Behavior**
-**Location:** `Core/Engine.lua` - Dependency parsing integration
+### 4. **Dependency Parser Fallback Behavior** ✅ VERIFIED
+**Location:** `Core/Engine.lua:1866-1868`
 **Issue:** If dependency parsing fails, fallback to word-by-word should be guaranteed
-**Status:** Needs verification that fallback is always working correctly
+**Status:** ✅ Verified - Fallback logic confirmed: `TranslateTokensDependency` returns `nil` on failure, code falls back to `TranslateTokens` word-by-word translation
 
 ---
 
