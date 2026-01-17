@@ -587,7 +587,7 @@ WDTS_Lang_de_Tokens = {
     ["ihnen"] = "them",
     
     -- Definite articles (masculine, feminine, neuter)
-    ["das"] = "the", -- Neuter article: "das item" = "the item"
+    -- Note: "das" already defined above with contextual handling
     -- Relative pronouns (context-dependent, but default to "the" for articles)
     -- ["der"] = "who/that", -- Only when used as relative pronoun
     -- ["die"] = "who/that", -- Only when used as relative pronoun
