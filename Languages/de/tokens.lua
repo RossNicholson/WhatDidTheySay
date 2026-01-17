@@ -629,8 +629,6 @@ WDTS_Lang_de_Tokens = {
     ["auch"] = "also",
     ["noch"] = "still",
     ["nochmal"] = "again/another time", -- "nochmal" = "again" or "another time"
-    ["nachricht"] = "message",
-    ["nachrichten"] = "messages",
     ["brauchst"] = "need/you need", -- "brauchst" = "you need" (2nd person singular)
     ["statistiken"] = "statistics",
     ["statistik"] = "statistics",
@@ -6263,7 +6261,6 @@ WDTS_Lang_de_Tokens = {
     -- ============================================
     -- NAMING AND IDENTIFICATION
     -- ============================================
-    ["heißt"] = "is called/is named",
     ["heißt"] = "is called/is named",
     ["heißen"] = "are called/are named",
     ["heisse"] = "is called/is named", -- Alternative spelling
