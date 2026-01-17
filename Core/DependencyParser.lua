@@ -494,23 +494,29 @@ function DependencyParser.Parse(tokens)
     
     -- Step 5: Find objects and prepositional phrases (after verb, but skip subordinate/relative clauses)
     local i = verbIndex + 1
-    while nodes[i] do
+    local maxIterations = #nodes * 2  -- Safety limit to prevent infinite loops
+    local iterations = 0
+    
+    -- Pre-build lookup maps for clause detection (optimization)
+    local inSubordinateMap = {}
+    local inRelativeMap = {}
+    for _, subcl in ipairs(subordinateClauses) do
+        for j = subcl.start, subcl["end"] do
+            inSubordinateMap[j] = true
+        end
+    end
+    for _, relcl in ipairs(relativeClauses) do
+        for j = relcl.start, relcl["end"] do
+            inRelativeMap[j] = true
+        end
+    end
+    
+    while nodes[i] and iterations < maxIterations do
+        iterations = iterations + 1
         local node = nodes[i]
         
-        -- Skip if in subordinate/relative clause
-        local inSubordinate = false
-        for _, subcl in ipairs(subordinateClauses) do
-            if i >= subcl.start and i <= subcl["end"] then
-                inSubordinate = true
-                break
-            end
-        end
-        for _, relcl in ipairs(relativeClauses) do
-            if i >= relcl.start and i <= relcl["end"] then
-                inSubordinate = true
-                break
-            end
-        end
+        -- Skip if in subordinate/relative clause (optimized lookup)
+        local inSubordinate = inSubordinateMap[i] or inRelativeMap[i]
         
         if inSubordinate then
             i = i + 1
