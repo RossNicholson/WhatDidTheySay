@@ -34,10 +34,10 @@ print("=" .. string.rep("=", 80))
 print()
 
 local testSuites = {
-    {name = "Comprehensive", file = "test_comprehensive.lua"},
-    {name = "Real-World", file = "test_realworld.lua"},
-    {name = "Extensive", file = "test_extensive.lua"},
-    {name = "Chat Log", file = "test_log_messages.lua"},
+    {name = "Comprehensive", file = "Tests/test_comprehensive.lua"},
+    {name = "Real-World", file = "Tests/test_realworld.lua"},
+    {name = "Extensive", file = "Tests/test_extensive.lua"},
+    {name = "Chat Log", file = "Tests/test_log_messages.lua"},
 }
 
 local totalPassed = 0

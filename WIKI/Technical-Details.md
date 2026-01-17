@@ -287,8 +287,9 @@ Used for better word order in grammar rules.
 ### Automated Testing
 
 **Test Scripts:**
-- `test_all.lua` - Comprehensive test suite
-- `test_extensive.lua` - Extended tests
+- `Tests/test_all.lua` - Comprehensive test suite runner
+- `Tests/test_extensive.lua` - Extended tests
+- `Tests/test_simple.lua` - Simple single-message test
 - Various focused tests
 
 **Test Categories:**

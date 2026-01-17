@@ -143,7 +143,7 @@ local successes = 0
 local lowConfidence = {}
 
 for i, msg in ipairs(testMessages) do
-    local result = io.popen(string.format("./lua5.1 test_simple.lua '%s' 2>&1 | grep -E 'Translated:|Confidence:|Reason:'", msg:gsub("'", "'\\''")))
+    local result = io.popen(string.format("./lua5.1 Tests/test_simple.lua '%s' 2>&1 | grep -E 'Translated:|Confidence:|Reason:'", msg:gsub("'", "'\\''")))
     local output = result:read("*a")
     result:close()
     

@@ -113,10 +113,8 @@ function Engine.LoadLanguagePack(lang)
             end
             pack.charHints = charHintsTable
         end
-        -- Articles default to empty - each language pack should define them
         -- Articles default to empty if not specified
         -- Each language pack should define its articles in metadata.lua
-        -- For backward compatibility, German articles are loaded from metadata.lua if available
         if not pack.articles or not next(pack.articles) then
             pack.articles = {} -- Empty for languages without articles defined
         end
