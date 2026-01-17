@@ -1577,6 +1577,30 @@ WDTS_Lang_de_Tokens = {
     ["statt"] = "instead of", -- "2 pulls statt 1" = "2 pulls instead of 1"
     ["pulls"] = "pulls", -- Gaming term
     ["pull"] = "pull",
+    ["drin"] = "in", -- "alle drin?" = "all in?"
+    ["langsam"] = "slowly/slow", -- "pls langsam" = "please slowly"
+    ["jaja"] = "yeah yeah", -- "jaja" = "yeah yeah" (colloquial agreement)
+    ["versprochen"] = "promised", -- "versprochen" = "promised"
+    ["kurz"] = "briefly/short", -- "lag kurz" = "lag briefly"
+    ["sowas"] = "such things", -- "sag sowas nicht" = "don't say such things"
+    ["herz"] = "heart", -- "mein Herz rast" = "my heart is racing"
+    ["rast"] = "races/is racing", -- "rast" = "races"
+    ["links"] = "left", -- "patrol links" = "patrol left"
+    ["staff"] = "staff", -- "grüner staff" = "green staff" (item)
+    ["uff"] = "whew/ugh", -- "uff" = "whew/ugh" (expression of relief)
+    ["skippen"] = "skip", -- "skippen wir" = "should we skip"
+    ["nie"] = "never", -- "nie wieder" = "never again"
+    ["wieder"] = "again", -- "nie wieder" = "never again"
+    ["niemand"] = "nobody/no one", -- "niemand gestorben" = "nobody died"
+    ["sofort"] = "immediately/right away", -- "sofort" = "immediately"
+    ["volle"] = "full", -- "volle mana" = "full mana"
+    ["bereit"] = "ready", -- "CD bereit" = "CD ready"
+    ["passiv"] = "passive", -- "pet auf passiv" = "pet on passive"
+    ["läuft"] = "running/is running", -- "heal läuft" = "heal is running"
+    ["oom"] = "oom", -- "out of mana" (gaming abbreviation, kept as-is)
+    ["fd"] = "feign death", -- "FD ready" = "feign death ready"
+    ["cd"] = "cooldown", -- "CD ready" = "cooldown ready"
+    ["cds"] = "cooldowns",
     ["idc"] = "i don't care",
     ["tbh"] = "to be honest",
     ["imo"] = "in my opinion",
