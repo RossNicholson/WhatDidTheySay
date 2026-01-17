@@ -1118,8 +1118,6 @@ WDTS_Lang_fr_Phrases = {
     -- MORE QUESTION PHRASES
     -- ============================================
     ["quel genre de"] = "what kind of a is that",
-    ["qui est"] = "who is that",
-    ["où est"] = "where is that",
     ["quand est"] = "when is that",
     ["pourquoi est"] = "why is that",
     ["comment est"] = "how is that",
@@ -1134,14 +1132,12 @@ WDTS_Lang_fr_Phrases = {
     ["qui me donne"] = "that gives me",
     ["qui te donne"] = "that gives you",
     ["qui lui donne"] = "that gives him",
-    ["qui lui donne"] = "that gives her",
     ["qui nous donne"] = "that gives us",
     ["qui vous donne"] = "that gives you (plural)",
     ["qui leur donne"] = "that gives them",
     ["me donne"] = "gives me",
     ["te donne"] = "gives you",
     ["lui donne"] = "gives him",
-    ["lui donne"] = "gives her",
     ["nous donne"] = "gives us",
     ["vous donne"] = "gives you (plural)",
     ["leur donne"] = "gives them",
@@ -1240,14 +1236,10 @@ WDTS_Lang_fr_Phrases = {
     -- ============================================
     -- MORE QUESTION PHRASES WITH VERBS
     -- ============================================
-    ["qu'est-ce que tu fais"] = "what are you doing",
     ["qu'est-ce que je fais"] = "what am I doing",
     ["qu'est-ce qu'il fait"] = "what does/what makes",
-    ["qu'est-ce qu'on fait"] = "what do/what make",
-    ["comment tu fais"] = "how do you do",
     ["comment je fais"] = "how do I do",
     ["comment il fait"] = "how does",
-    ["comment on fait"] = "how do",
     ["où tu fais"] = "where do you do",
     ["où je fais"] = "where do I do",
     ["où il fait"] = "where does",
@@ -1300,12 +1292,8 @@ WDTS_Lang_fr_Phrases = {
     ["dites-moi"] = "tell me (plural)",
     ["dis-le"] = "say it",
     ["dites-le"] = "say it (plural)",
-    ["montre-moi"] = "show me",
-    ["montrez-moi"] = "show me (plural)",
     ["montre-le"] = "show it",
     ["montrez-le"] = "show it (plural)",
-    ["aide-moi"] = "help me",
-    ["aidez-moi"] = "help me (plural)",
     ["aide-le"] = "help him",
     ["aidez-le"] = "help him (plural)",
     ["aide-la"] = "help her",
@@ -1385,19 +1373,15 @@ WDTS_Lang_fr_Phrases = {
     ["plus fort que"] = "stronger than",
     ["plus faible que"] = "weaker than",
     ["tout aussi"] = "just as",
-    ["donc"] = "so/thus",
     
     -- ============================================
     -- MORE CONJUNCTIVE PHRASES
     -- ============================================
     ["non seulement mais aussi"] = "not only but also",
     ["soit soit"] = "either or",
-    ["à la fois"] = "both",
     ["ainsi que"] = "as well as",
     ["soit"] = "either",
     ["ou"] = "or",
-    ["ni"] = "neither",
-    ["ni"] = "nor/still",
     
     -- ============================================
     -- NOTIFICATION/ALERT PHRASES
@@ -1444,4 +1428,187 @@ WDTS_Lang_fr_Phrases = {
     ["quel addon est-ce"] = "which addon is that",
     ["quel addon fait"] = "which addon does",
     ["quel addon donne"] = "which addon gives",
+    
+    -- ============================================
+    -- MORE TEMPORAL AND SEQUENCE PHRASES
+    -- ============================================
+    ["d'abord"] = "first/at first",
+    ["puis"] = "then",
+    ["ensuite"] = "after that",
+    ["après"] = "subsequently/afterwards",
+    ["enfin"] = "last/finally",
+    ["finalement"] = "finally/eventually",
+    ["un jour"] = "sometime",
+    ["une fois"] = "once",
+    ["deux fois"] = "twice",
+    ["trois fois"] = "three times",
+    ["quatre fois"] = "four times",
+    ["cinq fois"] = "five times",
+    ["six fois"] = "six times",
+    ["sept fois"] = "seven times",
+    ["huit fois"] = "eight times",
+    ["neuf fois"] = "nine times",
+    ["dix fois"] = "ten times",
+    ["la plupart du temps"] = "mostly/usually",
+    ["toujours encore"] = "always again/repeatedly",
+    ["tout juste"] = "just now",
+    ["juste encore"] = "just still",
+    ["avant"] = "earlier/before",
+    ["avant déjà"] = "before already",
+    ["déjà avant"] = "already before",
+    ["avant ça"] = "before that",
+    ["après encore"] = "afterwards still",
+    ["depuis lors"] = "since then",
+    ["jusqu'à aujourd'hui"] = "until today",
+    ["jusqu'à hier"] = "until yesterday",
+    ["jusqu'à tout à l'heure"] = "until just now",
+    ["jusqu'à avant"] = "until earlier",
+    ["jusqu'à après"] = "until afterwards",
+    ["jusqu'ici"] = "until here/up to here",
+    ["jusqu'à là"] = "until there/up to there",
+    ["jusqu'à quand"] = "until when",
+    ["à partir de"] = "from/starting from",
+    ["à partir de maintenant"] = "from now on",
+    ["à partir de là"] = "from then on",
+    ["à partir d'aujourd'hui"] = "from today on",
+    ["instantanément"] = "immediately/instantly",
+    ["immédiat"] = "immediate",
+    ["sans délai"] = "immediately/without delay",
+    ["tôt"] = "early",
+    ["plus tôt"] = "earlier/before",
+    ["au plus tôt"] = "at the earliest",
+    ["tard"] = "late",
+    ["au plus tard"] = "at the latest",
+    ["à temps"] = "in time/on time",
+    ["en avance"] = "early/in advance",
+    ["moderne"] = "modern",
+    ["ancien"] = "old",
+    ["nouveau"] = "new",
+    ["actuel"] = "current/up-to-date",
+    ["dépassé"] = "outdated",
+    ["valide"] = "valid",
+    ["invalide"] = "invalid",
+    ["efficace"] = "effective",
+    ["inefficace"] = "ineffective",
+    ["actif"] = "active",
+    ["inactif"] = "inactive",
+    ["passif"] = "passive",
+    ["occupé"] = "busy",
+    ["libre"] = "free/available",
+    ["disponible"] = "available",
+    ["pas disponible"] = "not available",
+    ["vide"] = "empty",
+    ["plein"] = "full",
+    ["ouvert"] = "open",
+    ["fermé"] = "closed",
+    ["accessible"] = "accessible",
+    ["inaccessible"] = "inaccessible",
+    ["visible"] = "visible",
+    ["invisible"] = "invisible",
+    ["pas clair"] = "unclear",
+    ["clair"] = "clear/distinct",
+    
+    -- ============================================
+    -- WOW GAMING CHAT PHRASES & SLANG
+    -- ============================================
+    -- Invitations and grouping
+    ["tu veux venir"] = "do you want to come",
+    ["tu es là"] = "are you in",
+    ["vous êtes là"] = "are you in (plural)",
+    ["je serais là"] = "would be in/would join",
+    ["pour autoinvite"] = "for autoinvite",
+    ["je ne suis pas là"] = "I'm not in",
+    
+    -- Quick responses
+    ["déjà ok"] = "it's ok/already ok",
+    
+    -- Status updates
+    ["un instant"] = "one moment",
+    ["juste un instant"] = "just a moment",
+    
+    -- Trading and requests
+    ["qu'est-ce que tu veux"] = "what do you want",
+    ["qu'est-ce que tu cherches"] = "what are you looking for",
+    ["tu as encore besoin"] = "do you still need",
+    ["j'offre"] = "offering",
+    
+    -- Group coordination
+    ["où on va"] = "where are we going",
+    ["allez dedans"] = "go in (plural)",
+    ["va dedans"] = "go in",
+    ["sortez d'ici"] = "out of here",
+    ["sors de là"] = "get out of there",
+    ["ensemble"] = "together",
+    ["pas trop loin"] = "not too far",
+    
+    -- Combat and tactics
+    ["vas-y"] = "go",
+    ["vas-y maintenant"] = "go now",
+    ["continue"] = "continue/onwards",
+    ["attends le tank"] = "wait for tank",
+    ["tank en premier"] = "tank first",
+    ["soigne s'il te plaît"] = "heal please",
+    ["j'ai besoin de soins"] = "need heal",
+    ["prends l'aggro"] = "take aggro",
+    ["lâche l'aggro"] = "drop aggro",
+    ["cours"] = "run",
+    
+    -- Loot and items
+    ["passer"] = "pass",
+    ["besoin"] = "need",
+    
+    -- Congratulatory and social
+    ["ciao"] = "bye",
+    
+    -- Questions and confirmations
+    ["quoi alors"] = "what then/what",
+    ["tu veux dire quoi par là"] = "what do you mean by that",
+    ["tu crois"] = "do you think",
+    ["vraiment?"] = "really?",
+    ["sérieusement?"] = "seriously?",
+    
+    -- Complaints and frustration (gaming context)
+    
+    -- ============================================
+    -- MORE WOW GAMING CHAT PHRASES
+    -- ============================================
+    -- Combat coordination
+    ["cd prêt"] = "cooldown ready",
+    ["cooldown prêt"] = "cooldown ready",
+    ["contrôle de foule s'il te plaît"] = "crowd control please",
+    ["wipe arrive"] = "wipe incoming",
+    ["va wipe"] = "will wipe",
+    ["reset s'il te plaît"] = "reset please",
+    ["reset"] = "resetting",
+    ["skip s'il te plaît"] = "skip please",
+    ["skip"] = "skipping",
+    ["attends le pull"] = "wait for pull",
+    ["le tank pull"] = "tank pulls",
+    ["le tank a l'aggro"] = "tank has aggro",
+    ["aggro perdu"] = "lost aggro",
+    ["soigne-moi"] = "heal me",
+    ["pas de mana"] = "out of mana",
+    ["hors de portée"] = "out of range",
+    ["à portée"] = "in range",
+    
+    -- Loot and items
+    ["lancer"] = "roll",
+    ["lancer les dés"] = "roll",
+    ["quel item"] = "what kind of item",
+    ["lien s'il te plaît"] = "link please",
+    ["échange s'il te plaît"] = "trade please",
+    ["tu peux échanger"] = "can you trade",
+    ["échange avec moi"] = "trade with me",
+    
+    -- Communication
+    ["chuchote-moi"] = "whisper me",
+    
+    -- Status and availability
+    ["prêt"] = "ready",
+    
+    -- Trading and economy
+    ["tu peux acheter"] = "can you buy",
+    ["tu peux vendre"] = "can you sell",
+    ["wts"] = "want to sell",
+    ["wtb"] = "want to buy",
 }
