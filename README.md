@@ -431,16 +431,4 @@ Every contribution helps support continued development, improvements, and the ad
 
 ---
 
-## ⚠️ Important Notes
-
-### What This Addon Is
-
-- ✅ A communication bridge for whispers, party chat, and small group coordination
-- ✅ A best-effort interpreter, not a linguistic authority
-- ✅ A WoW-aware system that understands how players actually talk in-game
-
-**Remember:** This addon prioritizes silence over wrong translations. If it's not confident, it won't translate. This is by design.
-
----
-
 *Made with ❤️ for the WoW Classic community*
