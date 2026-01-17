@@ -1808,6 +1808,17 @@ WDTS_Lang_de_Grammar = {
             to = "is %1 usable or can I %2 simply sell %3",
             priority = 10,
         },
+        -- Fix "can i the simply sell" -> "can I simply sell it"
+        {
+            from = "can i the simply sell",
+            to = "can I simply sell it",
+            priority = 15,
+        },
+        {
+            from = "can i (.+) the simply sell",
+            to = "can I simply sell it",
+            priority = 12,
+        },
         -- Fix "could 10er bags make" -> "could make 10-slot bags"
         {
             from = "could 10er bags make",
