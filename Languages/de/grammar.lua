@@ -1448,6 +1448,12 @@ WDTS_Lang_de_Grammar = {
             to = "what kind of addon is %1",
             priority = 25,
         },
+        -- Fix "what kind of in addon" -> "what kind of addon" (removes extra "in")
+        {
+            from = "what kind of in addon",
+            to = "what kind of addon",
+            priority = 24,
+        },
         {
             from = "what kind of a (.+) is (.+)",
             to = "what kind of %1 is %2",
