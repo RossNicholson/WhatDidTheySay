@@ -30,6 +30,8 @@ LanguageDetect.FUNCTION_WORDS = {
         "unser", "euer", "dies", "diese", "dieser", "welche", "wer", "was",
         "wo", "wann", "warum", "wie", "schade", "moin", "vielleicht", "veileicht", "anderes",
         "sehr", "mega", "nett", "halt", "grad", "gerade", "also", "warst", "war",
+        -- Common greetings and basic words
+        "hallo", "danke", "bitte", "ja", "nein", "ok", "okay",
     },
 }
 
@@ -48,7 +50,7 @@ function LanguageDetect.Detect(tokens)
     local wordTokens = {}
     for _, token in ipairs(tokens) do
         if token.type == "word" then
-            table.insert(wordTokens, token.value)
+            table.insert(wordTokens, token.value:lower()) -- Normalize to lowercase
         end
     end
     
@@ -61,6 +63,8 @@ function LanguageDetect.Detect(tokens)
     
     -- Score each language (only enabled ones)
     local scores = {}
+    local vocabularyMatches = {} -- Track vocabulary-based matches as fallback
+    
     for lang, functionWords in pairs(LanguageDetect.FUNCTION_WORDS) do
         -- Skip if language pack is disabled (but "en" is okay as it's the target)
         if lang ~= "en" then
@@ -70,11 +74,12 @@ function LanguageDetect.Detect(tokens)
                 -- Language is enabled, score it
                 local score = 0.0
                 local matches = 0
+                local vocabMatches = 0
                 
                 -- Function word matching
                 for _, word in ipairs(wordTokens) do
                     for _, fw in ipairs(functionWords) do
-                        if word == fw then
+                        if word == fw:lower() then
                             matches = matches + 1
                             break
                         end
@@ -99,7 +104,33 @@ function LanguageDetect.Detect(tokens)
                     score = score + (charMatches * 0.1)
                 end
                 
+                -- VOCABULARY-BASED FALLBACK: Check if words exist in language pack tokens
+                -- This catches words that exist in vocabulary but aren't function words
+                -- Access language pack via global table (loaded from language pack files)
+                local packTokensTable = _G["WDTS_Lang_" .. lang .. "_Tokens"]
+                if packTokensTable then
+                    for _, word in ipairs(wordTokens) do
+                        if packTokensTable[word] then
+                            vocabMatches = vocabMatches + 1
+                        end
+                    end
+                    -- For short messages (1-2 words), vocabulary match gives significant boost
+                    if #wordTokens <= 2 and vocabMatches > 0 then
+                        -- If ALL words are in vocabulary, give high confidence
+                        if vocabMatches == #wordTokens then
+                            score = math.max(score, 0.60) -- High confidence for vocabulary match
+                        else
+                            -- Partial match still helps
+                            score = score + (vocabMatches / #wordTokens) * 0.3
+                        end
+                    elseif vocabMatches > 0 then
+                        -- For longer messages, vocabulary match is a bonus
+                        score = score + (vocabMatches / #wordTokens) * 0.2
+                    end
+                end
+                
                 scores[lang] = score
+                vocabularyMatches[lang] = vocabMatches
             end
         end
     end
@@ -118,8 +149,17 @@ function LanguageDetect.Detect(tokens)
     -- Clamp confidence to 0.0-1.0
     bestScore = Utils.Clamp(bestScore, 0.0, 1.0)
     
+    -- Special handling for short messages with vocabulary matches
+    -- Lower threshold for single-word messages if word exists in vocabulary
+    local effectiveThreshold = LanguageDetect.MIN_CONFIDENCE
+    if #wordTokens == 1 and bestLang and vocabularyMatches[bestLang] and vocabularyMatches[bestLang] > 0 then
+        effectiveThreshold = 0.20 -- Lower threshold for single-word vocabulary matches
+    elseif #wordTokens == 2 and bestLang and vocabularyMatches[bestLang] and vocabularyMatches[bestLang] >= 1 then
+        effectiveThreshold = 0.25 -- Slightly lower for 2-word messages
+    end
+    
     -- Return nil if below threshold
-    if bestScore < LanguageDetect.MIN_CONFIDENCE then
+    if bestScore < effectiveThreshold then
         return nil, bestScore
     end
     
@@ -142,7 +182,8 @@ end
 
 -- Initialize language detection (called after LanguagePackManager is available)
 function LanguageDetect.Initialize()
-    -- This will be called from Engine.Initialize after LanguagePackManager is set
+    -- Set LanguagePackManager reference for vocabulary-based detection
+    LanguageDetect.LanguagePackManager = WDTS_LanguagePackManager
 end
 
 WDTS_LanguageDetect = LanguageDetect

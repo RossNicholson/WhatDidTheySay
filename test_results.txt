@@ -1,0 +1,286 @@
+Loading addon modules...
+
+=== Comprehensive Test Suite for v0.4.0 ===
+
+
+--- Common Phrases ---
+  ✗ [kannst du mir helfen] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich glaube] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [weiss nicht] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [komme gleich] -> NO TRANSLATION (conf: 0.00) - No text in result
+  ✗ [bin unterwegs] -> NO TRANSLATION (conf: 0.00) - No translation returned
+
+--- Slang & Colloquial ---
+  ✗ [kannste] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [habe nix] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [is ja] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [geht nicht] -> NO TRANSLATION (conf: 0.00) - No text in result
+
+--- Past Participles ---
+  ✗ [habe gesagt] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [habe gemacht] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [habe gesehen] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [bin gekommen] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [bin gegangen] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [habe gehabt] -> NO TRANSLATION (conf: 0.00) - No translation returned
+
+--- Separable Verbs ---
+  ✗ [macht auf] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [macht zu] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [kommt an] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [geht weg] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [läuft los] -> NO TRANSLATION (conf: 0.00) - No text in result
+
+--- Modal Verbs ---
+  ✗ [ich kann] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich könnte] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich will] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich wollte] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich sollte] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich muss] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich müsste] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich möchte] -> NO TRANSLATION (conf: 0.00) - No translation returned
+
+--- Past Tense Verbs ---
+  ✗ [ich sagte] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich machte] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich glaubte] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich hatte] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [du sagtest] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [er machte] -> NO TRANSLATION (conf: 0.00) - No translation returned
+
+--- Basic Vocabulary ---
+  ✗ [hallo] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [danke] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ja] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [nein] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [bitte] -> NO TRANSLATION (conf: 0.00) - No translation returned
+
+--- Questions ---
+  ✗ [was machst du] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [wie geht es dir] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [wo bist du] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [warum nicht] -> NO TRANSLATION (conf: 0.00) - No translation returned
+
+--- Complex Sentences ---
+  ✗ [ich sagte gestern dass ich es gemacht habe] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich glaube dass du recht hast] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [kannst du mir helfen weil ich nicht weiss] -> NO TRANSLATION (conf: 0.00) - No translation returned
+
+--- WoW Terms ---
+  ✗ [ich brauche einen tank] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [wir gehen in bfd] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [suche heiler] -> NO TRANSLATION (conf: 0.00) - No text in result
+  ✗ [wer will in dungeon] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [ich bin level 60] -> NO TRANSLATION (conf: 0.00) - No translation returned
+
+--- Dative Pronouns ---
+  ✗ [gib mir] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [gib dir] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [gib ihm] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [gib uns] -> NO TRANSLATION (conf: 0.00) - No translation returned
+  ✗ [gib euch] -> NO TRANSLATION (conf: 0.00) - No translation returned
+
+============================================================
+
+TEST SUMMARY
+============================================================
+Total Tests: 56
+Passed: 0 (0.0%)
+Failed: 56 (100.0%)
+
+============================================================
+FAILED TESTS BY CATEGORY:
+============================================================
+
+[WoW Terms] - 5 failures
+  ✗ 'ich brauche einen tank' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, need, tank
+    Reason: No translation returned
+  ✗ 'wir gehen in bfd' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: we, going, BFD
+    Reason: No translation returned
+  ✗ 'suche heiler' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: looking, healer
+    Reason: No text in result
+  ✗ 'wer will in dungeon' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: who, wants, dungeon
+    Reason: No translation returned
+  ✗ 'ich bin level 60' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, am, level, 60
+    Reason: No translation returned
+
+[Basic Vocabulary] - 5 failures
+  ✗ 'hallo' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: hello, hi
+    Reason: No translation returned
+  ✗ 'danke' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: thanks, thank
+    Reason: No translation returned
+  ✗ 'ja' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: yes
+    Reason: No translation returned
+  ✗ 'nein' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: no
+    Reason: No translation returned
+  ✗ 'bitte' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: please
+    Reason: No translation returned
+
+[Common Phrases] - 5 failures
+  ✗ 'kannst du mir helfen' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: can, you, help, me
+    Reason: No translation returned
+  ✗ 'ich glaube' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, think
+    Reason: No translation returned
+  ✗ 'weiss nicht' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: don't, know
+    Reason: No translation returned
+  ✗ 'komme gleich' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: coming, soon
+    Reason: No text in result
+  ✗ 'bin unterwegs' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: on, my, way
+    Reason: No translation returned
+
+[Questions] - 4 failures
+  ✗ 'was machst du' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: what, are, you, doing
+    Reason: No translation returned
+  ✗ 'wie geht es dir' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: how, are, you
+    Reason: No translation returned
+  ✗ 'wo bist du' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: where, are, you
+    Reason: No translation returned
+  ✗ 'warum nicht' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: why, not
+    Reason: No translation returned
+
+[Separable Verbs] - 5 failures
+  ✗ 'macht auf' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: opens, open
+    Reason: No translation returned
+  ✗ 'macht zu' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: closes, close
+    Reason: No translation returned
+  ✗ 'kommt an' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: arrives, arrive
+    Reason: No translation returned
+  ✗ 'geht weg' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: goes, away
+    Reason: No translation returned
+  ✗ 'läuft los' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: runs, away, starts
+    Reason: No text in result
+
+[Slang & Colloquial] - 4 failures
+  ✗ 'kannste' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: can, you
+    Reason: No translation returned
+  ✗ 'habe nix' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, have, nothing
+    Reason: No translation returned
+  ✗ 'is ja' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: is, yes, sure
+    Reason: No translation returned
+  ✗ 'geht nicht' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: doesn't, work, can't
+    Reason: No text in result
+
+[Modal Verbs] - 8 failures
+  ✗ 'ich kann' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, can
+    Reason: No translation returned
+  ✗ 'ich könnte' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, could
+    Reason: No translation returned
+  ✗ 'ich will' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, want
+    Reason: No translation returned
+  ✗ 'ich wollte' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, wanted
+    Reason: No translation returned
+  ✗ 'ich sollte' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, should
+    Reason: No translation returned
+  ✗ 'ich muss' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, must
+    Reason: No translation returned
+  ✗ 'ich müsste' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, must, would
+    Reason: No translation returned
+  ✗ 'ich möchte' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, would, like
+    Reason: No translation returned
+
+[Past Participles] - 6 failures
+  ✗ 'habe gesagt' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, said
+    Reason: No translation returned
+  ✗ 'habe gemacht' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, did, made
+    Reason: No translation returned
+  ✗ 'habe gesehen' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, saw, seen
+    Reason: No translation returned
+  ✗ 'bin gekommen' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, came, come
+    Reason: No translation returned
+  ✗ 'bin gegangen' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, went, gone
+    Reason: No translation returned
+  ✗ 'habe gehabt' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, had
+    Reason: No translation returned
+
+[Dative Pronouns] - 5 failures
+  ✗ 'gib mir' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: give, me
+    Reason: No translation returned
+  ✗ 'gib dir' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: give, you
+    Reason: No translation returned
+  ✗ 'gib ihm' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: give, him, it
+    Reason: No translation returned
+  ✗ 'gib uns' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: give, us
+    Reason: No translation returned
+  ✗ 'gib euch' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: give, you
+    Reason: No translation returned
+
+[Past Tense Verbs] - 6 failures
+  ✗ 'ich sagte' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, said
+    Reason: No translation returned
+  ✗ 'ich machte' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, made, did
+    Reason: No translation returned
+  ✗ 'ich glaubte' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, thought, believed
+    Reason: No translation returned
+  ✗ 'ich hatte' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, had
+    Reason: No translation returned
+  ✗ 'du sagtest' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: you, said
+    Reason: No translation returned
+  ✗ 'er machte' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: he, made, did
+    Reason: No translation returned
+
+[Complex Sentences] - 3 failures
+  ✗ 'ich sagte gestern dass ich es gemacht habe' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, said, yesterday, that, I, did, made
+    Reason: No translation returned
+  ✗ 'ich glaube dass du recht hast' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: I, think, that, you, right
+    Reason: No translation returned
+  ✗ 'kannst du mir helfen weil ich nicht weiss' -> 'NO TRANSLATION' (conf: 0.00)
+    Expected: can, you, help, me, because, I, don't, know
+    Reason: No translation returned
+
+============================================================
