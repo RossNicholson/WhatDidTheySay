@@ -187,7 +187,7 @@ function DependencyParser.Parse(tokens)
                             end
                         end
                     end
-                    table.insert(relativeClauses, {start = i, end = clauseEnd, head = i})
+                    table.insert(relativeClauses, {start = i, ["end"] = clauseEnd, head = i})
                 end
             end
         end
@@ -207,7 +207,7 @@ function DependencyParser.Parse(tokens)
                     end
                 end
             end
-            table.insert(subordinateClauses, {start = i, end = clauseEnd, head = i})
+            table.insert(subordinateClauses, {start = i, ["end"] = clauseEnd, head = i})
         end
     end
     
