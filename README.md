@@ -332,6 +332,37 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📚 Version History
 
+### Version 0.4.0
+
+**Major Translation Engine Improvements & Vocabulary Expansion**
+
+This release represents a significant leap in translation accuracy through comprehensive engine improvements and massive vocabulary expansion.
+
+**Engine Improvements:**
+- **Compound Word Decomposition**: Automatically splits German compound words (e.g., "levelgilde" → "level" + "gilde")
+- **Sentence Type Detection**: Detects questions, commands, and statements for better word order
+- **Separable Verb Handling**: Recognizes separated verb prefixes (e.g., "macht auf" = "opens")
+- **Verb Conjugation Recognition**: Normalizes verb forms to base form for better vocabulary matching
+- **Enhanced Context Window**: Expanded from 2 to 3-5 words for better contextual translation
+- **Smarter Phrase Matching**: Fuzzy matching with article variations and capitalization
+- **Pattern Priority System**: More specific patterns apply first
+- **Optimized Grammar Rules**: Compiled and cached with priority system, prevents infinite loops
+- **Slash-Separated Translation Fix**: Intelligently chooses single best option instead of showing all (e.g., "on/up/at" → "on")
+
+**Massive Vocabulary Expansion:**
+- **600+ WoW-Specific Terms**: Zones, dungeons, raids, items, classes, professions, stats, mechanics
+- **100+ Common Gaming Terms**: Pet/hunter terms, gaming slang, colloquialisms
+- **80+ New Phrases**: Common gaming phrases, pet commands, social expressions
+- **Critical Missing Words**: Added fundamental vocabulary (ich, am, sage, geändert, etc.)
+
+**Translation Quality:**
+- Fixed major translation failures (e.g., "ich glaub ich hab..." now translates correctly)
+- Improved word order for questions and complex sentences
+- Better handling of past tense and verb forms
+- Enhanced punctuation and special character handling
+
+**All improvements tested and verified. Translation accuracy significantly improved while maintaining performance.**
+
 ### Version 0.3.0
 
 - ✅ **Continued German Translation Improvements** - Ongoing vocabulary expansion, phrase additions, and grammar refinements based on real-world chat logs
