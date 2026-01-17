@@ -1406,7 +1406,7 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     local allUniversalAbbrevs = true
     local universalAbbrevsForCheck = {
         ["bb"] = true, ["pls"] = true, ["summon"] = true, ["summons"] = true,
-        ["sw"] = true, ["lf"] = true, ["lfg"] = true, ["lfm"] = true, ["lfw"] = true, ["lfb"] = true, ["lf1m"] = true,
+        ["sw"] = true, ["lf"] = true, ["lfg"] = true, ["lfm"] = true, ["lfw"] = true, ["lfb"] = true, ["lf1m"] = true, ["lf2m"] = true, ["lf3m"] = true, ["lf4m"] = true,
         ["wts"] = true, ["wtb"] = true, ["wtt"] = true, ["tank"] = true, ["heal"] = true, ["healer"] = true,
         -- Dungeon abbreviations (these are universal, even if they exist in language packs)
         ["dm"] = true, ["bfd"] = true, ["st"] = true, ["sfk"] = true, ["rfk"] = true, ["rfd"] = true,
