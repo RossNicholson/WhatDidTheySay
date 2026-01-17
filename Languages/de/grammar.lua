@@ -1500,6 +1500,84 @@ WDTS_Lang_de_Grammar = {
             to = "what kind of addon is %2",
             priority = 18, -- Higher than "what is are" (15) but lower than "what kind of a" (20)
         },
+        -- Fix "is X already happens" -> "has X already happened"
+        {
+            from = "is (.+) already happens",
+            to = "has %1 already happened",
+            priority = 12,
+        },
+        {
+            from = "is (.+) already happened",
+            to = "has %1 already happened",
+            priority = 12,
+        },
+        -- Fix "portal to X to whom buff" -> "portal to X after the buff"
+        {
+            from = "portal to (.+) to whom buff",
+            to = "portal to %1 after the buff",
+            priority = 15,
+        },
+        {
+            from = "to (.+) to whom (.+)",
+            to = "to %1 after the %2",
+            priority = 10,
+        },
+        -- Fix "after that again back" -> "then back"
+        {
+            from = "and after that again back",
+            to = "and then back",
+            priority = 12,
+        },
+        {
+            from = "after that again back",
+            to = "then back",
+            priority = 12,
+        },
+        -- Fix "is still not" when it should be "has not yet"
+        {
+            from = "is still not (.+)",
+            to = "has not %1 yet",
+            priority = 10,
+        },
+        -- Fix "is not yet/has not yet" -> "has not yet" (clean up slash separation)
+        {
+            from = "is not yet/has not yet (.+)",
+            to = "has not %1 yet",
+            priority = 15,
+        },
+        {
+            from = "(.+) is not yet/has not yet",
+            to = "%1 has not yet",
+            priority = 15,
+        },
+        -- Fix "is not yet" in questions -> "has not yet"
+        {
+            from = "^(.+) is not yet (.+)\\?$",
+            to = "%1 has not %2 yet?",
+            priority = 12,
+        },
+        -- Fix "whisper me" (from "flüstert mir")
+        {
+            from = "flüstert me",
+            to = "whisper me",
+            priority = 15,
+        },
+        {
+            from = "flüster me",
+            to = "whisper me",
+            priority = 15,
+        },
+        -- Fix "inv" -> "invite" when used as verb (not inventory)
+        {
+            from = "pls inv",
+            to = "please invite",
+            priority = 15,
+        },
+        {
+            from = "please inventory",
+            to = "please invite",
+            priority = 15,
+        },
         -- Remove duplicate - handled above
         -- Fix third person "want" -> "wants"
         {

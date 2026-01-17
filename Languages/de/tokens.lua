@@ -1337,7 +1337,7 @@ WDTS_Lang_de_Tokens = {
     ["waren"] = "were",
     ["flugplatz"] = "airport", -- "am flugplatz" = "at the airport"
     ["westfall"] = "Westfall", -- Location name
-    ["passiert"] = "happens/happened", -- "was passiert" = "what happens"
+    ["passiert"] = "happened", -- "ist passiert" = "has happened", "was passiert" = "what happened"
     ["passieren"] = "happen",
     ["seht"] = "see", -- Plural: "seht ihr" = "do you see"
     ["langsamer"] = "slower", -- "lieber langsamer" = "prefer slower"
@@ -1592,6 +1592,49 @@ WDTS_Lang_de_Tokens = {
     ["nie"] = "never", -- "nie wieder" = "never again"
     ["wieder"] = "again", -- "nie wieder" = "never again"
     ["niemand"] = "nobody/no one", -- "niemand gestorben" = "nobody died"
+    ["vorhanden"] = "available", -- "Tank vorhanden" = "tank available"
+    ["passiert"] = "happened", -- "ist passiert" = "has happened"
+    ["flüstert"] = "whisper", -- "flüstert mir" = "whisper me"
+    ["flüster"] = "whisper", -- Imperative: "flüster mir" = "whisper me"
+    ["flüstern"] = "whisper", -- Infinitive
+    ["trinkgeld"] = "tip", -- "Trinkgeld gern gesehen" = "tips appreciated"
+    ["proc"] = "proc", -- Gaming term
+    ["geprocct"] = "proc'd/procced", -- Past tense of proc
+    ["geprocced"] = "proc'd/procced",
+    ["geproct"] = "proc'd/procced",
+    ["legenden"] = "legendaries/legendary items", -- "kleine legenden" = "small legendaries"
+    ["legende"] = "legendary",
+    ["niedliche"] = "cute/sweet", -- "niedliche Gnomin" = "cute gnome (female)"
+    ["niedlich"] = "cute/sweet",
+    ["gnomin"] = "gnome (female)", -- Female gnome
+    ["tod"] = "death", -- "Der Tod ist permanent" = "Death is permanent"
+    ["bleibt"] = "stay/stays", -- "bleibt am Leben" = "stay alive"
+    ["am leben"] = "alive", -- "bleibt am Leben" = "stay alive"
+    ["eure"] = "your", -- "eure Mats" = "your materials"
+    ["mats"] = "mats/materials", -- Gaming abbreviation for materials
+    ["ausdauer"] = "stamina", -- "Ausdauer" = "stamina"
+    ["ausd"] = "stamina", -- Abbreviation for Ausdauer
+    ["umhang"] = "cloak", -- "Umhang" = "cloak"
+    ["resi"] = "resistance", -- "Resi" = resistance (abbreviation)
+    ["stiefel"] = "boots", -- "Stiefel" = "boots"
+    ["lauftempo"] = "movement speed/speed", -- "Lauftempo" = "movement speed"
+    ["bonus"] = "bonus", -- "Bonus" = "bonus"
+    ["überragendes"] = "superior/outstanding", -- "Überragendes" = "superior"
+    ["willenskraft"] = "spirit", -- "Willenskraft" = "spirit" (stat)
+    ["schaden"] = "damage", -- "Schaden" = "damage"
+    ["schnell"] = "fast/quickly", -- "Schnell" = "fast/quickly"
+    ["derwischschiftung"] = "Dervish Shoulderpads", -- Item name
+    ["des"] = "of the", -- "des Falken" = "of the Falcon"
+    ["falken"] = "Falcon", -- Proper noun
+    ["armschiene"] = "bracer", -- "Armschiene" = "bracer"
+    ["armschienen"] = "bracers",
+    ["brust"] = "chest", -- "Brust" = "chest" (armor slot)
+    ["werte"] = "stats/all stats", -- "alle Werte" = "all stats"
+    ["handschuhe"] = "gloves", -- Already exists but confirming
+    ["waffe"] = "weapon", -- Already exists but confirming
+    ["schild"] = "shield", -- Already exists but confirming
+    ["as"] = "attack speed", -- "AS" = attack speed abbreviation
+    ["ausd"] = "stamina", -- Already added above but ensuring
     ["sofort"] = "immediately/right away", -- "sofort" = "immediately"
     ["volle"] = "full", -- "volle mana" = "full mana"
     ["bereit"] = "ready", -- "CD bereit" = "CD ready"
