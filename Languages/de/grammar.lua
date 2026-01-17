@@ -1562,6 +1562,28 @@ WDTS_Lang_de_Grammar = {
             to = "whisper me",
             priority = 15,
         },
+        -- Fix "kleiner movement speed-bonus" -> "minor movement speed bonus"
+        {
+            from = "kleiner movement speed%-bonus",
+            to = "minor movement speed bonus",
+            priority = 12,
+        },
+        {
+            from = "kleiner movement speed bonus",
+            to = "minor movement speed bonus",
+            priority = 12,
+        },
+        -- Fix "or Überragendes" -> "or superior"
+        {
+            from = "or überragendes",
+            to = "or superior",
+            priority = 12,
+        },
+        {
+            from = "or Überragendes",
+            to = "or superior",
+            priority = 12,
+        },
         {
             from = "flüster me",
             to = "whisper me",
