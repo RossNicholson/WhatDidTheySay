@@ -1817,8 +1817,16 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         end
     end
     
+    -- If language detection failed or confidence is too low, don't translate
+    -- This prevents false positives on random text
+    -- BUT: If sourceLang was explicitly provided, allow translation even for English terms
+    -- (e.g., English gaming terms in German chat like "shadow priests")
     if not sourceLang or langConfidence < LanguageDetect.MIN_CONFIDENCE then
-        return nil, 0.0, "language_unknown"
+        if not sourceLangWasExplicit then
+            return nil, 0.0, "language_unknown"
+        end
+        -- If sourceLang was explicitly provided, continue with translation
+        -- The message might be English gaming terms that should pass through unchanged
     end
     
     -- Skip translation if source and target are the same
