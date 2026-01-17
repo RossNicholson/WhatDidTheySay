@@ -2122,6 +2122,111 @@ WDTS_Lang_de_Phrases = {
     ["typisch"] = "typical",
     
     -- ============================================
+    -- MORE WOW GAMING CHAT PHRASES
+    -- ============================================
+    -- Combat coordination
+    ["cd ready"] = "cooldown ready",
+    ["cd fertig"] = "cooldown ready",
+    ["cooldown ready"] = "cooldown ready",
+    ["cc bitte"] = "crowd control please",
+    ["crowd control"] = "crowd control",
+    ["wipe incoming"] = "wipe incoming",
+    ["wird gewiped"] = "will wipe",
+    ["reset bitte"] = "reset please",
+    ["reseten"] = "resetting",
+    ["skip bitte"] = "skip please",
+    ["skippen"] = "skipping",
+    ["warte auf pull"] = "wait for pull",
+    ["tank pullt"] = "tank pulls",
+    ["tank hat aggro"] = "tank has aggro",
+    ["aggro verloren"] = "lost aggro",
+    ["heal mich"] = "heal me",
+    ["heilt mich"] = "heal me",
+    ["out of mana"] = "out of mana",
+    ["out of range"] = "out of range",
+    ["außer reichweite"] = "out of range",
+    ["in range"] = "in range",
+    ["in reichweite"] = "in range",
+    
+    -- Loot and items
+    ["würfeln"] = "roll",
+    ["würfel"] = "roll",
+    ["was für ein item"] = "what kind of item",
+    ["link bitte"] = "link please",
+    ["link mal"] = "link please",
+    ["trade bitte"] = "trade please",
+    ["trade mal"] = "trade please",
+    ["kannst du traden"] = "can you trade",
+    ["trade mit mir"] = "trade with me",
+    
+    -- Communication
+    ["whisper mir"] = "whisper me",
+    ["pm mir"] = "pm me",
+    ["schreib mir"] = "write me",
+    ["schreib mal"] = "write please",
+    ["kannst du mir schreiben"] = "can you write me",
+    ["hast du gelesen"] = "did you read",
+    ["hast du gesehen"] = "did you see",
+    ["siehst du"] = "do you see",
+    ["verstehst du"] = "do you understand",
+    
+    -- Status and availability
+    ["ready"] = "ready",
+    ["bereit"] = "ready",
+    ["fertig"] = "ready/done",
+    ["bin ready"] = "I'm ready",
+    ["ist ready"] = "is ready",
+    ["sind ready"] = "are ready",
+    
+    -- Trading and economy
+    ["kaufst du"] = "are you buying",
+    ["verkaufst du"] = "are you selling",
+    ["kannst du kaufen"] = "can you buy",
+    ["kannst du verkaufen"] = "can you sell",
+    ["wts"] = "want to sell",
+    ["wtb"] = "want to buy",
+    ["wtt"] = "want to trade",
+    ["verkaufe ich"] = "I'm selling",
+    ["kaufe ich"] = "I'm buying",
+    ["suche ich"] = "I'm looking for",
+    ["biete ich"] = "I'm offering",
+    
+    -- Group coordination
+    ["folgt"] = "follow",
+    
+    -- Social and greetings
+    ["hallo"] = "hello",
+    ["hi"] = "hi",
+    ["hey"] = "hey",
+    ["moin"] = "hi (northern German)",
+    ["guten tag"] = "good day",
+    ["guten morgen"] = "good morning",
+    ["gz"] = "grats",
+    ["gratz"] = "grats",
+    
+    -- Questions and confirmations
+    ["klar doch"] = "sure/of course",
+    ["selbstverständlich"] = "of course",
+    
+    -- Quick responses
+    ["ja"] = "yes",
+    ["jop"] = "yep",
+    ["jap"] = "yep",
+    ["jupp"] = "yep",
+    ["nein"] = "no",
+    ["ne"] = "no",
+    ["nö"] = "nope",
+    ["danke"] = "thanks",
+    ["dankeschön"] = "thank you",
+    ["bitte"] = "please/you're welcome",
+    ["sry"] = "sorry",
+    ["sorry"] = "sorry",
+    ["tschuldigung"] = "sorry",
+    
+    -- Complaints and frustration
+    ["nie wieder"] = "never again",
+    
+    -- ============================================
     -- END OF PHRASE PATTERNS
     -- ============================================
 }

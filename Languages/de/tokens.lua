@@ -5242,6 +5242,131 @@ WDTS_Lang_de_Tokens = {
     ["100"] = "hundred",
     
     -- ============================================
+    -- MORE WOW GAMING TERMS & CHAT SLANG
+    -- ============================================
+    -- Combat mechanics
+    ["cooldown"] = "cooldown",
+    ["crowd control"] = "crowd control",
+    ["wipe"] = "wipe",
+    ["wipen"] = "wiping",
+    ["gewiped"] = "wiped",
+    ["reset"] = "reset",
+    ["reseten"] = "resetting",
+    ["geresetet"] = "reset",
+    ["skip"] = "skip",
+    ["geskippt"] = "skipped",
+    
+    -- NPCs and vendors
+    ["vendor"] = "vendor",
+    ["auction"] = "auction",
+    ["auktionshaus"] = "auction house",
+    ["mail"] = "mail",
+    ["post"] = "mail/post",
+    ["briefkasten"] = "mailbox",
+    
+    -- Communication channels
+    ["whisper"] = "whisper",
+    ["tell"] = "tell/whisper",
+    ["pm"] = "private message",
+    ["party"] = "party",
+    ["gruppenchat"] = "party chat",
+    ["raidchat"] = "raid chat",
+    ["gildenchat"] = "guild chat",
+    ["handelschat"] = "trade chat",
+    ["general"] = "general",
+    ["say"] = "say",
+    ["yell"] = "yell",
+    ["schreien"] = "yell/shout",
+    ["emote"] = "emote",
+    ["channel"] = "channel",
+    ["kanal"] = "channel",
+    ["kanäle"] = "channels",
+    
+    -- Social actions
+    ["spam"] = "spam",
+    ["spammen"] = "spamming",
+    ["gespammt"] = "spammed",
+    ["flame"] = "flame",
+    ["flamen"] = "flaming",
+    ["geflamed"] = "flamed",
+    ["kick"] = "kick",
+    ["rauswerfen"] = "kick",
+    ["ban"] = "ban",
+    ["bannen"] = "ban",
+    ["gebannt"] = "banned",
+    ["report"] = "report",
+    ["gemeldet"] = "reported",
+    ["ignore"] = "ignore",
+    ["friend"] = "friend",
+    ["block"] = "block",
+    
+    -- More German gaming slang
+    ["nice"] = "nice",
+    ["ultra"] = "ultra/very",
+    ["krass"] = "crazy/intense",
+    ["hammer"] = "awesome/amazing",
+    ["bombe"] = "awesome/bomb",
+    ["saugeil"] = "super awesome",
+    ["mega geil"] = "mega awesome",
+    
+    -- More status and actions
+    ["ready"] = "ready",
+    ["done"] = "done",
+    ["fehlt"] = "missing/need",
+    ["klappt"] = "works",
+    ["passt"] = "works/fits",
+    ["alles klar"] = "all clear",
+    ["alles gut"] = "all good",
+    ["kein problem"] = "no problem",
+    ["macht nichts"] = "doesn't matter",
+    
+    -- More combat terms
+    ["dmg"] = "damage",
+    ["damage"] = "damage",
+    ["healing"] = "healing",
+    ["tanking"] = "tanking",
+    ["threat"] = "threat",
+    ["taunt"] = "taunt",
+    ["provozieren"] = "taunt",
+    ["interrupt"] = "interrupt",
+    ["stun"] = "stun",
+    ["root"] = "root",
+    ["slow"] = "slow",
+    ["snare"] = "snare",
+    ["fear"] = "fear",
+    ["charm"] = "charm",
+    ["verzaubern"] = "charm",
+    ["polymorph"] = "polymorph",
+    ["silence"] = "silence",
+    ["dispel"] = "dispel",
+    ["entfernen"] = "dispel/remove",
+    ["cleanse"] = "cleanse",
+    ["reinigen"] = "cleanse",
+    ["purge"] = "purge",
+    
+    -- More loot and items
+    ["drop"] = "drop",
+    ["droppen"] = "dropping",
+    ["gedroppt"] = "dropped",
+    ["passe"] = "pass",
+    ["reward"] = "reward",
+    
+    -- More character terms
+    ["toon"] = "character/toon",
+    ["hauptchar"] = "main character",
+    ["ausrüsten"] = "equip",
+    ["ausgerüstet"] = "equipped",
+    
+    -- More social terms
+    ["officer"] = "officer",
+    ["offizier"] = "officer",
+    ["leader"] = "leader",
+    ["führer"] = "leader",
+    ["anführer"] = "leader",
+    ["guildmaster"] = "guild master",
+    ["gildenmeister"] = "guild master",
+    
+    -- ============================================
     -- END OF VOCABULARY EXPANSION
     -- ============================================
 }
