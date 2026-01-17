@@ -16,6 +16,9 @@ WDTS_Lang_de_Phrases = {
     ["gibt es"] = "there is/there are", -- "gibt es" = "there is/there are"
     ["gibt es unten"] = "there is below/there is at the bottom",
     ["willst du"] = "do you want",
+    ["ich glaub"] = "I think", -- "ich glaub" = "I think"
+    ["ich glaube"] = "I think", -- "ich glaube" = "I think"
+    ["zurück gelassen"] = "left behind", -- "zurück gelassen" = "left behind"
     ["wieso nicht"] = "why not", -- "ja wieso nicht" = "yes why not"
     ["wie lange"] = "how long", -- "wie lange habt ihr" = "how long do you have"
     ["habt ihr"] = "do you have", -- "habt ihr noch" = "do you still have"

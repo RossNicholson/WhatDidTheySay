@@ -1190,6 +1190,26 @@ WDTS_Lang_de_Grammar = {
             from = "how lange have ",
             to = "how long do you have ",
         },
+        
+        -- Fix "ich glaub ich have" -> "I think I have"
+        {
+            from = "ich glaub ich have",
+            to = "I think I have",
+        },
+        {
+            from = "ich glaub ich have ",
+            to = "I think I have ",
+        },
+        
+        -- Fix "and like wurdest you back gelassen" -> "and how were you left behind"
+        {
+            from = "and like wurdest you back gelassen",
+            to = "and how were you left behind",
+        },
+        {
+            from = "^like wurdest you back gelassen",
+            to = "how were you left behind",
+        },
         {
             from = "^weiß not ",
             to = "don't know ",

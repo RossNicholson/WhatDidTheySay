@@ -445,8 +445,20 @@ local function NormalizeVerbForm(word)
         return nil
     end
     
-    -- Common German verb endings and their base form conversions
-    -- Try removing endings to get infinitive
+    -- Past tense forms (imperfect): wurdest -> werden, warst -> sein, glaubte -> glauben
+    if wordLower == "wurdest" then
+        return "werden"
+    elseif wordLower == "warst" then
+        return "sein"
+    elseif wordLower == "wurde" then
+        return "werden"
+    elseif wordLower:sub(-2) == "te" and #wordLower >= 5 then
+        -- Past tense weak verbs: glaubte -> glauben
+        local stem = wordLower:sub(1, -3)
+        if #stem >= 3 then
+            return stem .. "en"
+        end
+    end
     
     -- Past participle: ge- prefix + -t or -en ending
     if wordLower:sub(1, 3) == "ge" and #wordLower >= 6 then
@@ -463,6 +475,10 @@ local function NormalizeVerbForm(word)
             if #base >= 3 then
                 return base .. "en"
             end
+        end
+        -- Special: gelassen -> lassen
+        if wordLower == "gelassen" then
+            return "lassen"
         end
     end
     
@@ -807,16 +823,36 @@ local function GetContextualTranslation(token, tokenIdx, tokens, langPack)
     
     -- Apply context-aware rules even for simple translations
     if tokenKey == "wie" then
-        if #contextAfter > 0 then
-            local nextWord = contextAfter[1]
-            if nextWord == "viel" or nextWord == "viele" or nextWord == "lange" or 
-               nextWord == "oft" or nextWord == "gut" then
+        -- In questions, "wie" = "how"
+        -- Check if this is a question (sentence type or question mark)
+        local isQuestion = false
+        if nextToken then
+            -- Check if followed by question word or verb (question structure)
+            local nextLower = nextToken.value:lower()
+            if nextLower == "viel" or nextLower == "viele" or nextLower == "lange" or 
+               nextLower == "oft" or nextLower == "gut" or nextLower == "wurdest" or
+               nextLower == "wurdest" or nextLower == "wurde" or nextLower == "ist" then
                 return "how"
             end
         end
+        if #contextAfter > 0 then
+            local nextWord = contextAfter[1]
+            if nextWord == "viel" or nextWord == "viele" or nextWord == "lange" or 
+               nextWord == "oft" or nextWord == "gut" or nextWord == "wurdest" then
+                return "how"
+            end
+        end
+        -- After "und" (and) at start of sentence, often "how" in questions
+        if #contextBefore > 0 and contextBefore[1] == "und" then
+            if nextToken and (nextToken.value:lower() == "wurdest" or nextToken.value:lower() == "warst") then
+                return "how"
+            end
+        end
+        -- Default to "like" for comparisons
         if nextToken then
             return "like"
         end
+        return "how" -- Default to "how" if uncertain
     end
     
     if tokenKey == "von" and nextToken then
@@ -840,12 +876,33 @@ local function GetContextualTranslation(token, tokenIdx, tokens, langPack)
             local nextLower = nextToken.value:lower()
             -- Before verbs, "das" is usually "that" (pronoun)
             if nextLower == "geht" or nextLower == "ist" or nextLower == "war" or 
-               nextLower == "wird" or nextLower == "hat" or nextLower == "kann" or
+               nextLower == "wird" or nextToken.value:lower() == "hat" or nextLower == "kann" or
                nextLower == "macht" or nextLower == "geht" then
                 return "that"
             end
         end
         -- Default to "the" (article)
+    end
+    
+    -- Special case: "wie" - handle table translation here too
+    if tokenKey == "wie" and translation and type(translation) == "table" then
+        -- In questions, "wie" = "how"
+        if nextToken then
+            local nextLower = nextToken.value:lower()
+            if nextLower == "viel" or nextLower == "viele" or nextLower == "lange" or 
+               nextLower == "oft" or nextLower == "gut" or nextLower == "wurdest" or
+               nextLower == "wurde" or nextLower == "ist" or nextLower == "war" then
+                return translation.question or "how"
+            end
+        end
+        -- After "und" (and) at start, often "how" in questions
+        if #contextBefore > 0 and contextBefore[1] == "und" then
+            if nextToken and (nextToken.value:lower() == "wurdest" or nextToken.value:lower() == "warst") then
+                return translation.question or "how"
+            end
+        end
+        -- Default to table default
+        return translation.default or "like"
     end
     
     -- If translation is not a table, check if it's a string with multiple options

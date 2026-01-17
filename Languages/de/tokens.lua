@@ -50,6 +50,10 @@ WDTS_Lang_de_Tokens = {
     ["können"] = "can",
     ["weiß"] = "know", -- "weiß nicht" = "don't know"
     ["ob"] = "if", -- "ob wir" = "if we"
+    ["glaub"] = "think/believe", -- "ich glaub" = "I think"
+    ["glaube"] = "think/believe", -- "ich glaube" = "I think"
+    ["glaubst"] = "think/believe", -- "du glaubst" = "you think"
+    ["glaubt"] = "thinks/believes", -- "er glaubt" = "he thinks"
     ["schaffen"] = "manage/accomplish/can do", -- "wir schaffen das" = "we can manage that"
     ["zweit"] = "two/second", -- "zu zweit" = "with two/just the two of us"
     ["heilen"] = "heal", -- "ich kann heilen" = "I can heal"
@@ -421,6 +425,10 @@ WDTS_Lang_de_Tokens = {
     ["leiht"] = "lends",
     ["leih"] = "lend",
     ["geliehen"] = "lent",
+    ["gelassen"] = "left behind/let", -- "zurück gelassen" = "left behind"
+    ["lassen"] = "let/leave",
+    ["läßt"] = "lets/leaves",
+    ["läßt"] = "lets/leaves",
     ["borgen"] = "borrow",
     ["borgt"] = "borrows",
     ["borg"] = "borrow",
@@ -548,6 +556,7 @@ WDTS_Lang_de_Tokens = {
     ["haben"] = "have",
     
     -- Pronouns and people
+    ["ich"] = "I", -- "ich glaub" = "I think"
     ["man"] = "one/you", -- Impersonal pronoun: "Kann man" = "Can one/Can you"
     ["es"] = "it", -- Neuter pronoun: "nannte man es" = "one called it"
     ["er"] = "he", -- "er geht" = "he goes"
@@ -671,9 +680,12 @@ WDTS_Lang_de_Tokens = {
     ["nett"] = "nice", -- "sehr nett" = "very nice"
     ["vielleicht"] = "maybe",
     ["bestimmt"] = "definitely",
-    ["werden"] = "will",
-    ["wird"] = "will",
-    ["wirst"] = "will",
+    ["werden"] = "will/become",
+    ["wird"] = "will/become",
+    ["wirst"] = "will/become",
+    ["wurdest"] = "were/became", -- Past tense: "du wurdest" = "you were/became"
+    ["wurde"] = "was/became", -- "es wurde" = "it was/became"
+    ["wurden"] = "were/became",
     ["bissl"] = "a bit/a little", -- Colloquial for "bisschen"
     ["bisschen"] = "a bit/a little",
     ["loot"] = "loot",
@@ -1220,6 +1232,9 @@ WDTS_Lang_de_Tokens = {
     ["sucht"] = "looks for/searches",
     ["questet"] = "quests", -- "mit dir questet" = "quests with you"
     ["questen"] = "quest",
+    ["gequestet"] = "quested", -- Past participle: "leergequestet" = "emptied of quests"
+    ["leer"] = "empty", -- "leer" = "empty"
+    ["leergequestet"] = "emptied of quests/completed all quests", -- Compound: "leer" + "gequestet"
     ["lernst"] = "learn", -- "so lernst du" = "so you learn"
     ["lernen"] = "learn",
     ["lernt"] = "learns",
