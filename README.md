@@ -45,6 +45,7 @@ Please note that translation quality may vary and some messages may not translat
 ### Key Features
 
 - ✅ **No External Services** - All translation logic runs locally in-game, no external APIs or translation services needed
+- ✅ **Dependency Parsing** - Structure-based translation using dependency trees for more accurate word order and grammar (v0.5.0)
 - ✅ **Automated Processing** - Automatically translates messages when confidence is sufficient
 - ✅ **Intent Detection** - Understands player intent (LFG, invites, ready status, etc.)
 - ✅ **Safe & Conservative** - Stays quiet when confidence is low to avoid wrong translations
