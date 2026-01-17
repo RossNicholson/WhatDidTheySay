@@ -1607,6 +1607,25 @@ WDTS_Lang_de_Tokens = {
     ["niedliche"] = "cute/sweet", -- "niedliche Gnomin" = "cute gnome (female)"
     ["niedlich"] = "cute/sweet",
     ["gnomin"] = "gnome (female)", -- Female gnome
+    ["schon"] = "already", -- "schon bald" = "soon/already soon"
+    ["schonmal"] = "already/once", -- "schonmal" = "already/once" (colloquial)
+    ["bald"] = "soon", -- "schon bald" = "soon/already soon"
+    ["flieg"] = "fly/flying", -- "ich flieg" = "I fly/I'm flying"
+    ["fliege"] = "fly/flying", -- "ich fliege" = "I fly/I'm flying"
+    ["schicke"] = "send/sending", -- "schicke dir" = "I send you/I'm sending you"
+    ["schickt"] = "sends/sending",
+    ["taschengeld"] = "pocket money", -- "Taschengeld" = "pocket money"
+    ["hohen"] = "high/high-level", -- "hohen char" = "high-level character"
+    ["hohe"] = "high/high-level",
+    ["hoher"] = "high/high-level",
+    ["angekommen"] = "arrived", -- "bin angekommen" = "I arrived/I have arrived"
+    ["ankommen"] = "arrive",
+    ["schaff"] = "manage/can do", -- "ich schaff" = "I can manage/I can do"
+    ["schaffen"] = "manage/can do",
+    ["seh"] = "see", -- "ich seh" = "I see" (colloquial)
+    ["sehe"] = "see",
+    ["jo"] = "yes/yeah", -- "oh jo" = "oh yes/oh yeah"
+    ["ach"] = "oh/ah", -- "ach das" = "oh that"
     ["tod"] = "death", -- "Der Tod ist permanent" = "Death is permanent"
     ["bleibt"] = "stay/stays", -- "bleibt am Leben" = "stay alive"
     ["am leben"] = "alive", -- "bleibt am Leben" = "stay alive"
