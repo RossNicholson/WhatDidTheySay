@@ -13,6 +13,7 @@ Core/Tokenizer.lua
 Core/LanguageDetect.lua
 Core/Confidence.lua
 Core/LanguagePackManager.lua
+Core/DependencyParser.lua
 Core/Engine.lua
 Core/ChatHooks.lua
 
