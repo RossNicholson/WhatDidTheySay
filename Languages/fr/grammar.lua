@@ -850,6 +850,28 @@ WDTS_Lang_fr_Grammar = {
             priority = 15,
         },
         
+        -- Fix "donne me" → "give me" (from "donne-moi" when tokenized)
+        {
+            from = "^donne me$",
+            to = "give me",
+            priority = 16,
+        },
+        {
+            from = "^donne me ",
+            to = "give me ",
+            priority = 16,
+        },
+        {
+            from = "donne me$",
+            to = "give me",
+            priority = 16,
+        },
+        {
+            from = "donne me ",
+            to = "give me ",
+            priority = 16,
+        },
+        
         -- Fix "qu'est-ce" remnants: "qu'do" → "what do"
         {
             from = "qu'do",
