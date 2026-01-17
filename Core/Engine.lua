@@ -6,6 +6,7 @@ local Tokenizer = WDTS_Tokenizer
 local LanguageDetect = WDTS_LanguageDetect
 local Confidence = WDTS_Confidence
 local LanguagePackManager = WDTS_LanguagePackManager
+local GermanMorphology = WDTS_GermanMorphology -- Optional morphology helper
 
 local Engine = {}
 Engine.initialized = false
@@ -209,14 +210,20 @@ local function MatchSeparableVerb(tokens, startIdx, langPack)
         return nil
     end
     
-    -- Common German separable verb prefixes
-    local separablePrefixes = {
-        ["auf"] = true, ["an"] = true, ["zu"] = true, ["ab"] = true,
-        ["ein"] = true, ["aus"] = true, ["mit"] = true, ["nach"] = true,
-        ["vor"] = true, ["weg"] = true, ["um"] = true, ["durch"] = true,
-        ["über"] = true, ["unter"] = true, ["wieder"] = true, ["her"] = true,
-        ["hin"] = true, ["fort"] = true, ["los"] = true, ["fest"] = true,
-    }
+    -- Use morphology helper if available, otherwise fallback to basic list
+    local separablePrefixes = {}
+    if GermanMorphology and GermanMorphology.SEPARABLE_PREFIXES then
+        separablePrefixes = GermanMorphology.SEPARABLE_PREFIXES
+    else
+        -- Fallback to basic list
+        separablePrefixes = {
+            ["auf"] = true, ["an"] = true, ["zu"] = true, ["ab"] = true,
+            ["ein"] = true, ["aus"] = true, ["mit"] = true, ["nach"] = true,
+            ["vor"] = true, ["weg"] = true, ["um"] = true, ["durch"] = true,
+            ["über"] = true, ["unter"] = true, ["wieder"] = true, ["her"] = true,
+            ["hin"] = true, ["fort"] = true, ["los"] = true, ["fest"] = true,
+        }
+    end
     
     -- Look ahead up to 5 words for separated prefix + verb pattern
     local maxLookahead = math.min(5, #tokens - startIdx)
@@ -437,7 +444,17 @@ end
 
 -- Try to normalize German verb to base form (infinitive)
 -- This helps match verb conjugations that aren't in the dictionary
+-- Uses GermanMorphology helper if available
 local function NormalizeVerbForm(word)
+    -- Use morphology helper if available (better accuracy)
+    if GermanMorphology and GermanMorphology.NormalizeToInfinitive then
+        local normalized = GermanMorphology.NormalizeToInfinitive(word)
+        if normalized then
+            return normalized
+        end
+    end
+    
+    -- Fallback to original logic
     local wordLower = word:lower()
     
     -- If already short, probably not a verb or already base form

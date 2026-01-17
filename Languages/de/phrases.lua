@@ -583,6 +583,13 @@ WDTS_Lang_de_Phrases = {
     ["schreiben alle verdient"] = "everyone writes deserved",
     ["so das du gestorben bist"] = "that you died",
     
+    -- More phrases from recent chat logs
+    ["am anfang der ini"] = "at the beginning of the instance", -- "am Anfang der Ini" = "at the beginning of the instance"
+    ["hat das pet gemacht"] = "the pet did", -- "hat das Pet gemacht" = "the pet did"
+    ["was ich sagte"] = "what I said", -- Past tense version
+    ["und dann nicht mehr"] = "and then no more", -- "und dann nicht mehr" = "and then no more"
+    ["habe doch nix geändert"] = "but I haven't changed anything", -- "habe doch nix geändert" = "but I haven't changed anything"
+    
     -- Phrases from broken translation
     ["am anfang"] = "at the beginning", -- "am Anfang" = "at the beginning"
     ["am anfang der"] = "at the beginning of the", -- "am Anfang der Ini" = "at the beginning of the instance"

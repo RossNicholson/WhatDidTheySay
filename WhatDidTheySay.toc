@@ -8,6 +8,7 @@
 
 # Core modules
 Core/Utils.lua
+Core/GermanMorphology.lua
 Core/Tokenizer.lua
 Core/LanguageDetect.lua
 Core/Confidence.lua

@@ -950,7 +950,14 @@ WDTS_Lang_de_Tokens = {
     ["angreifen"] = "attack",
     ["angriff"] = "attack",
     ["allein"] = "alone",
-    ["sagte"] = "said",
+    ["sagte"] = "said", -- Past tense: "ich sagte" = "I said"
+    ["sagtest"] = "said", -- "du sagtest" = "you said"
+    ["machte"] = "made/did", -- Past tense: "ich machte" = "I made/did"
+    ["machtest"] = "made/did", -- "du machtest" = "you made/did"
+    ["glaubte"] = "thought/believed", -- Past tense: "ich glaubte" = "I thought"
+    ["glaubtest"] = "thought/believed",
+    ["hatte"] = "had", -- Already exists
+    ["hattest"] = "had", -- "du hattest" = "you had"
     ["gesagt"] = "said",
     ["wurde"] = "became/was",
     ["wurden"] = "became/were",
