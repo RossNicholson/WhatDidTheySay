@@ -386,6 +386,10 @@ WDTS_Lang_de_Tokens = {
     ["güldischer"] = "golden", -- Golden (masculine form)
     ["güldische"] = "golden", -- Golden (feminine form)
     ["silber"] = "silver",
+    ["silbermünzen"] = "silver coins",
+    ["silbermünze"] = "silver coin",
+    ["münzen"] = "coins",
+    ["münze"] = "coin",
     ["kupfer"] = "copper",
     ["geld"] = "money",
     ["armschienen"] = "bracers",
@@ -2899,6 +2903,7 @@ WDTS_Lang_de_Tokens = {
     ["einige"] = "some",
     ["etliche"] = "quite a few",
     ["ein paar"] = "a few/a couple",
+    ["einpaar"] = "a few/a couple", -- Variant spelling without space
     ["paar"] = "couple/pair",
     ["paare"] = "couples/pairs",
     ["jede"] = "every/each",
@@ -5365,6 +5370,9 @@ WDTS_Lang_de_Tokens = {
     ["anführer"] = "leader",
     ["guildmaster"] = "guild master",
     ["gildenmeister"] = "guild master",
+    
+    -- Common phrases and remaining words
+    ["übrig"] = "left over/remaining",
     
     -- ============================================
     -- END OF VOCABULARY EXPANSION
