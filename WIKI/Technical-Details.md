@@ -4,6 +4,36 @@
 
 **What Did They Say?** is a rule-based, offline translation system built specifically for World of Warcraft Classic. All translation logic runs locally in-game using Lua 5.1.
 
+### Project Structure
+
+```
+WhatDidTheySay/
+├── Core/                    # Core translation engine
+│   ├── Engine.lua          # Main translation pipeline
+│   ├── Tokenizer.lua       # Tokenization and protection logic
+│   ├── LanguageDetect.lua  # Language detection
+│   ├── Confidence.lua      # Confidence scoring
+│   ├── ChatHooks.lua       # Chat event interception
+│   ├── DependencyParser.lua # Dependency parsing (v0.5.0+)
+│   ├── GermanMorphology.lua # German linguistic utilities
+│   └── Utils.lua           # Shared utilities
+├── Languages/               # Language packs
+│   ├── en/                 # English (target language)
+│   └── de/                 # German (source language)
+│       ├── tokens.lua      # Vocabulary dictionary
+│       ├── intents.lua     # Intent patterns
+│       ├── patterns.lua    # Phrase patterns
+│       ├── phrases.lua     # Multi-word phrases
+│       ├── grammar.lua     # Grammar rules
+│       └── metadata.lua    # Language metadata
+├── UI/                      # User interface
+│   ├── Config.lua          # Configuration window
+│   ├── Widgets.lua         # UI components
+│   └── TitanPanel.lua      # Titan Panel integration (optional)
+├── WhatDidTheySay.lua      # Addon entry point
+└── WhatDidTheySay.toc      # Addon manifest
+```
+
 ### Core Principles
 
 1. **No External Dependencies** - All processing happens in-game
@@ -17,9 +47,11 @@ Every message goes through these steps:
 
 ```
 Message → Tokenization → Language Detection → Intent Detection → 
-Pattern Matching → Phrase Matching → Word Translation → 
-Grammar Rules → Confidence Scoring → Display Decision
+[Dependency Parsing OR Pattern Matching] → Phrase Matching → 
+Word Translation → Grammar Rules → Confidence Scoring → Display Decision
 ```
+
+**Note:** Dependency parsing (v0.5.0+) is attempted first for structure-based translation. If it fails, the engine falls back to pattern matching and word-by-word translation.
 
 ### 1. Tokenization
 
@@ -70,7 +102,21 @@ Recognizes player intents:
 
 **Scoring:** 0.0 - 1.0, used in confidence calculation
 
-### 4. Pattern Matching
+### 4. Dependency Parsing (v0.5.0+)
+
+**File:** `Core/DependencyParser.lua`
+
+Parses sentences into dependency trees showing grammatical relationships:
+- **Structure-Based Translation**: Understands subject → verb → object relationships
+- **Correct Word Order**: Produces English word order without post-processing
+- **Complex Sentence Support**: Handles relative clauses, subordinate clauses, questions
+- **Question Word Detection**: Recognizes question words (wo, was, wer, wie, wann, warum)
+- **Subordinate Clause Detection**: Identifies conjunctions (dass, wenn, weil, obwohl)
+- **Relative Clause Detection**: Detects relative pronouns (der, die, das)
+
+**Fallback:** If dependency parsing fails, falls back to pattern matching.
+
+### 5. Pattern Matching
 
 **File:** `Core/Engine.lua` (ApplyPatterns function)
 
@@ -90,7 +136,7 @@ Matches regex-like patterns for complex structures:
 }
 ```
 
-### 5. Phrase Matching
+### 6. Phrase Matching
 
 **File:** `Core/Engine.lua` (MatchPhraseAt function)
 
@@ -104,7 +150,7 @@ Matches multi-word phrases translated as units:
 ["kannst du mir helfen"] = "can you help me"
 ```
 
-### 6. Word Translation
+### 7. Word Translation
 
 **File:** `Core/Engine.lua` (TranslateTokens function)
 
@@ -123,7 +169,7 @@ Translates individual words:
 5. Compound word decomposition
 6. Contextual translation (slash-separated options)
 
-### 7. Grammar Rules
+### 8. Grammar Rules
 
 **File:** `Languages/de/grammar.lua`
 
@@ -144,7 +190,7 @@ Post-processing rules for word order and corrections:
 }
 ```
 
-### 8. Confidence Scoring
+### 9. Confidence Scoring
 
 **File:** `Core/Confidence.lua`
 
@@ -168,7 +214,7 @@ confidence = (languageConfidence * 0.3) +
              - lengthPenalty
 ```
 
-### 9. Display Decision
+### 10. Display Decision
 
 **File:** `Core/Engine.lua`, `Core/ChatHooks.lua`
 

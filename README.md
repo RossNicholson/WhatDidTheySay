@@ -85,13 +85,7 @@ The addon includes placeholder language packs for Russian, French, Spanish, Port
 - 🚧 Ongoing vocabulary expansion based on real-world usage
 - 🚧 Grammar refinements and edge case handling
 
-### Current Capabilities
-
-- **Dependency Parsing** - Structure-based translation using grammatical relationships (v0.5.0)
-- **Vocabulary Translation** - High-value WoW terms (roles, dungeons, actions)
-- **Intent Recognition** - LFG requests, invites, ready status, movement commands
-- **Pattern Matching** - Common phrase structures
-- **Grammar Post-Processing** - Basic corrections and reordering
+For detailed technical information, see the [Technical Details](https://github.com/RossNicholson/WhatDidTheySay/wiki/Technical-Details) wiki page.
 
 ---
 
@@ -214,63 +208,7 @@ The addon automatically enables translation for all channels you have joined. Yo
 
 ---
 
-## 🏗️ Technical Architecture
-
-### Project Structure
-
-```
-WhatDidTheySay/
-├── Core/                    # Core translation engine
-│   ├── Engine.lua          # Main translation pipeline
-│   ├── Tokenizer.lua       # Tokenization and protection logic
-│   ├── LanguageDetect.lua  # Language detection
-│   ├── Confidence.lua      # Confidence scoring
-│   ├── ChatHooks.lua       # Chat event interception
-│   └── Utils.lua           # Shared utilities
-├── Languages/               # Language packs
-│   ├── en/                 # English (target language)
-│   └── de/                 # German (source language)
-│       ├── tokens.lua      # Vocabulary dictionary
-│       ├── intents.lua     # Intent patterns
-│       ├── patterns.lua    # Phrase patterns
-│       └── grammar.lua     # Grammar rules
-├── UI/                      # User interface
-│   ├── Config.lua          # Configuration window
-│   ├── Widgets.lua         # UI components
-│   └── TitanPanel.lua      # Titan Panel integration (optional)
-├── WhatDidTheySay.lua      # Addon entry point
-└── WhatDidTheySay.toc      # Addon manifest
-```
-
-### Translation Pipeline
-
-Every message goes through these steps in order:
-
-1. **Channel Filtering** - Ignore disabled channels immediately
-2. **Tokenization** - Split into structured tokens (words, numbers, punctuation, protected items)
-3. **Language Detection** - Determine source language using function words and character hints
-4. **Intent Detection** - Identify player intent (highest priority)
-5. **Pattern Translation** - Apply phrase patterns and vocabulary
-6. **Grammar Post-Processing** - Apply safe, deterministic grammar rules
-7. **Confidence Scoring** - Calculate final confidence (0.0 - 1.0)
-8. **Output Gating** - Display or suppress based on confidence
-
-### Protected Tokens
-
-These are never modified during translation:
-- Player names
-- Item links (`|c...|Hitem:...|h...|h|r`)
-- Spell links (`|c...|Hspell:...|h...|h|r`)
-- Quest links (`|c...|Hquest:...|h...|h|r`)
-- Raid icons (`{rt1}` - `{rt8}`)
-- Numbers and coordinates
-
-### Performance Features
-
-- **Translation Caching** - Caches successful translations (max 500 entries)
-- **Message Throttling** - Limits processing to 10 messages per 2-second window
-- **No Heavy Logic** - Avoids per-frame updates and unbounded loops
-- **Memory Efficient** - Designed to not impact FPS or UI responsiveness
+For detailed technical architecture, translation pipeline, and performance details, see the [Technical Details](https://github.com/RossNicholson/WhatDidTheySay/wiki/Technical-Details) wiki page.
 
 ---
 
@@ -308,29 +246,7 @@ These are never modified during translation:
 
 ## 🤝 Contributing
 
-Contributions are welcome! This addon is designed to scale cleanly to additional languages.
-
-### Adding a New Language
-
-1. Create a new folder in `Languages/` with the language code (e.g., `fr` for French)
-2. Add the required files:
-   - `tokens.lua` - High-value vocabulary dictionary (required)
-   - `intents.lua` - Intent detection patterns (required)
-   - `patterns.lua` - Reusable phrase structures (required)
-   - `grammar.lua` - Grammar post-processing rules (required)
-   - `phrases.lua` - Multi-word phrases that should be translated as units (optional, but recommended)
-3. Follow existing patterns in the `Languages/de/` folder
-4. Add function words to `Core/LanguageDetect.lua`
-5. Add the language pack files to `WhatDidTheySay.toc` in the language packs section
-6. Test thoroughly and submit a pull request
-
-### Development Guidelines
-
-- Follow existing code style and structure
-- Maintain separation of concerns (Core, Languages, UI)
-- Ensure all translations have confidence scoring
-- Test with real in-game chat messages
-- Update README if adding new features
+Contributions are welcome! See the [Contributing Guide](https://github.com/RossNicholson/WhatDidTheySay/wiki/Contributing) for details on how to add new languages, report issues, and submit pull requests.
 
 ---
 
@@ -342,94 +258,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📚 Version History
 
-### Version 0.5.0
+For detailed version history and changelog, see the [Version History](https://github.com/RossNicholson/WhatDidTheySay/wiki/Version-History) wiki page.
 
-**Dependency Parsing - Structure-Based Translation**
-
-This release introduces a major architectural improvement: **dependency parsing** for structure-based translation. Instead of word-by-word translation with post-processing fixes, the engine now understands grammatical relationships and produces correct English word order from the start.
-
-**Dependency Parsing Engine:**
-- **Structure-Based Translation**: Parses sentences into dependency trees showing grammatical relationships (subject → verb, verb → object, etc.)
-- **Correct Word Order**: Produces correct English word order without post-processing grammar fixes
-- **Complex Sentence Support**: Handles relative clauses, subordinate clauses, and questions
-- **Question Word Detection**: Recognizes question words (wo, was, wer, wie, wann, warum) and handles V1 word order
-- **Subordinate Clause Detection**: Identifies conjunctions (dass, wenn, weil, obwohl) and parses subordinate clauses
-- **Relative Clause Detection**: Detects relative pronouns (der, die, das) after commas and parses relative clauses
-
-**Translation Quality:**
-- More accurate translations for complex German sentence structures
-- Better handling of questions and subordinate clauses
-- Improved word order for all sentence types
-- Foundation for future grammar improvements
-
-**Technical Details:**
-- New `Core/DependencyParser.lua` module (700+ lines)
-- Integrated into main translation pipeline with automatic fallback
-- Maintains backward compatibility with existing vocabulary and phrase matching
-- Performance-optimized with early exit conditions
-
-**This represents a significant step toward higher translation accuracy for complex German sentences.**
-
-### Version 0.4.0
-
-**Major Translation Engine Improvements & Vocabulary Expansion**
-
-This release represents a significant leap in translation accuracy through comprehensive engine improvements and massive vocabulary expansion.
-
-**Engine Improvements:**
-- **Compound Word Decomposition**: Automatically splits German compound words (e.g., "levelgilde" → "level" + "gilde")
-- **Sentence Type Detection**: Detects questions, commands, and statements for better word order
-- **Separable Verb Handling**: Recognizes separated verb prefixes (e.g., "macht auf" = "opens")
-- **Verb Conjugation Recognition**: Normalizes verb forms to base form for better vocabulary matching
-- **Enhanced Context Window**: Expanded from 2 to 3-5 words for better contextual translation
-- **Smarter Phrase Matching**: Fuzzy matching with article variations and capitalization
-- **Pattern Priority System**: More specific patterns apply first
-- **Optimized Grammar Rules**: Compiled and cached with priority system, prevents infinite loops
-- **Slash-Separated Translation Fix**: Intelligently chooses single best option instead of showing all (e.g., "on/up/at" → "on")
-
-**Massive Vocabulary Expansion:**
-- **600+ WoW-Specific Terms**: Zones, dungeons, raids, items, classes, professions, stats, mechanics
-- **100+ Common Gaming Terms**: Pet/hunter terms, gaming slang, colloquialisms
-- **80+ New Phrases**: Common gaming phrases, pet commands, social expressions
-- **Critical Missing Words**: Added fundamental vocabulary (ich, am, sage, geändert, etc.)
-
-**Translation Quality:**
-- Fixed major translation failures (e.g., "ich glaub ich hab..." now translates correctly)
-- Improved word order for questions and complex sentences
-- Better handling of past tense and verb forms
-- Enhanced punctuation and special character handling
-
-**All improvements tested and verified. Translation accuracy significantly improved while maintaining performance.**
-
-### Version 0.3.0
-
-- ✅ **Continued German Translation Improvements** - Ongoing vocabulary expansion, phrase additions, and grammar refinements based on real-world chat logs
-- ✅ **Enhanced Translation Accuracy** - Added missing common words, phrases, and contextual patterns for better coverage
-- ✅ **Grammar Rule Refinements** - Improved post-processing rules for more natural English output
-- ✅ **Confidence Scoring Adjustments** - Optimized thresholds for better translation display
-
-### Version 0.2.0
-
-- ✅ **Guild Chat Support** - Added translation support for guild chat channel
-- ✅ **Titan Panel Integration** - Optional status display in Titan Panel bar (if Titan Panel is installed)
-- ✅ **Testing Commands** - Added `/wdts test`, `/wdts suite`, `/wdts debug`, `/wdts clear`, `/wdts clearcache` for development and debugging
-- ✅ **Improved False Positive Protection** - Excludes universal gaming abbreviations (LF, LFM, WTS, WTB, tank, DM, etc.) from triggering German translation
-- ✅ **Enhanced Mixed-Language Detection** - Requires actual German function words or characters (ä, ö, ü, ß) before translating, preventing English messages with abbreviations from being incorrectly translated
-- ✅ **Expanded German Vocabulary** - Added common words: "zum", "leveln", "alles", "können", "güldischer", "bsf" (Blackfathom Deeps), and more
-- ✅ **Better Phrase Matching** - Added phrases like "zum leveln", "noch alles" for more accurate translations
-- ✅ **Refined Language Detection** - More accurate distinction between English and German messages, especially for abbreviation-heavy messages
-
-### Version 0.1.0
-
-- ✅ Initial stable release
-- ✅ German → English translation support
-- ✅ Automatic translation with confidence scoring
-- ✅ Configurable channels and settings
-- ✅ Translation caching and throttling
-- ✅ Intent detection (LFG, invites, ready status, etc.)
-- ✅ Protected token handling (links, names, numbers)
-- ✅ Performance optimizations
-- ✅ Comprehensive test suite
+**Recent Highlights:**
+- **v0.5.0**: Dependency parsing for structure-based translation, complex sentence support
+- **v0.4.0**: Major vocabulary expansion (4,400+ entries), engine improvements
+- **v0.3.0**: Continued translation accuracy improvements
 
 ---
 
