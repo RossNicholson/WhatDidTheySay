@@ -384,16 +384,18 @@ local function MatchPhraseAt(tokens, startIdx, langPack)
     end
     
     local maxPhraseLength = langPack._maxPhraseLength
-    if maxPhraseLength < 2 or startIdx > #tokens then
+    -- Allow single-word phrases (maxPhraseLength >= 1) for phrases like "vente" = "selling"
+    if maxPhraseLength < 1 or startIdx > #tokens then
         return nil
-    end
+end
     
     if tokens[startIdx].type ~= "word" then
         return nil
     end
     
     -- Try to match phrases of decreasing length (longest first)
-    for phraseLen = math.min(maxPhraseLength + 1, #tokens - startIdx + 1), 2, -1 do
+    -- Start from maxPhraseLength down to 1 (to allow single-word phrases)
+    for phraseLen = math.min(maxPhraseLength + 1, #tokens - startIdx + 1), 1, -1 do
         -- Extract token words from current position
         local tokenWords = {}
         local allWords = true

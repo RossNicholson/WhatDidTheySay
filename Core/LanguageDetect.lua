@@ -64,6 +64,8 @@ LanguageDetect.FUNCTION_WORDS = {
         "très", "plus", "moins", "beaucoup", "peu", "assez", "trop", "bien", "mal",
         -- Common greetings/words
         "bonjour", "salut", "bonsoir", "bonne", "bon", "merci", "s'il", "vous", "plaît",
+        -- Common verbs/nouns for LFG/trading
+        "cherche", "cherches", "cherchent", "besoin", "besoins", "vente",
     },
 }
 
