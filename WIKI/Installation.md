@@ -5,7 +5,7 @@
 ### Option 1: GitHub Releases (Recommended)
 
 1. Go to the [Releases page](https://github.com/RossNicholson/WhatDidTheySay/releases)
-2. Download the latest release (currently **v0.4.0**)
+2. Download the latest release (currently **v0.5.0**)
 3. Extract the ZIP file
 
 ### Option 2: Clone Repository

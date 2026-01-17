@@ -10,7 +10,7 @@ WDTS_Lang_en_Tokens = {
     
     -- Dungeons (common abbreviations)
     ["wc"] = "Wailing Caverns",
-    ["dm"] = "Deadmines",
+    ["dm"] = "Deadmines", -- Note: "dm" can also mean "Dire Maul" in higher-level content, but "Deadmines" is more common in Classic Era
     ["sfk"] = "Shadowfang Keep",
     ["bfd"] = "Blackfathom Deeps",
     ["gnomer"] = "Gnomeregan",
@@ -25,7 +25,7 @@ WDTS_Lang_en_Tokens = {
     ["ubrs"] = "Upper Blackrock Spire",
     ["scholo"] = "Scholomance",
     ["strat"] = "Stratholme",
-    ["dm"] = "Dire Maul",
+    ["diremaul"] = "Dire Maul", -- Full name for disambiguation when "dm" is ambiguous
     
     -- Directions
     ["north"] = "north",
