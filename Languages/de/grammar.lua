@@ -1880,6 +1880,61 @@ WDTS_Lang_de_Grammar = {
             to = "Moor Ring of the Tiger",
             priority = 15,
         },
+        -- Fix "can i me from jemanden borrow a bag" -> "can I borrow a bag from someone"
+        {
+            from = "can i me from jemanden borrow a bag",
+            to = "can I borrow a bag from someone",
+            priority = 15,
+        },
+        {
+            from = "can i me from (.+) borrow",
+            to = "can I borrow from %1",
+            priority = 12,
+        },
+        -- Fix "can someone small bags donate/give get/buy" -> "can someone donate/get small bags"
+        {
+            from = "can someone small bags donate/give get/buy",
+            to = "can someone donate/get small bags",
+            priority = 15,
+        },
+        {
+            from = "small bags donate/give get/buy",
+            to = "donate/get small bags",
+            priority = 12,
+        },
+        -- Fix "in case someone linen cloth bothers in inventory/is in the way in inventory" -> "in case someone has linen cloth in inventory that's in the way, I would take it"
+        {
+            from = "in case someone linen cloth bothers in inventory/is in the way in inventory",
+            to = "in case someone has linen cloth in inventory that's in the way, I would take it",
+            priority = 15,
+        },
+        {
+            from = "linen cloth bothers in inventory/is in the way in inventory",
+            to = "has linen cloth in inventory that's in the way",
+            priority = 12,
+        },
+        -- Fix "can someone soon of Westfall beach accompany to/escort to Stormwind am level 1 priest" -> "can someone soon accompany me from Westfall beach to Stormwind, I'm level 1 priest"
+        {
+            from = "can someone soon of (.+) beach accompany to/escort to (.+) am level (.+) priest",
+            to = "can someone soon accompany me from %1 beach to %2, I'm level %3 priest",
+            priority = 15,
+        },
+        {
+            from = "can someone soon of (.+) beach (.+) to (.+) am (.+)",
+            to = "can someone soon accompany me from %1 beach to %3, I'm %4",
+            priority = 12,
+        },
+        -- Fix "what have planned/are planning" -> "what do you have planned"
+        {
+            from = "what have planned/are planning",
+            to = "what do you have planned",
+            priority = 15,
+        },
+        {
+            from = "what (.+) planned/are planning",
+            to = "what do %1 planned",
+            priority = 12,
+        },
         -- Fix "the erlösung of scrimshank" -> "The Redemption of Scrimshank"
         {
             from = "the erlösung of (.+)",
