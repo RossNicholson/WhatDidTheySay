@@ -16,6 +16,10 @@ WDTS_Lang_de_Phrases = {
     ["gibt es"] = "there is/there are", -- "gibt es" = "there is/there are"
     ["gibt es unten"] = "there is below/there is at the bottom",
     ["willst du"] = "do you want",
+    ["wieso nicht"] = "why not", -- "ja wieso nicht" = "yes why not"
+    ["wie lange"] = "how long", -- "wie lange habt ihr" = "how long do you have"
+    ["habt ihr"] = "do you have", -- "habt ihr noch" = "do you still have"
+    ["habt ihr noch"] = "do you still have", -- "wie lange habt ihr noch" = "how long do you still have"
     ["brauche ich"] = "do i need",
     ["brauchst du"] = "do you need",
     ["braucht ihr"] = "do you need", -- Plural: "braucht ihr" = "do you need"

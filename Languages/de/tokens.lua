@@ -194,6 +194,8 @@ WDTS_Lang_de_Tokens = {
     ["wann"] = "when",
     ["wer"] = "who",
     ["warum"] = "why",
+    ["wieso"] = "why", -- Alternative form: "wieso nicht" = "why not"
+    ["lange"] = "long", -- "wie lange" = "how long"
     ["wie"] = {
         default = "like/as", -- "wie" can mean "how" or "like/as" depending on context
         question = "how", -- "wie?" = "how?"

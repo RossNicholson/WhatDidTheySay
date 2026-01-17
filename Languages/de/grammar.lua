@@ -1148,6 +1148,48 @@ WDTS_Lang_de_Grammar = {
             from = "weiß not ",
             to = "don't know ",
         },
+        
+        -- Fix "wieso not" -> "why not"
+        {
+            from = "wieso not",
+            to = "why not",
+        },
+        {
+            from = "wieso not ",
+            to = "why not ",
+        },
+        
+        -- Fix "do you want X join" -> "do you want to join X"
+        -- Only match if there's NO "to" before "join" to avoid infinite loops
+        {
+            from = "do you want ([^%sto]+) join$",
+            to = "do you want to join %1",
+            priority = 20,
+        },
+        {
+            from = "do you want ([^%sto]+) join ",
+            to = "do you want to join %1 ",
+            priority = 20,
+        },
+        
+        -- Fix "how lange have her/their still" -> "how long do you still have"
+        {
+            from = "how lange have her/their still",
+            to = "how long do you still have",
+        },
+        {
+            from = "how lange have her/their still ",
+            to = "how long do you still have ",
+        },
+        -- Fix "how lange have" -> "how long do you have" (general case)
+        {
+            from = "how lange have (.+)",
+            to = "how long do you have %1",
+        },
+        {
+            from = "how lange have ",
+            to = "how long do you have ",
+        },
         {
             from = "^weiß not ",
             to = "don't know ",
