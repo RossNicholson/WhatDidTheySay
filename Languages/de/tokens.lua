@@ -113,6 +113,7 @@ WDTS_Lang_de_Tokens = {
     
     -- LFG related
     ["für"] = "for",
+    ["fürs"] = "for the", -- Contraction of "für das" = "for the"
     ["mit"] = "with",
     ["und"] = "and",
     ["oder"] = "or",
@@ -182,6 +183,9 @@ WDTS_Lang_de_Tokens = {
     ["eben"] = "just",
     ["lebend"] = "alive",
     ["voll"] = "full",
+    ["volle"] = "full",
+    ["vollen"] = "full",
+    ["volles"] = "full",
     ["leer"] = "empty",
     ["schnell"] = "fast",
     ["langsam"] = "slow",
@@ -211,6 +215,11 @@ WDTS_Lang_de_Tokens = {
     ["gilde"] = "guild",
     ["gilden"] = "guilds",
     ["levelgilde"] = "leveling guild", -- Compound word: Level + Gilde
+    ["gildendiscord"] = "guild discord",
+    ["discord"] = "discord",
+    ["dc"] = "dc", -- Discord abbreviation (kept as-is)
+    ["link"] = "link",
+    ["links"] = "links",
     ["satzung"] = "charter/statute",
     ["satzungs"] = "charter/statute", -- Genitive form: "Gildensatzung" = "guild charter"
     ["gildensatzung"] = "guild charter",
@@ -1053,4 +1062,47 @@ WDTS_Lang_de_Tokens = {
     ["bär"] = "bear",
     ["halben"] = "half",
     ["sachen"] = "things/stuff",
+    
+    -- Guild and social terms (from chat log review)
+    ["mitstreiter"] = "comrades/teammates",
+    ["mitstreiterin"] = "comrade/teammate",
+    ["gemeinsame"] = "common/shared",
+    ["gemeinsames"] = "common/shared",
+    ["gemeinsamen"] = "common/shared",
+    ["unternehmungen"] = "activities/undertakings",
+    ["unternehmung"] = "activity/undertaking",
+    ["belohnungen"] = "rewards",
+    ["belohnung"] = "reward",
+    ["deshalb"] = "therefore/that's why",
+    ["infos"] = "info/information",
+    ["info"] = "info/information",
+    ["informationen"] = "information",
+    ["gefährten"] = "companions",
+    ["gefährte"] = "companion",
+    ["atmosphäre"] = "atmosphere",
+    ["veteranen"] = "veterans",
+    ["veteran"] = "veteran",
+    ["neuanfänger"] = "newcomers/beginners",
+    ["neuanfängerin"] = "newcomer/beginner",
+    ["anfänger"] = "beginner",
+    ["anfängerin"] = "beginner",
+    ["herzlich"] = "warmly/heartily",
+    ["wilkommen"] = "welcome", -- Common typo for "willkommen"
+    ["willkommen"] = "welcome",
+    ["gemeindschaftliche"] = "communal", -- Typo for "gemeinschaftliche"
+    ["gemeinschaftliche"] = "communal",
+    ["gemeinschaftlichen"] = "communal",
+    ["gemeinschaftlich"] = "communal",
+    ["planen"] = "to plan/planning",
+    ["plane"] = "plan",
+    ["plant"] = "plans",
+    ["geplant"] = "planned",
+    ["werde"] = "will", -- 1st person: "ich werde" = "I will"
+    ["events"] = "events",
+    ["event"] = "event",
+    ["duell"] = "duel",
+    ["duell-turnier"] = "duel tournament",
+    ["turnier"] = "tournament",
+    ["joinen"] = "join", -- Anglicism, commonly used in German WoW
+    ["join"] = "join",
 }

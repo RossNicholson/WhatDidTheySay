@@ -364,5 +364,49 @@ WDTS_Lang_de_Grammar = {
             from = "we pull/we attract (.+)",
             to = "we attract %1",
         },
+        
+        -- Fix "in the time come on/up/at our dc" -> "meanwhile come on our dc"
+        {
+            from = "in the time come on/up/at our dc",
+            to = "meanwhile come on our dc",
+        },
+        {
+            from = "in the time comes on/up/at our dc",
+            to = "meanwhile comes on our dc",
+        },
+        
+        -- Fix "at/on all/everyone again/another time" -> "to everyone again"
+        {
+            from = "at/on all/everyone again/another time",
+            to = "to everyone again",
+        },
+        
+        -- Fix "will many events plan" -> "will plan many events"
+        {
+            from = "will many events plan",
+            to = "will plan many events",
+        },
+        {
+            from = "werde many events planen",
+            to = "will plan many events",
+        },
+        
+        -- Fix "of course with rewards therefore join all/everyone" -> "of course with rewards therefore everyone join"
+        {
+            from = "therefore join all/everyone",
+            to = "therefore everyone join",
+        },
+        
+        -- Fix "the German guild recruits comrades" -> better word order if needed
+        {
+            from = "the German guild recruits comrades from minimum level",
+            to = "the German guild recruits comrades from minimum level",
+        },
+        
+        -- Fix "for common activities like/as leveling" -> "for common activities like leveling"
+        {
+            from = "for common activities like/as leveling",
+            to = "for common activities like leveling",
+        },
     },
 }

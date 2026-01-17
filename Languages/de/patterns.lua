@@ -365,6 +365,32 @@ WDTS_Lang_de_Patterns = {
         to = "when is %1",
     },
     
+    -- "ist das der X?" -> "is that the X?"
+    {
+        from = "ist das der (.+)%?",
+        to = "is that the %1",
+    },
+    {
+        from = "ist das der (.+)",
+        to = "is that the %1",
+    },
+    {
+        from = "ist das die (.+)%?",
+        to = "is that the %1",
+    },
+    {
+        from = "ist das die (.+)",
+        to = "is that the %1",
+    },
+    {
+        from = "ist das das (.+)%?",
+        to = "is that the %1",
+    },
+    {
+        from = "ist das das (.+)",
+        to = "is that the %1",
+    },
+    
     -- "Kann man als X Y gehen?" -> "Can you go as X to Y?"
     {
         from = "kann man als (.+) (.+) gehen",
@@ -464,5 +490,26 @@ WDTS_Lang_de_Patterns = {
     {
         from = " (.+) der (.+) kann ",
         to = " %1 who can %2 ",
+    },
+    
+    -- Guild recruitment patterns (from chat log review)
+    -- "Die deutsche Gilde X rekrutiert Mitstreiter ab Mindest Lvl Y" -> "The German Guild X recruits comrades from minimum level Y"
+    {
+        from = "die deutsche gilde (.+) rekrutiert (.+) ab mindest lvl (.+) für (.+)",
+        to = "the German guild %1 recruits %2 from minimum level %3 for %4",
+    },
+    {
+        from = "die deutsche gilde (.+) rekrutiert (.+) ab mindest level (.+) für (.+)",
+        to = "the German guild %1 recruits %2 from minimum level %3 for %4",
+    },
+    -- "An alle nochmal bitte unseren DC joinen" -> "To everyone again please join our DC"
+    {
+        from = "an alle nochmal bitte (.+) joinen",
+        to = "to everyone again please join %1",
+    },
+    -- "werde viele Events planen wie X" -> "will plan many events like X"
+    {
+        from = "werde viele events planen wie (.+)",
+        to = "will plan many events like %1",
     },
 }
