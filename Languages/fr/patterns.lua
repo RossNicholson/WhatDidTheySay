@@ -357,4 +357,252 @@ WDTS_Lang_fr_Patterns = {
         from = "tu cherches une (.+) guilde",
         to = "are you looking for a %1 guild",
     },
+    
+    -- "est-ce que quelqu'un peut X" -> "can someone X"
+    {
+        from = "est%-ce que quelqu'un peut (.+)",
+        to = "can someone %1",
+    },
+    {
+        from = "quelqu'un peut (.+)",
+        to = "someone can %1",
+    },
+    
+    -- "j'ai besoin de X" -> "I need X"
+    {
+        from = "j'ai besoin de (.+)",
+        to = "I need %1",
+    },
+    {
+        from = "j'ai besoin d'un (.+)",
+        to = "I need a %1",
+    },
+    {
+        from = "j'ai besoin d'une (.+)",
+        to = "I need a %1",
+    },
+    
+    -- "il me faut X" -> "I need X"
+    {
+        from = "il me faut (.+)",
+        to = "I need %1",
+    },
+    {
+        from = "il me faut un (.+)",
+        to = "I need a %1",
+    },
+    
+    -- "je vais à X" -> "I'm going to X"
+    {
+        from = "je vais à (.+)",
+        to = "I'm going to %1",
+    },
+    {
+        from = "on va à (.+)",
+        to = "we're going to %1",
+    },
+    {
+        from = "tu vas à (.+)",
+        to = "you're going to %1",
+    },
+    
+    -- "où va X" / "où allez-vous" -> "where is X going" / "where are you going"
+    {
+        from = "où va (.+)",
+        to = "where is %1 going",
+    },
+    {
+        from = "où allez%-vous",
+        to = "where are you going",
+    },
+    {
+        from = "où vas%-tu",
+        to = "where are you going",
+    },
+    
+    -- "dans X minutes" -> "in X minutes"
+    {
+        from = "dans (.+) minutes",
+        to = "in %1 minutes",
+    },
+    {
+        from = "dans (.+) min",
+        to = "in %1 min",
+    },
+    {
+        from = "dans (.+) heure",
+        to = "in %1 hour",
+    },
+    {
+        from = "dans (.+) heures",
+        to = "in %1 hours",
+    },
+    
+    -- "je cherche X" -> "I'm looking for X"
+    {
+        from = "je cherche (.+)",
+        to = "I'm looking for %1",
+    },
+    {
+        from = "je recherche (.+)",
+        to = "I'm looking for %1",
+    },
+    
+    -- "on cherche X" -> "we're looking for X"
+    {
+        from = "on cherche (.+)",
+        to = "we're looking for %1",
+    },
+    
+    -- "il/elle cherche X" -> "he/she is looking for X"
+    {
+        from = "il cherche (.+)",
+        to = "he's looking for %1",
+    },
+    {
+        from = "elle cherche (.+)",
+        to = "she's looking for %1",
+    },
+    
+    -- "c'est pour X" -> "it's for X"
+    {
+        from = "c'est pour (.+)",
+        to = "it's for %1",
+    },
+    
+    -- "combien de X" already exists; add "combien de X il y a" -> "how many X there are"
+    {
+        from = "combien de (.+) il y a",
+        to = "how many %1 there are",
+    },
+    
+    -- "où peut-on X" -> "where can we X"
+    {
+        from = "où peut%-on (.+)",
+        to = "where can we %1",
+    },
+    {
+        from = "où on peut (.+)",
+        to = "where we can %1",
+    },
+    
+    -- "comment on fait pour X" -> "how do we do to X" / "how to X"
+    {
+        from = "comment on fait pour (.+)",
+        to = "how do we %1",
+    },
+    {
+        from = "comment faire pour (.+)",
+        to = "how to %1",
+    },
+    
+    -- "viens à X" / "venez à X" -> "come to X"
+    {
+        from = "viens à (.+)",
+        to = "come to %1",
+    },
+    {
+        from = "venez à (.+)",
+        to = "come to %1",
+    },
+    {
+        from = "viens (.+)",
+        to = "come %1",
+    },
+    {
+        from = "venez (.+)",
+        to = "come %1",
+    },
+    
+    -- "combien ça coûte" / "ça coûte combien" -> "how much does it cost"
+    {
+        from = "ça coûte combien",
+        to = "how much does it cost",
+    },
+    {
+        from = "combien coûte (.+)",
+        to = "how much does %1 cost",
+    },
+    
+    -- "il faut X" -> "need X" / "we need X"
+    {
+        from = "il faut (.+)",
+        to = "need %1",
+    },
+    {
+        from = "il faut un (.+)",
+        to = "need a %1",
+    },
+    {
+        from = "il faut une (.+)",
+        to = "need a %1",
+    },
+    
+    -- "on a besoin de X" -> "we need X"
+    {
+        from = "on a besoin de (.+)",
+        to = "we need %1",
+    },
+    {
+        from = "on a besoin d'un (.+)",
+        to = "we need a %1",
+    },
+    {
+        from = "on a besoin d'une (.+)",
+        to = "we need a %1",
+    },
+    
+    -- "tu peux X" / "vous pouvez X" -> "can you X"
+    {
+        from = "tu peux (.+)",
+        to = "can you %1",
+    },
+    {
+        from = "vous pouvez (.+)",
+        to = "can you %1",
+    },
+    {
+        from = "est%-ce que tu peux (.+)",
+        to = "can you %1",
+    },
+    {
+        from = "est%-ce que vous pouvez (.+)",
+        to = "can you %1",
+    },
+    
+    -- "je peux X" -> "I can X"
+    {
+        from = "je peux (.+)",
+        to = "I can %1",
+    },
+    {
+        from = "on peut (.+)",
+        to = "we can %1",
+    },
+    
+    -- "il/elle peut X" -> "he/she can X"
+    {
+        from = "il peut (.+)",
+        to = "he can %1",
+    },
+    {
+        from = "elle peut (.+)",
+        to = "she can %1",
+    },
+    
+    -- "il y a X qui" -> "there is X who" / "there are X who"
+    {
+        from = "il y a (.+) qui (.+)",
+        to = "there is %1 who %2",
+    },
+    
+    -- "c'est X" -> "it's X"
+    {
+        from = "c'est un (.+)",
+        to = "it's a %1",
+    },
+    {
+        from = "c'est une (.+)",
+        to = "it's a %1",
+    },
 }

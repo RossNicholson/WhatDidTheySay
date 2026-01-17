@@ -317,5 +317,96 @@ WDTS_Lang_fr_Grammar = {
             to = "how are you",
             priority = 15,
         },
+        
+        -- "I cannot" → "I can't"
+        {
+            from = "^I cannot ",
+            to = "I can't ",
+            priority = 20,
+        },
+        {
+            from = "^I cannot$",
+            to = "I can't",
+            priority = 20,
+        },
+        
+        -- "how much costs" → "how much does it cost" / "how much does X cost"
+        {
+            from = "how much costs ",
+            to = "how much does %1 cost ",
+            priority = 20,
+        },
+        {
+            from = "how much costs$",
+            to = "how much does it cost",
+            priority = 20,
+        },
+        
+        -- "looking for one X" → "looking for a X" (when "un" → "one" but should be "a")
+        {
+            from = "looking for one tank",
+            to = "looking for a tank",
+            priority = 18,
+        },
+        {
+            from = "looking for one heal",
+            to = "looking for a heal",
+            priority = 18,
+        },
+        {
+            from = "looking for one dps",
+            to = "looking for a dps",
+            priority = 18,
+        },
+        {
+            from = "looking for one ",
+            to = "looking for a ",
+            priority = 15,
+        },
+        
+        -- "looking for has X" → "looking for a X" (when "un" mistranslated as "has")
+        {
+            from = "looking for has ",
+            to = "looking for a ",
+            priority = 22,
+        },
+        
+        -- "do you X" / "does he X" consistency
+        {
+            from = " do you you ",
+            to = " do you ",
+            priority = 10,
+        },
+        {
+            from = " does he he ",
+            to = " does he ",
+            priority = 10,
+        },
+        
+        -- Remove "Est-ce que" remnants that might leak through
+        {
+            from = " is it that you ",
+            to = " do you ",
+            priority = 18,
+        },
+        {
+            from = "^is it that you ",
+            to = "do you ",
+            priority = 18,
+        },
+        
+        -- "they not" → "they don't"
+        {
+            from = "^they not ",
+            to = "they don't ",
+            priority = 25,
+        },
+        
+        -- Double space cleanup
+        {
+            from = "  ",
+            to = " ",
+            priority = 1,
+        },
     },
 }
