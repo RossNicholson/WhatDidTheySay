@@ -85,12 +85,12 @@ function Config.CreateFrame()
     subtitle:SetTextColor(0.8, 0.8, 0.8, 1)
     
     -- Make frame scrollable - create scroll frame for content
-    local scrollFrame = CreateFrame("ScrollFrame", nil, frame, "UIPanelScrollFrameTemplate")
+    local scrollFrame = CreateFrame("ScrollFrame", "WDTSConfigScrollFrame", frame, "UIPanelScrollFrameTemplate")
     scrollFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 10, -100)
     scrollFrame:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -30, 50)
     
     -- Add background to scrollbar for visibility
-    local scrollBar = _G[scrollFrame:GetName().."ScrollBar"]
+    local scrollBar = _G["WDTSConfigScrollFrameScrollBar"]
     if scrollBar then
         local scrollBarBg = scrollBar:CreateTexture(nil, "BACKGROUND")
         scrollBarBg:SetAllPoints(scrollBar)
