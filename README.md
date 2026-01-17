@@ -50,15 +50,11 @@ Please note that translation quality may vary and some messages may not translat
 - ✅ **Safe & Conservative** - Stays quiet when confidence is low to avoid wrong translations
 - ✅ **Performance Optimized** - Translation caching and message throttling prevent lag
 - ✅ **Configurable** - Choose which chat channels to translate
-- ✅ **Titan Panel Support** - Optional integration with Titan Panel for status display
+- ✅ **Titan Panel Support** - Optional integration with Titan Panel for status display (see [Known Issues](#-troubleshooting) for cosmetic warning note)
 
 ### Design Philosophy
 
-This addon prioritizes:
-- **Clarity over literal accuracy** - Understandable meaning over perfect grammar
-- **Intent over grammar perfection** - Focus on what the player wants, not how they say it
-- **Silence over wrong translations** - Better to stay quiet than give incorrect information
-- **Automation without noise** - Works quietly in the background
+This addon is focused on providing **the best translation possible**. It prioritizes clarity and accuracy, stays silent when confidence is low to avoid incorrect translations, and works quietly in the background without disrupting gameplay.
 
 ---
 
@@ -150,7 +146,7 @@ On first load, the configuration window opens automatically. Configure:
    - Identifies player intent (LFG, invite, ready, etc.)
    - Translates using vocabulary and phrase patterns
    - Calculates confidence score
-3. **Display** - If confidence ≥ 0.70, translation is automatically shown
+3. **Display** - If confidence ≥ 0.50, translation is automatically shown
 4. **Preservation** - Original message is never replaced; translations appear separately
 
 ### Translation Display
@@ -294,6 +290,10 @@ These are never modified during translation:
 - ✅ Message throttling handles chat bursts
 - ✅ If issues persist, disable channels you don't need
 
+### Titan Panel Warning?
+
+- ⚠️ If you see a "Plugin 'WDTS' already loaded" error message from Titan Panel, this is a **cosmetic issue only** - the addon functionality works correctly. The Titan Panel button will appear and function normally. See [Issue #1](../../issues/1) for details.
+
 ---
 
 ## 🤝 Contributing
@@ -303,14 +303,16 @@ Contributions are welcome! This addon is designed to scale cleanly to additional
 ### Adding a New Language
 
 1. Create a new folder in `Languages/` with the language code (e.g., `fr` for French)
-2. Add the four required files:
-   - `tokens.lua` - High-value vocabulary dictionary
-   - `intents.lua` - Intent detection patterns
-   - `patterns.lua` - Reusable phrase structures
-   - `grammar.lua` - Grammar post-processing rules
+2. Add the required files:
+   - `tokens.lua` - High-value vocabulary dictionary (required)
+   - `intents.lua` - Intent detection patterns (required)
+   - `patterns.lua` - Reusable phrase structures (required)
+   - `grammar.lua` - Grammar post-processing rules (required)
+   - `phrases.lua` - Multi-word phrases that should be translated as units (optional, but recommended)
 3. Follow existing patterns in the `Languages/de/` folder
 4. Add function words to `Core/LanguageDetect.lua`
-5. Test thoroughly and submit a pull request
+5. Add the language pack files to `WhatDidTheySay.toc` in the language packs section
+6. Test thoroughly and submit a pull request
 
 ### Development Guidelines
 
@@ -329,6 +331,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 ## 📚 Version History
+
+### Version 0.3.0
+
+- ✅ **Continued German Translation Improvements** - Ongoing vocabulary expansion, phrase additions, and grammar refinements based on real-world chat logs
+- ✅ **Enhanced Translation Accuracy** - Added missing common words, phrases, and contextual patterns for better coverage
+- ✅ **Grammar Rule Refinements** - Improved post-processing rules for more natural English output
+- ✅ **Confidence Scoring Adjustments** - Optimized thresholds for better translation display
 
 ### Version 0.2.0
 
