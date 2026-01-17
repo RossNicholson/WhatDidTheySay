@@ -2444,4 +2444,464 @@ WDTS_Lang_de_Tokens = {
     ["uns"] = "us", -- Dative: "gib uns" = "give us"
     ["euch"] = "you", -- Dative plural: "gib euch" = "give you (pl)"
     ["ihnen"] = "them", -- Dative: "gib ihnen" = "give them"
+    
+    -- ============================================
+    -- MASSIVE VOCABULARY EXPANSION
+    -- Organized by category for maintainability
+    -- This structure serves as a template for other languages
+    -- ============================================
+    
+    -- ============================================
+    -- MODAL VERBS (Expanded)
+    -- ============================================
+    ["müssen"] = "must/have to",
+    ["muss"] = "must/have to",
+    ["musst"] = "must/have to",
+    ["müsst"] = "must/have to",
+    ["sollen"] = "should/ought to",
+    ["soll"] = "should",
+    ["sollst"] = "should",
+    ["sollt"] = "should",
+    ["dürfen"] = "may/be allowed to",
+    ["darf"] = "may/is allowed to",
+    ["darfst"] = "may/are allowed to",
+    ["dürft"] = "may/are allowed to",
+    
+    -- ============================================
+    -- COMMON ACTION VERBS (Expanded)
+    -- ============================================
+    ["tun"] = "do",
+    ["tut"] = "does",
+    ["tust"] = "do",
+    ["sagte"] = "said",
+    ["sagst"] = "say",
+    ["redest"] = "talk/speak",
+    ["reden"] = "talk/speak",
+    ["spricht"] = "speaks/talks",
+    ["sprechen"] = "speak/talk",
+    ["hören"] = "hear/listen",
+    ["hört"] = "hears/listens",
+    ["hörst"] = "hear/listen",
+    ["sehst"] = "see",
+    ["schauen"] = "look/watch",
+    ["schaut"] = "looks/watches",
+    ["schaust"] = "look/watch",
+    ["findest"] = "find",
+    ["verlierst"] = "lose",
+    ["gewinnen"] = "win",
+    ["gewinnt"] = "wins",
+    ["gewinnst"] = "win",
+    ["helfen"] = "help",
+    ["hilfst"] = "help",
+    ["hilft"] = "helps",
+    ["nimmst"] = "take",
+    ["bringen"] = "bring",
+    ["bringst"] = "bring",
+    ["bringt"] = "brings",
+    ["holen"] = "get/fetch",
+    ["holst"] = "get/fetch",
+    ["holt"] = "gets/fetches",
+    ["legen"] = "lay/put",
+    ["legst"] = "lay/put",
+    ["legt"] = "lays/puts",
+    ["stellen"] = "place/put",
+    ["stellst"] = "place/put",
+    ["stellt"] = "places/puts",
+    ["setzen"] = "set/sit down",
+    ["setzt"] = "set/sit down",
+    
+    -- ============================================
+    -- COGNITION AND PERCEPTION VERBS
+    -- ============================================
+    ["wissen"] = "know (fact)",
+    ["weißt"] = "know (fact)",
+    ["kennen"] = "know (person/thing)",
+    ["kennst"] = "know (person/thing)",
+    ["kennt"] = "knows (person/thing)",
+    ["verstehen"] = "understand",
+    ["verstehst"] = "understand",
+    ["versteht"] = "understands",
+    ["vergessen"] = "forget",
+    ["vergisst"] = "forget",
+    ["erinnern"] = "remember",
+    ["erinnerst"] = "remember",
+    ["erinnert"] = "remembers",
+    ["denken"] = "think",
+    ["denkst"] = "think",
+    ["denkt"] = "thinks",
+    ["meinen"] = "mean/think",
+    ["meinst"] = "mean/think",
+    ["meint"] = "means/thinks",
+    ["hoffen"] = "hope",
+    ["hoffst"] = "hope",
+    ["hofft"] = "hopes",
+    ["wünschen"] = "wish",
+    ["wünschst"] = "wish",
+    ["wünscht"] = "wishes",
+    ["mögen"] = "like",
+    ["magst"] = "like",
+    ["lieben"] = "love",
+    ["liebst"] = "love",
+    ["liebt"] = "loves",
+    ["hassen"] = "hate",
+    ["hasst"] = "hate",
+    ["fühlen"] = "feel",
+    ["fühlst"] = "feel",
+    ["fühlt"] = "feels",
+    
+    -- ============================================
+    -- BODY PARTS
+    -- ============================================
+    ["kopf"] = "head",
+    ["augen"] = "eyes",
+    ["auge"] = "eye",
+    ["ohren"] = "ears",
+    ["nase"] = "nose",
+    ["mund"] = "mouth",
+    ["hand"] = "hand",
+    ["hände"] = "hands",
+    ["finger"] = "finger",
+    ["füße"] = "feet",
+    ["bein"] = "leg",
+    ["beine"] = "legs",
+    ["arm"] = "arm",
+    ["arme"] = "arms",
+    ["rücken"] = "back",
+    ["bauch"] = "stomach/belly",
+    
+    -- ============================================
+    -- EMOTIONS AND FEELINGS
+    -- ============================================
+    ["glücklich"] = "happy",
+    ["traurig"] = "sad",
+    ["müde"] = "tired",
+    ["wütend"] = "angry",
+    ["ärgerlich"] = "annoyed",
+    ["aufgeregt"] = "excited",
+    ["entspannt"] = "relaxed",
+    ["unsicher"] = "unsure/uncertain",
+    ["ängstlich"] = "afraid/scared",
+    ["stolz"] = "proud",
+    ["erfreut"] = "pleased",
+    ["enttäuscht"] = "disappointed",
+    
+    -- ============================================
+    -- TIME WORDS (Expanded)
+    -- ============================================
+    ["vorgestern"] = "day before yesterday",
+    ["übermorgen"] = "day after tomorrow",
+    ["morgens"] = "in the morning",
+    ["mittags"] = "at noon",
+    ["nachts"] = "at night",
+    ["früh"] = "early",
+    ["noch nicht"] = "not yet",
+    ["manchmal"] = "sometimes",
+    ["oft"] = "often",
+    ["selten"] = "rarely",
+    ["meistens"] = "mostly/usually",
+    
+    -- ============================================
+    -- LOCATION AND DIRECTION (Expanded)
+    -- ============================================
+    ["oben"] = "above/up",
+    ["unten"] = "below/down",
+    ["vorn"] = "front",
+    ["hinten"] = "back/behind",
+    ["innen"] = "inside",
+    ["außen"] = "outside",
+    ["drinnen"] = "inside",
+    ["dort"] = "there",
+    ["weiter"] = "further/continue",
+    ["vorwärts"] = "forward",
+    ["rückwärts"] = "backward",
+    
+    -- ============================================
+    -- COMMON ADJECTIVES (Expanded)
+    -- ============================================
+    ["böse"] = "evil/bad",
+    ["lang"] = "long",
+    ["hoch"] = "high/tall",
+    ["niedrig"] = "low",
+    ["breit"] = "wide",
+    ["eng"] = "narrow/tight",
+    ["schwer"] = "heavy/difficult",
+    ["leicht"] = "light/easy",
+    ["frisch"] = "fresh",
+    ["warm"] = "warm",
+    ["kühl"] = "cool",
+    ["hell"] = "bright/light",
+    ["sauber"] = "clean",
+    ["schmutzig"] = "dirty",
+    ["trocken"] = "dry",
+    ["nass"] = "wet",
+    
+    -- ============================================
+    -- FOOD AND DRINK
+    -- ============================================
+    ["essen"] = "eat",
+    ["isst"] = "eats",
+    ["trinken"] = "drink",
+    ["trinkt"] = "drinks",
+    ["trinkst"] = "drink",
+    ["brot"] = "bread",
+    ["fleisch"] = "meat",
+    ["obst"] = "fruit",
+    ["gemüse"] = "vegetables",
+    ["bier"] = "beer",
+    ["kaffee"] = "coffee",
+    ["tee"] = "tea",
+    
+    -- ============================================
+    -- FAMILY AND RELATIONSHIPS
+    -- ============================================
+    ["familie"] = "family",
+    ["vater"] = "father",
+    ["mutter"] = "mother",
+    ["sohn"] = "son",
+    ["tochter"] = "daughter",
+    ["bruder"] = "brother",
+    ["schwester"] = "sister",
+    ["nachbar"] = "neighbor",
+    ["nachbarin"] = "neighbor (female)",
+    
+    -- ============================================
+    -- NUMBERS (11-100)
+    -- ============================================
+    ["elf"] = "eleven",
+    ["zwölf"] = "twelve",
+    ["dreizehn"] = "thirteen",
+    ["vierzehn"] = "fourteen",
+    ["fünfzehn"] = "fifteen",
+    ["sechzehn"] = "sixteen",
+    ["siebzehn"] = "seventeen",
+    ["achtzehn"] = "eighteen",
+    ["neunzehn"] = "nineteen",
+    ["zwanzig"] = "twenty",
+    ["dreißig"] = "thirty",
+    ["vierzig"] = "forty",
+    ["fünfzig"] = "fifty",
+    ["sechzig"] = "sixty",
+    ["siebzig"] = "seventy",
+    ["achtzig"] = "eighty",
+    ["neunzig"] = "ninety",
+    ["hundert"] = "hundred",
+    ["tausend"] = "thousand",
+    
+    -- ============================================
+    -- WEATHER AND NATURE
+    -- ============================================
+    ["wetter"] = "weather",
+    ["sonne"] = "sun",
+    ["regen"] = "rain",
+    ["schnee"] = "snow",
+    ["wind"] = "wind",
+    ["wolke"] = "cloud",
+    ["wolken"] = "clouds",
+    ["bäume"] = "trees",
+    ["baum"] = "tree",
+    ["gras"] = "grass",
+    ["blumen"] = "flowers",
+    ["blume"] = "flower",
+    ["tier"] = "animal",
+    ["tiere"] = "animals",
+    
+    -- ============================================
+    -- SCHOOL AND WORK
+    -- ============================================
+    ["schule"] = "school",
+    ["büro"] = "office",
+    ["aufgabe"] = "task/homework",
+    ["prüfung"] = "exam/test",
+    ["unterricht"] = "lesson/class",
+    
+    -- ============================================
+    -- TRANSPORTATION
+    -- ============================================
+    ["auto"] = "car",
+    ["fahrrad"] = "bicycle",
+    ["zug"] = "train",
+    ["bus"] = "bus",
+    ["flugzeug"] = "airplane",
+    ["schiff"] = "ship",
+    ["fahren"] = "drive/travel",
+    ["fährst"] = "drive/travel",
+    ["fährt"] = "drives/travels",
+    ["fliegen"] = "fly",
+    ["fliegst"] = "fly",
+    ["fliegt"] = "flies",
+    
+    -- ============================================
+    -- COMMON ADVERBS (Expanded)
+    -- ============================================
+    ["gar"] = "at all",
+    ["gar nicht"] = "not at all",
+    ["doch"] = "but/yet/after all",
+    ["sondern"] = "but rather",
+    ["außerdem"] = "besides/moreover",
+    ["darum"] = "because of that",
+    ["jedoch"] = "however",
+    ["allerdings"] = "however/though",
+    
+    -- ============================================
+    -- HOUSEHOLD ITEMS
+    -- ============================================
+    ["wohnung"] = "apartment",
+    ["zimmer"] = "room",
+    ["küche"] = "kitchen",
+    ["schlafzimmer"] = "bedroom",
+    ["tisch"] = "table",
+    ["stuhl"] = "chair",
+    ["bett"] = "bed",
+    ["fenster"] = "window",
+    ["tür"] = "door",
+    ["lampe"] = "lamp",
+    
+    -- ============================================
+    -- CLOTHING
+    -- ============================================
+    ["kleidung"] = "clothing",
+    ["hemd"] = "shirt",
+    ["hose"] = "pants/trousers",
+    ["schuhe"] = "shoes",
+    ["schuh"] = "shoe",
+    ["jacke"] = "jacket",
+    ["mantel"] = "coat",
+    ["hut"] = "hat",
+    ["mütze"] = "cap",
+    
+    -- ============================================
+    -- TECHNOLOGY AND COMMUNICATION
+    -- ============================================
+    ["computer"] = "computer",
+    ["telefon"] = "telephone",
+    ["internet"] = "internet",
+    ["email"] = "email",
+    ["telefonieren"] = "make a phone call",
+    ["anrufen"] = "call",
+    ["ruft an"] = "calls",
+    ["rufst an"] = "call",
+    ["schreibst"] = "write",
+    
+    -- ============================================
+    -- HEALTH AND MEDICAL
+    -- ============================================
+    ["krank"] = "sick/ill",
+    ["gesund"] = "healthy",
+    ["arzt"] = "doctor",
+    ["ärztin"] = "doctor (female)",
+    ["krankenhaus"] = "hospital",
+    ["medizin"] = "medicine",
+    ["tablette"] = "pill/tablet",
+    ["schmerz"] = "pain",
+    ["kopfschmerzen"] = "headache",
+    ["weh"] = "pain/ache",
+    
+    -- ============================================
+    -- COLORS (Expanded)
+    -- ============================================
+    ["weiß"] = "white",
+    ["schwarz"] = "black",
+    ["rot"] = "red",
+    ["gelb"] = "yellow",
+    ["orange"] = "orange",
+    ["braun"] = "brown",
+    ["grau"] = "gray",
+    ["rosa"] = "pink",
+    ["lila"] = "purple",
+    ["bunt"] = "colorful",
+    
+    -- ============================================
+    -- MORE PREPOSITIONS (Expanded)
+    -- ============================================
+    ["hinter"] = "behind",
+    ["neben"] = "next to/beside",
+    ["zwischen"] = "between",
+    ["entlang"] = "along",
+    ["gegenüber"] = "opposite",
+    
+    -- ============================================
+    -- CONJUNCTIONS (Expanded)
+    -- ============================================
+    ["damit"] = "so that",
+    ["seitdem"] = "since then",
+    ["solange"] = "as long as",
+    ["sobald"] = "as soon as",
+    
+    -- ============================================
+    -- LEARNING AND EDUCATION VERBS
+    -- ============================================
+    ["lernen"] = "learn/study",
+    ["lernst"] = "learn/study",
+    ["lernt"] = "learns/studies",
+    ["lehren"] = "teach",
+    ["lehrt"] = "teaches",
+    
+    -- ============================================
+    -- BODY ACTIONS (Expanded)
+    -- ============================================
+    ["springen"] = "jump",
+    ["springst"] = "jump",
+    ["springt"] = "jumps",
+    ["schwimmen"] = "swim",
+    ["schwimmst"] = "swim",
+    ["schwimmt"] = "swims",
+    ["tanzen"] = "dance",
+    ["tanzt"] = "dance",
+    ["sitzt"] = "sit",
+    ["steht"] = "stands",
+    
+    -- ============================================
+    -- POSSESSION AND OWNERSHIP
+    -- ============================================
+    ["besitzen"] = "own/possess",
+    ["besitzt"] = "own/possess",
+    ["gehören"] = "belong",
+    ["gehörst"] = "belong",
+    ["gehört"] = "belongs",
+    ["bezahlen"] = "pay",
+    ["zahlst"] = "pay",
+    ["zahlt"] = "pays",
+    
+    -- ============================================
+    -- TIME EXPRESSIONS (Expanded)
+    -- ============================================
+    ["uhr"] = "o'clock/clock",
+    ["jahreszeit"] = "season",
+    ["frühling"] = "spring",
+    ["sommer"] = "summer",
+    ["herbst"] = "autumn/fall",
+    ["winter"] = "winter",
+    
+    -- ============================================
+    -- DAYS OF THE WEEK
+    -- ============================================
+    ["montag"] = "Monday",
+    ["dienstag"] = "Tuesday",
+    ["mittwoch"] = "Wednesday",
+    ["donnerstag"] = "Thursday",
+    ["freitag"] = "Friday",
+    ["samstag"] = "Saturday",
+    ["sonntag"] = "Sunday",
+    ["wochentag"] = "weekday",
+    ["wochenende"] = "weekend",
+    
+    -- ============================================
+    -- MONTHS
+    -- ============================================
+    ["januar"] = "January",
+    ["februar"] = "February",
+    ["märz"] = "March",
+    ["april"] = "April",
+    ["mai"] = "May",
+    ["juni"] = "June",
+    ["juli"] = "July",
+    ["august"] = "August",
+    ["september"] = "September",
+    ["oktober"] = "October",
+    ["november"] = "November",
+    ["dezember"] = "December",
+    
+    -- ============================================
+    -- END OF VOCABULARY EXPANSION
+    -- ============================================
 }
