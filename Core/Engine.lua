@@ -1694,6 +1694,11 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         -- Too similar and low coverage - this is basically untranslated
         return nil, 0.0, "translation_too_similar"
     end
+    -- Reject very low confidence translations (<0.30) that are too similar (>80%)
+    -- These are likely just English messages that got partially matched
+    if similarity > 0.80 and confidence < 0.30 then
+        return nil, 0.0, "translation_too_similar"
+    end
     
     -- Step 10: Calculate confidence (coverage penalties are handled in Confidence.Calculate)
     local finalConfidence = Confidence.Calculate({
@@ -1705,6 +1710,12 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         translationSimilarity = similarity, -- Pass similarity for penalty
         messageText = message, -- Pass original message for bracket/item link detection
     })
+    
+    -- Final check: Reject very low confidence translations that are too similar to original
+    -- This catches cases like "heal spam" where it translates but is essentially unchanged
+    if finalConfidence < 0.30 and similarity > 0.80 then
+        return nil, 0.0, "translation_too_similar"
+    end
     
     local intentId = nil
     if intent then
