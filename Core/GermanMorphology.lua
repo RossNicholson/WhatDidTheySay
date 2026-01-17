@@ -109,41 +109,211 @@ function GermanMorphology.IsSeparableVerb(word)
     return false, nil, nil
 end
 
+-- Comprehensive verb conjugation lookup table
+-- Maps all verb forms (present, past, participle) to their infinitive
+-- Expanded for Phase 1: Grammar Improvement Plan
+local VERB_CONJUGATION_LOOKUP = {
+    -- Modal verbs (high frequency)
+    ["kann"] = "können", ["kannst"] = "können", ["könnt"] = "können", ["könne"] = "können",
+    ["konnte"] = "können", ["konntest"] = "können", ["konnten"] = "können", ["gekonnt"] = "können",
+    ["muss"] = "müssen", ["musst"] = "müssen", ["müsst"] = "müssen", ["müsse"] = "müssen",
+    ["musste"] = "müssen", ["musstest"] = "müssen", ["mussten"] = "müssen", ["gemusst"] = "müssen",
+    ["soll"] = "sollen", ["sollst"] = "sollen", ["sollt"] = "sollen", ["solle"] = "sollen",
+    ["sollte"] = "sollen", ["solltest"] = "sollen", ["sollten"] = "sollen", ["gesollt"] = "sollen",
+    ["will"] = "wollen", ["willst"] = "wollen", ["wollt"] = "wollen", ["wolle"] = "wollen",
+    ["wollte"] = "wollen", ["wolltest"] = "wollen", ["wollten"] = "wollen", ["gewollt"] = "wollen",
+    ["darf"] = "dürfen", ["darfst"] = "dürfen", ["dürft"] = "dürfen", ["dürfe"] = "dürfen",
+    ["durfte"] = "dürfen", ["durftest"] = "dürfen", ["durften"] = "dürfen", ["gedurft"] = "dürfen",
+    ["mag"] = "mögen", ["magst"] = "mögen", ["mögt"] = "mögen", ["möge"] = "mögen",
+    ["mochte"] = "mögen", ["mochtest"] = "mögen", ["mochten"] = "mögen", ["gemocht"] = "mögen",
+    ["möchte"] = "möchten", ["möchtest"] = "möchten", ["möchtet"] = "möchten", ["möchten"] = "möchten",
+    
+    -- "sein" (to be) - all forms
+    ["bin"] = "sein", ["bist"] = "sein", ["ist"] = "sein", ["sind"] = "sein", ["seid"] = "sein",
+    ["war"] = "sein", ["warst"] = "sein", ["waren"] = "sein", ["wart"] = "sein",
+    ["gewesen"] = "sein",
+    
+    -- "haben" (to have) - all forms
+    ["habe"] = "haben", ["hab"] = "haben", ["hast"] = "haben", ["hat"] = "haben",
+    ["habt"] = "haben", ["hatte"] = "haben", ["hattest"] = "haben", ["hatten"] = "haben",
+    ["gehabt"] = "haben",
+    
+    -- "werden" (to become/will) - all forms
+    ["werde"] = "werden", ["wirst"] = "werden", ["wird"] = "werden", ["werdet"] = "werden",
+    ["wurde"] = "werden", ["wurdest"] = "werden", ["wurden"] = "werden", ["geworden"] = "werden",
+    
+    -- Common action verbs - "kommen" (to come)
+    ["komme"] = "kommen", ["komm"] = "kommen", ["kommst"] = "kommen", ["kommt"] = "kommen",
+    ["kam"] = "kommen", ["kamst"] = "kommen", ["kamen"] = "kommen", ["gekommen"] = "kommen",
+    
+    -- "gehen" (to go)
+    ["gehe"] = "gehen", ["geh"] = "gehen", ["gehst"] = "gehen", ["geht"] = "gehen",
+    ["ging"] = "gehen", ["gingst"] = "gehen", ["gingen"] = "gehen", ["gegangen"] = "gehen",
+    
+    -- "machen" (to make/do)
+    ["mache"] = "machen", ["mach"] = "machen", ["machst"] = "machen", ["macht"] = "machen",
+    ["machte"] = "machen", ["machtest"] = "machen", ["machten"] = "machen", ["gemacht"] = "machen",
+    
+    -- "sagen" (to say)
+    ["sage"] = "sagen", ["sag"] = "sagen", ["sagst"] = "sagen", ["sagt"] = "sagen",
+    ["sagte"] = "sagen", ["sagtest"] = "sagen", ["sagten"] = "sagen", ["gesagt"] = "sagen",
+    
+    -- "suchen" (to look for)
+    ["suche"] = "suchen", ["such"] = "suchen", ["suchst"] = "suchen", ["sucht"] = "suchen",
+    ["suchte"] = "suchen", ["suchtest"] = "suchen", ["suchten"] = "suchen", ["gesucht"] = "suchen",
+    
+    -- "brauchen" (to need)
+    ["brauche"] = "brauchen", ["brauch"] = "brauchen", ["brauchst"] = "brauchen", ["braucht"] = "brauchen",
+    ["brauchte"] = "brauchen", ["brauchtest"] = "brauchen", ["brauchten"] = "brauchen", ["gebraucht"] = "brauchen",
+    
+    -- "nehmen" (to take)
+    ["nehme"] = "nehmen", ["nimm"] = "nehmen", ["nimmst"] = "nehmen", ["nimmt"] = "nehmen",
+    ["nahm"] = "nehmen", ["nahmst"] = "nehmen", ["nahmen"] = "nehmen", ["genommen"] = "nehmen",
+    
+    -- "geben" (to give)
+    ["gebe"] = "geben", ["gib"] = "geben", ["gibst"] = "geben", ["gibt"] = "geben",
+    ["gab"] = "geben", ["gabst"] = "geben", ["gaben"] = "geben", ["gegeben"] = "geben",
+    
+    -- "finden" (to find)
+    ["finde"] = "finden", ["find"] = "finden", ["findest"] = "finden", ["findet"] = "finden",
+    ["fand"] = "finden", ["fandest"] = "finden", ["fanden"] = "finden", ["gefunden"] = "finden",
+    
+    -- "kaufen" (to buy)
+    ["kaufe"] = "kaufen", ["kauf"] = "kaufen", ["kaufst"] = "kaufen", ["kauft"] = "kaufen",
+    ["kaufte"] = "kaufen", ["kauftest"] = "kaufen", ["kauften"] = "kaufen", ["gekauft"] = "kaufen",
+    
+    -- "verkaufen" (to sell)
+    ["verkaufe"] = "verkaufen", ["verkauf"] = "verkaufen", ["verkaufst"] = "verkaufen", ["verkauft"] = "verkaufen",
+    ["verkaufte"] = "verkaufen", ["verkauftest"] = "verkaufen", ["verkauften"] = "verkaufen", ["verkauft"] = "verkaufen",
+    
+    -- "lassen" (to let/leave)
+    ["lasse"] = "lassen", ["lässt"] = "lassen", ["lasst"] = "lassen",
+    ["ließ"] = "lassen", ["ließt"] = "lassen", ["ließen"] = "lassen", ["gelassen"] = "lassen",
+    
+    -- "sehen" (to see)
+    ["sehe"] = "sehen", ["seh"] = "sehen", ["siehst"] = "sehen", ["sieht"] = "sehen",
+    ["sah"] = "sehen", ["sahst"] = "sehen", ["sahen"] = "sehen", ["gesehen"] = "sehen",
+    
+    -- "denken" (to think)
+    ["denke"] = "denken", ["denk"] = "denken", ["denkst"] = "denken", ["denkt"] = "denken",
+    ["dachte"] = "denken", ["dachtest"] = "denken", ["dachten"] = "denken", ["gedacht"] = "denken",
+    
+    -- "glauben" (to believe/think)
+    ["glaube"] = "glauben", ["glaub"] = "glauben", ["glaubst"] = "glauben", ["glaubt"] = "glauben",
+    ["glaubte"] = "glauben", ["glaubtest"] = "glauben", ["glaubten"] = "glauben", ["geglaubt"] = "glauben",
+    
+    -- "wissen" (to know)
+    ["weiß"] = "wissen", ["weißt"] = "wissen", ["wisst"] = "wissen", ["wisse"] = "wissen",
+    ["wusste"] = "wissen", ["wusstest"] = "wissen", ["wussten"] = "wissen", ["gewusst"] = "wissen",
+    
+    -- "laufen" (to run/walk)
+    ["laufe"] = "laufen", ["lauf"] = "laufen", ["läufst"] = "laufen", ["läuft"] = "laufen",
+    ["lief"] = "laufen", ["liefst"] = "laufen", ["liefen"] = "laufen", ["gelaufen"] = "laufen",
+    
+    -- "spielen" (to play)
+    ["spiele"] = "spielen", ["spiel"] = "spielen", ["spielst"] = "spielen", ["spielt"] = "spielen",
+    ["spielte"] = "spielen", ["spieltest"] = "spielen", ["spielten"] = "spielen", ["gespielt"] = "spielen",
+    
+    -- "arbeiten" (to work)
+    ["arbeite"] = "arbeiten", ["arbeit"] = "arbeiten", ["arbeitest"] = "arbeiten", ["arbeitet"] = "arbeiten",
+    ["arbeitete"] = "arbeiten", ["arbeitetest"] = "arbeiten", ["arbeiteten"] = "arbeiten", ["gearbeitet"] = "arbeiten",
+    
+    -- "warten" (to wait)
+    ["warte"] = "warten", ["wart"] = "warten", ["wartest"] = "warten", ["wartet"] = "warten",
+    ["wartete"] = "warten", ["wartetest"] = "warten", ["warteten"] = "warten", ["gewartet"] = "warten",
+    
+    -- "bringen" (to bring)
+    ["bringe"] = "bringen", ["bring"] = "bringen", ["bringst"] = "bringen", ["bringt"] = "bringen",
+    ["brachte"] = "bringen", ["brachtest"] = "bringen", ["brachten"] = "bringen", ["gebracht"] = "bringen",
+    
+    -- "holen" (to get/fetch)
+    ["hole"] = "holen", ["hol"] = "holen", ["holst"] = "holen", ["holt"] = "holen",
+    ["holte"] = "holen", ["holtest"] = "holen", ["holten"] = "holen", ["geholt"] = "holen",
+    
+    -- "lernen" (to learn)
+    ["lerne"] = "lernen", ["lern"] = "lernen", ["lernst"] = "lernen", ["lernt"] = "lernen",
+    ["lernte"] = "lernen", ["lerntest"] = "lernen", ["lernten"] = "lernen", ["gelernt"] = "lernen",
+    
+    -- "begleiten" (to accompany)
+    ["begleite"] = "begleiten", ["begleit"] = "begleiten", ["begleitest"] = "begleiten", ["begleitet"] = "begleiten",
+    ["begleitete"] = "begleiten", ["begleitetest"] = "begleiten", ["begleiteten"] = "begleiten", ["begleitet"] = "begleiten",
+    
+    -- "öffnen" (to open)
+    ["öffne"] = "öffnen", ["öffnest"] = "öffnen", ["öffnet"] = "öffnen",
+    ["öffnete"] = "öffnen", ["öffnetest"] = "öffnen", ["öffneten"] = "öffnen", ["geöffnet"] = "öffnen",
+    
+    -- "schließen" (to close)
+    ["schließe"] = "schließen", ["schließt"] = "schließen", ["schließt"] = "schließen",
+    ["schloss"] = "schließen", ["schlosst"] = "schließen", ["schlossen"] = "schließen", ["geschlossen"] = "schließen",
+    
+    -- "kosten" (to cost)
+    ["koste"] = "kosten", ["kost"] = "kosten", ["kostest"] = "kosten", ["kostet"] = "kosten",
+    ["kostete"] = "kosten", ["kostetest"] = "kosten", ["kosteten"] = "kosten", ["gekostet"] = "kosten",
+    
+    -- "nutzen" (to use)
+    ["nutze"] = "nutzen", ["nutz"] = "nutzen", ["nutzt"] = "nutzen",
+    ["nutzte"] = "nutzen", ["nutztest"] = "nutzen", ["nutzten"] = "nutzen", ["genutzt"] = "nutzen",
+    
+    -- "benutzen" (to use - formal)
+    ["benutze"] = "benutzen", ["benutz"] = "benutzen", ["benutzt"] = "benutzen",
+    ["benutzte"] = "benutzen", ["benutztest"] = "benutzen", ["benutzten"] = "benutzen", ["benutzt"] = "benutzen",
+    
+    -- "einladen" (to invite)
+    ["lade"] = "einladen", ["lädst"] = "einladen", ["lädt"] = "einladen", ["ladet"] = "einladen",
+    ["lud"] = "einladen", ["ludst"] = "einladen", ["luden"] = "einladen", ["eingeladen"] = "einladen",
+    
+    -- "starten" (to start)
+    ["starte"] = "starten", ["start"] = "starten", ["startest"] = "starten", ["startet"] = "starten",
+    ["startete"] = "starten", ["startetest"] = "starten", ["starteten"] = "starten", ["gestartet"] = "starten",
+    
+    -- "beginnen" (to begin)
+    ["beginne"] = "beginnen", ["beginn"] = "beginnen", ["beginnt"] = "beginnen",
+    ["begann"] = "beginnen", ["begannst"] = "beginnen", ["begannen"] = "beginnen", ["begonnen"] = "beginnen",
+    
+    -- "heilen" (to heal)
+    ["heile"] = "heilen", ["heil"] = "heilen", ["heilst"] = "heilen", ["heilt"] = "heilen",
+    ["heilte"] = "heilen", ["heiltest"] = "heilen", ["heilten"] = "heilen", ["geheilt"] = "heilen",
+    
+    -- "sterben" (to die)
+    ["sterbe"] = "sterben", ["stirbst"] = "sterben", ["stirbt"] = "sterben", ["sterbt"] = "sterben",
+    ["starb"] = "sterben", ["starbst"] = "sterben", ["starben"] = "sterben", ["gestorben"] = "sterben",
+    
+    -- "leben" (to live)
+    ["lebe"] = "leben", ["lebst"] = "leben", ["lebt"] = "leben",
+    ["lebte"] = "leben", ["lebtest"] = "leben", ["lebten"] = "leben", ["gelebt"] = "leben",
+    
+    -- "schaffen" (to manage/achieve)
+    ["schaffe"] = "schaffen", ["schaff"] = "schaffen", ["schaffst"] = "schaffen", ["schafft"] = "schaffen",
+    ["schaffte"] = "schaffen", ["schafftest"] = "schaffen", ["schafften"] = "schaffen", ["geschafft"] = "schaffen",
+    
+    -- "nennen" (to call/name)
+    ["nenne"] = "nennen", ["nenn"] = "nennen", ["nennst"] = "nennen", ["nennt"] = "nennen",
+    ["nannte"] = "nennen", ["nanntest"] = "nennen", ["nannten"] = "nennen", ["genannt"] = "nennen",
+    
+    -- "spendieren" (to donate/give)
+    ["spendiere"] = "spendieren", ["spendier"] = "spendieren", ["spendierst"] = "spendieren", ["spendiert"] = "spendieren",
+    ["spendierte"] = "spendieren", ["spendiertest"] = "spendieren", ["spendierten"] = "spendieren", ["spendiert"] = "spendieren",
+    
+    -- "besorgen" (to get/buy)
+    ["besorge"] = "besorgen", ["besorg"] = "besorgen", ["besorgst"] = "besorgen", ["besorgt"] = "besorgen",
+    ["besorgte"] = "besorgen", ["besorgtest"] = "besorgen", ["besorgten"] = "besorgen", ["besorgt"] = "besorgen",
+    
+    -- "verkaufen" already above
+    -- "schnorren" (to borrow/beg)
+    ["schnorre"] = "schnorren", ["schnorr"] = "schnorren", ["schnorrst"] = "schnorren", ["schnorrt"] = "schnorren",
+    ["schnorrte"] = "schnorren", ["schnorrtest"] = "schnorren", ["schnorrten"] = "schnorren", ["geschnorrt"] = "schnorren",
+}
+
 -- Try to normalize a verb to infinitive form
 function GermanMorphology.NormalizeToInfinitive(word)
     local wordLower = word:lower()
     
-    -- Special irregular verbs
-    local irregularVerbs = {
-        ["wurdest"] = "werden",
-        ["wurde"] = "werden",
-        ["wurden"] = "werden",
-        ["warst"] = "sein",
-        ["war"] = "sein",
-        ["waren"] = "sein",
-        ["ist"] = "sein",
-        ["sind"] = "sein",
-        ["bin"] = "sein",
-        ["bist"] = "sein",
-        ["hat"] = "haben",
-        ["hast"] = "haben",
-        ["hab"] = "haben",
-        ["habe"] = "haben",
-        ["geht"] = "gehen",
-        ["gehe"] = "gehen",
-        ["gehst"] = "gehen",
-        ["macht"] = "machen",
-        ["mache"] = "machen",
-        ["machst"] = "machen",
-        ["sage"] = "sagen",
-        ["sagst"] = "sagen",
-        ["sagt"] = "sagen",
-        ["gelassen"] = "lassen",
-    }
-    
-    if irregularVerbs[wordLower] then
-        return irregularVerbs[wordLower]
+    -- First check comprehensive lookup table
+    if VERB_CONJUGATION_LOOKUP[wordLower] then
+        return VERB_CONJUGATION_LOOKUP[wordLower]
     end
+    
+    -- Fall back to pattern-based normalization (for verbs not in lookup table)
     
     -- Remove past participle "ge-" prefix
     if wordLower:sub(1, 3) == "ge" and #wordLower >= 6 then
