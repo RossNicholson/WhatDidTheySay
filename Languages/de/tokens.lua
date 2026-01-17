@@ -2105,6 +2105,57 @@ WDTS_Lang_de_Tokens = {
     ["mindestlevel"] = "minimum level",
     ["erforderliches level"] = "required level",
     
+    -- Pet and Hunter terms
+    ["pet"] = "pet",
+    ["haustier"] = "pet",
+    ["unter kontrolle"] = "under control",
+    ["drücken"] = "press/push",
+    ["drück"] = "press/push",
+    ["rückruf"] = "recall/dismiss", -- Pet recall
+    ["schießen"] = "shoot",
+    ["schießt"] = "shoots",
+    ["schieß"] = "shoot",
+    ["mausrad"] = "mouse wheel",
+    ["hoch"] = "up",
+    ["runter"] = "down",
+    ["passiv"] = "passive",
+    ["defensiv"] = "defensive",
+    ["aggro"] = "aggressive/aggro", -- Pet aggro mode
+    ["aggressive"] = "aggressive",
+    ["befehl"] = "command",
+    ["auf befehl"] = "on command",
+    ["makro"] = "macro",
+    ["pathing"] = "pathfinding",
+    ["fürn"] = "for the", -- Colloquial "für den"
+    ["für den"] = "for the",
+    ["arsch"] = "ass/butt", -- Vulgar but common gaming slang
+    ["funktioniert"] = "worked/functions",
+    ["funktionierte"] = "worked",
+    ["funktionieren"] = "function/work",
+    ["beleidigt"] = "insulted",
+    ["beleidigen"] = "insult",
+    ["abgehauen"] = "left/ran away", -- Colloquial
+    ["abhauen"] = "run away/leave",
+    ["hauen"] = "run away/leave",
+    ["verdient"] = "deserved",
+    ["verdienen"] = "deserve",
+    ["egal"] = "doesn't matter/whatever",
+    ["keko"] = "keko", -- Gaming slang, keep as-is
+    ["nix"] = "nothing", -- Colloquial "nichts"
+    ["nächste mal"] = "next time",
+    ["nächstes mal"] = "next time",
+    ["im call"] = "in call/on voice",
+    ["call"] = "call/voice chat",
+    ["los gelaufen"] = "ran away",
+    ["losgelaufen"] = "ran away",
+    ["gelaufen"] = "ran/run",
+    ["vorm"] = "in front of", -- Colloquial "vor dem"
+    ["vor dem"] = "in front of",
+    ["genau vorm"] = "right in front of",
+    ["ausgang"] = "exit",
+    ["draußen"] = "outside",
+    ["wäre draußen"] = "would be outside",
+    
     -- Buildings and Structures
     ["turm"] = "tower", -- "auf den Turm" = "on the tower"
     ["türme"] = "towers",

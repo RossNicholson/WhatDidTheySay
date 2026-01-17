@@ -1210,6 +1210,72 @@ WDTS_Lang_de_Grammar = {
             from = "^like wurdest you back gelassen",
             to = "how were you left behind",
         },
+        
+        -- Pet and gaming phrases
+        {
+            from = "pet not under control",
+            to = "pet not under control",
+        },
+        {
+            from = "couldn't press nothing",
+            to = "couldn't press anything",
+        },
+        {
+            from = "no recall nothing but",
+            to = "no recall, nothing, but",
+        },
+        {
+            from = "anyone want to DM",
+            to = "anyone want to do DM",
+        },
+        {
+            from = "have cooldown",
+            to = "have cooldown",
+        },
+        {
+            from = "it has nothing more worked",
+            to = "nothing worked anymore",
+        },
+        {
+            from = "pathfinding is sometimes for the ass",
+            to = "pathfinding is sometimes annoying",
+        },
+        {
+            from = "must not your pet on aggressive leave",
+            to = "must not leave your pet on aggressive",
+        },
+        {
+            from = "always on passive",
+            to = "always on passive",
+        },
+        {
+            from = "only attack on command",
+            to = "only attack on command",
+        },
+        {
+            from = "and he has done what he wanted",
+            to = "and he did what he wanted",
+        },
+        {
+            from = "is simply away run",
+            to = "simply ran away",
+        },
+        {
+            from = "then have they all insulted are away",
+            to = "then they all insulted and left",
+        },
+        {
+            from = "and I am exactly in front of the portal died",
+            to = "and I died right in front of the portal",
+        },
+        {
+            from = "1sec more and I would be outside",
+            to = "1 second more and I would be outside",
+        },
+        {
+            from = "and then write all deserved so that you died are",
+            to = "and then everyone writes you deserved to die",
+        },
         {
             from = "^weiß not ",
             to = "don't know ",
