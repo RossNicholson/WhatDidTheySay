@@ -7,6 +7,7 @@ local LanguageDetect = WDTS_LanguageDetect
 local Confidence = WDTS_Confidence
 local LanguagePackManager = WDTS_LanguagePackManager
 local GermanMorphology = WDTS_GermanMorphology -- Optional morphology helper
+local DependencyParser = WDTS_DependencyParser -- Optional dependency parser
 
 local Engine = {}
 Engine.initialized = false
