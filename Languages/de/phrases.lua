@@ -538,4 +538,123 @@ WDTS_Lang_de_Phrases = {
     ["verzaubern lassen"] = "have it enchanted",
     ["es enchanten lassen"] = "have it enchanted",
     ["es verzaubern lassen"] = "have it enchanted",
+    
+    -- Additional common gaming phrases
+    ["was ist los"] = "what's up",
+    ["wie geht es"] = "how is it going",
+    ["wie gehts"] = "how's it going",
+    ["alles klar"] = "all clear/everything ok",
+    ["bis gleich"] = "see you soon",
+    ["bis später"] = "see you later",
+    ["bis dann"] = "see you then",
+    ["auf wiederhören"] = "goodbye (phone)",
+    ["mach's gut"] = "take care",
+    ["viel erfolg"] = "good luck",
+    ["gute reise"] = "have a good trip",
+    
+    -- More action phrases
+    ["kann kommen"] = "can come",
+    ["kannst kommen"] = "can come",
+    ["komm her"] = "come here",
+    ["kommt her"] = "come here",
+    ["geh weg"] = "go away",
+    ["geht weg"] = "go away",
+    ["bleib hier"] = "stay here",
+    ["bleibt hier"] = "stay here",
+    ["warte kurz"] = "wait a moment",
+    ["wartet kurz"] = "wait a moment",
+    
+    -- More status phrases
+    ["bin fertig"] = "am done",
+    ["ist fertig"] = "is done",
+    ["sind fertig"] = "are done",
+    ["bin bereit"] = "am ready",
+    ["ist bereit"] = "is ready",
+    ["sind bereit"] = "are ready",
+    ["bin da"] = "am here",
+    ["ist da"] = "is here",
+    ["sind da"] = "are here",
+    ["bin weg"] = "am away",
+    ["ist weg"] = "is away",
+    ["sind weg"] = "are away",
+    
+    -- More question phrases
+    ["was machst du gerade"] = "what are you doing right now",
+    ["was macht ihr gerade"] = "what are you doing right now",
+    ["wo seid ihr"] = "where are you",
+    ["wo bist du"] = "where are you",
+    ["wer ist da"] = "who is there",
+    ["wer will mit"] = "who wants to come along",
+    ["wer kann helfen"] = "who can help",
+    ["was brauchst du"] = "what do you need",
+    ["was braucht ihr"] = "what do you need",
+    
+    -- More LFG/group phrases
+    ["wer will mitmachen"] = "who wants to join",
+    ["wer hat lust"] = "who is interested",
+    ["wer kann mit"] = "who can come along",
+    ["suche gruppe für"] = "looking for group for",
+    ["sucht gruppe für"] = "looking for group for",
+    ["brauche gruppe für"] = "need group for",
+    ["braucht gruppe für"] = "need group for",
+    ["habe platz frei"] = "have space free",
+    ["habe noch platz"] = "still have space",
+    
+    -- More time phrases
+    ["in einer stunde"] = "in one hour",
+    ["in einer minute"] = "in one minute",
+    ["gleich los"] = "starting soon",
+    ["fangen gleich an"] = "starting soon",
+    ["fangen jetzt an"] = "starting now",
+    ["wann geht es los"] = "when does it start",
+    ["wann starten wir"] = "when do we start",
+    
+    -- More trading phrases
+    ["was willst du dafür"] = "what do you want for it",
+    ["was willst du haben"] = "what do you want",
+    ["wie viel willst du"] = "how much do you want",
+    ["ist zu teuer"] = "is too expensive",
+    ["ist zu billig"] = "is too cheap",
+    ["kann verhandeln"] = "can negotiate",
+    ["ist ok für mich"] = "is ok for me",
+    ["passt so"] = "works like that/is fine",
+    
+    -- More combat/group coordination
+    ["warte auf mich"] = "wait for me",
+    ["wartet auf mich"] = "wait for me",
+    ["ich komme"] = "I'm coming",
+    ["komme gleich"] = "coming soon",
+    ["bin unterwegs"] = "on my way",
+    ["bin fast da"] = "almost there",
+    ["bin da"] = "am here",
+    ["kann anfangen"] = "can start",
+    ["kannst anfangen"] = "can start",
+    ["fangen wir an"] = "let's start",
+    ["los gehts"] = "let's go",
+    ["auf gehts"] = "let's go",
+    
+    -- More polite phrases
+    ["entschuldigung"] = "excuse me/sorry",
+    ["entschuldige"] = "excuse me/sorry",
+    ["kein problem"] = "no problem",
+    ["gern geschehen"] = "you're welcome",
+    ["bitte sehr"] = "you're welcome",
+    ["nichts zu danken"] = "nothing to thank for",
+    
+    -- More confirmation phrases
+    ["ja genau"] = "yes exactly",
+    ["ja klar"] = "yes sure",
+    ["ja gerne"] = "yes gladly",
+    ["nein danke"] = "no thanks",
+    ["nein sorry"] = "no sorry",
+    ["passt schon"] = "it's fine",
+    ["ist ok"] = "is ok",
+    
+    -- More expressions
+    ["viel glück"] = "good luck",
+    ["viel spaß"] = "have fun",
+    ["mach weiter so"] = "keep it up",
+    ["gut gemacht"] = "well done",
+    ["sehr gut"] = "very good",
+    ["nicht schlecht"] = "not bad",
 }
