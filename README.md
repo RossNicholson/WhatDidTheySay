@@ -333,6 +333,34 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📚 Version History
 
+### Version 0.5.0
+
+**Dependency Parsing - Structure-Based Translation**
+
+This release introduces a major architectural improvement: **dependency parsing** for structure-based translation. Instead of word-by-word translation with post-processing fixes, the engine now understands grammatical relationships and produces correct English word order from the start.
+
+**Dependency Parsing Engine:**
+- **Structure-Based Translation**: Parses sentences into dependency trees showing grammatical relationships (subject → verb, verb → object, etc.)
+- **Correct Word Order**: Produces correct English word order without post-processing grammar fixes
+- **Complex Sentence Support**: Handles relative clauses, subordinate clauses, and questions
+- **Question Word Detection**: Recognizes question words (wo, was, wer, wie, wann, warum) and handles V1 word order
+- **Subordinate Clause Detection**: Identifies conjunctions (dass, wenn, weil, obwohl) and parses subordinate clauses
+- **Relative Clause Detection**: Detects relative pronouns (der, die, das) after commas and parses relative clauses
+
+**Translation Quality:**
+- More accurate translations for complex German sentence structures
+- Better handling of questions and subordinate clauses
+- Improved word order for all sentence types
+- Foundation for future grammar improvements
+
+**Technical Details:**
+- New `Core/DependencyParser.lua` module (700+ lines)
+- Integrated into main translation pipeline with automatic fallback
+- Maintains backward compatibility with existing vocabulary and phrase matching
+- Performance-optimized with early exit conditions
+
+**This represents a significant step toward higher translation accuracy for complex German sentences.**
+
 ### Version 0.4.0
 
 **Major Translation Engine Improvements & Vocabulary Expansion**
