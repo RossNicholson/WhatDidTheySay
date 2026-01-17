@@ -17,14 +17,71 @@ function LanguagePackManager.DiscoverPacks()
             nativeName = "Deutsch",
             description = "German → English translation",
             direction = "de → en",
+            available = true,
+        },
+        ["ru"] = {
+            name = "Russian",
+            nativeName = "Русский",
+            description = "Russian → English translation (Coming Soon)",
+            direction = "ru → en",
+            available = false,
+        },
+        ["fr"] = {
+            name = "French",
+            nativeName = "Français",
+            description = "French → English translation (Coming Soon)",
+            direction = "fr → en",
+            available = false,
+        },
+        ["es"] = {
+            name = "Spanish",
+            nativeName = "Español",
+            description = "Spanish → English translation (Coming Soon)",
+            direction = "es → en",
+            available = false,
+        },
+        ["pt"] = {
+            name = "Portuguese",
+            nativeName = "Português",
+            description = "Portuguese → English translation (Coming Soon)",
+            direction = "pt → en",
+            available = false,
+        },
+        ["it"] = {
+            name = "Italian",
+            nativeName = "Italiano",
+            description = "Italian → English translation (Coming Soon)",
+            direction = "it → en",
+            available = false,
+        },
+        ["pl"] = {
+            name = "Polish",
+            nativeName = "Polski",
+            description = "Polish → English translation (Coming Soon)",
+            direction = "pl → en",
+            available = false,
+        },
+        ["nl"] = {
+            name = "Dutch",
+            nativeName = "Nederlands",
+            description = "Dutch → English translation (Coming Soon)",
+            direction = "nl → en",
+            available = false,
+        },
+        ["sv"] = {
+            name = "Swedish",
+            nativeName = "Svenska",
+            description = "Swedish → English translation (Coming Soon)",
+            direction = "sv → en",
+            available = false,
         },
         ["en"] = {
             name = "English",
             nativeName = "English",
             description = "English (target language)",
             direction = "target",
+            available = true,
         },
-        -- Add more languages here as they're created
     }
     
     -- Check which language packs are actually loaded
@@ -32,13 +89,15 @@ function LanguagePackManager.DiscoverPacks()
         local packName = "WDTS_Lang_" .. lang
         -- Check if at least tokens file is loaded
         if _G[packName .. "_Tokens"] then
+            local isAvailable = info.available == true
             packs[lang] = {
                 code = lang,
                 name = info.name,
                 nativeName = info.nativeName,
                 description = info.description,
                 direction = info.direction,
-                enabled = WhatDidTheySayDB.enabledLanguages and WhatDidTheySayDB.enabledLanguages[lang] ~= false,
+                available = isAvailable,
+                enabled = isAvailable and (WhatDidTheySayDB.enabledLanguages and WhatDidTheySayDB.enabledLanguages[lang] ~= false),
             }
         end
     end

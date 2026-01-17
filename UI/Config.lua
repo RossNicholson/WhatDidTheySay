@@ -126,20 +126,39 @@ function Config.CreateFrame()
     for i, item in ipairs(sortedLangs) do
         local lang = item.lang
         local pack = item.pack
+        local isAvailable = pack.available ~= false
+        
         local displayText = pack.name
         if pack.nativeName and pack.nativeName ~= pack.name then
             displayText = displayText .. " (" .. pack.nativeName .. ")"
         end
         displayText = displayText .. " - " .. pack.direction
+        if not isAvailable then
+            displayText = displayText .. " |cff888888(Coming Soon)|r"
+        end
         
         local check, label = Widgets.CreateCheckbox(frame, displayText, 35, langPackYOffset, function(checked)
+            if not isAvailable then
+                -- Prevent enabling unavailable languages
+                check:SetChecked(false)
+                return
+            end
             if checked then
                 LanguagePackManager.EnablePack(lang)
             else
                 LanguagePackManager.DisablePack(lang)
             end
         end)
-        check:SetChecked(LanguagePackManager.IsEnabled(lang))
+        
+        -- Disable checkbox and grey out text for unavailable languages
+        if not isAvailable then
+            check:SetEnabled(false)
+            check:SetChecked(false)
+            label:SetTextColor(0.5, 0.5, 0.5, 1)
+        else
+            check:SetChecked(LanguagePackManager.IsEnabled(lang))
+        end
+        
         langPackCheckboxes[lang] = check
         langPackYOffset = langPackYOffset - 25
     end

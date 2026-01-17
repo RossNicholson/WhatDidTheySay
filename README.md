@@ -27,9 +27,9 @@ An addon that helps players understand chat messages written in other languages 
 
 **This addon is currently in BETA and actively under development.**
 
-- **Current Focus:** German (de → en) translation is being actively developed and refined
-- **What Works:** Core translation pipeline, German vocabulary, intent detection, and phrase matching
-- **What's Coming:** Continued improvements to German translation accuracy, expanded vocabulary, and additional language packs (French, Spanish, etc.) in future releases
+- **Current Status:** **Only German (de → en) translation is currently available and functional**
+- **What Works:** Core translation pipeline, German vocabulary (4,400+ entries), phrase patterns (1,000+), sentence patterns (275+), grammar rules (544+), intent detection, and dependency parsing
+- **What's Coming:** Continued improvements to German translation accuracy, and additional language packs (Russian, French, Spanish, Portuguese, Italian, Polish, Dutch, Swedish) in future releases
 - **Feedback Welcome:** Bug reports and translation suggestions are appreciated during this beta period
 
 Please note that translation quality may vary and some messages may not translate if confidence is too low (by design to avoid incorrect translations).
@@ -40,7 +40,7 @@ Please note that translation quality may vary and some messages may not translat
 
 **What Did They Say?** is a gameplay-focused communication aid for World of Warcraft Classic. Unlike general-purpose translators, this addon is specifically designed to help players coordinate in groups, whisper, and communicate across language barriers during gameplay.
 
-**Currently in beta** - German translation is actively being developed, with more languages planned for the future.
+**Currently in beta** - **Only German (de → en) translation is currently available.** Placeholder language packs are visible in the UI but greyed out until implemented in future releases.
 
 ### Key Features
 
@@ -61,14 +61,21 @@ This addon is focused on providing **the best translation possible**. It priorit
 
 ## 🌐 Supported Languages
 
-**⚠️ BETA:** Currently focusing on German translation. Other languages are planned for future releases after German is polished.
+**⚠️ IMPORTANT:** **Only German (de → en) is currently available and functional.**
+
+The addon includes placeholder language packs for Russian, French, Spanish, Portuguese, Italian, Polish, Dutch, and Swedish in the UI, but these are **not yet implemented** and are greyed out. They will be available in future releases after German translation is fully polished.
 
 | Language | Status | Direction |
 |----------|--------|-----------|
-| German (de) | 🚧 **Beta - Active Development** | de → en |
-| French (fr) | 📅 Planned | fr → en |
-| Spanish (es) | 📅 Planned | es → en |
-| More languages | 📅 Planned | - |
+| German (de) | ✅ **Available - Beta** | de → en |
+| Russian (ru) | ⏳ Coming Soon | ru → en |
+| French (fr) | ⏳ Coming Soon | fr → en |
+| Spanish (es) | ⏳ Coming Soon | es → en |
+| Portuguese (pt) | ⏳ Coming Soon | pt → en |
+| Italian (it) | ⏳ Coming Soon | it → en |
+| Polish (pl) | ⏳ Coming Soon | pl → en |
+| Dutch (nl) | ⏳ Coming Soon | nl → en |
+| Swedish (sv) | ⏳ Coming Soon | sv → en |
 
 **Current German Translation Status:**
 - ✅ Core vocabulary and common phrases
