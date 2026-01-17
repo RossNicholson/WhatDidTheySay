@@ -1812,7 +1812,11 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
             end
             if allEnglishGreetings then
                 -- Skip translation for universal English greetings (only if not in language pack)
-                return nil, 0.0, "english_greeting"
+                -- BUT: Allow emoticons when sourceLang is explicitly provided (they should pass through)
+                if not sourceLangWasExplicit or #tokens > 1 then
+                    return nil, 0.0, "english_greeting"
+                end
+                -- If sourceLang was explicitly provided and it's just an emoticon, allow it to pass through
             end
         end
     end
