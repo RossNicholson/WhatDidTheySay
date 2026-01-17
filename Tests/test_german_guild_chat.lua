@@ -78,23 +78,29 @@ local function testTranslation()
             
             -- Flexible matching: check if expected words are present
             if translated then
-                local expectedWords = {}
-                for word in test.expect:lower():gmatch("%S+") do
-                    word = word:gsub("[%p]+", "")
-                    if #word > 0 then
-                        table.insert(expectedWords, word)
+                -- First, check for exact match (case-insensitive)
+                if translated:lower() == test.expect:lower() then
+                    passed = true
+                else
+                    -- Then check if all expected words are present
+                    local expectedWords = {}
+                    for word in test.expect:lower():gmatch("%S+") do
+                        word = word:gsub("[%p]+", "")
+                        if #word > 0 then
+                            table.insert(expectedWords, word)
+                        end
                     end
-                end
-                
-                local allWordsFound = true
-                for _, word in ipairs(expectedWords) do
-                    if not translated:lower():find(word:lower(), 1, true) then
-                        allWordsFound = false
-                        break
+                    
+                    local allWordsFound = true
+                    for _, word in ipairs(expectedWords) do
+                        if not translated:lower():find(word:lower(), 1, true) then
+                            allWordsFound = false
+                            break
+                        end
                     end
+                    
+                    passed = allWordsFound
                 end
-                
-                passed = allWordsFound
             end
             
             if passed then
