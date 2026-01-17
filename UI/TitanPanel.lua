@@ -35,7 +35,7 @@ end
 function TitanPanelWDTSButton_GetTooltipText()
     local lines = {}
     table.insert(lines, "|cffffffffWhat Did They Say?|r")
-    table.insert(lines, "|cffffd700Version:|r 0.3.0")
+    table.insert(lines, "|cffffd700Version:|r 0.5.0")
     table.insert(lines, "")
     
     if WhatDidTheySayDB and WhatDidTheySayDB.autoTranslate then
@@ -127,7 +127,7 @@ function WDTS_TitanPanel.Register()
         tooltipTextFunction = "TitanPanelWDTSButton_GetTooltipText",
         onClick = "TitanPanelWDTSButton_OnClick", -- Register click handler in registry
         cat = "Information", -- Use string literal, not variable
-        version = "0.3.0",
+        version = "0.5.0",
         icon = "Interface\\Icons\\INV_Letter_01",
         iconWidth = 16,
         savedVariables = {
