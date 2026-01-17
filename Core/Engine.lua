@@ -1406,15 +1406,22 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     local allUniversalAbbrevs = true
     local universalAbbrevsForCheck = {
         ["bb"] = true, ["pls"] = true, ["summon"] = true, ["summons"] = true,
-        ["sw"] = true, ["lf"] = true, ["lfg"] = true, ["lfm"] = true, ["lfw"] = true,
-        ["wts"] = true, ["wtb"] = true, ["tank"] = true, ["heal"] = true, ["healer"] = true,
-        ["dm"] = true, ["port"] = true, ["portal"] = true, ["buff"] = true, ["quest"] = true,
+        ["sw"] = true, ["lf"] = true, ["lfg"] = true, ["lfm"] = true, ["lfw"] = true, ["lfb"] = true, ["lf1m"] = true,
+        ["wts"] = true, ["wtb"] = true, ["wtt"] = true, ["tank"] = true, ["heal"] = true, ["healer"] = true,
+        -- Dungeon abbreviations (these are universal, even if they exist in language packs)
+        ["dm"] = true, ["bfd"] = true, ["st"] = true, ["sfk"] = true, ["rfk"] = true, ["rfd"] = true,
+        ["uld"] = true, ["zf"] = true, ["mara"] = true, ["scholo"] = true, ["strat"] = true, ["brd"] = true,
+        ["ubrs"] = true, ["lbrs"] = true, ["gnomer"] = true, ["gnomeregan"] = true,
+        ["port"] = true, ["portal"] = true, ["buff"] = true, ["quest"] = true, ["quests"] = true,
         ["tp"] = true, ["tpn"] = true, ["darna"] = true, ["darnassus"] = true,
         ["for"] = true, ["to"] = true, ["with"] = true, ["or"] = true, -- Common English prepositions
         ["if"] = true, -- Ironforge abbreviation (uppercase IF in context means Ironforge, not "looking for")
         ["mage"] = true, ["warrior"] = true, ["rogue"] = true, ["hunter"] = true,
         ["priest"] = true, ["warlock"] = true, ["druid"] = true, ["shaman"] = true, ["paladin"] = true,
         ["dd"] = true, ["dps"] = true, -- Damage dealer abbreviations
+        ["afk"] = true, ["brb"] = true, ["gg"] = true, ["wp"] = true, ["gl"] = true, ["hf"] = true,
+        ["raid"] = true, ["dungeon"] = true, ["group"] = true, ["guild"] = true,
+        ["item"] = true, ["items"] = true, ["gold"] = true, ["silver"] = true, ["copper"] = true,
     }
     local wordCount = 0
     for _, token in ipairs(tokens) do
