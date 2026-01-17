@@ -2,17 +2,65 @@
 
 Welcome to the **What Did They Say?** wiki! This addon helps World of Warcraft Classic players communicate across language barriers using local, offline translation.
 
-## 🎯 Quick Links
+---
 
-- **[Releases](Releases)** - Current version, downloads, and release information
-- **[Installation Guide](Installation)** - How to install and set up the addon
-- **[User Guide](User-Guide)** - How to use the addon in-game
-- **[Configuration](Configuration)** - Detailed configuration options
-- **[Language Packs](Language-Packs)** - Supported languages and adding new ones
-- **[Troubleshooting](Troubleshooting)** - Common issues and solutions
-- **[Technical Details](Technical-Details)** - How the translation engine works
-- **[Contributing](Contributing)** - How to contribute to the project
-- **[FAQ](FAQ)** - Frequently asked questions
+## 🎯 Quick Start (New Users)
+
+**Just getting started?** Follow these steps:
+
+1. **[📦 Releases](Releases)** - Download the latest version (v0.5.0)
+2. **[📥 Installation Guide](Installation)** - Install and set up the addon
+3. **[📖 User Guide](User-Guide)** - Learn how to use it in-game
+4. **[⚙️ Configuration](Configuration)** - Customize settings to your needs
+
+---
+
+## 📚 Complete Documentation Index
+
+### 🚀 Getting Started
+
+- **[📦 Releases](Releases)** - Current version, downloads, release notes, and update instructions
+- **[📥 Installation Guide](Installation)** - Step-by-step installation instructions for Windows, Mac, and Linux
+- **[📖 User Guide](User-Guide)** - How to use the addon in-game, commands, and features
+
+### ⚙️ Configuration & Setup
+
+- **[⚙️ Configuration](Configuration)** - Detailed configuration options, channel settings, and confidence thresholds
+
+### 🌐 Languages & Translation
+
+- **[🌐 Language Packs](Language-Packs)** - Supported languages, language pack status, and guide for adding new languages
+
+### 🔧 Technical Documentation
+
+- **[🔧 Technical Details](Technical-Details)** - Architecture overview, translation pipeline, and how the engine works
+- **[📋 Version History](Version-History)** - Complete changelog for all versions with detailed technical changes
+
+### ❓ Help & Support
+
+- **[🐛 Troubleshooting](Troubleshooting)** - Common issues, solutions, and debugging tips
+- **[❓ FAQ](FAQ)** - Frequently asked questions and answers
+
+### 🤝 Contributing
+
+- **[🤝 Contributing](Contributing)** - How to contribute code, report bugs, suggest features, and add language packs
+
+---
+
+## 📖 Quick Links (All Wiki Pages)
+
+| Page | Description |
+|------|-------------|
+| **[Releases](Releases)** | Current version, downloads, and release information |
+| **[Installation](Installation)** | How to install and set up the addon |
+| **[User Guide](User-Guide)** | How to use the addon in-game |
+| **[Configuration](Configuration)** | Detailed configuration options |
+| **[Language Packs](Language-Packs)** | Supported languages and adding new ones |
+| **[Troubleshooting](Troubleshooting)** | Common issues and solutions |
+| **[Technical Details](Technical-Details)** | How the translation engine works |
+| **[Version History](Version-History)** | Complete changelog for all versions |
+| **[Contributing](Contributing)** | How to contribute to the project |
+| **[FAQ](FAQ)** | Frequently asked questions |
 
 ## 📋 Overview
 
