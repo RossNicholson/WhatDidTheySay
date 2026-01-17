@@ -4,6 +4,12 @@
 
 <div align="center">
 
+![What Did They Say? - Orc and Human Paladin](what-did-they-say-hero.png)
+
+</div>
+
+<div align="center">
+
 ## ☕ Support the Developer
 
 If this addon has helped you, please consider [buying me a coffee](https://buymeacoffee.com/rossnicholson)! 🙏
