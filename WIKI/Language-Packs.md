@@ -32,6 +32,27 @@
 - Emoticon handling
 - Real-world chat message support
 
+#### 🎮 WoW Abbreviations (wow → en)
+
+**Status:** ✅ Active Development (Beta) - v0.7.0 🆕  
+**Coverage:** 150+ abbreviation expansions, 30+ phrases, 10+ patterns, 20+ grammar rules  
+**Accuracy:** Comprehensive coverage of WoW gaming abbreviations  
+**Features:**
+- Separate, independent language pack for gaming abbreviations
+- LFG/LFM expansions (LF → Looking for, LFM → Looking for more)
+- Trading abbreviations (WTS → Want to sell, WTB → Want to buy)
+- Class, role, dungeon, raid, and city abbreviations
+- Action, status, combat, and profession abbreviations
+- Auto-detection when 30%+ of words are WoW abbreviations
+- Smart detection - only activates for English messages
+- Disabled by default (users must enable in configuration)
+- Does NOT interfere with foreign language translation
+
+**Examples:**
+- `"LF 1 tank strat ud"` → `"Looking for 1 tank Stratholme Undead side"`
+- `"WTS [Large Green Bag] 5g"` → `"Want to sell [Large green Bag] 5 gold"`
+- `"AFK brb 5 min"` → `"away from keyboard be right back 5 minutes"`
+
 ### More Languages to Follow
 
 #### 🇪🇸 Spanish (es → en)
@@ -39,12 +60,6 @@
 **Status:** 📅 Planned  
 **Priority:** High  
 **Target:** Future release
-
-#### 🇪🇸 Spanish (es → en)
-
-**Status:** 📅 Planned  
-**Priority:** High  
-**Target:** v0.7.0+
 
 #### 🇷🇺 Russian (ru → en)
 

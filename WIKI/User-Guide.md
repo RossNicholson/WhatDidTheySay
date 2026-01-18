@@ -12,11 +12,13 @@ You can also use `/whatdidtheysay` as a full command.
 
 Once configured, the addon works automatically:
 
-1. **Detects foreign language messages** (German or French) in enabled chat channels
+1. **Detects foreign language messages** (German, French) or **WoW abbreviations** in enabled chat channels
 2. **Translates to English** with confidence scoring
 3. **Displays translations** automatically when confidence ≥ 0.50
 4. **Shows manual option** for medium confidence (0.30-0.49)
 5. **Stays silent** for low confidence (< 0.30)
+
+**Note:** WoW Abbreviations pack is disabled by default. Enable it in the configuration to expand gaming abbreviations like "LF", "LFM", "WTS", etc.
 
 ### Translation Display
 

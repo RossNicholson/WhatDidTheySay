@@ -301,4 +301,4 @@ For detailed technical changes, see [Version History](Version-History).
 
 ---
 
-*Last Updated: January 2025 (v0.6.0)*
+*Last Updated: January 2025 (v0.7.0)*

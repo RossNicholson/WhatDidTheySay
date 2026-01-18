@@ -90,7 +90,7 @@ This addon is focused on providing **the best translation possible**. It priorit
 
 ## 🌐 Current Status
 
-**Version:** 0.6.0 (Beta)
+**Version:** 0.7.0 (Beta)
 
 **Supported Languages:**
 - ✅ **German (de → en)** - **Active Development**

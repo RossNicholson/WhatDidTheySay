@@ -19,12 +19,14 @@ WhatDidTheySay/
 │   └── Utils.lua           # Shared utilities
 ├── Languages/               # Language packs
 │   ├── en/                 # English (target language)
-│   └── de/                 # German (source language)
-│       ├── tokens.lua      # Vocabulary dictionary
+│   ├── de/                 # German (source language)
+│   ├── fr/                 # French (source language)
+│   └── wow/                # WoW Abbreviations (v0.7.0+)
+│       ├── tokens.lua      # Abbreviation expansions
 │       ├── intents.lua     # Intent patterns
-│       ├── patterns.lua    # Phrase patterns
-│       ├── phrases.lua     # Multi-word phrases
-│       ├── grammar.lua     # Grammar rules
+│       ├── patterns.lua    # Complex abbreviation patterns
+│       ├── phrases.lua     # Multi-word abbreviations
+│       ├── grammar.lua     # Post-processing rules
 │       └── metadata.lua    # Language metadata
 ├── UI/                      # User interface
 │   ├── Config.lua          # Configuration window
