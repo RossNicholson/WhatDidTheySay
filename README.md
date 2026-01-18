@@ -85,6 +85,7 @@ Translations appear automatically in chat when confidence ≥ 0.50 (green for hi
 **Currently Available:**
 - ✅ **German (de → en)** - **Beta**
 - ✅ **French (fr → en)** - **Beta**
+- ✅ **WoW Abbreviations (wow → en)** - **Beta** 🆕
 
 **More languages to follow:**
 - ⏳ Russian, Spanish, Portuguese, Italian, Polish, Dutch, Swedish, and more
