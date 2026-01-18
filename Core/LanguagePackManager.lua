@@ -153,12 +153,15 @@ function LanguagePackManager.InitializeDefaults()
         local packs = LanguagePackManager.GetAvailablePacks()
         
         -- Enable all discovered language packs by default (except English, which is target)
+        -- WoW abbreviations pack is disabled by default (users must explicitly enable it)
         -- Users can disable any language pack they don't want
         for lang, packInfo in pairs(packs) do
-            if lang ~= "en" then
-                WhatDidTheySayDB.enabledLanguages[lang] = true -- Enable by default
-            else
+            if lang == "en" then
                 WhatDidTheySayDB.enabledLanguages[lang] = false -- English is target, not source
+            elseif lang == "wow" then
+                WhatDidTheySayDB.enabledLanguages[lang] = false -- WoW abbreviations disabled by default
+            else
+                WhatDidTheySayDB.enabledLanguages[lang] = true -- Enable by default
             end
         end
         
