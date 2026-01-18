@@ -2146,6 +2146,8 @@ WDTS_Lang_de_Tokens = {
     ["bein"] = "leg",
     ["beine"] = "legs",
     ["arm"] = "arm",
+    ["armer"] = "poor", -- "armer Zwerg" = "poor dwarf"
+    ["arme"] = "poor", -- Feminine form
     ["arme"] = "arms",
     ["rücken"] = "back",
     ["bauch"] = "stomach/belly",

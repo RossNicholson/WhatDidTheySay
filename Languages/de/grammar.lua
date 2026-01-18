@@ -2206,6 +2206,50 @@ WDTS_Lang_de_Grammar = {
             to = "can someone donate/get small bags",
             priority = 15,
         },
+        
+        -- Fix "ne" being incorrectly translated as "no" - correct to "a/an" when followed by noun
+        {
+            from = " no bag",
+            to = " a bag",
+            priority = 20,
+        },
+        {
+            from = " no tasche",
+            to = " a bag",
+            priority = 20,
+        },
+        {
+            from = "^no bag",
+            to = "a bag",
+            priority = 20,
+        },
+        {
+            from = "^no tasche",
+            to = "a bag",
+            priority = 20,
+        },
+        
+        -- Fix word order: "someone no bag over has" -> "someone has an extra bag"
+        {
+            from = "someone no bag over has",
+            to = "someone has an extra bag",
+            priority = 20,
+        },
+        {
+            from = "someone a bag over has",
+            to = "someone has an extra bag",
+            priority = 20,
+        },
+        {
+            from = " no bag over has",
+            to = " has an extra bag",
+            priority = 20,
+        },
+        {
+            from = " a bag over has",
+            to = " has an extra bag",
+            priority = 20,
+        },
         {
             from = "small bags donate/give get/buy",
             to = "donate/get small bags",
