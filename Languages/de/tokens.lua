@@ -214,7 +214,7 @@ WDTS_Lang_de_Tokens = {
     ["vollen"] = "full",
     ["volles"] = "full",
     ["ganze"] = "whole", -- "die ganze ini" = "the whole instance"
-    ["ganzen"] = "whole", -- "die ganzen" = "the whole"
+    ["ganzen"] = "whole/all", -- "die ganzen" = "the whole/all"
     ["ganzer"] = "whole",
     ["ganzes"] = "whole",
     ["leer"] = "empty",
@@ -246,6 +246,14 @@ WDTS_Lang_de_Tokens = {
     
     -- Guild terms
     ["gilde"] = "guild",
+    ["eigene"] = "own", -- "eine eigene" = "their own/one's own"
+    ["eigenen"] = "own", -- Alternative form
+    ["gegründet"] = "founded/created", -- Past participle: "gegründet" = "founded"
+    ["erstmal"] = "for now", -- "erstmal" = "for now/for the time being"
+    ["allen"] = "all", -- "euch allen" = "all of you"
+    ["schönes"] = "great/nice", -- "schönes Spielerlebnis" = "great gaming experience"
+    ["spielerlebnis"] = "gaming experience", -- Gaming term
+    ["schönes spielerlebnis"] = "great gaming experience", -- Compound phrase
     ["gilden"] = "guilds",
     ["levelgilde"] = "leveling guild", -- Compound word: Level + Gilde
     ["gildendiscord"] = "guild discord",

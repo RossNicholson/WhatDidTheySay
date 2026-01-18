@@ -527,7 +527,9 @@ WDTS_Lang_de_Phrases = {
     -- Common responses
     ["keine ursache"] = "no problem",
     ["gerne"] = "gladly",
-    ["gern"] = "gladly",
+    ["gern"] = "gladly/happily/like to", -- Context-dependent: "ich bin gern hier" = "I am happy here"
+    ["ich bin gern"] = "I am happy/I like being", -- "ich bin gern hier" = "I am happy here"
+    ["bin gern"] = "am happy/like being", -- Colloquial form
     ["gern geschehen"] = "you're welcome",
     ["macht nichts"] = "doesn't matter",
     ["ist ok"] = "is ok",
@@ -2240,6 +2242,18 @@ WDTS_Lang_de_Phrases = {
     -- ["wts"] = "want to sell", -- REMOVED: English gaming term, should use WoW pack
     -- ["wtb"] = "want to buy", -- REMOVED: English gaming term, should use WoW pack
     ["wtt"] = "want to trade",
+    
+    -- Farewell and thanks phrases
+    ["vielen dank"] = "many thanks",
+    ["vielen dank für"] = "many thanks for",
+    ["vielen dank für alles"] = "thanks for everything",
+    ["danke für alles"] = "thanks for everything",
+    ["die ganzen"] = "all the", -- "die ganzen Informationen" = "all the information"
+    ["euch allen"] = "all of you", -- "euch allen noch" = "all of you still"
+    ["euch allen noch"] = "all of you still",
+    ["eine eigene"] = "their own/one's own", -- "eine eigene gilde" = "their own guild"
+    ["ihre eigene"] = "their own", -- Alternative form
+    ["schönes spielerlebnis"] = "great gaming experience",
     ["verkaufe ich"] = "I'm selling",
     ["kaufe ich"] = "I'm buying",
     ["suche ich"] = "I'm looking for",

@@ -9,6 +9,62 @@ WDTS_Lang_de_Grammar = {
             from = "^you can ",
             to = "can you ",
         },
+        -- Fix "gladly" -> "happy" when used with "I am"
+        {
+            from = "^I am really gladly here",
+            to = "I am really happy here",
+            priority = 15,
+        },
+        {
+            from = " I am really gladly here",
+            to = " I am really happy here",
+            priority = 15,
+        },
+        {
+            from = " would also gladly stay",
+            to = " would also like to stay",
+            priority = 15,
+        },
+        -- Fix "the one who guild" -> "the guild" (der = article, not relative pronoun)
+        {
+            from = " in the one who guild",
+            to = " in the guild",
+            priority = 20,
+        },
+        {
+            from = " the one who whole",
+            to = " all the",
+            priority = 20,
+        },
+        -- Fix "that gives you (plural) allen" -> "all of you"
+        {
+            from = " that gives you %(plural%) allen",
+            to = " all of you",
+            priority = 20,
+        },
+        {
+            from = " that gives you allen",
+            to = " all of you",
+            priority = 20,
+        },
+        -- Fix "first/only even/once" -> "for now"
+        {
+            from = " first/only even/once",
+            to = " for now",
+            priority = 15,
+        },
+        -- Fix "one eigene" -> "their own"
+        {
+            from = " one eigene",
+            to = " their own",
+            priority = 15,
+        },
+        -- Fix "denn" in questions -> drop it (emphasis particle)
+        {
+            from = " how (.+) because/for%?$",
+            to = " how do %1?",
+            priority = 20,
+        },
         -- Fix "are you why" -> "why are you" (question word order)
         -- Match at start of string
         {
