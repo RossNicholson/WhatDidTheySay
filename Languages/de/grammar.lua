@@ -9,6 +9,44 @@ WDTS_Lang_de_Grammar = {
             from = "^you can ",
             to = "can you ",
         },
+        -- Fix "are you why" -> "why are you" (question word order)
+        {
+            from = "^are you why (.+)$",
+            to = "why are you %1",
+            priority = 20,
+        },
+        {
+            from = "^are you why (.+) ",
+            to = "why are you %1 ",
+            priority = 20,
+        },
+        {
+            from = " are you why (.+)$",
+            to = " why are you %1",
+            priority = 20,
+        },
+        {
+            from = " are you why (.+) ",
+            to = " why are you %1 ",
+            priority = 20,
+        },
+        -- Fix "are you looking for why" -> "why are you looking for"
+        {
+            from = "^are you looking for why ",
+            to = "why are you looking for ",
+            priority = 20,
+        },
+        -- Fix "are you looking for then" -> "are you looking then" (remove "for" when not needed)
+        {
+            from = "are you looking for then ",
+            to = "are you looking then ",
+            priority = 15,
+        },
+        {
+            from = "are you looking for (.+) then ",
+            to = "are you looking for %1 then ",
+            priority = 15,
+        },
         -- Article corrections
         {
             from = " a ([aeiouAEIOU])",

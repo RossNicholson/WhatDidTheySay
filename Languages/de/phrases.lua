@@ -228,6 +228,12 @@ WDTS_Lang_de_Phrases = {
     ["pet auf"] = "pet on",
     ["auf passiv"] = "on passive",
     ["suche"] = "looking for", -- "suche" = "looking for" (lowercase)
+    ["suchst du"] = "are you looking for", -- "suchst du" = "are you looking for" (question form)
+    ["sucht du"] = "are you looking for", -- Alternative form
+    ["sucht ihr"] = "are you looking for", -- Plural form
+    ["suche ich"] = "am I looking for", -- "suche ich" = "am I looking for"
+    ["wieso suchst du"] = "why are you looking for", -- Question form
+    ["warum suchst du"] = "why are you looking for", -- Alternative question form
     ["suche port"] = "looking for port",
     ["suche sw-port"] = "looking for SW port",
     ["suche bb-port"] = "looking for BB port",
