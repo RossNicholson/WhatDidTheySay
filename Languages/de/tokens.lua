@@ -594,9 +594,15 @@ WDTS_Lang_de_Tokens = {
     
     -- Definite articles (masculine, feminine, neuter)
     -- Note: "das" already defined above with contextual handling
-    -- Relative pronouns (context-dependent, but default to "the" for articles)
-    -- ["der"] = "who/that", -- Only when used as relative pronoun
-    -- ["die"] = "who/that", -- Only when used as relative pronoun
+    -- Articles default to "the", but context handling in Engine determines if they're relative pronouns
+    ["der"] = {
+        default = "the",
+        -- Context handling in Engine.lua determines if "der" is "the" (article) or "who/that" (relative pronoun)
+    },
+    ["die"] = {
+        default = "the",
+        -- Context handling in Engine.lua determines if "die" is "the" (article) or "who/that" (relative pronoun)
+    },
     ["den"] = {
         default = "the",
         after = {

@@ -1120,6 +1120,17 @@ WDTS_Lang_de_Phrases = {
     ["wie nennt man"] = "what do you call/what is called",
     ["wie nennt man das"] = "what do you call that",
     
+    -- Question phrases with "was ist denn der"
+    ["wieso was ist denn der"] = "why is there a",
+    ["was ist denn der"] = "is there a/is the",
+    ["was ist denn die"] = "is there a/is the",
+    ["was ist denn das"] = "is there a/is that",
+    ["was ist denn"] = "what is then",
+    ["ist denn der"] = "is there a/is the",
+    ["ist denn die"] = "is there a/is the",
+    ["wenn nicht"] = "if not/if it's not",
+    ["wenn nicht für"] = "if not for/if it's not for",
+    
     -- ============================================
     -- LOCATION/POSITION PHRASES
     -- ============================================

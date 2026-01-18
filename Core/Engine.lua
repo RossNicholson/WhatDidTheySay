@@ -941,6 +941,33 @@ local function GetContextualTranslation(token, tokenIdx, tokens, langPack)
         return "the"
     end
     
+    -- Special case: "der" before a noun means "the" (article)
+    if tokenKey == "der" then
+        -- If followed by a noun (next word), it's "the" (article)
+        if nextToken and nextToken.type == "word" then
+            -- Check if previous word is verb or comma (might be relative pronoun)
+            if #contextBefore > 0 then
+                local prevWord = contextBefore[#contextBefore]
+                if prevWord == "," or prevWord == "ist" or prevWord == "sind" or prevWord == "war" or prevWord == "waren" then
+                    -- Could be relative pronoun, but default to "the" for now
+                    -- Phrase matching will handle cases like "der kann" = "who can"
+                end
+            end
+            return "the" -- Default to "the" when followed by noun
+        end
+        -- If at end or before verb, might be "the" or "who/that"
+        return "the" -- Default to "the"
+    end
+    
+    -- Special case: "die" before a noun means "the" (article)
+    -- Similar logic to "der"
+    if tokenKey == "die" then
+        if nextToken and nextToken.type == "word" then
+            return "the"
+        end
+        return "the" -- Default to "the"
+    end
+    
     -- Special case: "das" before verbs = "that", before nouns = "the"
     if tokenKey == "das" then
         if nextToken and nextToken.type == "word" then
