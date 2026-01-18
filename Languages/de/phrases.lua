@@ -1137,6 +1137,16 @@ WDTS_Lang_de_Phrases = {
     ["wenn nicht"] = "if not/if it's not",
     ["wenn nicht für"] = "if not for/if it's not for",
     
+    -- Question phrases with "reicht es"
+    ["reicht es"] = "is it enough",
+    ["reicht es echt"] = "is it really enough",
+    ["reicht es aus"] = "is it enough",
+    ["reicht es aus echt"] = "is it really enough",
+    ["zu stehen"] = "to stand/to be standing",
+    ["zu stehen für"] = "to stand for/to be standing for",
+    ["in BB zu stehen"] = "to stand in Booty Bay/to be in Booty Bay",
+    ["in Booty Bay zu stehen"] = "to stand in Booty Bay/to be in Booty Bay",
+    
     -- ============================================
     -- LOCATION/POSITION PHRASES
     -- ============================================
