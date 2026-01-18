@@ -48,8 +48,9 @@ An addon that translates chat messages in-game using local Lua logic—no extern
 ## ✨ Key Features
 
 - ✅ **100% Offline** - All translation happens locally in-game
-- ✅ **Dependency Parsing** - Structure-based translation for accurate word order (v0.5.0)
+- ✅ **German Support** - German → English translation (comprehensive vocabulary & grammar)
 - ✅ **French Support** - French → English translation (v0.6.0)
+- ✅ **Dependency Parsing** - Structure-based translation for accurate word order (v0.5.0)
 - ✅ **Auto-Translation** - Automatically translates when confidence is sufficient
 - ✅ **Intent Detection** - Understands LFG, invites, ready status, etc.
 - ✅ **Safe & Conservative** - Stays silent when uncertain
