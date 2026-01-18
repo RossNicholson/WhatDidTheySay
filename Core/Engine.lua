@@ -1481,16 +1481,67 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     -- Step 2: Detect sentence type (question, command, statement)
     local sentenceType = DetectSentenceType(tokens, message)
     
-    -- Step 3: Language detection (if sourceLang not provided)
-    local detectedLang, langConfidence = LanguageDetect.Detect(tokens)
-    if not sourceLang then
-        sourceLang = detectedLang
+    -- Step 2.5: Check for WoW abbreviations language pack FIRST (before foreign language detection)
+    -- This allows users to enable/disable abbreviation expansion separately from foreign languages
+    -- WoW pack should only activate if explicitly enabled AND message contains WoW abbreviations
+    -- BUT: Only activate for English messages (not foreign language messages that happen to contain abbreviations)
+    if not sourceLang or sourceLang == "wow" then
+        if LanguagePackManager.IsEnabled("wow") then
+            -- Quick check: if message contains foreign language characters, skip WoW pack
+            -- This prevents WoW pack from interfering with foreign language translation
+            local hasForeignChars = message:find("[äöüßÄÖÜàáâãäåèéêëìíîïòóôõöùúûüýÿç]", 1) ~= nil
+            if not hasForeignChars then
+                local wowPack = Engine.LoadLanguagePack("wow")
+                if wowPack and wowPack.tokens then
+                    -- Check if message contains WoW abbreviations
+                    local wowAbbrevCount = 0
+                    local totalWords = 0
+                    for _, token in ipairs(tokens) do
+                        if token.type == "word" then
+                            totalWords = totalWords + 1
+                            local word = token.value:lower()
+                            -- Check if it's a WoW abbreviation pattern FIRST (lf*, wt*, etc.)
+                            -- These are always WoW abbreviations regardless of universal list
+                            if word:match("^lf") or word:match("^wt[stb]") or word:match("^l[fmg]") then
+                                wowAbbrevCount = wowAbbrevCount + 1
+                            -- Check if it's a WoW abbreviation (exists in WoW pack)
+                            -- WoW pack tokens are abbreviations that should be expanded
+                            elseif wowPack.tokens[word] then
+                                -- Count it even if it's in universal list, since we want to expand it
+                                wowAbbrevCount = wowAbbrevCount + 1
+                            end
+                        end
+                    end
+                    
+                    -- If message contains WoW abbreviations and WoW pack is enabled, use it
+                    -- Require at least 30% of words to be WoW abbreviations, or if sourceLang was explicitly "wow"
+                    if (wowAbbrevCount > 0 and totalWords > 0 and (wowAbbrevCount / totalWords) >= 0.30) or sourceLang == "wow" then
+                        sourceLang = "wow"
+                        langConfidence = 0.6 -- Moderate confidence for abbreviation expansion
+                        useWowPack = true
+                    end
+                end
+            end
+        end
+    end
+    
+    -- Step 3: Language detection (if sourceLang not provided and not using WoW pack)
+    local detectedLang, detectedLangConfidence = nil, 0.0
+    if not useWowPack then
+        detectedLang, detectedLangConfidence = LanguageDetect.Detect(tokens)
+        if not sourceLang then
+            sourceLang = detectedLang
+            langConfidence = detectedLangConfidence
+        else
+            langConfidence = detectedLangConfidence or 0.5
+        end
     end
     
     -- Special handling for mixed-language messages (e.g., "If tank heal dm dann abfahrt")
     -- If detected as English but contains known words from enabled languages, try that language
     -- BUT: Don't trigger on universal gaming abbreviations that exist in both languages
-    if not sourceLang or sourceLang == "en" or langConfidence < LanguageDetect.MIN_CONFIDENCE then
+    -- BUT: Skip this if we're using WoW pack
+    if not useWowPack and (not sourceLang or sourceLang == "en" or langConfidence < LanguageDetect.MIN_CONFIDENCE) then
         -- Use centralized universal WoW abbreviations from Utils
         local universalAbbreviations = Utils.UNIVERSAL_WOW_ABBREVIATIONS
         
@@ -1655,7 +1706,9 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     
     -- Don't skip translation if sourceLang was explicitly provided (user knows the language)
     -- originalSourceLang is the parameter passed to the function (before any detection)
-    local sourceLangWasExplicit = (originalSourceLang and originalSourceLang ~= "en")
+    -- Also don't skip if using WoW pack (abbreviation expansion)
+    -- Note: useWowPack might be set later, so we check if sourceLang == "wow" as well
+    local sourceLangWasExplicit = (originalSourceLang and originalSourceLang ~= "en") or (sourceLang == "wow") or useWowPack
     
     local allUniversalAbbrevs = true
     -- Use centralized universal WoW abbreviations from Utils
@@ -1800,6 +1853,11 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
     -- Skip translation if source and target are the same
     if sourceLang == targetLang then
         return nil, 0.0, "same_language"
+    end
+    
+    -- Validate sourceLang is set (should never happen, but safety check)
+    if not sourceLang then
+        return nil, 0.0, "language_unknown"
     end
     
     -- Step 3: Check if language pack is enabled

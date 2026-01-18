@@ -23,6 +23,12 @@ Languages/en/tokens.lua
 Languages/en/intents.lua
 Languages/en/patterns.lua
 Languages/en/grammar.lua
+Languages/wow/metadata.lua
+Languages/wow/tokens.lua
+Languages/wow/phrases.lua
+Languages/wow/intents.lua
+Languages/wow/patterns.lua
+Languages/wow/grammar.lua
 Languages/de/metadata.lua
 Languages/de/tokens.lua
 Languages/de/phrases.lua

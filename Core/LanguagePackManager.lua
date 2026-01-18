@@ -82,6 +82,13 @@ function LanguagePackManager.DiscoverPacks()
             direction = "target",
             available = true,
         },
+        ["wow"] = {
+            name = "WoW Abbreviations",
+            nativeName = "WoW Abbreviations",
+            description = "WoW gaming abbreviations → English",
+            direction = "wow → en",
+            available = true,
+        },
     }
     
     -- Check which language packs are actually loaded
