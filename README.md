@@ -50,6 +50,7 @@ An addon that translates chat messages in-game using local Lua logic—no extern
 - ✅ **100% Offline** - All translation happens locally in-game
 - ✅ **German Support** - German → English translation (comprehensive vocabulary & grammar)
 - ✅ **French Support** - French → English translation (v0.6.0)
+- ✅ **WoW Abbreviations Pack** - Expand gaming abbreviations independently (v0.7.0) 🆕
 - ✅ **Dependency Parsing** - Structure-based translation for accurate word order (v0.5.0)
 - ✅ **Auto-Translation** - Automatically translates when confidence is sufficient
 - ✅ **Intent Detection** - Understands LFG, invites, ready status, etc.
