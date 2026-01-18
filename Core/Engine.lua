@@ -1606,10 +1606,31 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
                         end
                     end
                     
+                    -- Require STRONG evidence that this is actually a foreign language message:
+                    -- 1. Language-specific characters (ä, ö, ü, ß, é, è, etc.) - strongest indicator
+                    -- 2. Multiple function words (2+)
+                    -- 3. At least 1 function word + 1 vocabulary word (but vocabulary word must not be a universal gaming term)
+                    -- 4. Strong German compound words (already handled above)
+                    -- BUT: Don't match if message is mostly universal gaming abbreviations
+                    local nonUniversalWords = 0
+                    local tokenWordCount = 0
+                    for _, token in ipairs(tokens) do
+                        if token.type == "word" then
+                            tokenWordCount = tokenWordCount + 1
+                            local word = token.value:lower()
+                            if not universalAbbreviations[word] then
+                                nonUniversalWords = nonUniversalWords + 1
+                            end
+                        end
+                    end
+                    
+                    -- Require that at least 30% of words are non-universal for mixed-language detection
+                    -- This prevents pure English gaming messages from being detected as foreign
+                    local hasNonUniversalContent = (tokenWordCount > 0 and (nonUniversalWords / tokenWordCount) >= 0.30)
+                    
                     if hasLanguageCharacters or 
-                       languageFunctionWords >= 2 or 
-                       (languageFunctionWords >= 1 and languageVocabularyWords >= 1) or
-                       languageVocabularyWords >= 2 or
+                       (languageFunctionWords >= 2 and hasNonUniversalContent) or 
+                       (languageFunctionWords >= 1 and languageVocabularyWords >= 1 and hasNonUniversalContent) or
                        hasStrongGermanWord then
                         if matchScore > bestMatchScore then
                             bestMatchScore = matchScore
@@ -1621,9 +1642,23 @@ function Engine.Translate(message, sourceLang, targetLang, bypassCache)
         end
         
         -- If we found a strong match, use it
-        if bestMatchLang and bestMatchScore >= 2 then
-            sourceLang = bestMatchLang
-            langConfidence = 0.5 -- Give it moderate confidence for mixed messages
+        -- BUT: Require higher threshold (>= 3) when no language-specific characters are present
+        -- This prevents false positives on pure English gaming messages
+        if bestMatchLang then
+            -- Check if we have language-specific characters for this match
+            local hasCharsForMatch = false
+            if bestMatchLang == "de" then
+                hasCharsForMatch = message:find("[äöüßÄÖÜ]", 1) ~= nil
+            elseif bestMatchLang == "fr" then
+                hasCharsForMatch = message:find("[àáâãäåèéêëìíîïòóôõöùúûüýÿç]", 1) ~= nil
+            end
+            
+            -- Require higher score if no language-specific characters
+            local requiredScore = hasCharsForMatch and 2 or 4
+            if bestMatchScore >= requiredScore then
+                sourceLang = bestMatchLang
+                langConfidence = 0.5 -- Give it moderate confidence for mixed messages
+            end
         end
     end
     
