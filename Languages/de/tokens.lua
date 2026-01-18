@@ -233,8 +233,10 @@ WDTS_Lang_de_Tokens = {
     ["zwerg"] = "dwarf",
     ["nachtelfen"] = "night elves",
     ["nachtelf"] = "night elf",
-    ["gnome"] = "gnomes",
-    ["gnom"] = "gnome",
+    -- Removed "gnome" and "gnom" - these are English words that shouldn't be translated
+    -- "Gnome" in "LFM Gnome" refers to Gnomeregan dungeon (English), not German word
+    -- ["gnome"] = "gnomes", -- REMOVED: English word, causes false translation of "LFM Gnome"
+    -- ["gnom"] = "gnome", -- REMOVED: English word
     ["orks"] = "orcs",
     ["ork"] = "orc",
     ["trolle"] = "trolls",
