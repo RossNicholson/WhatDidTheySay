@@ -10,25 +10,17 @@ WDTS_Lang_de_Grammar = {
             to = "can you ",
         },
         -- Fix "are you why" -> "why are you" (question word order)
+        -- Match at start of string
         {
             from = "^are you why (.+)$",
             to = "why are you %1",
-            priority = 20,
+            priority = 25,
         },
+        -- Match in middle of string  
         {
-            from = "^are you why (.+) ",
-            to = "why are you %1 ",
-            priority = 20,
-        },
-        {
-            from = " are you why (.+)$",
+            from = " are you why (.+)",
             to = " why are you %1",
-            priority = 20,
-        },
-        {
-            from = " are you why (.+) ",
-            to = " why are you %1 ",
-            priority = 20,
+            priority = 25,
         },
         -- Fix "are you looking for why" -> "why are you looking for"
         {
