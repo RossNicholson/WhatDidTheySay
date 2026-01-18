@@ -739,12 +739,13 @@ WDTS_Lang_de_Tokens = {
     ["personen"] = "people",
     
     -- Abbreviations players use
-    ["wts"] = "wts", -- Want to sell (often used as-is)
-    ["wtb"] = "wtb", -- Want to buy
-    ["lf"] = "looking for", -- Looking for
-    ["lfb"] = "looking for", -- Looking for (variant)
-    ["lfm"] = "lfm", -- Looking for more
-    ["lfg"] = "lfg", -- Looking for group
+    -- Removed English gaming abbreviations - these should only be translated by WoW pack
+    -- ["wts"] = "wts", -- REMOVED: English gaming term, should use WoW pack
+    -- ["wtb"] = "wtb", -- REMOVED: English gaming term, should use WoW pack
+    -- ["lf"] = "looking for", -- REMOVED: English gaming term, should use WoW pack
+    -- ["lfb"] = "looking for", -- REMOVED: English gaming term, should use WoW pack
+    -- ["lfm"] = "lfm", -- REMOVED: English gaming term, should use WoW pack
+    -- ["lfg"] = "lfg", -- REMOVED: English gaming term, should use WoW pack
     ["lf1m"] = "lf1m", -- Looking for 1 more
     ["ifg"] = "lfg", -- Common typo for LFG
     ["ifm"] = "lfm", -- Common typo for LFM (Looking For More)

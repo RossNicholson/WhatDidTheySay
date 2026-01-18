@@ -2235,8 +2235,10 @@ WDTS_Lang_de_Phrases = {
     ["verkaufst du"] = "are you selling",
     ["kannst du kaufen"] = "can you buy",
     ["kannst du verkaufen"] = "can you sell",
-    ["wts"] = "want to sell",
-    ["wtb"] = "want to buy",
+    -- Removed "wts" and "wtb" - these are English gaming abbreviations
+    -- They should only be translated by the WoW abbreviations pack when enabled
+    -- ["wts"] = "want to sell", -- REMOVED: English gaming term, should use WoW pack
+    -- ["wtb"] = "want to buy", -- REMOVED: English gaming term, should use WoW pack
     ["wtt"] = "want to trade",
     ["verkaufe ich"] = "I'm selling",
     ["kaufe ich"] = "I'm buying",
