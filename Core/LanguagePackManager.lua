@@ -104,7 +104,7 @@ function LanguagePackManager.DiscoverPacks()
                 description = info.description,
                 direction = info.direction,
                 available = isAvailable,
-                enabled = isAvailable and (WhatDidTheySayDB.enabledLanguages and WhatDidTheySayDB.enabledLanguages[lang] ~= false),
+                enabled = isAvailable and LanguagePackManager.IsEnabled(lang),
             }
         end
     end
