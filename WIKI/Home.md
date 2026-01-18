@@ -16,7 +16,7 @@ If this addon has helped you, please consider [buying me a coffee](https://buyme
 
 **Just getting started?** Follow these steps:
 
-1. **[📦 Releases](Releases)** - Download the latest version (v0.6.0)
+1. **[📦 Releases](Releases)** - Download the latest version (v0.7.0)
 2. **[📥 Installation Guide](Installation)** - Install and set up the addon
 3. **[📖 User Guide](User-Guide)** - Learn how to use it in-game
 4. **[⚙️ Configuration](Configuration)** - Customize settings to your needs

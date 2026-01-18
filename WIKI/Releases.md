@@ -6,7 +6,7 @@ Current release information and download links for **What Did They Say?**.
 
 ## 🎯 Current Release
 
-### Version 0.6.0 (Beta)
+### Version 0.7.0 (Beta)
 
 **Release Date:** January 2025  
 **Status:** ⚠️ Beta - Actively under development  
@@ -15,7 +15,7 @@ Current release information and download links for **What Did They Say?**.
 
 #### Download
 
-- **GitHub Releases:** [Download v0.6.0](https://github.com/RossNicholson/WhatDidTheySay/releases/latest)
+- **GitHub Releases:** [Download v0.7.0](https://github.com/RossNicholson/WhatDidTheySay/releases/latest)
 - **Source Code:** Clone from [GitHub Repository](https://github.com/RossNicholson/WhatDidTheySay)
 
 #### Quick Install
@@ -27,27 +27,42 @@ Current release information and download links for **What Did They Say?**.
    - **Mac:** `World of Warcraft/_classic_era_/Interface/AddOns/WhatDidTheySay/`
 4. **Launch** WoW Classic and enable the addon in the AddOns menu
 
-#### What's New in v0.6.0
+#### What's New in v0.7.0
 
-**French Language Pack - Complete Implementation**
+**🎉 WoW Abbreviations Language Pack**
 
-- ✅ **French Translation Support** - Full French → English translation (fr → en)
-- ✅ **Comprehensive Vocabulary** - 2,756+ French vocabulary entries
-- ✅ **Extensive Phrase Coverage** - 1,620+ multi-word phrases and expressions
-- ✅ **Pattern Matching** - 1,380+ sentence patterns for complex structures
-- ✅ **Grammar Rules** - 1,802 grammar rules for French-specific structures
-- ✅ **100% Test Pass Rate** - All 150 comprehensive test cases passing
-- ✅ **Real-World Chat Support** - Handles gaming abbreviations, emoticons, and English loanwords in French chat
+- ✅ **New Language Pack:** Separate, independent language pack for WoW gaming abbreviations
+- ✅ **Independent Control:** Enable/disable abbreviation expansion separately from foreign languages
+- ✅ **Auto-Detection:** Automatically expands abbreviations when 30%+ of words are WoW abbreviations
+- ✅ **Comprehensive Coverage:** 150+ abbreviations (LF/LFM, WTS/WTB, classes, dungeons, raids, cities, actions, status, combat, professions)
+- ✅ **Smart Detection:** Only activates for English messages (doesn't interfere with foreign language translation)
+- ✅ **Examples:** "LF 1 tank strat ud" → "Looking for 1 tank Stratholme Undead side"
 
-For full details, see [Version History](Version-History#version-060).
+For full details, see [Version History](Version-History#version-070).
 
 ---
 
 ## 📦 All Releases
 
-### Version 0.6.0 (Beta) - Current
+### Version 0.7.0 (Beta) - Current
 
 **Status:** ✅ Latest  
+**Release Date:** January 2025
+
+**Key Features:**
+- **NEW:** WoW Abbreviations Language Pack - Separate, independent language pack for gaming abbreviations
+- 150+ abbreviation expansions (LF/LFM, WTS/WTB, classes, dungeons, raids, cities, actions, status, combat, professions)
+- Auto-detection when 30%+ of words are WoW abbreviations
+- Smart detection - only activates for English messages (doesn't interfere with foreign languages)
+- Independent enable/disable control
+- Centralized universal abbreviations list (268 abbreviations)
+
+[Full Changelog](Version-History#version-070) | [Download](https://github.com/RossNicholson/WhatDidTheySay/releases/tag/v0.7.0)
+
+---
+
+### Version 0.6.0 (Beta)
+
 **Release Date:** January 2025
 
 **Key Features:**

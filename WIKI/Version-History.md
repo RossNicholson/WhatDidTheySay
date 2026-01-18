@@ -4,6 +4,76 @@ Complete changelog for What Did They Say? addon.
 
 ---
 
+## Version 0.7.0
+
+**WoW Abbreviations Language Pack**
+
+This release introduces a **separate, independent language pack for WoW gaming abbreviations**, allowing users to enable/disable abbreviation expansion independently from foreign language translation.
+
+### ✨ Major Feature: WoW Abbreviations Language Pack
+
+- **New Language Pack:** `wow` - Separate, toggleable language pack for gaming abbreviations
+- **Independent Control:** Enable/disable abbreviation expansion separately from foreign languages
+- **Auto-Detection:** Automatically expands abbreviations when 30%+ of words are WoW abbreviations
+- **Explicit Activation:** Can be activated with `sourceLang="wow"`
+
+### Comprehensive Abbreviation Coverage
+
+- **LFG/LFM:** LF → Looking for, LFM → Looking for more, LF1M-4M → Looking for 1-4 more
+- **Trading:** WTS → Want to sell, WTB → Want to buy, WTT → Want to trade
+- **Classes:** War/Warr → Warrior, Mage, Rog → Rogue, Hunt → Hunter, Priest, Lock/WL → Warlock, Dru/Dudu → Druid, Sham → Shaman, Pala/Pal/Pally → Paladin
+- **Roles:** Tank, Heal/Healer, DPS, MT → Main tank, OT → Off tank
+- **Dungeons:** All Classic Era dungeons (DM, VC, BFD, SFK, RFK, RFD, Gnomer, Uldaman, ZF, Mara, Scholo, Strat, BRD, UBRS, LBRS)
+- **Raids:** MC → Molten Core, Ony → Onyxia's Lair, BWL → Blackwing Lair, ZG → Zul'Gurub, AQ → Ahn'Qiraj, Naxx → Naxxramas
+- **Cities:** SW → Stormwind, Org → Orgrimmar, IF → Ironforge, Darna → Darnassus, TB → Thunder Bluff, UC → Undercity
+- **Actions:** Inv → Invite, Summon, Port → Portal, Res → Resurrect, Pull, Buff, Rebuff
+- **Status:** AFK → Away from keyboard, BRB → Be right back, Ty → Thank you, NP → No problem, Sry → Sorry
+- **Items/Currency:** G → Gold, S → Silver, C → Copper, Bags, Mounts, Pets
+- **Combat:** CC → Crowd control, Add → Additional enemy, Aggro, AOE → Area of effect, DOT → Damage over time, HOT → Heal over time
+- **Professions:** Alch → Alchemy, BS → Blacksmithing, Ench → Enchanting, Eng → Engineering, Herb → Herbalism, LW → Leatherworking, Tailor → Tailoring
+- **And much more!**
+
+### Translation Examples
+
+- `"LF 1 tank strat ud"` → `"Looking for 1 tank Stratholme Undead side"`
+- `"WTS [Large Green Bag] 5g"` → `"Want to sell [Large green Bag] 5 gold"`
+- `"AFK brb 5 min"` → `"away from keyboard be right back 5 minutes"`
+- `"LFM 2 dps for UBRS"` → `"Looking for more 2 dps for Upper Blackrock Spire"`
+
+### Technical Improvements
+
+- **Smart Detection:** WoW pack only activates for English messages (skips if foreign language characters detected)
+- **Non-Interfering:** Doesn't interfere with foreign language translation
+- **Grammar Rules:** Post-processing rules for correct article usage, capitalization, and pluralization
+- **Pattern Matching:** Complex abbreviation patterns (e.g., "LF 1M tank", "WTS item 50g")
+- **Centralized Abbreviations:** Created `Utils.UNIVERSAL_WOW_ABBREVIATIONS` list (268 abbreviations) for consistency
+
+### Language Pack Structure
+
+- **Languages/wow/metadata.lua** - Language pack metadata
+- **Languages/wow/tokens.lua** - 150+ abbreviation expansions
+- **Languages/wow/phrases.lua** - 30+ multi-word abbreviations
+- **Languages/wow/patterns.lua** - 10+ complex abbreviation patterns
+- **Languages/wow/grammar.lua** - 20+ post-processing rules
+- **Languages/wow/intents.lua** - WoW-specific intents (LFG, TRADING, etc.)
+
+### Configuration
+
+The WoW Abbreviations language pack can be enabled/disabled independently from other language packs in the addon configuration. Users can:
+- Enable WoW pack for abbreviation expansion
+- Enable foreign language packs (German, French, etc.) for translation
+- Use both together - abbreviations expand, foreign languages translate
+
+### Bug Fixes
+
+- Fixed duplicate expansion issues (e.g., "Stratholme Stratholme" → "Stratholme")
+- Fixed "dps" expansion in context (keeps as "dps" when used as role abbreviation)
+- Fixed spacing issues with currency and item names
+
+**This represents the first language pack dedicated to abbreviation expansion, giving users independent control over this feature.**
+
+---
+
 ## Version 0.6.0
 
 **French Language Pack - Complete Implementation**

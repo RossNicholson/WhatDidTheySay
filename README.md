@@ -22,7 +22,7 @@ If this addon has helped you, please consider [buying me a coffee](https://buyme
 
 **⚠️ BETA VERSION ⚠️**
 
-Now supports **German (de → en)** and **French (fr → en)** translations! Additional languages to follow.
+Now supports **German (de → en)**, **French (fr → en)**, and **WoW Abbreviations (wow → en)**! Additional languages to follow.
 
 [![WoW Classic](https://img.shields.io/badge/WoW-Classic%20Era-orange)](https://worldofwarcraft.blizzard.com/en-us/game/wow-classic)
 [![Interface Version](https://img.shields.io/badge/Interface-11508-blue)](https://www.wowhead.com/)
