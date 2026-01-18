@@ -120,8 +120,12 @@ end
 
 -- Check if a language pack is enabled
 function LanguagePackManager.IsEnabled(lang)
-    if not WhatDidTheySayDB.enabledLanguages then
-        return true -- Default to enabled if not set
+    if not WhatDidTheySayDB or not WhatDidTheySayDB.enabledLanguages then
+        -- Default behavior: foreign languages enabled, WoW abbreviations disabled
+        if lang == "wow" then
+            return false -- WoW abbreviations disabled by default
+        end
+        return true -- Default to enabled if not set (for foreign languages)
     end
     return WhatDidTheySayDB.enabledLanguages[lang] ~= false
 end
