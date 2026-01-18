@@ -4,7 +4,7 @@
 
 ### What is "What Did They Say?"
 
-**What Did They Say?** is a World of Warcraft Classic addon that translates chat messages from other languages (currently German) to English. All translation happens locally in-game - no external services or internet connection required.
+**What Did They Say?** is a World of Warcraft Classic addon that translates chat messages from other languages (currently German and French) to English, and can expand WoW gaming abbreviations. All translation happens locally in-game - no external services or internet connection required.
 
 ### How does it work?
 

@@ -38,16 +38,33 @@ Controls whether translations appear automatically or require manual activation.
 
 ### Show Original
 
-Controls whether the original German message is shown alongside the translation.
+Controls whether the original message is shown alongside the translation.
 
 **Enabled (Default):**
 - Shows both original and translation
 - Format: `[Original] → Translation`
-- Helpful for learning German
+- Helpful for learning other languages
 
 **Disabled:**
 - Shows only translation
 - Cleaner chat appearance
+
+### Language Packs
+
+Enable or disable specific language packs for translation.
+
+**Available Language Packs:**
+- **German (de → en)** - ✅ Enabled by default
+- **French (fr → en)** - ✅ Enabled by default  
+- **WoW Abbreviations (wow → en)** - ❌ **Disabled by default** 🆕
+
+**WoW Abbreviations Pack:**
+- Expands gaming abbreviations like "LF", "LFM", "WTS", "WTB" to full English
+- Only activates for English messages (doesn't interfere with foreign language translation)
+- Can be enabled/disabled independently from foreign language packs
+- Examples: "LF 1 tank strat ud" → "Looking for 1 tank Stratholme Undead side"
+
+**Tip:** You can enable both foreign language packs AND WoW abbreviations pack simultaneously - they work independently.
 - Less informative
 
 ### Channel Selection
