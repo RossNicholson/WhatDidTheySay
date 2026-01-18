@@ -1636,6 +1636,13 @@ WDTS_Lang_de_Tokens = {
     ["armory"] = "Armory",
     ["waffenkammer"] = "Armory",
     ["kathedrale"] = "Cathedral",
+    -- Scarlet Monastery zones (common abbreviations)
+    ["gy"] = "Graveyard", -- SM Graveyard zone
+    ["lib"] = "Library", -- SM Library zone
+    ["arms"] = "Armory", -- SM Armory zone
+    ["arm"] = "Armory", -- Alternative abbreviation
+    ["cathedral"] = "Cathedral", -- SM Cathedral zone
+    ["cat"] = "Cathedral", -- Alternative abbreviation
     ["versunkener tempel"] = "Sunken Temple",
     ["blackrocktiefen"] = "Blackrock Depths",
     ["untere spitz"] = "Lower Blackrock Spire",
