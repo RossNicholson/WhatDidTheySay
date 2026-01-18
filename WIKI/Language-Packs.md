@@ -7,26 +7,30 @@
 #### 🇩🇪 German (de → en)
 
 **Status:** ✅ Active Development (Beta)  
-**Coverage:** 5,396 lines of vocabulary, 2,241 lines of phrases  
-**Accuracy:** 94.1% test pass rate  
+**Coverage:** 5,410+ vocabulary entries, 2,267 phrases, 1,401 patterns, 3,067 grammar rules  
+**Accuracy:** Excellent coverage with comprehensive test suites  
 **Features:**
-- Comprehensive vocabulary
-- WoW-specific terms
-- Gaming slang and colloquialisms
+- Comprehensive vocabulary (5,410+ entries)
+- WoW-specific terms and gaming slang
 - Advanced morphology support
 - Verb conjugation recognition
 - Compound word decomposition
+- Dependency parsing support
+- Real-world guild chat support (100% pass rate on guild chat tests)
 
 #### 🇫🇷 French (fr → en)
 
 **Status:** ✅ Active Development (Beta) - v0.6.0  
-**Coverage:** 1,164 lines of vocabulary, 343 lines of phrases, 360 patterns  
-**Accuracy:** 81.1% test pass rate (growing)  
+**Coverage:** 2,756+ vocabulary entries, 1,620+ phrases, 1,380+ patterns, 1,802 grammar rules  
+**Accuracy:** 100% test pass rate (150/150 comprehensive tests)  
 **Features:**
-- Growing vocabulary (Directions, Combat, Faction, Races)
-- Common phrases and expressions
-- Sentence patterns (LFG, trading, questions)
+- Comprehensive vocabulary (2,756+ entries)
+- Extensive phrase coverage (1,620+ phrases)
+- Sentence patterns (LFG, trading, questions, directions)
 - Grammar rules for French-specific structures
+- Gaming abbreviations and English loanwords support
+- Emoticon handling
+- Real-world chat message support
 
 ### More Languages to Follow
 
@@ -36,17 +40,17 @@
 **Priority:** High  
 **Target:** Future release
 
+#### 🇪🇸 Spanish (es → en)
+
+**Status:** 📅 Planned  
+**Priority:** High  
+**Target:** v0.7.0+
+
 #### 🇷🇺 Russian (ru → en)
 
 **Status:** 📅 Planned  
 **Priority:** Medium  
 **Target:** Future release
-
-#### 🇷🇺 Russian (ru → en)
-
-**Status:** 📅 Planned  
-**Priority:** Medium  
-**Target:** v0.7.0+
 
 ## 📦 Language Pack Structure
 

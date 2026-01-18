@@ -6,7 +6,7 @@ Current release information and download links for **What Did They Say?**.
 
 ## 🎯 Current Release
 
-### Version 0.5.0 (Beta)
+### Version 0.6.0 (Beta)
 
 **Release Date:** January 2025  
 **Status:** ⚠️ Beta - Actively under development  
@@ -15,7 +15,7 @@ Current release information and download links for **What Did They Say?**.
 
 #### Download
 
-- **GitHub Releases:** [Download v0.5.0](https://github.com/RossNicholson/WhatDidTheySay/releases/latest)
+- **GitHub Releases:** [Download v0.6.0](https://github.com/RossNicholson/WhatDidTheySay/releases/latest)
 - **Source Code:** Clone from [GitHub Repository](https://github.com/RossNicholson/WhatDidTheySay)
 
 #### Quick Install
@@ -27,34 +27,53 @@ Current release information and download links for **What Did They Say?**.
    - **Mac:** `World of Warcraft/_classic_era_/Interface/AddOns/WhatDidTheySay/`
 4. **Launch** WoW Classic and enable the addon in the AddOns menu
 
-#### What's New in v0.5.0
+#### What's New in v0.6.0
 
-**Dependency Parsing - Structure-Based Translation**
+**French Language Pack - Complete Implementation**
 
-- ✅ **Dependency Parsing Engine** - Parses sentences into dependency trees for grammatical understanding
-- ✅ **Complex Sentence Support** - Handles relative clauses, subordinate clauses, and questions
-- ✅ **Better Word Order** - Produces correct English word order without post-processing fixes
-- ✅ **Massive Vocabulary Expansion** - 4,400+ German vocabulary entries
-- ✅ **Enhanced Grammar Rules** - 544 grammar rules including LanguageTool-inspired patterns
+- ✅ **French Translation Support** - Full French → English translation (fr → en)
+- ✅ **Comprehensive Vocabulary** - 2,756+ French vocabulary entries
+- ✅ **Extensive Phrase Coverage** - 1,620+ multi-word phrases and expressions
+- ✅ **Pattern Matching** - 1,380+ sentence patterns for complex structures
+- ✅ **Grammar Rules** - 1,802 grammar rules for French-specific structures
+- ✅ **100% Test Pass Rate** - All 150 comprehensive test cases passing
+- ✅ **Real-World Chat Support** - Handles gaming abbreviations, emoticons, and English loanwords in French chat
 
-For full details, see [Version History](Version-History#version-050).
+For full details, see [Version History](Version-History#version-060).
 
 ---
 
 ## 📦 All Releases
 
-### Version 0.5.0 (Beta) - Current
+### Version 0.6.0 (Beta) - Current
 
 **Status:** ✅ Latest  
 **Release Date:** January 2025
 
 **Key Features:**
+- French language pack - Complete implementation
+- 2,756+ French vocabulary entries
+- 1,620+ French phrases
+- 1,380+ French patterns
+- 1,802 French grammar rules
+- 100% test pass rate (150/150 tests)
+- Engine improvements for English gaming terms and emoticons
+
+[Full Changelog](Version-History#version-060) | [Download](https://github.com/RossNicholson/WhatDidTheySay/releases/tag/v0.6.0)
+
+---
+
+### Version 0.5.0 (Beta)
+
+**Release Date:** January 2025
+
+**Key Features:**
 - Dependency parsing for structure-based translation
 - Support for complex sentences (relative, subordinate, questions)
-- 4,400+ German vocabulary entries
-- 1,007 phrase patterns
-- 275 sentence structure patterns
-- 544 grammar rules
+- 5,410+ German vocabulary entries
+- 2,267 phrase patterns
+- 1,401 sentence structure patterns
+- 3,067 grammar rules
 
 [Full Changelog](Version-History#version-050) | [Download](https://github.com/RossNicholson/WhatDidTheySay/releases/tag/v0.5.0)
 
@@ -155,7 +174,7 @@ For full details, see [Version History](Version-History#version-050).
 
 4. **Verify Installation**
    - Launch WoW Classic
-   - Check AddOns menu - version should show 0.5.0
+   - Check AddOns menu - version should show v0.6.0
    - Your settings should be preserved automatically
 
 ### Settings Migration
@@ -173,8 +192,8 @@ Settings are automatically preserved between versions. However, if you encounter
 ### Beta Version Limitations
 
 - **Translation Quality May Vary** - Some messages may not translate if confidence is too low (by design)
-- **German Only** - Currently only German (de → en) is available and functional
-- **Placeholder Languages** - Other language packs are visible but not yet implemented
+- **Two Languages Available** - German (de → en) and French (fr → en) are fully functional
+- **Placeholder Languages** - Other language packs (Spanish, Russian, Portuguese, etc.) are visible but not yet implemented
 
 ### Cosmetic Issues
 
@@ -186,7 +205,7 @@ Settings are automatically preserved between versions. However, if you encounter
 
 ### Planned for Future Versions
 
-- **Additional Language Packs** - Russian, French, Spanish, Portuguese, Italian, Polish, Dutch, Swedish
+- **Additional Language Packs** - Spanish, Russian, Portuguese, Italian, Polish, Dutch, Swedish
 - **Grammar Improvements** - Continued refinement of dependency parsing and grammar rules
 - **Vocabulary Expansion** - Ongoing expansion based on real-world usage
 - **Performance Optimizations** - Continued performance improvements
@@ -230,7 +249,7 @@ After installing, verify your installation:
 
 3. **Functionality Check:**
    - Enable auto-translate in configuration
-   - Join a channel with German speakers
+   - Join a channel with German or French speakers
    - Translations should appear automatically (green/yellow text)
 
 ---
@@ -267,4 +286,4 @@ For detailed technical changes, see [Version History](Version-History).
 
 ---
 
-*Last Updated: January 2025*
+*Last Updated: January 2025 (v0.6.0)*

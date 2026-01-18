@@ -12,7 +12,7 @@ You can also use `/whatdidtheysay` as a full command.
 
 Once configured, the addon works automatically:
 
-1. **Detects German messages** in enabled chat channels
+1. **Detects foreign language messages** (German or French) in enabled chat channels
 2. **Translates to English** with confidence scoring
 3. **Displays translations** automatically when confidence ≥ 0.50
 4. **Shows manual option** for medium confidence (0.30-0.49)

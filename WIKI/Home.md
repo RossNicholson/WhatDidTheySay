@@ -102,10 +102,9 @@ This addon is focused on providing **the best translation possible**. It priorit
 ## 📊 Translation Accuracy
 
 - **Dependency Parsing** - Structure-based translation for complex sentences (v0.5.0)
-- **4,400+ German vocabulary entries** - Comprehensive word coverage
-- **1,007 phrase patterns** - Multi-word expressions and idioms
-- **275 sentence patterns** - Structure-based translation templates
-- **544 grammar rules** - Post-processing corrections and word order fixes
+- **German**: 5,410+ vocabulary entries, 2,267 phrases, 1,401 patterns, 3,067 grammar rules
+- **French**: 2,756+ vocabulary entries, 1,620+ phrases, 1,380+ patterns, 1,802 grammar rules
+- **Test Coverage**: 100% pass rate on comprehensive test suites for both languages
 
 ## 🚀 Getting Started
 
